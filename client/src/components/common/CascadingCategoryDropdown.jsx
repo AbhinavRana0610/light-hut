@@ -13,6 +13,7 @@ export const PRODUCT_CATEGORIES_DATA = [
     name: 'Wall Lamp',
     slug: 'wall-lamp',
     icon: '💡',
+    count: 6,
     sub: [
       {
         name: 'Led Wall Lamp',
@@ -40,6 +41,7 @@ export const PRODUCT_CATEGORIES_DATA = [
     name: 'Pendant Lamp',
     slug: 'pendant-lamp',
     icon: '🔆',
+    count: 6,
     sub: [
       {
         name: 'Led Hanging Lamp',
@@ -67,6 +69,7 @@ export const PRODUCT_CATEGORIES_DATA = [
     name: 'Chandelier',
     slug: 'chandelier',
     icon: '✨',
+    count: 12,
     sub: [
       {
         name: 'Led Chandelier',
@@ -136,6 +139,7 @@ export const PRODUCT_CATEGORIES_DATA = [
     name: 'Double Height',
     slug: 'double-height',
     icon: '🏛️',
+    count: 4,
     sub: [
       {
         name: 'Crystal Chandelier',
@@ -163,6 +167,7 @@ export const PRODUCT_CATEGORIES_DATA = [
     name: 'Dining Table Lamp',
     slug: 'dining-table-lamp',
     icon: '🍽️',
+    count: 3,
     sub: [],
     previewGallery: [
       { url: '/categories/dining-table-lamp.jpg', title: 'Cordless Touch Banquet Lamp', link: '/catalog?category=dining-table-lamp' },
@@ -177,6 +182,7 @@ export const PRODUCT_CATEGORIES_DATA = [
     name: 'Outdoor Light',
     slug: 'outdoor-light',
     icon: '🌿',
+    count: 4,
     sub: [
       {
         name: 'Gate Lamp',
@@ -204,6 +210,7 @@ export const PRODUCT_CATEGORIES_DATA = [
     name: 'Table Lamp',
     slug: 'table-lamp',
     icon: '🪔',
+    count: 3,
     sub: [],
     previewGallery: [
       { url: '/categories/table-lamp.jpg', title: 'Marble Base Mushroom Lamp', link: '/catalog?category=table-lamp' },
@@ -218,6 +225,7 @@ export const PRODUCT_CATEGORIES_DATA = [
     name: 'Floor Lamp',
     slug: 'floor-lamp',
     icon: '🕯️',
+    count: 3,
     sub: [],
     previewGallery: [
       { url: '/categories/floor-lamp.jpg', title: 'Arched Brass Living Room Arc', link: '/catalog?category=floor-lamp' },
@@ -232,6 +240,7 @@ export const PRODUCT_CATEGORIES_DATA = [
     name: 'LED Filament Bulb',
     slug: 'led-filament-bulb',
     icon: '💫',
+    count: 4,
     sub: [],
     previewGallery: [
       { url: '/categories/led-filament-bulb.jpg', title: 'Amber ST64 Spiral Bulb', link: '/catalog?category=led-filament-bulb' },
@@ -246,6 +255,7 @@ export const PRODUCT_CATEGORIES_DATA = [
     name: 'Spare Part',
     slug: 'spare-part',
     icon: '🔧',
+    count: 4,
     sub: [
       {
         name: 'Hanging Base',
@@ -278,13 +288,13 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 4 }}
       transition={{ duration: 0.15 }}
-      className={`relative bg-white text-neutral-800 rounded-2xl shadow-[0_16px_40px_rgba(0,0,0,0.12)] border border-neutral-200/90 p-2 w-[240px] select-none ${className}`}
+      className={`relative bg-white text-neutral-800 rounded-2xl shadow-[0_16px_40px_rgba(0,0,0,0.12)] border border-neutral-200/90 p-2 w-[245px] select-none ${className}`}
     >
       {/* Category List */}
       <div className="space-y-0.5">
         <div className="px-2.5 py-1 mb-1 border-b border-neutral-100 flex items-center justify-between">
           <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">
-            Categories
+            Catalog Categories
           </span>
           <span className="text-[10px] font-bold text-[#DC2626]">
             {PRODUCT_CATEGORIES_DATA.length}
@@ -302,7 +312,7 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
               onMouseEnter={() => setActiveCategory(cat)}
             >
               <Link
-                to={`/category/${cat.slug}`}
+                to={`/catalog?category=${cat.slug}`}
                 onClick={onClose}
                 className={`group/item flex items-center justify-between px-2.5 py-1.5 rounded-xl text-xs font-medium transition-all duration-150 ${
                   isHovered
@@ -317,13 +327,26 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
                   </span>
                 </div>
 
-                {hasSub && (
-                  <ChevronRight
-                    className={`w-3.5 h-3.5 transition-transform shrink-0 ${
-                      isHovered ? 'translate-x-0.5 text-[#DC2626]' : 'text-neutral-300'
-                    }`}
-                  />
-                )}
+                <div className="flex items-center gap-1.5 shrink-0 ml-1">
+                  {cat.count !== undefined && (
+                    <span
+                      className={`text-[10px] font-mono px-1.5 py-0.2 rounded-md ${
+                        isHovered
+                          ? 'bg-white/20 text-white font-bold'
+                          : 'bg-neutral-100 text-neutral-500 font-semibold'
+                      }`}
+                    >
+                      {cat.count}
+                    </span>
+                  )}
+                  {hasSub && (
+                    <ChevronRight
+                      className={`w-3.5 h-3.5 transition-transform shrink-0 ${
+                        isHovered ? 'translate-x-0.5 text-[#DC2626]' : 'text-neutral-300'
+                      }`}
+                    />
+                  )}
+                </div>
               </Link>
 
               {/* Sub Dropdown Flyout to the Right — Clean, Compact & Image-Free */}
@@ -352,7 +375,7 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
                         {cat.sub.map((subItem) => (
                           <Link
                             key={subItem.slug}
-                            to={`/category/${cat.slug}/${subItem.slug}`}
+                            to={`/catalog?category=${cat.slug}&sub=${subItem.slug}`}
                             onClick={onClose}
                             className="group/sub flex items-center justify-between px-2.5 py-1.5 rounded-xl text-xs font-medium text-neutral-700 hover:text-[#DC2626] hover:bg-red-50/80 transition-all duration-150"
                           >
@@ -365,10 +388,10 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
                       </div>
                     </div>
 
-                    {/* Bottom Link: All Category Fixtures */}
+                    {/* Bottom Link: All Category Fixtures in Catalog */}
                     <div className="mt-1.5 pt-1.5 border-t border-neutral-100 px-1">
                       <Link
-                        to={`/category/${cat.slug}`}
+                        to={`/catalog?category=${cat.slug}`}
                         onClick={onClose}
                         className="text-[11px] font-semibold text-[#DC2626] hover:text-[#B91C1C] flex items-center justify-between px-1.5 py-1 rounded-lg hover:bg-red-50/50 transition-colors group/link"
                       >
@@ -384,14 +407,14 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
         })}
       </div>
 
-      {/* Bottom link: View All Categories */}
+      {/* Bottom link: View All Catalog Categories (All Fixtures) */}
       <div className="mt-1.5 pt-1.5 border-t border-neutral-100 px-1">
         <Link
-          to="/categories"
+          to="/catalog"
           onClick={onClose}
           className="w-full text-center py-1.5 rounded-xl text-[11px] font-semibold text-neutral-700 hover:text-white hover:bg-[#DC2626] bg-neutral-100/80 transition-colors flex items-center justify-center gap-1.5"
         >
-          <Layers className="w-3.5 h-3.5" /> All Master Categories
+          <Layers className="w-3.5 h-3.5" /> All Categories (24 Fixtures)
         </Link>
       </div>
     </motion.div>

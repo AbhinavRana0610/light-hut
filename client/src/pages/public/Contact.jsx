@@ -121,12 +121,38 @@ export const Contact = () => {
                 </h3>
               </div>
 
-              {/* Official Address */}
+              {/* Showroom Address */}
               <div className="flex items-start gap-3.5 text-xs text-neutral-600">
                 <MapPin className="w-5 h-5 text-[#DC2626] shrink-0 mt-0.5" />
                 <div className="space-y-2 flex-1">
                   <div>
-                    <strong className="text-neutral-900 block mb-0.5">Showroom & Works Address</strong>
+                    <strong className="text-neutral-900 block mb-0.5 uppercase tracking-wide text-[11px]">Showroom Address</strong>
+                    <p className="text-neutral-700 leading-relaxed font-normal">
+                      <span className="font-semibold text-neutral-900">M/S LIGHT-HUT DECORATIVE SOLUTIONS</span><br />
+                      4B/27, Upper floor, Opp Govt School Gate no-02<br />
+                      Devki Nandan road, Lighting market<br />
+                      Tilak Nagar, New Delhi - 110018
+                    </p>
+                  </div>
+                  <a
+                    href={settings?.mapUrl || 'https://www.google.com/maps/place//@28.6394399,77.0974272,17.01z/data=!4m6!1m5!3m4!2zMjjCsDM4JzIyLjAiTiA3N8KwMDYnMDAuMCJF!8m2!3d28.6394482!4d77.1000061?hl=en'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-50 hover:bg-red-100 text-[#DC2626] font-semibold text-[11px] transition-colors border border-red-200/80 shadow-2xs group"
+                  >
+                    <MapPin className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
+                    <span>Get Directions on Google Maps</span>
+                    <ExternalLink className="w-3 h-3 ml-0.5" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Works Address */}
+              <div className="flex items-start gap-3.5 text-xs text-neutral-600 pt-3 border-t border-neutral-100">
+                <MapPin className="w-5 h-5 text-[#DC2626] shrink-0 mt-0.5" />
+                <div className="space-y-2 flex-1">
+                  <div>
+                    <strong className="text-neutral-900 block mb-0.5 uppercase tracking-wide text-[11px]">Works Address</strong>
                     <p className="text-neutral-700 leading-relaxed font-normal">
                       <span className="font-semibold text-neutral-900">M/S LIGHT-HUT DECORATIVE SOLUTIONS</span><br />
                       C37/4, Lawrence Road, Industrial Area<br />
@@ -135,10 +161,10 @@ export const Contact = () => {
                     </p>
                   </div>
                   <a
-                    href="https://maps.google.com/maps?q=28.678613662719727%2C77.15131378173828&z=17&hl=en"
+                    href={settings?.worksMapUrl || 'https://maps.google.com/maps?q=28.678613662719727%2C77.15131378173828&z=17&hl=en'}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-50 hover:bg-red-100 text-[#DC2626] font-semibold text-[11px] transition-colors border border-red-200/80 shadow-2xs group"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-semibold text-[11px] transition-colors border border-neutral-200 shadow-2xs group"
                   >
                     <MapPin className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
                     <span>Get Directions on Google Maps</span>
@@ -292,45 +318,98 @@ export const Contact = () => {
           </div>
         </div>
 
-        {/* ── GOOGLE MAPS SHOWROOM & LOCATION SECTION ── */}
+        {/* ── DUAL LOCATION & MAP SECTIONS (SHOWROOM & WORKS) ── */}
         <div className="mt-16 pt-12 border-t border-neutral-200">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-            <div>
-              <span className="text-xs uppercase tracking-luxury text-[#DC2626] font-bold block mb-1">
-                Showroom Location
-              </span>
-              <h3 className="font-serif-luxury text-2xl text-neutral-900 font-bold">
-                Visit Light-Hut Decorative Solutions
-              </h3>
-              <p className="text-xs text-neutral-500 mt-1">
-                C37/4, Lawrence Road, Industrial Area, New Delhi - 110035 (Near Metro Station Kanhaiya Nagar)
-              </p>
-            </div>
-            <a
-              href="https://maps.google.com/maps?q=28.678613662719727%2C77.15131378173828&z=17&hl=en"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-neutral-900 hover:bg-[#DC2626] text-white text-xs font-semibold tracking-wide transition-colors shadow-md group shrink-0"
-            >
-              <MapPin className="w-4 h-4 text-[#DC2626] group-hover:text-white transition-colors" />
-              <span>Open in Google Maps</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-stretch">
 
-          {/* Interactive Google Maps Embed */}
-          <div className="w-full h-80 sm:h-[400px] rounded-3xl overflow-hidden border border-neutral-200 shadow-sm bg-neutral-100 relative">
-            <iframe
-              title="Light-Hut Decorative Solutions Google Maps Location"
-              src="https://maps.google.com/maps?q=28.678613662719727,77.15131378173828&hl=en&z=17&output=embed"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="w-full h-full filter contrast-105"
-            />
+            {/* ── 1. SHOWROOM SECTION ── */}
+            <div className="p-6 sm:p-8 rounded-3xl bg-white border border-neutral-200 shadow-sm flex flex-col justify-between">
+              <div className="mb-5">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-2">
+                  <div>
+                    <span className="text-xs uppercase tracking-luxury text-[#DC2626] font-bold block mb-1">
+                      Showroom Location
+                    </span>
+                    <h3 className="font-serif-luxury text-xl sm:text-2xl text-neutral-900 font-bold">
+                      Light-Hut Showroom
+                    </h3>
+                  </div>
+                  <a
+                    href={settings?.mapUrl || 'https://www.google.com/maps/place//@28.6394399,77.0974272,17.01z/data=!4m6!1m5!3m4!2zMjjCsDM4JzIyLjAiTiA3N8KwMDYnMDAuMCJF!8m2!3d28.6394482!4d77.1000061?hl=en'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-neutral-900 hover:bg-[#DC2626] text-white text-xs font-semibold tracking-wide transition-colors shadow-sm group shrink-0 self-start"
+                  >
+                    <MapPin className="w-3.5 h-3.5 text-[#DC2626] group-hover:text-white transition-colors" />
+                    <span>Open in Google Maps</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+                <p className="text-xs text-neutral-600 leading-relaxed">
+                  {settings?.address || '4B/27, Upper floor, Opp Govt School Gate no-02, Devki Nandan road, Lighting market, Tilak Nagar, New Delhi - 110018'}
+                </p>
+              </div>
+
+              {/* Showroom Interactive Google Map Embed */}
+              <div className="w-full h-72 sm:h-80 rounded-2xl overflow-hidden border border-neutral-200 shadow-inner bg-neutral-100 relative mt-2">
+                <iframe
+                  title="Light-Hut Showroom Google Maps Location"
+                  src={settings?.mapEmbedUrl || 'https://maps.google.com/maps?q=28.6394482,77.1000061&hl=en&z=17&output=embed'}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full filter contrast-105"
+                />
+              </div>
+            </div>
+
+            {/* ── 2. WORKS SECTION ── */}
+            <div className="p-6 sm:p-8 rounded-3xl bg-white border border-neutral-200 shadow-sm flex flex-col justify-between">
+              <div className="mb-5">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-2">
+                  <div>
+                    <span className="text-xs uppercase tracking-luxury text-[#DC2626] font-bold block mb-1">
+                      Works Location
+                    </span>
+                    <h3 className="font-serif-luxury text-xl sm:text-2xl text-neutral-900 font-bold">
+                      Light-Hut Works Unit
+                    </h3>
+                  </div>
+                  <a
+                    href={settings?.worksMapUrl || 'https://maps.google.com/maps?q=28.678613662719727%2C77.15131378173828&z=17&hl=en'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-neutral-900 hover:bg-[#DC2626] text-white text-xs font-semibold tracking-wide transition-colors shadow-sm group shrink-0 self-start"
+                  >
+                    <MapPin className="w-3.5 h-3.5 text-[#DC2626] group-hover:text-white transition-colors" />
+                    <span>Open in Google Maps</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+                <p className="text-xs text-neutral-600 leading-relaxed min-h-[36px]">
+                  {settings?.worksAddress || 'C37/4, Lawrence Road, Industrial Area, New Delhi - 110035 (Near Metro Station Kanhaiya Nagar)'}
+                </p>
+              </div>
+
+              {/* Works Interactive Google Map Embed */}
+              <div className="w-full h-72 sm:h-80 rounded-2xl overflow-hidden border border-neutral-200 shadow-inner bg-neutral-100 relative mt-2">
+                <iframe
+                  title="Light-Hut Works Google Maps Location"
+                  src={settings?.worksMapEmbedUrl || 'https://maps.google.com/maps?q=28.678613662719727,77.15131378173828&hl=en&z=17&output=embed'}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full filter contrast-105"
+                />
+              </div>
+            </div>
+
           </div>
         </div>
       </div>

@@ -66,23 +66,39 @@ export const ContactSection = ({ section }) => {
                 Direct Contact
               </h3>
 
-              {settings.address && (
-                <div className="flex items-start gap-3.5 text-xs text-neutral-600">
-                  <MapPin className="w-4 h-4 text-[#DC2626] shrink-0 mt-0.5" />
-                  <div>
-                    <span className="text-neutral-900 font-semibold block mb-0.5">Showroom & Works</span>
-                    <span>{settings.address}</span>
-                    <a
-                      href={settings.mapUrl || 'https://maps.google.com/maps?q=28.678613662719727%2C77.15131378173828&z=17&hl=en'}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-[#DC2626] hover:text-[#B91C1C] font-semibold text-[11px] mt-1 transition-colors"
-                    >
-                      View on Google Maps ↗
-                    </a>
-                  </div>
+              {/* Showroom Address */}
+              <div className="flex items-start gap-3.5 text-xs text-neutral-600">
+                <MapPin className="w-4 h-4 text-[#DC2626] shrink-0 mt-0.5" />
+                <div>
+                  <span className="text-neutral-900 font-semibold block mb-0.5 uppercase tracking-wide text-[11px]">Showroom Address</span>
+                  <span>{settings.address || '4B/27, Upper floor, Opp Govt School Gate no-02, Devki Nandan road, Lighting market, Tilak Nagar, New Delhi - 110018'}</span>
+                  <a
+                    href={settings.mapUrl || 'https://www.google.com/maps/place//@28.6394399,77.0974272,17.01z/data=!4m6!1m5!3m4!2zMjjCsDM4JzIyLjAiTiA3N8KwMDYnMDAuMCJF!8m2!3d28.6394482!4d77.1000061?hl=en'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-[#DC2626] hover:text-[#B91C1C] font-semibold text-[11px] mt-1 transition-colors"
+                  >
+                    View Showroom on Google Maps ↗
+                  </a>
                 </div>
-              )}
+              </div>
+
+              {/* Works Address */}
+              <div className="flex items-start gap-3.5 text-xs text-neutral-600 pt-3 border-t border-neutral-200/60">
+                <MapPin className="w-4 h-4 text-[#DC2626] shrink-0 mt-0.5" />
+                <div>
+                  <span className="text-neutral-900 font-semibold block mb-0.5 uppercase tracking-wide text-[11px]">Works Address</span>
+                  <span className="block text-neutral-700">{settings?.worksAddress || 'C37/4, Lawrence Road, Industrial Area, New Delhi - 110035 (Near Metro Station Kanhaiya Nagar)'}</span>
+                  <a
+                    href={settings?.worksMapUrl || 'https://maps.google.com/maps?q=28.678613662719727%2C77.15131378173828&z=17&hl=en'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-[#DC2626] hover:text-[#B91C1C] font-semibold text-[11px] mt-1 transition-colors"
+                  >
+                    View Works on Google Maps ↗
+                  </a>
+                </div>
+              </div>
 
               {settings.phone && (
                 <div className="flex items-start gap-3.5 text-xs text-neutral-600">

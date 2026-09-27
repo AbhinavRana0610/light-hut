@@ -256,7 +256,7 @@ export const CategoryManagement = () => {
               {/* Bottom Actions */}
               <div className="p-4 bg-[#0e1014] border-t border-white/5 flex items-center justify-between">
                 <a
-                  href={`/category/${cat.slug}`}
+                  href={`/catalog?category=${cat.slug}`}
                   target="_blank"
                   rel="noreferrer"
                   className="text-[11px] text-neutral-400 hover:text-white flex items-center gap-1 transition-colors"

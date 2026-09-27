@@ -81,10 +81,10 @@ export const CategoriesSection = ({ section }) => {
           </div>
 
           <Link
-            to="/categories"
+            to="/catalog"
             className="btn-gold inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs uppercase tracking-luxury shadow-md transition-all transform hover:-translate-y-0.5 shrink-0"
           >
-            <span>View All Categories</span>
+            <span>Explore All Catalog Fixtures</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -147,7 +147,7 @@ export const CategoriesSection = ({ section }) => {
 
               {/* Card Bottom Info */}
               <div className="relative z-10 p-6 pt-0 space-y-3">
-                <Link to={`/category/${category.slug}`}>
+                <Link to={`/catalog?category=${category.slug}`}>
                   <h3 className="text-2xl font-serif-luxury text-white font-bold tracking-tight group-hover:text-[#DC2626] transition-colors">
                     {category.name}
                   </h3>
@@ -163,7 +163,7 @@ export const CategoriesSection = ({ section }) => {
                     {category.subcategories.slice(0, 3).map((sub) => (
                       <Link
                         key={sub.slug}
-                        to={`/category/${category.slug}/${sub.slug}`}
+                        to={`/catalog?category=${category.slug}&sub=${sub.slug}`}
                         className="px-2.5 py-0.5 rounded-md text-[10px] bg-white/10 hover:bg-[#DC2626] hover:text-white text-neutral-200 border border-white/10 transition-colors"
                       >
                         {sub.name}
@@ -175,7 +175,7 @@ export const CategoriesSection = ({ section }) => {
                 {/* Explore Link */}
                 <div className="pt-3 border-t border-white/10 flex items-center justify-between">
                   <Link
-                    to={`/category/${category.slug}`}
+                    to={`/catalog?category=${category.slug}`}
                     className="inline-flex items-center gap-2 text-xs uppercase tracking-luxury text-[#DC2626] group-hover:text-white font-bold transition-colors"
                   >
                     <span>Explore Collection</span>

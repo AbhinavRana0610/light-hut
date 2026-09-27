@@ -28,11 +28,11 @@ export const SiteSettingsPage = () => {
     email: '',
     phone: '',
     address: '',
+    worksAddress: '',
     whatsapp: '',
     socialLinks: {
       instagram: '',
       facebook: '',
-      linkedin: '',
       pinterest: '',
       youtube: '',
     },
@@ -58,11 +58,11 @@ export const SiteSettingsPage = () => {
         email: settings.email || '',
         phone: settings.phone || '',
         address: settings.address || '',
+        worksAddress: settings.worksAddress || '',
         whatsapp: settings.whatsapp || '',
         socialLinks: {
           instagram: settings.socialLinks?.instagram || '',
           facebook: settings.socialLinks?.facebook || '',
-          linkedin: settings.socialLinks?.linkedin || '',
           pinterest: settings.socialLinks?.pinterest || '',
         },
         footerContent: {
@@ -295,18 +295,33 @@ export const SiteSettingsPage = () => {
             </div>
           </div>
 
-          <div>
-            <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
-              Physical Showroom / Headquarters Address
-            </label>
-            <input
-              type="text"
-              name="address"
-              value={formData.address}
-              onChange={handleChange}
-              placeholder="Plot No. 42, Industrial Area Phase II, Delhi, India"
-              className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs"
-            />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
+                Showroom Address
+              </label>
+              <textarea
+                rows={3}
+                name="address"
+                value={formData.address}
+                onChange={handleChange}
+                placeholder="Showroom Address..."
+                className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs leading-relaxed"
+              />
+            </div>
+            <div>
+              <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
+                Works Address (Factory / Manufacturing)
+              </label>
+              <textarea
+                rows={3}
+                name="worksAddress"
+                value={formData.worksAddress}
+                onChange={handleChange}
+                placeholder="Leave blank or enter works address..."
+                className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs leading-relaxed"
+              />
+            </div>
           </div>
         </div>
 

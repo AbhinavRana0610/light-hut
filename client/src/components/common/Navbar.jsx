@@ -55,7 +55,7 @@ const MegaMenu = ({ onClose }) => (
         <div key={cat.slug} className="space-y-1">
           {/* Parent category */}
           <Link
-            to={`/category/${cat.slug}`}
+            to={`/catalog?category=${cat.slug}`}
             onClick={onClose}
             className="flex items-center gap-1.5 text-white font-bold text-[11px] uppercase tracking-wider
                        hover:text-[#DC2626] transition-colors group"
@@ -73,7 +73,7 @@ const MegaMenu = ({ onClose }) => (
               {cat.sub.map((sub) => (
                 <li key={sub.slug}>
                   <Link
-                    to={`/category/${cat.slug}/${sub.slug}`}
+                    to={`/catalog?category=${cat.slug}&sub=${sub.slug}`}
                     onClick={onClose}
                     className="block text-[11px] text-neutral-400 hover:text-[#DC2626]
                                hover:translate-x-0.5 transition-all duration-150 py-0.5 leading-snug"
@@ -113,7 +113,7 @@ const MobileCatItem = ({ cat, onClose }) => {
     <div>
       <div className="flex items-center justify-between">
         <Link
-          to={`/category/${cat.slug}`}
+          to={`/catalog?category=${cat.slug}`}
           onClick={onClose}
           className="flex items-center gap-2.5 flex-1 px-4 py-2.5 text-sm font-semibold text-neutral-800 hover:text-[#DC2626] transition-colors"
         >
@@ -145,7 +145,7 @@ const MobileCatItem = ({ cat, onClose }) => {
             {cat.sub.map((sub) => (
               <Link
                 key={sub.slug}
-                to={`/category/${cat.slug}/${sub.slug}`}
+                to={`/catalog?category=${cat.slug}&sub=${sub.slug}`}
                 onClick={onClose}
                 className="flex items-center gap-2.5 p-1.5 rounded-xl hover:bg-white transition-all text-xs text-neutral-700 hover:text-[#DC2626] border border-transparent hover:border-neutral-200 shadow-2xs"
               >
@@ -195,7 +195,7 @@ export const Navbar = () => {
   useEffect(() => {
     setMobileMenuOpen(false);
     setMegaOpen(false);
-  }, [location.pathname]);
+  }, [location.pathname, location.search]);
 
   const closeMobile = () => setMobileMenuOpen(false);
 
@@ -218,7 +218,7 @@ export const Navbar = () => {
                 e.currentTarget.src = '/categories/logo.png';
               }}
               alt="LightHut"
-              className="h-10 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105"
+              className="h-10 sm:h-11 md:h-12 w-auto object-contain transition-transform group-hover:scale-105"
             />
           </Link>
 
@@ -238,26 +238,30 @@ export const Navbar = () => {
               Home
             </NavLink>
 
-            {/* 2. Categories Trigger — Simple Dropdown with Sub-Dropdown Flyout */}
+            {/* 2. Catalog with Cascading Category Dropdown */}
             <div
               className="relative"
               onMouseEnter={() => setMegaOpen(true)}
               onMouseLeave={() => setMegaOpen(false)}
             >
-              <button
-                id="categories-mega-btn"
-                onClick={() => setMegaOpen(!megaOpen)}
-                className={`flex items-center gap-1 px-3.5 py-2 text-[11.5px] font-semibold uppercase tracking-[0.12em] rounded-xl transition-all ${megaOpen || location.pathname.startsWith('/category') || location.pathname === '/categories'
-                  ? 'text-[#DC2626] bg-red-50 font-bold'
-                  : 'text-neutral-700 hover:text-[#DC2626] hover:bg-neutral-100/70'
-                  }`}
+              <NavLink
+                to="/catalog"
+                id="catalog-mega-btn"
+                className={({ isActive }) =>
+                  `flex items-center gap-1.5 px-3.5 py-1.5 text-[11.5px] font-bold uppercase tracking-[0.14em] rounded-xl transition-all duration-300 border cursor-pointer ${
+                    isActive || megaOpen
+                      ? 'bg-[#DC2626] text-white border-[#DC2626] shadow-md shadow-[#DC2626]/25'
+                      : 'bg-red-50 text-[#DC2626] border-red-200/90 shadow-2xs hover:bg-[#DC2626] hover:text-white hover:border-[#DC2626] hover:shadow-lg hover:shadow-[#DC2626]/30 hover:-translate-y-0.5'
+                  }`
+                }
               >
-                <span>Categories</span>
+                <span>Catalog</span>
                 <ChevronDown
-                  className={`w-3.5 h-3.5 transition-transform duration-200 ${megaOpen ? 'rotate-180 text-[#DC2626]' : 'text-neutral-500'
-                    }`}
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                    megaOpen ? 'rotate-180 text-white' : 'text-current'
+                  }`}
                 />
-              </button>
+              </NavLink>
 
               <AnimatePresence>
                 {megaOpen && (
@@ -267,19 +271,6 @@ export const Navbar = () => {
                 )}
               </AnimatePresence>
             </div>
-
-            {/* 3. Catalog */}
-            <NavLink
-              to="/catalog"
-              className={({ isActive }) =>
-                `px-3.5 py-2 text-[11.5px] font-semibold uppercase tracking-[0.12em] rounded-xl transition-all ${isActive
-                  ? 'text-[#DC2626] bg-red-50 font-bold'
-                  : 'text-neutral-700 hover:text-[#DC2626] hover:bg-neutral-100/70'
-                }`
-              }
-            >
-              Catalog
-            </NavLink>
 
             {/* 4. Projects */}
             <NavLink
@@ -401,7 +392,7 @@ export const Navbar = () => {
                       e.currentTarget.src = '/categories/logo.png';
                     }}
                     alt="LightHut"
-                    className="h-9 w-auto object-contain"
+                    className="h-9 sm:h-10 w-auto object-contain"
                   />
                 </Link>
                 <button
@@ -432,18 +423,18 @@ export const Navbar = () => {
                   </NavLink>
                 </div>
 
-                {/* 2. Product Categories Accordion */}
+                {/* 2. Catalog Categories Accordion */}
                 <div className="px-4 py-2">
                   <div className="flex items-center justify-between px-1 mb-2">
                     <p className="text-[10px] uppercase tracking-[0.2em] text-[#DC2626] font-bold">
-                      Categories
+                      Catalog Categories
                     </p>
                     <Link
-                      to="/categories"
+                      to="/catalog"
                       onClick={closeMobile}
                       className="text-[10px] uppercase tracking-wider text-neutral-500 hover:text-[#DC2626] transition-colors"
                     >
-                      All Categories →
+                      All Fixtures (24) →
                     </Link>
                   </div>
                   <div className="space-y-0.5 rounded-xl overflow-hidden border border-neutral-200 bg-neutral-50/50">
@@ -460,21 +451,36 @@ export const Navbar = () => {
                     { name: 'Projects', path: '/projects' },
                     { name: 'About', path: '/about' },
                     { name: 'Contact', path: '/contact' },
-                  ].map((link) => (
-                    <NavLink
-                      key={link.name}
-                      to={link.path}
-                      onClick={closeMobile}
-                      className={({ isActive }) =>
-                        `block px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] rounded-xl transition-colors ${isActive
-                          ? 'text-[#DC2626] bg-red-50 font-bold'
-                          : 'text-neutral-700 hover:text-[#DC2626] hover:bg-neutral-100'
-                        }`
-                      }
-                    >
-                      {link.name}
-                    </NavLink>
-                  ))}
+                  ].map((link) => {
+                    const isCatalog = link.name === 'Catalog';
+                    return (
+                      <NavLink
+                        key={link.name}
+                        to={link.path}
+                        onClick={closeMobile}
+                        className={({ isActive }) =>
+                          isCatalog
+                            ? `flex items-center justify-between px-4 py-2.5 text-sm font-bold uppercase tracking-[0.12em] rounded-xl transition-all duration-200 border ${
+                                isActive
+                                  ? 'bg-[#DC2626] text-white border-[#DC2626] shadow-md shadow-[#DC2626]/25'
+                                  : 'bg-red-50 text-[#DC2626] border-red-200/90 hover:bg-[#DC2626] hover:text-white hover:border-[#DC2626]'
+                              }`
+                            : `block px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] rounded-xl transition-colors ${
+                                isActive
+                                  ? 'text-[#DC2626] bg-red-50 font-bold'
+                                  : 'text-neutral-700 hover:text-[#DC2626] hover:bg-neutral-100'
+                              }`
+                        }
+                      >
+                        <span>{link.name}</span>
+                        {isCatalog && (
+                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white text-[#DC2626] border border-red-200 shadow-2xs">
+                            Featured
+                          </span>
+                        )}
+                      </NavLink>
+                    );
+                  })}
                 </div>
               </div>
 
