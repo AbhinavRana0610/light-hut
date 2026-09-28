@@ -3,6 +3,7 @@ import {
   getProducts,
   getProductBySlug,
   getProductById,
+  getProductFormOptions,
   createProduct,
   updateProduct,
   deleteProduct,
@@ -14,6 +15,9 @@ import { protectAdmin } from '../middleware/authMiddleware.js';
 const router = express.Router();
 
 router.get('/', getProducts);
+// Dropdown options for selecting which category & subcategory to put products into
+router.get('/form-options', getProductFormOptions);
+router.get('/options', getProductFormOptions);
 router.get('/:slug', getProductBySlug);
 
 // Protected Admin Routes

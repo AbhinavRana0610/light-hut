@@ -130,6 +130,17 @@ export const productService = {
     const res = await api.patch(`/products/${id}/toggle-publish`);
     return res.data;
   },
+  getProductFormOptions: async () => {
+    try {
+      const res = await api.get('/products/form-options');
+      if (res.data && res.data.success) {
+        return res.data;
+      }
+    } catch (err) {
+      console.warn('[Product Service] Form options error:', err.message);
+    }
+    return null;
+  },
 };
 
 // Dedicated Catalog Page Service

@@ -44,18 +44,21 @@ export const ProductList = () => {
   const [productToDelete, setProductToDelete] = useState(null);
   const [actionLoading, setActionLoading] = useState(false);
 
-  // Simple Add / Edit Modal (Only 4 fields: Heading Name, Description, Price, Photo)
+  // Simple Add / Edit Modal (Category, Subcategory, Heading Name, Description, Price, Photo)
   const [modalOpen, setModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
   const [savingProduct, setSavingProduct] = useState(false);
   const [form, setForm] = useState({
     name: '',
+    category: '',
+    subcategory: '',
+    subcategoryName: '',
     description: '',
     price: '',
     photo: '/categories/chandelier.jpg',
   });
 
-  // Load Categories for background assignment
+  // Load Categories for background assignment & dropdown options
   useEffect(() => {
     const loadCategories = async () => {
       try {
@@ -107,9 +110,13 @@ export const ProductList = () => {
 
   // Open Modal to Add New Product
   const handleOpenAdd = () => {
+    const defaultCat = categories[0]?._id || '';
     setEditingProduct(null);
     setForm({
       name: '',
+      category: defaultCat,
+      subcategory: '',
+      subcategoryName: '',
       description: '',
       price: '',
       photo: '/categories/chandelier.jpg',
@@ -129,6 +136,9 @@ export const ProductList = () => {
 
     setForm({
       name: prod.name || prod.title || '',
+      category: prod.category?._id || prod.category || categories[0]?._id || '',
+      subcategory: prod.subcategory || '',
+      subcategoryName: prod.subcategoryName || '',
       description: prod.description || prod.shortDescription || '',
       price: prod.price !== undefined && prod.price !== null ? prod.price : '',
       photo: cover,
@@ -136,7 +146,7 @@ export const ProductList = () => {
     setModalOpen(true);
   };
 
-  // Save Product (Simple: Name, Description, Price, Photo)
+  // Save Product (Category, Subcategory, Name, Description, Price, Photo)
   const handleSave = async (e) => {
     e.preventDefault();
 
@@ -148,12 +158,15 @@ export const ProductList = () => {
     try {
       setSavingProduct(true);
 
-      const defaultCatId = categories[0]?._id || undefined;
+      const chosenCatId = form.category || categories[0]?._id;
       const photoUrl = form.photo.trim() || '/categories/chandelier.jpg';
 
       const payload = {
         name: form.name.trim(),
         title: form.name.trim(),
+        category: chosenCatId,
+        subcategory: (form.subcategory || '').trim().toLowerCase(),
+        subcategoryName: (form.subcategoryName || '').trim(),
         description: form.description.trim(),
         shortDescription: form.description.trim().slice(0, 160),
         price: form.price !== '' ? Number(form.price) : 0,
@@ -161,10 +174,6 @@ export const ProductList = () => {
         images: [{ url: photoUrl, isCover: true, alt: form.name.trim() }],
         isPublished: true,
       };
-
-      if (!editingProduct && defaultCatId) {
-        payload.category = defaultCatId;
-      }
 
       if (editingProduct) {
         const res = await productService.updateProduct(editingProduct._id, payload);
@@ -299,6 +308,7 @@ export const ProductList = () => {
                 <tr className="border-b border-white/10 bg-black/30 text-neutral-400 text-[11px] uppercase tracking-wider font-semibold">
                   <th className="py-4 px-4 w-20">Photo</th>
                   <th className="py-4 px-4">Heading Name</th>
+                  <th className="py-4 px-4">Category & Subcategory</th>
                   <th className="py-4 px-4 w-32">Price (₹)</th>
                   <th className="py-4 px-4">Description</th>
                   <th className="py-4 px-4 w-28 text-right">Actions</th>
@@ -350,7 +360,24 @@ export const ProductList = () => {
                         </span>
                       </td>
 
-                      {/* 3. Product Price */}
+                      {/* 3. Category & Subcategory Badge */}
+                      <td className="py-3.5 px-4">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-xs font-semibold text-white flex items-center gap-1.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626] shrink-0" />
+                            <span className="truncate max-w-[140px]">{prod.category?.name || 'Category'}</span>
+                          </span>
+                          {prod.subcategoryName || prod.subcategory ? (
+                            <span className="text-[10px] px-2 py-0.5 rounded bg-white/5 text-neutral-300 border border-white/10 w-fit font-mono">
+                              ↳ {prod.subcategoryName || prod.subcategory}
+                            </span>
+                          ) : (
+                            <span className="text-[9.5px] text-neutral-500 italic">General / Direct</span>
+                          )}
+                        </div>
+                      </td>
+
+                      {/* 4. Product Price */}
                       <td className="py-3.5 px-4 font-mono font-bold text-[#DC2626] text-sm">
                         {priceDisplay}
                       </td>
@@ -470,6 +497,76 @@ export const ProductList = () => {
                   className="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-white/15 text-white placeholder-neutral-500 focus:outline-none focus:border-[#DC2626] text-sm font-medium"
                 />
               </div>
+
+              {/* 2. Category & Subcategory Selection Grid (Konse me daal rahe ho) */}
+              {(() => {
+                const selectedCatObj = categories.find((c) => c._id === form.category);
+                const subOptions = selectedCatObj?.subcategories?.filter((s) => s.isActive !== false) || [];
+
+                return (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    {/* Category Dropdown */}
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-semibold uppercase tracking-wider text-neutral-300 block">
+                        Category <span className="text-[#DC2626]">*</span>
+                      </label>
+                      <select
+                        value={form.category}
+                        onChange={(e) => {
+                          const newCatId = e.target.value;
+                          setForm((prev) => ({
+                            ...prev,
+                            category: newCatId,
+                            subcategory: '',
+                            subcategoryName: '',
+                          }));
+                        }}
+                        required
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-black/40 border border-white/15 text-white text-xs focus:outline-none focus:border-[#DC2626] cursor-pointer"
+                      >
+                        {categories.map((c) => (
+                          <option key={c._id} value={c._id} className="bg-[#14171d] text-white">
+                            {c.icon || '💡'} {c.name}
+                          </option>
+                        ))}
+                      </select>
+                      <span className="text-[10px] text-neutral-400">Parent Category</span>
+                    </div>
+
+                    {/* Subcategory Dropdown */}
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-semibold uppercase tracking-wider text-neutral-300 block">
+                        Subcategory Option
+                      </label>
+                      <select
+                        value={form.subcategory}
+                        onChange={(e) => {
+                          const subSlug = e.target.value;
+                          const matched = subOptions.find((s) => s.slug === subSlug);
+                          setForm((prev) => ({
+                            ...prev,
+                            subcategory: subSlug,
+                            subcategoryName: matched ? matched.name : (subSlug ? subSlug.replace(/-/g, ' ').toUpperCase() : ''),
+                          }));
+                        }}
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-black/40 border border-white/15 text-white text-xs focus:outline-none focus:border-[#DC2626] cursor-pointer"
+                      >
+                        <option value="" className="bg-[#14171d] text-neutral-400">
+                          -- Direct in {selectedCatObj?.name || 'Category'} --
+                        </option>
+                        {subOptions.map((sub) => (
+                          <option key={sub.slug} value={sub.slug} className="bg-[#14171d] text-white">
+                            {sub.name}
+                          </option>
+                        ))}
+                      </select>
+                      <span className="text-[10px] text-neutral-400">
+                        {subOptions.length > 0 ? `${subOptions.length} sub-types available` : 'General / Direct'}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })()}
 
               {/* 2. Product Price (₹) */}
               <div className="space-y-1.5">

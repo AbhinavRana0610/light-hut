@@ -386,9 +386,22 @@ export const createProduct = async (req, res, next) => {
       });
     }
 
-    // Verify category exists or fallback to first available
-    let categoryExists = await Category.findById(targetCategory);
+    // Verify category exists or fallback to first available (accepts ObjectId, slug, or name)
+    let categoryExists = null;
+    if (typeof targetCategory === 'string' && targetCategory.match(/^[0-9a-fA-F]{24}$/)) {
+      categoryExists = await Category.findById(targetCategory);
+    }
     if (!categoryExists) {
+      categoryExists = await Category.findOne({
+        $or: [
+          { slug: targetCategory },
+          { name: new RegExp(`^${targetCategory}$`, 'i') },
+        ],
+      });
+    }
+    if (categoryExists) {
+      targetCategory = categoryExists._id;
+    } else {
       const fallbackCat = await Category.findOne();
       if (fallbackCat) {
         targetCategory = fallbackCat._id;
@@ -557,14 +570,25 @@ export const updateProduct = async (req, res, next) => {
     }
 
     if (category) {
-      const categoryExists = await Category.findById(category);
+      let categoryExists = null;
+      if (typeof category === 'string' && category.match(/^[0-9a-fA-F]{24}$/)) {
+        categoryExists = await Category.findById(category);
+      }
+      if (!categoryExists) {
+        categoryExists = await Category.findOne({
+          $or: [
+            { slug: category },
+            { name: new RegExp(`^${category}$`, 'i') },
+          ],
+        });
+      }
       if (!categoryExists) {
         return res.status(400).json({
           success: false,
           message: 'Selected category does not exist.',
         });
       }
-      product.category = category;
+      product.category = categoryExists._id;
     }
 
     if (subcategory !== undefined || sub !== undefined) {
@@ -743,6 +767,50 @@ export const togglePublish = async (req, res, next) => {
       message: `Product ${product.isPublished ? 'published' : 'unpublished'}.`,
       isPublished: product.isPublished,
       product: populatedProduct || product,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * ============================================================================
+ * 🎯 CONTROLLER: getProductFormOptions
+ * ============================================================================
+ * @desc    Get all available category & subcategory dropdown options for product creation/editing
+ * @route   GET /api/products/form-options
+ * @access  Public / Private
+ */
+export const getProductFormOptions = async (req, res, next) => {
+  try {
+    const categories = await Category.find({ isActive: true })
+      .select('name slug icon tag subcategories')
+      .sort({ sortOrder: 1, name: 1 })
+      .lean();
+
+    const options = categories.map((cat) => ({
+      id: cat._id.toString(),
+      _id: cat._id.toString(),
+      name: cat.name,
+      slug: cat.slug,
+      icon: cat.icon || '💡',
+      tag: cat.tag || '',
+      subcategories: (cat.subcategories || [])
+        .filter((s) => s.isActive !== false)
+        .map((s) => ({
+          id: s._id ? s._id.toString() : s.slug,
+          _id: s._id ? s._id.toString() : s.slug,
+          name: s.name,
+          slug: s.slug,
+          desc: s.desc || '',
+          image: s.image || '',
+        })),
+    }));
+
+    res.status(200).json({
+      success: true,
+      count: options.length,
+      categories: options,
     });
   } catch (error) {
     next(error);
