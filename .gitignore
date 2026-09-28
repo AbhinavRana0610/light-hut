@@ -32,3 +32,21 @@ Thumbs.db
 .idea/
 *.timestamp-*.mjs
 
+# Scratch & test scripts
+scratch/
+test_*.js
+test_*.html
+check_video.js
+download_insta.js
+embed_sample.html
+fetch_meta.js
+find_video.js
+parse_sample.js
+scratch_insta.js
+
+# Backup and temporary image artifacts
+*-old.jpg
+*_backup.*
+*_preview.*
+
+

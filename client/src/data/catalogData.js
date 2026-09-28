@@ -4,48 +4,10 @@
 ───────────────────────────────────────────────────────────── */
 
 export const MASTER_CATEGORIES = [
-  // ── 1. WALL LAMP ──────────────────────────────────────────
-  {
-    _id: 'cat-wall-lamp',
-    name: 'Wall Lamp',
-    slug: 'wall-lamp',
-    categoryKey: 'wall',
-    icon: '💡',
-    tag: 'Architectural Sconces',
-    description: 'Bi-directional wall grazers, fluted glass sconces, and indirect perimeter illumination for corridors, foyers, and bedside alcoves.',
-    specs: 'LED & E27 • Ra > 95 • 3000K Warm • IP44 Rated',
-    image: '/categories/wall-lamp.jpg',
-    featuredFixture: 'LH-WL101 Slim Linear LED',
-    productsCount: 6,
-    subcategories: [
-      { name: 'LED Wall Lamp', slug: 'led-wall-lamp', count: 3, image: '/categories/led-wall-lamp.jpg' },
-      { name: 'E27 Wall Lamp', slug: 'e27-wall-lamp', count: 3, image: '/categories/e27-wall-lamp.jpg' },
-    ],
-  },
-
-  // ── 2. PENDANT LAMP ────────────────────────────────────────
-  {
-    _id: 'cat-pendant-lamp',
-    name: 'Pendant Lamp',
-    slug: 'pendant-lamp',
-    categoryKey: 'pendant',
-    icon: '🔆',
-    tag: 'Sculptural Suspensions',
-    description: 'Suspended architectural lighting fixtures, mouth-blown fluted glass, and spun brass pendants for dining islands and reception spaces.',
-    specs: 'LED & E27 • Dim-to-Warm • 1,200 - 3,400 lm',
-    image: '/categories/pendant-lamp.jpg',
-    featuredFixture: 'LH-PL101 Cone LED Pendant',
-    productsCount: 6,
-    subcategories: [
-      { name: 'LED Hanging Lamp', slug: 'led-hanging-lamp', count: 3, image: '/categories/led-hanging-lamp.jpg' },
-      { name: 'E27 Hanging Lamp', slug: 'e27-hanging-lamp', count: 3, image: '/categories/e27-hanging-lamp.jpg' },
-    ],
-  },
-
-  // ── 3. CHANDELIER ─────────────────────────────────────────
+  // ── 1. CHANDELIERS ─────────────────────────────────────────
   {
     _id: 'cat-chandelier',
-    name: 'Chandelier',
+    name: 'Chandeliers',
     slug: 'chandelier',
     categoryKey: 'chandelier',
     icon: '✨',
@@ -54,7 +16,8 @@ export const MASTER_CATEGORIES = [
     specs: 'K9 Crystal • Precision Metal • Up to 5m Drops',
     image: '/categories/chandelier.jpg',
     featuredFixture: 'LH-CH101 Multi-Tier Ring Chandelier',
-    productsCount: 12,
+    productsCount: 9,
+    total: 9,
     subcategories: [
       { name: 'LED Chandelier', slug: 'led-chandelier', count: 2, image: '/categories/chandelier.jpg' },
       { name: 'E14 Chandelier', slug: 'e14-chandelier', count: 2, image: '/categories/e14-chandelier.jpg' },
@@ -65,6 +28,46 @@ export const MASTER_CATEGORIES = [
       { name: 'Antic Chandelier', slug: 'antic-chandelier', count: 2, image: '/categories/antic-chandelier.jpg' },
       { name: 'Fan Chandelier', slug: 'fan-chandelier', count: 2, image: '/categories/fan-chandelier.jpg' },
       { name: 'Celling Chandelier', slug: 'ceiling-chandelier', count: 2, image: '/categories/ceiling-chandelier.jpg' },
+    ],
+  },
+
+  // ── 2. PENDANT LAMPS ────────────────────────────────────────
+  {
+    _id: 'cat-pendant-lamp',
+    name: 'Pendant Lamps',
+    slug: 'pendant-lamp',
+    categoryKey: 'pendant',
+    icon: '🔆',
+    tag: 'Sculptural Suspensions',
+    description: 'Suspended architectural lighting fixtures, mouth-blown fluted glass, and spun brass pendants for dining islands and reception spaces.',
+    specs: 'LED & E27 • Dim-to-Warm • 1,200 - 3,400 lm',
+    image: '/categories/pendant-lamp.jpg',
+    featuredFixture: 'LH-PL101 Cone LED Pendant',
+    productsCount: 3,
+    total: 3,
+    subcategories: [
+      { name: 'LED Hanging Lamp', slug: 'led-hanging-lamp', count: 2, image: '/categories/led-hanging-lamp.jpg' },
+      { name: 'E27 Hanging Lamp', slug: 'e27-hanging-lamp', count: 1, image: '/categories/e27-hanging-lamp.jpg' },
+    ],
+  },
+
+  // ── 3. WALL LAMPS ──────────────────────────────────────────
+  {
+    _id: 'cat-wall-lamp',
+    name: 'Wall Lamps',
+    slug: 'wall-lamp',
+    categoryKey: 'wall',
+    icon: '💡',
+    tag: 'Architectural Sconces',
+    description: 'Bi-directional wall grazers, fluted glass sconces, and indirect perimeter illumination for corridors, foyers, and bedside alcoves.',
+    specs: 'LED & E27 • Ra > 95 • 3000K Warm • IP44 Rated',
+    image: '/categories/wall-lamp.jpg',
+    featuredFixture: 'LH-WL101 Slim Linear LED',
+    productsCount: 3,
+    total: 3,
+    subcategories: [
+      { name: 'LED Wall Lamp', slug: 'led-wall-lamp', count: 2, image: '/categories/led-wall-lamp.jpg' },
+      { name: 'E27 Wall Lamp', slug: 'e27-wall-lamp', count: 1, image: '/categories/e27-wall-lamp.jpg' },
     ],
   },
 
@@ -80,17 +83,18 @@ export const MASTER_CATEGORIES = [
     specs: 'Multi-Zone DALI Control • High Lumen • Heavy-Duty Suspension',
     image: '/categories/double-height.jpg',
     featuredFixture: 'LH-DH101 Grand Crystal Cascade',
-    productsCount: 4,
+    productsCount: 2,
+    total: 2,
     subcategories: [
-      { name: 'Crystal Chandelier', slug: 'crystal-chandelier', count: 2, image: '/categories/double-height.jpg' },
-      { name: 'Modern Chandelier', slug: 'modern-chandelier-dh', count: 2, image: '/categories/modern-chandelier-dh.jpg' },
+      { name: 'Crystal Chandelier', slug: 'crystal-chandelier', count: 1, image: '/categories/double-height.jpg' },
+      { name: 'Modern Chandelier', slug: 'modern-chandelier-dh', count: 1, image: '/categories/modern-chandelier-dh.jpg' },
     ],
   },
 
-  // ── 5. DINING TABLE LAMP ──────────────────────────────────
+  // ── 5. DINING TABLE LAMPS ──────────────────────────────────
   {
     _id: 'cat-dining-table-lamp',
-    name: 'Dining Table Lamp',
+    name: 'Dining Table Lamps',
     slug: 'dining-table-lamp',
     categoryKey: 'dining',
     icon: '🍽️',
@@ -99,14 +103,15 @@ export const MASTER_CATEGORIES = [
     specs: '2700K Warm Glow • Cordless Touch Dimming • High CRI > 95',
     image: '/categories/dining-table-lamp.jpg',
     featuredFixture: 'LH-DT101 Brushed Gold Dining Lamp',
-    productsCount: 3,
+    productsCount: 1,
+    total: 1,
     subcategories: [],
   },
 
-  // ── 6. OUTDOOR LIGHT ──────────────────────────────────────
+  // ── 6. OUTDOOR LIGHTS ──────────────────────────────────────
   {
     _id: 'cat-outdoor-light',
-    name: 'Outdoor Light',
+    name: 'Outdoor Lights',
     slug: 'outdoor-light',
     categoryKey: 'outdoor',
     icon: '🌿',
@@ -115,17 +120,18 @@ export const MASTER_CATEGORIES = [
     specs: 'IP65 Rated • Die-Cast Aluminum • Weatherproof Glass',
     image: '/categories/outdoor-light.jpg',
     featuredFixture: 'LH-OD101 Heritage Gate Pillar Lantern',
-    productsCount: 4,
+    productsCount: 3,
+    total: 3,
     subcategories: [
       { name: 'Gate Lamp', slug: 'gate-lamp', count: 2, image: '/categories/outdoor-light.jpg' },
-      { name: 'Wall Lamp', slug: 'outdoor-wall-lamp', count: 2, image: '/hero-outdoor.jpg' },
+      { name: 'Wall Lamp', slug: 'outdoor-wall-lamp', count: 1, image: '/hero-outdoor.jpg' },
     ],
   },
 
-  // ── 7. TABLE LAMP ─────────────────────────────────────────
+  // ── 7. TABLE LAMPS ─────────────────────────────────────────
   {
     _id: 'cat-table-lamp',
-    name: 'Table Lamp',
+    name: 'Table Lamps',
     slug: 'table-lamp',
     categoryKey: 'table',
     icon: '🪔',
@@ -134,14 +140,15 @@ export const MASTER_CATEGORIES = [
     specs: 'Solid Brass & Ceramic • In-Line Dimmer • Fabric Cord',
     image: '/categories/table-lamp.jpg',
     featuredFixture: 'LH-TL101 Marble Base Mushroom Lamp',
-    productsCount: 3,
+    productsCount: 2,
+    total: 2,
     subcategories: [],
   },
 
-  // ── 8. FLOOR LAMP ─────────────────────────────────────────
+  // ── 8. FLOOR LAMPS ─────────────────────────────────────────
   {
     _id: 'cat-floor-lamp',
-    name: 'Floor Lamp',
+    name: 'Floor Lamps',
     slug: 'floor-lamp',
     categoryKey: 'floor',
     icon: '🕯️',
@@ -150,14 +157,15 @@ export const MASTER_CATEGORIES = [
     specs: 'Weighted Base • Foot Switch • Telescopic Height',
     image: '/categories/floor-lamp.jpg',
     featuredFixture: 'LH-FL101 Arched Brass Arc Floor Lamp',
-    productsCount: 3,
+    productsCount: 2,
+    total: 2,
     subcategories: [],
   },
 
-  // ── 9. LED FILAMENT BULB ──────────────────────────────────
+  // ── 9. LED FILAMENT BULBS ──────────────────────────────────
   {
     _id: 'cat-led-filament-bulb',
-    name: 'LED Filament Bulb',
+    name: 'LED Filament Bulbs',
     slug: 'led-filament-bulb',
     categoryKey: 'filament',
     icon: '💫',
@@ -166,14 +174,15 @@ export const MASTER_CATEGORIES = [
     specs: 'E27 / E14 Base • 2200K Amber Glow • 15,000h Lifespan',
     image: '/categories/led-filament-bulb.jpg',
     featuredFixture: 'LH-FB101 ST64 Amber Spiral Filament',
-    productsCount: 4,
+    productsCount: 3,
+    total: 3,
     subcategories: [],
   },
 
-  // ── 10. SPARE PART ────────────────────────────────────────
+  // ── 10. SPARE PARTS & DRIVERS ──────────────────────────────
   {
     _id: 'cat-spare-part',
-    name: 'Spare Part',
+    name: 'Spare Parts & Drivers',
     slug: 'spare-part',
     categoryKey: 'spares',
     icon: '🔧',
@@ -183,6 +192,7 @@ export const MASTER_CATEGORIES = [
     image: '/categories/spare-part.jpg',
     featuredFixture: 'LH-SP101 Multi-Port Ceiling Canopy Base',
     productsCount: 4,
+    total: 4,
     subcategories: [
       { name: 'Hanging Base', slug: 'hanging-base', count: 2, image: '/categories/hanging-base.jpg' },
       { name: 'Spare Driver', slug: 'spare-driver', count: 2, image: '/categories/spare-driver.jpg' },

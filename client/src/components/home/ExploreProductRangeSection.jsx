@@ -17,7 +17,10 @@ const CATEGORY_IMAGE_MAP = {
 };
 
 export const ExploreProductRangeSection = ({ section }) => {
-  const categories = MASTER_CATEGORIES;
+  // Exclude 'spare-part' from the product range slider
+  const categories = React.useMemo(() => {
+    return MASTER_CATEGORIES.filter((cat) => cat.slug !== 'spare-part');
+  }, []);
   const count = categories.length;
 
   // Create an extended array (5 sets = 50 cards) for infinite smooth sliding
@@ -385,7 +388,7 @@ export const ExploreProductRangeSection = ({ section }) => {
                       }`}
                     >
                       <Link
-                        to={`/category/${item.slug}`}
+                        to={`/catalog?category=${item.slug}`}
                         className="inline-block px-6 py-2 rounded-[3px] bg-[#111111] hover:bg-[#DC2626] text-white text-[11px] sm:text-xs font-sans tracking-wide font-medium shadow-md hover:shadow-lg transition-all duration-200"
                       >
                         Find Out More

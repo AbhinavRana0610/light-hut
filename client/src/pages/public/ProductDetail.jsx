@@ -448,7 +448,7 @@ export const ProductDetail = () => {
             {product.category && (
               <>
                 <ChevronRight className="w-3.5 h-3.5 text-neutral-400" />
-                <Link to={`/category/${product.category.slug || product.category}`} className="hover:text-white transition-colors">
+                <Link to={`/catalog?category=${product.category.slug || product.category}`} className="hover:text-white transition-colors">
                   {product.category.name || product.categoryName}
                 </Link>
               </>
@@ -961,10 +961,10 @@ export const ProductDetail = () => {
                 </p>
               </div>
               <Link
-                to={`/category/${product.category?.slug || product.category}`}
+                to={`/catalog?category=${product.category?.slug || product.category}`}
                 className="text-xs uppercase tracking-luxury text-[#DC2626] hover:text-neutral-900 font-bold transition-colors hidden sm:block"
               >
-                View Entire Category →
+                View Category in Catalog →
               </Link>
             </div>
 

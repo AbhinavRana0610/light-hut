@@ -15,12 +15,69 @@ import {
   Download,
   Home,
   Check,
+  ArrowRight,
+  LayoutGrid,
+  Grid,
 } from 'lucide-react';
 import { catalogService, productService } from '../../services/api';
 import { ProductCard } from '../../components/catalog/ProductCard';
 import { useSettings } from '../../context/SettingsContext';
 import { CascadingCategoryDropdown, PRODUCT_CATEGORIES_DATA } from '../../components/common/CascadingCategoryDropdown';
 import { MASTER_CATEGORIES } from '../../data/catalogData';
+
+// Curated Category Metadata & Icons Helper
+const CATEGORY_META_HELPER = {
+  chandelier: {
+    icon: '✨',
+    tag: 'Grand Architectural Statements',
+    image: '/categories/chandelier.jpg',
+  },
+  'pendant-lamp': {
+    icon: '🔆',
+    tag: 'Sculptural Suspended Pendants',
+    image: '/categories/pendant-lamp.jpg',
+  },
+  'wall-lamp': {
+    icon: '💡',
+    tag: 'Architectural Sconces & Grazers',
+    image: '/categories/wall-lamp.jpg',
+  },
+  'double-height': {
+    icon: '🏛️',
+    tag: 'Monumental High-Ceiling Cascades',
+    image: '/categories/double-height.jpg',
+  },
+  'dining-table-lamp': {
+    icon: '🍽️',
+    tag: 'Curated Banquet & Island Illumination',
+    image: '/categories/dining-table-lamp.jpg',
+  },
+  'outdoor-light': {
+    icon: '🌿',
+    tag: 'IP65 Weatherproof Luminaires',
+    image: '/categories/outdoor-light.jpg',
+  },
+  'table-lamp': {
+    icon: '🪔',
+    tag: 'Sculptural Marble & Metal Accents',
+    image: '/categories/table-lamp.jpg',
+  },
+  'floor-lamp': {
+    icon: '🕯️',
+    tag: 'Freestanding Arcs & Reading Columns',
+    image: '/categories/floor-lamp.jpg',
+  },
+  'led-filament-bulb': {
+    icon: '💫',
+    tag: 'Warm Vintage Edison Filament',
+    image: '/categories/led-filament-bulb.jpg',
+  },
+  'spare-part': {
+    icon: '🔧',
+    tag: 'Architectural Components & Drivers',
+    image: '/categories/spare-part.jpg',
+  },
+};
 
 export const Catalog = () => {
   const { settings } = useSettings();
@@ -34,6 +91,7 @@ export const Catalog = () => {
   const [loading, setLoading] = useState(true);
   const [totalProducts, setTotalProducts] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
+  const [viewMode, setViewMode] = useState('categories'); // 'categories' | 'products'
 
   // URL Query Params
   const currentCategory = searchParams.get('category') || 'all';
@@ -46,6 +104,21 @@ export const Catalog = () => {
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
   const [searchInput, setSearchInput] = useState(currentSearch);
   const [catalogDropdownOpen, setCatalogDropdownOpen] = useState(false);
+
+  // Sync viewMode to 'categories' when 'all' is selected and no active query filter
+  useEffect(() => {
+    if (currentCategory === 'all' && !currentSearch && !currentFeatured && !currentSub) {
+      setViewMode('categories');
+    }
+  }, [currentCategory, currentSearch, currentFeatured, currentSub]);
+
+  // Computed Flag: When true, right side renders 10 Category Cards
+  const isCategoriesView =
+    currentCategory === 'all' &&
+    !currentSearch &&
+    !currentFeatured &&
+    !currentSub &&
+    viewMode === 'categories';
 
   // Document Title
   useEffect(() => {
@@ -217,28 +290,46 @@ export const Catalog = () => {
   };
 
   const clearAllFilters = () => {
+    setViewMode('categories');
     setSearchInput('');
     setSearchParams({});
   };
 
-  // Printable Catalog PDF Brochure Generator
+  // Printable Catalog PDF Brochure Generator for Currently Filtered Fixtures
   const handleDownloadCatalog = () => {
     const printWindow = window.open('', '_blank');
-    const categoryTitle = activeCategoryData?.name || 'All Lighting Collections';
-    const fixtureList = products && products.length > 0 ? products : [];
+    const categoryTitle = currentSub
+      ? `${activeCategoryData?.name || ''} - ${currentSub.replace(/-/g, ' ').toUpperCase()}`
+      : activeCategoryData?.name || 'All Architectural Lighting';
+
+    // Get the exact fixtures currently displayed below
+    let fixtureList = products && products.length > 0 ? products : [];
+    if (fixtureList.length === 0 && currentCategory !== 'all') {
+      fixtureList = MASTER_PRODUCTS.filter((p) => p.category === currentCategory);
+    }
+
+    if (!printWindow) {
+      alert('Please allow popups in your browser to generate and view the Catalog PDF.');
+      return;
+    }
 
     const productsHtml = fixtureList
       .map(
-        (p) => `
-        <div style="break-inside: avoid; page-break-inside: avoid; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; padding: 12px; background: #ffffff; display: flex; flex-direction: column;">
-          <img src="${p.primaryImage || p.images?.[0]?.url || '/showroom-hero-hd.jpg'}" style="width: 100%; height: 180px; object-fit: cover; border-radius: 6px; margin-bottom: 8px;" alt="${p.name}" />
-          <div style="font-size: 10px; color: #DC2626; font-weight: bold; text-transform: uppercase;">${p.categoryName || p.category?.name || 'Architectural Luminaire'}</div>
-          <div style="font-size: 13px; font-weight: bold; color: #111827; margin: 3px 0 6px 0;">${p.name}</div>
-          <div style="font-size: 10px; color: #4b5563; line-height: 1.5; border-top: 1px solid #f3f4f6; padding-top: 6px; margin-top: auto;">
-            ${p.sku ? `<div><strong>SKU:</strong> ${p.sku}</div>` : ''}
-            ${p.specifications?.finish ? `<div><strong>Finish:</strong> ${p.specifications.finish}</div>` : ''}
-            ${p.specifications?.colorTemperature ? `<div><strong>CCT:</strong> ${p.specifications.colorTemperature}</div>` : ''}
-            ${p.specifications?.material ? `<div><strong>Material:</strong> ${p.specifications.material}</div>` : ''}
+        (p, idx) => `
+        <div class="product-card">
+          <div class="badge-idx">#${idx + 1}</div>
+          <div class="img-box">
+            <img src="${p.primaryImage || p.images?.[0]?.url || '/showroom-hero-hd.jpg'}" alt="${p.name}" />
+          </div>
+          <div class="cat-tag">${p.categoryName || p.category?.name || activeCategoryData?.name || 'Architectural Lighting'}</div>
+          <div class="product-title">${p.name}</div>
+          <div class="spec-table">
+            ${p.sku ? `<div class="spec-row"><span class="spec-lbl">SKU:</span> <strong class="spec-val-sku">${p.sku}</strong></div>` : ''}
+            ${p.specifications?.wattage ? `<div class="spec-row"><span class="spec-lbl">Wattage:</span> <span class="spec-val">${p.specifications.wattage}</span></div>` : ''}
+            ${p.specifications?.colorTemperature ? `<div class="spec-row"><span class="spec-lbl">CCT / Glow:</span> <span class="spec-val">${p.specifications.colorTemperature}</span></div>` : ''}
+            ${p.specifications?.finish ? `<div class="spec-row"><span class="spec-lbl">Finish:</span> <span class="spec-val">${p.specifications.finish}</span></div>` : ''}
+            ${p.specifications?.material ? `<div class="spec-row"><span class="spec-lbl">Material:</span> <span class="spec-val">${p.specifications.material}</span></div>` : ''}
+            ${p.specifications?.dimensions ? `<div class="spec-row"><span class="spec-lbl">Dimensions:</span> <span class="spec-val">${p.specifications.dimensions}</span></div>` : ''}
           </div>
         </div>
       `
@@ -249,56 +340,280 @@ export const Catalog = () => {
       <!DOCTYPE html>
       <html>
         <head>
+          <meta charset="utf-8" />
           <title>${categoryTitle} - LightHut Decorative Solutions Catalog</title>
           <style>
-            @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
-            body { font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; padding: 25px; color: #111827; background: #ffffff; }
-            .header { border-bottom: 2px solid #111827; padding-bottom: 15px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-end; }
-            h1 { font-family: 'Playfair Display', serif; font-size: 24px; margin: 0 0 4px 0; color: #111827; }
-            .sub { font-size: 12px; color: #6b7280; }
-            .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-            .footer { margin-top: 30px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 10px; color: #6b7280; display: flex; justify-content: space-between; }
+            @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap');
+            * { box-sizing: border-box; }
+            body {
+              font-family: 'Plus Jakarta Sans', sans-serif;
+              margin: 0;
+              padding: 24px;
+              color: #0f172a;
+              background: #ffffff;
+              -webkit-print-color-adjust: exact;
+              print-color-adjust: exact;
+            }
+            .no-print {
+              margin-bottom: 20px;
+              padding: 12px 18px;
+              background: #f8fafc;
+              border: 1px solid #e2e8f0;
+              border-radius: 12px;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            }
+            .btn-print {
+              background: #DC2626;
+              color: #ffffff;
+              border: none;
+              padding: 10px 22px;
+              border-radius: 8px;
+              font-weight: 700;
+              font-size: 13px;
+              cursor: pointer;
+              display: inline-flex;
+              align-items: center;
+              gap: 8px;
+              box-shadow: 0 4px 12px rgba(220,38,38,0.3);
+            }
+            .btn-print:hover { background: #b91c1c; }
+            .btn-close {
+              background: #ffffff;
+              color: #475569;
+              border: 1px solid #cbd5e1;
+              padding: 9px 16px;
+              border-radius: 8px;
+              font-weight: 600;
+              font-size: 13px;
+              cursor: pointer;
+            }
+            .btn-close:hover { background: #f1f5f9; }
+            .header {
+              border-bottom: 2px solid #0f172a;
+              padding-bottom: 14px;
+              margin-bottom: 18px;
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-end;
+            }
+            .header-info {
+              text-align: right;
+              font-size: 9.5px;
+              color: #475569;
+              line-height: 1.5;
+            }
+            .collection-strip {
+              background: #f8fafc;
+              border: 1px solid #e2e8f0;
+              border-left: 4px solid #DC2626;
+              border-radius: 10px;
+              padding: 14px 18px;
+              margin-bottom: 22px;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            }
+            .grid {
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              gap: 16px;
+            }
+            .product-card {
+              break-inside: avoid;
+              page-break-inside: avoid;
+              border: 1px solid #e2e8f0;
+              border-radius: 12px;
+              overflow: hidden;
+              padding: 14px;
+              background: #ffffff;
+              display: flex;
+              flex-direction: column;
+              position: relative;
+            }
+            .badge-idx {
+              position: absolute;
+              top: 18px;
+              right: 18px;
+              background: #0f172a;
+              color: #ffffff;
+              font-size: 9px;
+              font-weight: bold;
+              padding: 2px 7px;
+              border-radius: 4px;
+              font-family: monospace;
+            }
+            .img-box {
+              width: 100%;
+              height: 190px;
+              border-radius: 8px;
+              overflow: hidden;
+              background: #f8fafc;
+              margin-bottom: 10px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border: 1px solid #f1f5f9;
+            }
+            .img-box img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+            .cat-tag {
+              font-size: 10px;
+              color: #DC2626;
+              font-weight: 700;
+              text-transform: uppercase;
+              letter-spacing: 0.08em;
+              margin-bottom: 3px;
+            }
+            .product-title {
+              font-size: 14px;
+              font-weight: 700;
+              color: #0f172a;
+              margin: 0 0 8px 0;
+              line-height: 1.3;
+            }
+            .spec-table {
+              font-size: 10.5px;
+              color: #475569;
+              line-height: 1.6;
+              border-top: 1px solid #f1f5f9;
+              padding-top: 8px;
+              margin-top: auto;
+            }
+            .spec-row {
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 2px;
+            }
+            .spec-lbl {
+              color: #94a3b8;
+              font-weight: 600;
+            }
+            .spec-val {
+              color: #1e293b;
+              font-weight: 500;
+            }
+            .spec-val-sku {
+              color: #0f172a;
+              font-family: monospace;
+            }
+            .footer {
+              margin-top: 36px;
+              padding-top: 14px;
+              border-top: 1px solid #e2e8f0;
+              font-size: 10px;
+              color: #64748b;
+              display: flex;
+              justify-content: space-between;
+              line-height: 1.5;
+            }
             @media print {
               body { padding: 10px; }
-              @page { size: A4; margin: 10mm; }
+              .no-print { display: none !important; }
+              @page { size: A4 portrait; margin: 10mm; }
             }
           </style>
         </head>
         <body>
-          <div class="header">
-            <div>
-              <h1>LIGHTHUT DECORATIVE SOLUTIONS</h1>
-              <div class="sub">Collection: <strong>${categoryTitle}</strong> • ${fixtureList.length} Fixtures</div>
+          <!-- Floating Toolbar (Hidden when printing/saving to PDF) -->
+          <div class="no-print">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <button onclick="window.print()" class="btn-print">
+                <span>🖨️ Print / Save as PDF</span>
+              </button>
+              <button onclick="window.close()" class="btn-close">
+                Close Window
+              </button>
             </div>
-            <div style="text-align: right; font-size: 10px; color: #6b7280;">
-              <div>LightHut Luxury Architectural Lighting</div>
-              <div>Catalog Date: ${new Date().toLocaleDateString()}</div>
+            <div style="font-size: 12px; color: #64748b;">
+              💡 Tip: In the printer destination, select <strong>"Save as PDF"</strong> to save this catalog to your device.
             </div>
           </div>
+
+          <!-- Document Header -->
+          <div class="header">
+            <div style="display: flex; align-items: center; gap: 14px;">
+              <img src="/categories/logo.png" style="height: 48px; width: auto; object-fit: contain;" alt="LightHut Logo" />
+              <div style="border-left: 2px solid #e2e8f0; padding-left: 12px;">
+                <div style="font-size: 16px; font-weight: 800; letter-spacing: 0.1em; color: #0f172a; text-transform: uppercase;">LIGHTHUT</div>
+                <div style="font-size: 9px; letter-spacing: 0.18em; color: #DC2626; font-weight: 700; text-transform: uppercase;">DECORATIVE SOLUTIONS</div>
+              </div>
+            </div>
+            <div class="header-info">
+              <div><strong>Showroom:</strong> 4B/27, Tilak Nagar, Lighting Market, New Delhi - 110018</div>
+              <div><strong>Works:</strong> C37/4, Lawrence Road Industrial Area, New Delhi - 110035</div>
+              <div><strong>Direct Sales:</strong> +91 98118 69622 • +91 99999 50543</div>
+              <div><strong>Catalog Date:</strong> ${new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })} • <strong>${fixtureList.length} Fixtures</strong></div>
+            </div>
+          </div>
+
+          <!-- Collection Title Banner -->
+          <div class="collection-strip">
+            <div>
+              <div style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: #DC2626; margin-bottom: 2px;">
+                Official Specification Catalog
+              </div>
+              <div style="font-size: 24px; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: -0.02em;">
+                ${categoryTitle}
+              </div>
+            </div>
+            <div style="background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; padding: 6px 14px; border-radius: 9999px; font-size: 11px; font-weight: 700;">
+              ${fixtureList.length} Curated Fixtures
+            </div>
+          </div>
+
+          <!-- Product Cards Grid -->
           <div class="grid">
             ${productsHtml}
           </div>
+
+          <!-- Document Footer -->
           <div class="footer">
             <div><strong>LightHut Decorative Solutions</strong> • All Rights Reserved</div>
-            <div>Direct Inquiries: sales@lighthut.com</div>
+            <div>Official Inquiries: lighthut.in@gmail.com • Web: www.lighthut.in</div>
           </div>
+
           <script>
-            window.onload = function() {
+            window.addEventListener('load', function() {
+              var images = document.images;
+              var totalImages = images.length;
+              var loadedImages = 0;
+              if (totalImages === 0) {
+                setTimeout(function() { window.print(); }, 400);
+                return;
+              }
+              function checkAllLoaded() {
+                loadedImages++;
+                if (loadedImages >= totalImages) {
+                  setTimeout(function() { window.print(); }, 500);
+                }
+              }
+              for (var i = 0; i < totalImages; i++) {
+                if (images[i].complete) {
+                  checkAllLoaded();
+                } else {
+                  images[i].addEventListener('load', checkAllLoaded);
+                  images[i].addEventListener('error', checkAllLoaded);
+                }
+              }
               setTimeout(function() {
-                window.print();
-              }, 400);
-            };
+                if (loadedImages < totalImages) {
+                  window.print();
+                }
+              }, 2500);
+            });
           </script>
         </body>
       </html>
     `;
 
-    if (printWindow) {
-      printWindow.document.write(htmlContent);
-      printWindow.document.close();
-    } else {
-      window.print();
-    }
+    printWindow.document.write(htmlContent);
+    printWindow.document.close();
   };
 
   return (
@@ -314,7 +629,10 @@ export const Catalog = () => {
           <ChevronRight className="w-3.5 h-3.5 text-neutral-400" />
           <button
             type="button"
-            onClick={() => updateQuery({ category: 'all' })}
+            onClick={() => {
+              setViewMode('categories');
+              updateQuery({ category: 'all' });
+            }}
             className={`cursor-pointer transition-colors ${
               currentCategory === 'all' ? 'text-neutral-900 font-semibold' : 'hover:text-neutral-900'
             }`}
@@ -368,16 +686,32 @@ export const Catalog = () => {
                 {(activeCategoryData.total ?? totalProducts) === 1 ? 'Fixture Available' : 'Fixtures Available'}
               </span>
 
-              {/* Download Official 2026 Lighting Catalog PDF */}
+              {/* Prominently Highlighted Dynamic Category Catalog PDF Button */}
+              <button
+                type="button"
+                onClick={handleDownloadCatalog}
+                className="relative inline-flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-gradient-to-r from-[#DC2626] to-[#b91c1c] text-white text-xs sm:text-[13px] font-black uppercase tracking-wider shadow-[0_8px_25px_rgba(220,38,38,0.55)] border-2 border-white/60 hover:border-white hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer group ring-4 ring-[#DC2626]/30 overflow-hidden"
+                title={`Download official PDF specification catalog for ${activeCategoryData.name}`}
+              >
+                {/* Glowing Sheen Animation */}
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
+                <Download className="w-4 h-4 text-white drop-shadow animate-bounce group-hover:animate-none transition-transform" />
+                <span className="drop-shadow font-black">
+                  {currentCategory !== 'all'
+                    ? `Download ${activeCategoryData.name} Catalog (PDF)`
+                    : 'Download 2026 Catalog (PDF)'}
+                </span>
+              </button>
+
+              {/* Secondary link for the master factory brochure */}
               <a
                 href="/LH-FANCY 2608.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-neutral-900 hover:bg-[#DC2626] hover:text-white text-xs font-bold uppercase tracking-wider shadow-lg transition-all hover:scale-102 cursor-pointer border border-neutral-200 group"
-                title="Download official 2026 Lighting Catalog (LH-FANCY 2608.pdf)"
+                className="text-[10.5px] text-neutral-300 hover:text-white underline tracking-wider font-medium transition-colors"
+                title="Download 13MB Master Factory Catalog (LH-FANCY 2608.pdf)"
               >
-                <Download className="w-4 h-4 text-[#DC2626] group-hover:text-white transition-colors" />
-                <span>Download 2026 Catalog (PDF)</span>
+                Or view 2026 Master Factory PDF (13MB)
               </a>
             </div>
           </div>
@@ -387,7 +721,10 @@ export const Catalog = () => {
         <div className="mt-4 flex items-center gap-2 overflow-x-auto py-2 scrollbar-none">
           <button
             type="button"
-            onClick={() => updateQuery({ category: 'all' })}
+            onClick={() => {
+              setViewMode('categories');
+              updateQuery({ category: 'all', sub: undefined });
+            }}
             className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-300 cursor-pointer ${
               currentCategory === 'all'
                 ? 'bg-neutral-900 text-white shadow-md scale-102 font-bold'
@@ -472,14 +809,6 @@ export const Catalog = () => {
                   </button>
                 );
               })}
-
-              <Link
-                to={`/category/${currentCategory}`}
-                className="ml-auto shrink-0 text-[11px] font-bold uppercase tracking-wider text-[#DC2626] hover:underline px-2 flex items-center gap-1"
-              >
-                <span>Lookbook & Guide</span>
-                <ChevronRight className="w-3 h-3" />
-              </Link>
             </div>
           );
         })()}
@@ -650,7 +979,10 @@ export const Catalog = () => {
                 {currentCategory !== 'all' && (
                   <button
                     type="button"
-                    onClick={() => updateQuery({ category: 'all' })}
+                    onClick={() => {
+                      setViewMode('categories');
+                      updateQuery({ category: 'all', sub: undefined });
+                    }}
                     className="text-[11px] text-[#DC2626] hover:underline font-semibold cursor-pointer"
                   >
                     Reset
@@ -662,7 +994,10 @@ export const Catalog = () => {
               <div className="space-y-1">
                 <button
                   type="button"
-                  onClick={() => updateQuery({ category: 'all' })}
+                  onClick={() => {
+                    setViewMode('categories');
+                    updateQuery({ category: 'all', sub: undefined });
+                  }}
                   className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
                     currentCategory === 'all'
                       ? 'bg-[#DC2626] text-white shadow-sm'
@@ -770,7 +1105,7 @@ export const Catalog = () => {
             </div>
           </aside>
 
-          {/* Product Grid Area */}
+          {/* Product Grid / Category Cards Area */}
           <main className="lg:col-span-9">
             {loading ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -778,8 +1113,224 @@ export const Catalog = () => {
                   <div key={n} className="h-96 rounded-2xl bg-neutral-200 animate-pulse" />
                 ))}
               </div>
+            ) : isCategoriesView ? (
+              /* ── 1. Category Cards Grid View (When All Categories is selected) ── */
+              <div className="space-y-6">
+                {/* Section Header with View Mode Switcher */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 border-b border-neutral-200 gap-3">
+                  <div>
+                    <h2 className="text-xl sm:text-2xl font-serif text-neutral-900 font-bold flex items-center gap-2">
+                      <span>Architectural Lighting Collections</span>
+                      <span className="text-xs font-sans font-bold px-2.5 py-0.5 rounded-full bg-red-50 text-[#DC2626] border border-red-200">
+                        {categories.length} Collections
+                      </span>
+                    </h2>
+                    <p className="text-xs sm:text-sm text-neutral-500 mt-1">
+                      Explore our handcrafted luminaires by category. Select a collection below to view fixtures and specifications.
+                    </p>
+                  </div>
+
+                  {/* View Mode Toggle: Collections vs All Fixtures Flat List */}
+                  <div className="flex items-center gap-1.5 bg-neutral-100 p-1 rounded-xl shrink-0 border border-neutral-200/80">
+                    <button
+                      type="button"
+                      onClick={() => setViewMode('categories')}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                        viewMode === 'categories'
+                          ? 'bg-white text-[#DC2626] shadow-xs'
+                          : 'text-neutral-600 hover:text-neutral-900'
+                      }`}
+                    >
+                      <LayoutGrid className="w-3.5 h-3.5 text-[#DC2626]" />
+                      <span>Collections ({categories.length})</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setViewMode('products')}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                        viewMode === 'products'
+                          ? 'bg-white text-[#DC2626] shadow-xs'
+                          : 'text-neutral-600 hover:text-neutral-900'
+                      }`}
+                    >
+                      <Grid className="w-3.5 h-3.5" />
+                      <span>All Fixtures ({allTotal || totalProducts})</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* The 10 Categories Cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {categories.map((cat, idx) => {
+                    const meta = CATEGORY_META_HELPER[cat.slug] || {};
+                    const catConfig = PRODUCT_CATEGORIES_DATA.find((c) => c.slug === cat.slug);
+                    const subList = catConfig?.sub || cat.subcategories || [];
+                    const count = cat.total ?? cat.productsCount ?? 0;
+                    const icon = meta.icon || catConfig?.icon || cat.icon || '✨';
+                    const tag = cat.tag || meta.tag || 'Curated Architectural Series';
+                    const coverImg = cat.image || meta.image || `/categories/${cat.slug}.jpg`;
+
+                    return (
+                      <motion.div
+                        key={cat.slug || cat._id}
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.35, delay: idx * 0.04 }}
+                        onClick={() => {
+                          updateQuery({ category: cat.slug, sub: undefined });
+                          window.scrollTo({ top: 380, behavior: 'smooth' });
+                        }}
+                        className="group bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-neutral-200/90 hover:border-[#DC2626]/50 shadow-xs hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col"
+                      >
+                        {/* Category Cover Image Header with Badges */}
+                        <div className="relative aspect-[4/3] w-full overflow-hidden bg-neutral-900 shrink-0">
+                          <img
+                            src={coverImg}
+                            alt={cat.name}
+                            onError={(e) => {
+                              e.currentTarget.onerror = null;
+                              e.currentTarget.src = '/categories/chandelier.jpg';
+                            }}
+                            className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700 ease-out"
+                            loading="lazy"
+                          />
+                          {/* Gradient Overlays */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/10 group-hover:from-black/95 transition-colors" />
+
+                          {/* Top Badges */}
+                          <div className="absolute top-3.5 inset-x-3.5 flex items-center justify-between pointer-events-none">
+                            <span className="text-[11px] font-mono font-bold text-white bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/15 shadow-xs flex items-center gap-1.5">
+                              <span className="text-[#DC2626]">#{String(idx + 1).padStart(2, '0')}</span>
+                              <span>{icon}</span>
+                            </span>
+
+                            <span className="text-[11px] font-bold text-white bg-[#DC2626] backdrop-blur-md px-2.5 py-1 rounded-lg shadow-sm border border-white/20">
+                              {count} {count === 1 ? 'Design' : 'Designs'}
+                            </span>
+                          </div>
+
+                          {/* Bottom Overlay Title & Subtitle */}
+                          <div className="absolute bottom-3.5 inset-x-3.5 pointer-events-none">
+                            <div className="text-[11px] uppercase tracking-wider font-semibold text-red-300 mb-1 line-clamp-1">
+                              {tag}
+                            </div>
+                            <h3 className="text-xl sm:text-2xl font-serif text-white font-bold group-hover:text-red-200 transition-colors drop-shadow-sm flex items-center justify-between">
+                              <span>{cat.name}</span>
+                              <div className="w-8 h-8 rounded-full bg-white/15 group-hover:bg-[#DC2626] backdrop-blur-md flex items-center justify-center transition-all duration-300 text-white shrink-0 group-hover:scale-110 shadow-xs">
+                                <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                              </div>
+                            </h3>
+                          </div>
+                        </div>
+
+                        {/* Card Body: Description, Subcategories & Action */}
+                        <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4 bg-white">
+                          {cat.description && (
+                            <p className="text-xs text-neutral-600 line-clamp-2 leading-relaxed font-normal">
+                              {cat.description}
+                            </p>
+                          )}
+
+                          {/* Subcategories (if any) */}
+                          {subList && subList.length > 0 && (
+                            <div className="space-y-1.5 pt-2 border-t border-neutral-100">
+                              <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-neutral-400">
+                                <span>Popular Types ({subList.length})</span>
+                              </div>
+                              <div className="flex flex-wrap gap-1.5">
+                                {subList.slice(0, 4).map((sub) => (
+                                  <button
+                                    key={sub.slug}
+                                    type="button"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      updateQuery({ category: cat.slug, sub: sub.slug });
+                                      window.scrollTo({ top: 380, behavior: 'smooth' });
+                                    }}
+                                    className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-neutral-100 hover:bg-red-50 text-neutral-600 hover:text-[#DC2626] transition-colors border border-neutral-200/60 hover:border-red-200 cursor-pointer"
+                                  >
+                                    {sub.name}
+                                  </button>
+                                ))}
+                                {subList.length > 4 && (
+                                  <span className="text-[10px] font-semibold text-neutral-400 self-center">
+                                    +{subList.length - 4} more
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Action Footer */}
+                          <div className="pt-3 border-t border-neutral-100 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-[#DC2626] group-hover:text-red-700">
+                            <span>View {cat.name} Fixtures</span>
+                            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform" />
+                          </div>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </div>
             ) : displayedProducts.length > 0 ? (
+              /* ── 2. Product Cards Grid View (When category selected or search active) ── */
               <>
+                {/* Category Top Bar */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 border-b border-neutral-200 gap-3 mb-6">
+                  <div className="flex items-center gap-3 flex-wrap">
+                    {currentCategory !== 'all' ? (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setViewMode('categories');
+                          updateQuery({ category: 'all', sub: undefined });
+                        }}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-neutral-300 text-xs font-bold text-neutral-700 hover:text-[#DC2626] hover:border-[#DC2626] transition-all shadow-xs cursor-pointer group"
+                      >
+                        <ChevronLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
+                        <span>All Categories</span>
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => setViewMode('categories')}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-neutral-300 text-xs font-bold text-neutral-700 hover:text-[#DC2626] hover:border-[#DC2626] transition-all shadow-xs cursor-pointer group"
+                      >
+                        <LayoutGrid className="w-3.5 h-3.5 text-[#DC2626]" />
+                        <span>View By Categories</span>
+                      </button>
+                    )}
+                    <div className="h-4 w-px bg-neutral-300 hidden sm:block" />
+                    <span className="text-sm sm:text-base font-serif font-bold text-neutral-900">
+                      {activeCategoryData.name}
+                    </span>
+                    <span className="text-xs text-neutral-500 font-medium">
+                      ({displayedProducts.length} {displayedProducts.length === 1 ? 'fixture' : 'fixtures'})
+                    </span>
+                  </div>
+
+                  {currentCategory === 'all' && (
+                    <div className="flex items-center gap-1.5 bg-neutral-100 p-1 rounded-xl shrink-0 border border-neutral-200/80">
+                      <button
+                        type="button"
+                        onClick={() => setViewMode('categories')}
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-neutral-600 hover:text-neutral-900 cursor-pointer"
+                      >
+                        <LayoutGrid className="w-3.5 h-3.5" />
+                        <span>Collections ({categories.length})</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setViewMode('products')}
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-white text-[#DC2626] shadow-xs cursor-pointer"
+                      >
+                        <Grid className="w-3.5 h-3.5 text-[#DC2626]" />
+                        <span>All Fixtures ({allTotal || totalProducts})</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {displayedProducts.map((product) => (
                     <ProductCard key={product._id || product.slug} product={product} />
@@ -885,7 +1436,8 @@ export const Catalog = () => {
                   <button
                     type="button"
                     onClick={() => {
-                      updateQuery({ category: 'all' });
+                      setViewMode('categories');
+                      updateQuery({ category: 'all', sub: undefined });
                       setMobileFilterOpen(false);
                     }}
                     className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold cursor-pointer ${

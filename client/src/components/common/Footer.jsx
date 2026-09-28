@@ -7,7 +7,6 @@ import {
   ArrowRight,
   Instagram,
   Facebook,
-  Linkedin,
   Shield,
 } from 'lucide-react';
 import { useSettings } from '../../context/SettingsContext';
@@ -54,23 +53,17 @@ export const Footer = () => {
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 sm:gap-10">
               {/* Left: Brand Logo & Typography */}
               <div className="space-y-4 max-w-2xl">
-                <div className="flex items-center gap-3">
-                  <img
-                    src={settings?.logo || '/categories/logo.png'}
-                    onError={(e) => {
-                      e.currentTarget.onerror = null;
-                      e.currentTarget.src = '/logo.png';
-                    }}
-                    alt="LightHut Decorative Solutions"
-                    className="h-12 w-auto object-contain filter drop-shadow"
-                  />
-                  <div className="border-l border-white/30 pl-3">
-                    <span className="text-base font-serif-luxury tracking-[0.2em] font-bold text-white uppercase block leading-none">
-                      LIGHTHUT
-                    </span>
-                    <span className="text-[9px] tracking-[0.25em] text-red-300 uppercase font-semibold block mt-1">
-                      DECORATIVE SOLUTIONS
-                    </span>
+                <div className="flex items-center">
+                  <div className="px-3.5 py-2 rounded-xl bg-white shadow-sm flex items-center justify-center shrink-0">
+                    <img
+                      src={settings?.logo || '/categories/logo.png'}
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = '/logo.png';
+                      }}
+                      alt="LightHut Decorative Solutions"
+                      className="h-10 sm:h-11 w-auto object-contain"
+                    />
                   </div>
                 </div>
 
@@ -102,36 +95,6 @@ export const Footer = () => {
                 </Link>
               </div>
             </div>
-
-            {/* Horizontal Divider Line (HR) */}
-            <hr className="border-white/20 my-1" />
-
-            {/* Quick Links Row Across All Collections (Har Link Added in Above Footer) */}
-            <div className="flex flex-wrap items-center justify-between gap-3 text-xs">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-300">
-                Explore Collections:
-              </span>
-              <div className="flex flex-wrap items-center gap-2">
-                {[
-                  { name: 'Chandeliers', path: '/catalog?category=chandelier' },
-                  { name: 'Pendants', path: '/catalog?category=pendant-lamp' },
-                  { name: 'Wall Lamps', path: '/catalog?category=wall-lamp' },
-                  { name: 'Double Height', path: '/catalog?category=double-height' },
-                  { name: 'Outdoor Lights', path: '/catalog?category=outdoor-light' },
-                  { name: 'Table Lamps', path: '/catalog?category=table-lamp' },
-                  { name: 'Floor Lamps', path: '/catalog?category=floor-lamp' },
-                ].map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.path}
-                    className="px-3 py-1.5 rounded-full bg-black/40 hover:bg-[#DC2626] border border-white/15 text-neutral-200 hover:text-white text-[11px] font-medium transition-all"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
-
           </div>
         </div>
       </section>
@@ -149,23 +112,17 @@ export const Footer = () => {
             <div className="lg:col-span-5 pr-0 md:pr-8 lg:pr-14 pb-10 md:pb-0 space-y-5">
               
               {/* Brand Logo Image Added */}
-              <Link to="/" className="inline-flex items-center gap-3.5 group">
-                <img
-                  src={settings?.logo || '/categories/logo.png'}
-                  onError={(e) => {
-                    e.currentTarget.onerror = null;
-                    e.currentTarget.src = '/logo.png';
-                  }}
-                  alt="LightHut Decorative Solutions"
-                  className="h-12 w-auto object-contain transition-transform group-hover:scale-105"
-                />
-                <div className="flex flex-col border-l border-neutral-700/80 pl-3">
-                  <span className="text-lg font-serif-luxury tracking-[0.2em] font-bold text-white uppercase leading-none">
-                    LIGHTHUT
-                  </span>
-                  <span className="text-[9.5px] tracking-[0.25em] text-[#DC2626] uppercase font-semibold mt-1">
-                    DECORATIVE SOLUTIONS
-                  </span>
+              <Link to="/" className="inline-flex items-center group">
+                <div className="px-3.5 py-2 rounded-xl bg-white shadow-sm flex items-center justify-center shrink-0 transition-transform group-hover:scale-105">
+                  <img
+                    src={settings?.logo || '/categories/logo.png'}
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = '/logo.png';
+                    }}
+                    alt="LightHut Decorative Solutions"
+                    className="h-10 sm:h-11 w-auto object-contain"
+                  />
                 </div>
               </Link>
 
@@ -204,7 +161,7 @@ export const Footer = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/categories" className="hover:text-white transition-colors duration-200 block">
+                    <Link to="/catalog" className="hover:text-white transition-colors duration-200 block">
                       Collections & Brands
                     </Link>
                   </li>
@@ -241,29 +198,60 @@ export const Footer = () => {
                 </h4>
                 <div className="space-y-4 text-xs sm:text-[13px] text-neutral-400 font-light">
                   
-                  {/* Official Address with Google Maps Link */}
-                  <a
-                    href="https://maps.google.com/maps?q=28.678613662719727%2C77.15131378173828&z=17&hl=en"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-start gap-3 text-neutral-300 hover:text-white transition-colors group/addr"
-                    title="Open in Google Maps"
-                  >
-                    <MapPin className="w-4 h-4 text-[#DC2626] group-hover/addr:scale-110 transition-transform shrink-0 mt-0.5" />
-                    <div className="leading-relaxed">
-                      <strong className="block text-white font-medium text-xs group-hover/addr:text-red-300 transition-colors">
-                        M/S LIGHT-HUT DECORATIVE SOLUTIONS
-                      </strong>
-                      <span className="text-neutral-300">C37/4, Lawrence Road, Industrial Area</span>
-                      <br />
-                      <span className="text-neutral-300">New Delhi - 110035</span>
-                      <br />
-                      <span className="text-neutral-400 text-[11px]">(Near Metro Station Kanhaiya Nagar)</span>
-                      <span className="block text-[11px] text-[#DC2626] font-medium mt-1">
-                        View on Google Maps ↗
-                      </span>
-                    </div>
-                  </a>
+                  {/* Showroom Address with Google Maps Link */}
+                  <div className="space-y-1">
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400 block">
+                      Showroom Address:
+                    </span>
+                    <a
+                      href={settings?.mapUrl || 'https://www.google.com/maps/place//@28.6394399,77.0974272,17.01z/data=!4m6!1m5!3m4!2zMjjCsDM4JzIyLjAiTiA3N8KwMDYnMDAuMCJF!8m2!3d28.6394482!4d77.1000061?hl=en'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-start gap-2.5 text-neutral-300 hover:text-white transition-colors group/addr"
+                      title="Open Showroom in Google Maps"
+                    >
+                      <MapPin className="w-4 h-4 text-[#DC2626] group-hover/addr:scale-110 transition-transform shrink-0 mt-0.5" />
+                      <div className="leading-relaxed">
+                        <strong className="block text-white font-medium text-xs group-hover/addr:text-red-300 transition-colors">
+                          M/S LIGHT-HUT DECORATIVE SOLUTIONS
+                        </strong>
+                        <span className="text-neutral-300">4B/27, Upper floor, Opp Govt School Gate no-02</span>
+                        <br />
+                        <span className="text-neutral-300">Devki Nandan road, Lighting market</span>
+                        <br />
+                        <span className="text-neutral-300">Tilak Nagar, New Delhi - 110018</span>
+                        <span className="block text-[11px] text-[#DC2626] font-medium mt-1">
+                          View Showroom on Google Maps ↗
+                        </span>
+                      </div>
+                    </a>
+                  </div>
+
+                  {/* Works Address */}
+                  <div className="pt-3 border-t border-neutral-800/80 space-y-1">
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400 block">
+                      Works Address:
+                    </span>
+                    <a
+                      href={settings?.worksMapUrl || 'https://maps.google.com/maps?q=28.678613662719727%2C77.15131378173828&z=17&hl=en'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-start gap-2.5 text-neutral-300 hover:text-white transition-colors group/addr"
+                      title="Open Works in Google Maps"
+                    >
+                      <MapPin className="w-4 h-4 text-neutral-500 group-hover/addr:text-[#DC2626] transition-colors shrink-0 mt-0.5" />
+                      <div className="leading-relaxed text-xs">
+                        <span className="text-neutral-300">C37/4, Lawrence Road, Industrial Area</span>
+                        <br />
+                        <span className="text-neutral-300">New Delhi - 110035</span>
+                        <br />
+                        <span className="text-neutral-400 text-[11px]">(Near Metro Station Kanhaiya Nagar)</span>
+                        <span className="block text-[11px] text-neutral-400 hover:text-[#DC2626] font-medium mt-1">
+                          View Works on Google Maps ↗
+                        </span>
+                      </div>
+                    </a>
+                  </div>
 
                   {/* Official Email */}
                   <a
@@ -305,16 +293,6 @@ export const Footer = () => {
                     aria-label="Instagram"
                   >
                     <Instagram className="w-4 h-4" />
-                  </a>
-
-                  <a
-                    href={settings?.socialLinks?.linkedin || 'https://linkedin.com'}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-full border border-neutral-700 bg-neutral-900/80 hover:bg-neutral-800 text-neutral-300 hover:text-white hover:border-[#8C6D4F] flex items-center justify-center transition-all duration-200"
-                    aria-label="LinkedIn"
-                  >
-                    <Linkedin className="w-4 h-4" />
                   </a>
 
                   <a

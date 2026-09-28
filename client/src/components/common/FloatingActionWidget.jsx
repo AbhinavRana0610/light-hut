@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, ArrowUp, Mail } from 'lucide-react';
+import { ArrowUp, Mail } from 'lucide-react';
 import { useSettings } from '../../context/SettingsContext';
 
 /**
  * Floating Action Widget with Individual Social Media & Contact Buttons
  * Features:
  * 1. Separate distinct buttons for:
- *    - Direct Call (Phone)
  *    - Facebook
  *    - Instagram
  *    - YouTube
@@ -17,9 +16,6 @@ import { useSettings } from '../../context/SettingsContext';
 export const FloatingActionWidget = () => {
   const { settings } = useSettings();
   const [showTopBtn, setShowTopBtn] = useState(false);
-
-  const displayPhone = settings?.phone || '+91 8045811438';
-  const rawCallPhone = displayPhone.replace(/[^0-9+]/g, '');
 
   const instagramUrl = settings?.socialLinks?.instagram || 'https://www.instagram.com/lighthutdecorativesolutions/';
   const facebookUrl = settings?.socialLinks?.facebook || 'https://facebook.com';
@@ -69,20 +65,6 @@ export const FloatingActionWidget = () => {
         )}
       </AnimatePresence>
 
-      {/* ── Direct Phone Call Button ── */}
-      <div className="relative group flex items-center justify-center">
-        <a
-          href={`tel:${rawCallPhone}`}
-          className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-neutral-900 hover:bg-black text-white shadow-md hover:shadow-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 border border-white/15 cursor-pointer"
-          title={`Call Us: ${displayPhone}`}
-          aria-label={`Call ${displayPhone}`}
-        >
-          <Phone className="w-5 h-5 text-white" />
-        </a>
-        <span className="hidden sm:inline-flex absolute right-15 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-lg bg-neutral-900/95 text-white text-xs font-medium tracking-wide shadow-xl border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-          Call {displayPhone}
-        </span>
-      </div>
 
       {/* ── Facebook Button ── */}
       <div className="relative group flex items-center justify-center">

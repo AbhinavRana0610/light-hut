@@ -221,7 +221,7 @@ export const About = () => {
                 <span className="font-serif-luxury text-2xl font-bold text-neutral-900">10,000+</span>
               </div>
               <p className="text-xs text-neutral-600 leading-relaxed">
-                Penthouses, villas, and boutique spaces illuminated across 28 Indian states.
+                Penthouses, villas, and boutique spaces illuminated PAN India.
               </p>
             </div>
           </div>
@@ -247,7 +247,7 @@ export const About = () => {
             {/* Quick Metrics */}
             <div className="pt-4 grid grid-cols-3 gap-4 border-t border-neutral-200">
               <div>
-                <span className="font-serif-luxury text-2xl sm:text-3xl font-bold text-[#DC2626] block">500+</span>
+                <span className="font-serif-luxury text-2xl sm:text-3xl font-bold text-[#DC2626] block">1000+</span>
                 <span className="text-[11px] text-neutral-500 uppercase tracking-wider block mt-0.5">Fixtures in Catalog</span>
               </div>
               <div>
@@ -510,7 +510,7 @@ export const About = () => {
                   GST Registration Certificate
                 </h3>
                 <p className="text-xs text-neutral-600 leading-relaxed mb-5 font-normal">
-                  Statutory registration under the Central Goods and Services Tax Act, 2017. Valid for seamless Input Tax Credit (ITC), B2B tax billing, and all commercial architectural tenders across 28 states.
+                  Statutory registration under the Central Goods and Services Tax Act, 2017. Valid for seamless Input Tax Credit (ITC), B2B tax billing, and all commercial architectural tenders PAN India.
                 </p>
 
                 {/* Visual Document Parchment Preview */}

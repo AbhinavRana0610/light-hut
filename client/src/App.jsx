@@ -1,5 +1,4 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useParams, useLocation } from 'react-router-dom';
 
 // Context Providers
 import { ToastProvider } from './context/ToastContext';
@@ -14,13 +13,22 @@ import { AdminLayout } from './components/admin/AdminLayout';
 // Public Pages
 import { Home } from './pages/public/Home';
 import { Catalog } from './pages/public/Catalog';
-import { Categories } from './pages/public/Categories';
-import { CategoryPage } from './pages/public/CategoryPage';
 import { ProductDetail } from './pages/public/ProductDetail';
 import { Projects } from './pages/public/Projects';
 import { About } from './pages/public/About';
 import { Contact } from './pages/public/Contact';
 import { NotFound } from './pages/public/NotFound';
+
+// Helper: Seamlessly redirect category URLs to the main catalog page with query parameters
+function CategoryRedirect() {
+  const { slug, subSlug } = useParams();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  if (slug) searchParams.set('category', slug);
+  if (subSlug) searchParams.set('sub', subSlug);
+  const query = searchParams.toString();
+  return <Navigate to={`/catalog${query ? `?${query}` : ''}`} replace />;
+}
 
 // Admin Pages
 import { AdminLogin } from './pages/admin/AdminLogin';
@@ -46,9 +54,9 @@ function App() {
                 <Route index element={<Home />} />
                 <Route path="catalog" element={<Catalog />} />
                 <Route path="products" element={<Navigate to="/catalog" replace />} />
-                <Route path="categories" element={<Categories />} />
-                <Route path="category/:slug" element={<CategoryPage />} />
-                <Route path="category/:slug/:subSlug" element={<CategoryPage />} />
+                <Route path="categories" element={<Navigate to="/catalog" replace />} />
+                <Route path="category/:slug" element={<CategoryRedirect />} />
+                <Route path="category/:slug/:subSlug" element={<CategoryRedirect />} />
                 <Route path="product/:slug" element={<ProductDetail />} />
                 <Route path="projects" element={<Projects />} />
                 <Route path="about" element={<About />} />
