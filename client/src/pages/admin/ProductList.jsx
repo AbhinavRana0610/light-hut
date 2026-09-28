@@ -16,6 +16,7 @@ import { productService, categoryService } from '../../services/api';
 import { useToast } from '../../context/ToastContext';
 import { ConfirmModal } from '../../components/admin/ConfirmModal';
 import { ImageUploader } from '../../components/admin/ImageUploader';
+import { CategorySelectorWithOptions } from '../../components/admin/CategorySelectorWithOptions';
 
 export const ProductList = () => {
   const { addToast } = useToast();
@@ -489,75 +490,39 @@ export const ProductList = () => {
                 />
               </div>
 
-              {/* 2. Category & Subcategory Selection Grid (Konse me daal rahe ho) */}
-              {(() => {
-                const selectedCatObj = categories.find((c) => c._id === form.category);
-                const subOptions = selectedCatObj?.subcategories?.filter((s) => s.isActive !== false) || [];
-
-                return (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                    {/* Category Dropdown */}
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-semibold uppercase tracking-wider text-neutral-300 block">
-                        Category <span className="text-[#DC2626]">*</span>
-                      </label>
-                      <select
-                        value={form.category}
-                        onChange={(e) => {
-                          const newCatId = e.target.value;
-                          setForm((prev) => ({
-                            ...prev,
-                            category: newCatId,
-                            subcategory: '',
-                            subcategoryName: '',
-                          }));
-                        }}
-                        required
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-black/40 border border-white/15 text-white text-xs focus:outline-none focus:border-[#DC2626] cursor-pointer"
-                      >
-                        {categories.map((c) => (
-                          <option key={c._id} value={c._id} className="bg-[#14171d] text-white">
-                            {c.icon || '💡'} {c.name}
-                          </option>
-                        ))}
-                      </select>
-                      <span className="text-[10px] text-neutral-400">Parent Category</span>
-                    </div>
-
-                    {/* Subcategory Dropdown */}
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-semibold uppercase tracking-wider text-neutral-300 block">
-                        Subcategory Option
-                      </label>
-                      <select
-                        value={form.subcategory}
-                        onChange={(e) => {
-                          const subSlug = e.target.value;
-                          const matched = subOptions.find((s) => s.slug === subSlug);
-                          setForm((prev) => ({
-                            ...prev,
-                            subcategory: subSlug,
-                            subcategoryName: matched ? matched.name : (subSlug ? subSlug.replace(/-/g, ' ').toUpperCase() : ''),
-                          }));
-                        }}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-black/40 border border-white/15 text-white text-xs focus:outline-none focus:border-[#DC2626] cursor-pointer"
-                      >
-                        <option value="" className="bg-[#14171d] text-neutral-400">
-                          -- Direct in {selectedCatObj?.name || 'Category'} --
-                        </option>
-                        {subOptions.map((sub) => (
-                          <option key={sub.slug} value={sub.slug} className="bg-[#14171d] text-white">
-                            {sub.name}
-                          </option>
-                        ))}
-                      </select>
-                      <span className="text-[10px] text-neutral-400">
-                        {subOptions.length > 0 ? `${subOptions.length} sub-types available` : 'General / Direct'}
-                      </span>
-                    </div>
-                  </div>
-                );
-              })()}
+              {/* 2. Category & Subcategory Selection with Options (Rename, Update, Delete, +New) */}
+              <CategorySelectorWithOptions
+                categories={categories}
+                selectedCategoryId={form.category}
+                onSelectCategory={(catId) => {
+                  setForm((prev) => ({
+                    ...prev,
+                    category: catId,
+                    subcategory: '',
+                    subcategoryName: '',
+                  }));
+                }}
+                selectedSubcategory={form.subcategory}
+                onSelectSubcategory={(subSlug, subName) => {
+                  setForm((prev) => ({
+                    ...prev,
+                    subcategory: subSlug,
+                    subcategoryName: subName,
+                  }));
+                }}
+                onCategoriesChanged={async () => {
+                  try {
+                    const res = await categoryService.getCategories({ admin: 'true' });
+                    if (res.success && res.categories) {
+                      setCategories(res.categories);
+                      return res.categories;
+                    }
+                  } catch (err) {
+                    console.error(err);
+                  }
+                  return [];
+                }}
+              />
 
               {/* 2. Product Price (₹) */}
               <div className="space-y-1.5">

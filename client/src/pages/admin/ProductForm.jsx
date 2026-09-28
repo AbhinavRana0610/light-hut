@@ -14,6 +14,7 @@ import {
 import { productService, categoryService } from '../../services/api';
 import { useToast } from '../../context/ToastContext';
 import { ImageUploader } from '../../components/admin/ImageUploader';
+import { CategorySelectorWithOptions } from '../../components/admin/CategorySelectorWithOptions';
 
 export const ProductForm = () => {
   const { id } = useParams();
@@ -260,94 +261,39 @@ export const ProductForm = () => {
             </p>
           </div>
 
-          {/* 2. Category & Subcategory Selection Grid */}
-          {(() => {
-            const selectedCategoryObj = categories.find((c) => c._id === formData.category);
-            const availableSubcategories =
-              selectedCategoryObj?.subcategories?.filter((s) => s.isActive !== false) || [];
-
-            return (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                {/* Category Dropdown */}
-                <div className="space-y-2">
-                  <label className="text-xs font-semibold uppercase tracking-wider text-neutral-300 flex items-center justify-between">
-                    <span className="flex items-center gap-1.5">
-                      <Layers className="w-3.5 h-3.5 text-[#DC2626]" />
-                      <span>Product Category</span>
-                      <span className="text-[#DC2626]">*</span>
-                    </span>
-                    <span className="text-[10px] text-neutral-400 font-mono">Step 1</span>
-                  </label>
-                  <select
-                    name="category"
-                    value={formData.category}
-                    onChange={(e) => {
-                      const newCatId = e.target.value;
-                      setFormData((prev) => ({
-                        ...prev,
-                        category: newCatId,
-                        subcategory: '',
-                        subcategoryName: '',
-                      }));
-                    }}
-                    required
-                    className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white focus:border-[#DC2626] focus:outline-none transition-all text-sm font-medium cursor-pointer"
-                  >
-                    <option value="" disabled className="bg-[#14171d] text-neutral-500">
-                      Select a category...
-                    </option>
-                    {categories.map((cat) => (
-                      <option key={cat._id} value={cat._id} className="bg-[#14171d] text-white">
-                        {cat.icon || '💡'} {cat.name}
-                      </option>
-                    ))}
-                  </select>
-                  <p className="text-[11px] text-neutral-400">
-                    Primary lighting family for this luminaire.
-                  </p>
-                </div>
-
-                {/* Subcategory Dropdown (Konse subcategory maye dalna hai) */}
-                <div className="space-y-2">
-                  <label className="text-xs font-semibold uppercase tracking-wider text-neutral-300 flex items-center justify-between">
-                    <span className="flex items-center gap-1.5">
-                      <Package className="w-3.5 h-3.5 text-[#DC2626]" />
-                      <span>Subcategory / Type Option</span>
-                    </span>
-                    <span className="text-[10px] text-neutral-400 font-mono">Step 2</span>
-                  </label>
-                  <select
-                    name="subcategory"
-                    value={formData.subcategory}
-                    onChange={(e) => {
-                      const selectedSlug = e.target.value;
-                      const matched = availableSubcategories.find((s) => s.slug === selectedSlug);
-                      setFormData((prev) => ({
-                        ...prev,
-                        subcategory: selectedSlug,
-                        subcategoryName: matched ? matched.name : (selectedSlug ? selectedSlug.replace(/-/g, ' ').toUpperCase() : ''),
-                      }));
-                    }}
-                    className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white focus:border-[#DC2626] focus:outline-none transition-all text-sm font-medium cursor-pointer"
-                  >
-                    <option value="" className="bg-[#14171d] text-neutral-400">
-                      -- Direct in {selectedCategoryObj?.name || 'Category'} (General / No Subcategory) --
-                    </option>
-                    {availableSubcategories.map((sub) => (
-                      <option key={sub.slug} value={sub.slug} className="bg-[#14171d] text-white">
-                        {sub.name}
-                      </option>
-                    ))}
-                  </select>
-                  <p className="text-[11px] text-neutral-400">
-                    {availableSubcategories.length > 0
-                      ? `Select which ${selectedCategoryObj?.name || ''} subcategory to assign this product to.`
-                      : 'Selected category does not have subcategories yet.'}
-                  </p>
-                </div>
-              </div>
-            );
-          })()}
+          {/* 2. Category & Subcategory Selection with Options (Rename, Update, Delete, +New) */}
+          <CategorySelectorWithOptions
+            categories={categories}
+            selectedCategoryId={formData.category}
+            onSelectCategory={(catId) => {
+              setFormData((prev) => ({
+                ...prev,
+                category: catId,
+                subcategory: '',
+                subcategoryName: '',
+              }));
+            }}
+            selectedSubcategory={formData.subcategory}
+            onSelectSubcategory={(subSlug, subName) => {
+              setFormData((prev) => ({
+                ...prev,
+                subcategory: subSlug,
+                subcategoryName: subName,
+              }));
+            }}
+            onCategoriesChanged={async () => {
+              try {
+                const res = await categoryService.getCategories({ admin: 'true' });
+                if (res.success && res.categories) {
+                  setCategories(res.categories);
+                  return res.categories;
+                }
+              } catch (err) {
+                console.error(err);
+              }
+              return [];
+            }}
+          />
 
           {/* 3. Price & SKU Code Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
