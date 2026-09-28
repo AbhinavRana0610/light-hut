@@ -15,15 +15,6 @@ import { productService, categoryService } from '../../services/api';
 import { useToast } from '../../context/ToastContext';
 import { ImageUploader } from '../../components/admin/ImageUploader';
 
-const QUICK_SAMPLE_IMAGES = [
-  { label: 'Chandelier', url: '/categories/chandelier.jpg' },
-  { label: 'Pendant Lamp', url: '/categories/pendant-lamp.jpg' },
-  { label: 'Wall Sconce', url: '/categories/wall-lamp.jpg' },
-  { label: 'Double Height', url: '/categories/double-height.jpg' },
-  { label: 'Table Lamp', url: '/banner-bedroom.jpg' },
-  { label: 'Outdoor Light', url: '/categories/outdoor-light.jpg' },
-];
-
 export const ProductForm = () => {
   const { id } = useParams();
   const isEditMode = Boolean(id);
@@ -639,27 +630,6 @@ export const ProductForm = () => {
                 placeholder="e.g. /categories/chandelier.jpg or https://images.unsplash.com/..."
                 className="w-full px-4 py-2.5 rounded-xl bg-black/30 border border-white/10 text-white text-xs font-mono placeholder-neutral-500 focus:border-[#DC2626] focus:outline-none"
               />
-            </div>
-
-            {/* Quick Sample Presets */}
-            <div className="space-y-1.5">
-              <span className="text-[11px] text-neutral-400">Quick Image Presets:</span>
-              <div className="flex flex-wrap gap-2">
-                {QUICK_SAMPLE_IMAGES.map((preset) => (
-                  <button
-                    key={preset.label}
-                    type="button"
-                    onClick={() => setFormData((prev) => ({ ...prev, photo: preset.url }))}
-                    className={`px-3 py-1 rounded-lg text-xs font-medium border transition-all cursor-pointer ${
-                      formData.photo === preset.url
-                        ? 'bg-[#DC2626] text-white border-[#DC2626]'
-                        : 'bg-white/5 text-neutral-300 border-white/10 hover:bg-white/10'
-                    }`}
-                  >
-                    {preset.label}
-                  </button>
-                ))}
-              </div>
             </div>
 
             {/* Live Photo Preview */}

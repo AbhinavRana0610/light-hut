@@ -17,15 +17,6 @@ import { useToast } from '../../context/ToastContext';
 import { ConfirmModal } from '../../components/admin/ConfirmModal';
 import { ImageUploader } from '../../components/admin/ImageUploader';
 
-const QUICK_SAMPLE_IMAGES = [
-  { label: 'Chandelier', url: '/categories/chandelier.jpg' },
-  { label: 'Pendant Lamp', url: '/categories/pendant-lamp.jpg' },
-  { label: 'Wall Sconce', url: '/categories/wall-lamp.jpg' },
-  { label: 'Double Height', url: '/categories/double-height.jpg' },
-  { label: 'Table Lamp', url: '/banner-bedroom.jpg' },
-  { label: 'Outdoor Light', url: '/categories/outdoor-light.jpg' },
-];
-
 export const ProductList = () => {
   const { addToast } = useToast();
 
@@ -624,21 +615,6 @@ export const ProductList = () => {
                   placeholder="Or enter image URL: /categories/chandelier.jpg"
                   className="w-full px-3.5 py-2 rounded-xl bg-black/30 border border-white/15 text-white placeholder-neutral-500 focus:outline-none focus:border-[#DC2626] text-xs font-mono"
                 />
-
-                {/* Quick Presets */}
-                <div className="flex items-center gap-1.5 flex-wrap pt-1">
-                  <span className="text-[10px] text-neutral-400">Quick Samples:</span>
-                  {QUICK_SAMPLE_IMAGES.map((preset) => (
-                    <button
-                      key={preset.label}
-                      type="button"
-                      onClick={() => setForm({ ...form, photo: preset.url })}
-                      className="px-2 py-0.5 rounded text-[10px] bg-white/5 hover:bg-white/10 border border-white/10 text-neutral-300 hover:text-white transition-colors"
-                    >
-                      {preset.label}
-                    </button>
-                  ))}
-                </div>
 
                 {/* Live Preview */}
                 {form.photo && (
