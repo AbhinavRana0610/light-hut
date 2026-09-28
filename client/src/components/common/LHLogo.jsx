@@ -12,7 +12,7 @@ export const LHLogo = ({ className = 'h-10 w-auto' }) => {
         className={`${className} object-contain`}
         onError={(e) => {
           e.currentTarget.onerror = null;
-          e.currentTarget.src = '/logo.svg';
+          e.currentTarget.src = '/logo.png';
         }}
       />
     </div>

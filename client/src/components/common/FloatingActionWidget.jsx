@@ -18,8 +18,8 @@ export const FloatingActionWidget = () => {
   const [showTopBtn, setShowTopBtn] = useState(false);
 
   const instagramUrl = settings?.socialLinks?.instagram || 'https://www.instagram.com/lighthutdecorativesolutions/';
-  const facebookUrl = settings?.socialLinks?.facebook || 'https://facebook.com';
-  const youtubeUrl = settings?.socialLinks?.youtube || 'https://www.youtube.com';
+  const facebookUrl = settings?.socialLinks?.facebook || 'https://www.facebook.com/profile.php?id=61584975975926';
+  const youtubeUrl = settings?.socialLinks?.youtube || 'https://youtube.com/@light-hutdecorativesolutions?si=KKvN5-pzw1JikI-C';
   const email = settings?.email || 'lighthutdecorativedlh@gmail.com';
   const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent('Inquiry: LightHut Luxury Lighting')}`;
 

@@ -21,9 +21,9 @@ export const SettingsProvider = ({ children }) => {
     whatsapp: '',
     socialLinks: {
       instagram: 'https://www.instagram.com/lighthutdecorativesolutions/',
-      facebook: 'https://facebook.com',
+      facebook: 'https://www.facebook.com/profile.php?id=61584975975926',
       pinterest: 'https://pinterest.com',
-      youtube: 'https://www.youtube.com',
+      youtube: 'https://youtube.com/@light-hutdecorativesolutions?si=KKvN5-pzw1JikI-C',
     },
     footerContent: {
       copyrightText: '© 2026 M/S LIGHT-HUT DECORATIVE SOLUTIONS. All Rights Reserved.',

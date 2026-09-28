@@ -1430,8 +1430,9 @@ const seedAll = async (isStandalone = false) => {
       worksMapUrl: 'https://maps.google.com/maps?q=28.678613662719727%2C77.15131378173828&z=17&hl=en',
       socialLinks: {
         instagram: 'https://www.instagram.com/lighthutdecorativesolutions/',
-        facebook: 'https://facebook.com/lighthut',
+        facebook: 'https://www.facebook.com/profile.php?id=61584975975926',
         pinterest: 'https://pinterest.com/lighthut',
+        youtube: 'https://youtube.com/@light-hutdecorativesolutions?si=KKvN5-pzw1JikI-C',
       },
       footerContent: {
         copyrightText: '© 2026 LightHut Decorative Solutions. All Rights Reserved.',

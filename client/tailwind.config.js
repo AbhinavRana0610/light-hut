@@ -40,7 +40,9 @@ export default {
       fontFamily: {
         serif: ['"Playfair Display"', 'Georgia', 'serif'],
         sans:  ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
-        mono:  ['"JetBrains Mono"', 'monospace']
+        mono:  ['"JetBrains Mono"', 'monospace'],
+        brand: ['"Calibri"', '"Calibri (Body)"', '"Carlito"', 'sans-serif'],
+        calibri: ['"Calibri"', '"Calibri (Body)"', '"Carlito"', 'sans-serif']
       },
       letterSpacing: {
         'luxury': '0.15em',

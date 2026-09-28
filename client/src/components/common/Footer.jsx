@@ -276,7 +276,7 @@ export const Footer = () => {
                 {/* Rounded Icon Circles */}
                 <div className="flex items-center gap-3">
                   <a
-                    href={settings?.socialLinks?.facebook || 'https://facebook.com'}
+                    href={settings?.socialLinks?.facebook || 'https://www.facebook.com/profile.php?id=61584975975926'}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-9 h-9 rounded-full border border-neutral-700 bg-neutral-900/80 hover:bg-neutral-800 text-neutral-300 hover:text-white hover:border-[#8C6D4F] flex items-center justify-center transition-all duration-200"
@@ -296,7 +296,7 @@ export const Footer = () => {
                   </a>
 
                   <a
-                    href={settings?.socialLinks?.youtube || 'https://www.youtube.com'}
+                    href={settings?.socialLinks?.youtube || 'https://youtube.com/@light-hutdecorativesolutions?si=KKvN5-pzw1JikI-C'}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-9 h-9 rounded-full border border-neutral-700 bg-neutral-900/80 hover:bg-[#FF0000] hover:border-[#FF0000] text-neutral-300 hover:text-white flex items-center justify-center transition-all duration-200"

@@ -348,6 +348,19 @@ export const SiteSettingsPage = () => {
 
             <div>
               <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
+                Facebook Page URL
+              </label>
+              <input
+                type="url"
+                value={formData.socialLinks.facebook || ''}
+                onChange={(e) => handleNestedChange('socialLinks', 'facebook', e.target.value)}
+                placeholder="https://www.facebook.com/profile.php?id=61584975975926"
+                className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs font-mono"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
                 Instagram URL
               </label>
               <input
@@ -367,7 +380,7 @@ export const SiteSettingsPage = () => {
                 type="url"
                 value={formData.socialLinks.youtube || ''}
                 onChange={(e) => handleNestedChange('socialLinks', 'youtube', e.target.value)}
-                placeholder="https://www.youtube.com/@LightHut"
+                placeholder="https://youtube.com/@light-hutdecorativesolutions?si=KKvN5-pzw1JikI-C"
                 className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs font-mono"
               />
             </div>

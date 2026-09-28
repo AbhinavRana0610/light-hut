@@ -60,9 +60,9 @@ const siteSettingsSchema = new mongoose.Schema(
     },
     socialLinks: {
       instagram: { type: String, default: 'https://www.instagram.com/lighthutdecorativesolutions/' },
-      facebook: { type: String, default: 'https://facebook.com' },
+      facebook: { type: String, default: 'https://www.facebook.com/profile.php?id=61584975975926' },
       pinterest: { type: String, default: 'https://pinterest.com' },
-      youtube: { type: String, default: '' },
+      youtube: { type: String, default: 'https://youtube.com/@light-hutdecorativesolutions?si=KKvN5-pzw1JikI-C' },
     },
     footerContent: {
       copyrightText: {

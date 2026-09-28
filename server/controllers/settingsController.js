@@ -20,6 +20,12 @@ export const getSettings = async (req, res, next) => {
         worksMapUrl: 'https://maps.google.com/maps?q=28.678613662719727%2C77.15131378173828&z=17&hl=en',
         phone: '',
         whatsapp: '',
+        socialLinks: {
+          instagram: 'https://www.instagram.com/lighthutdecorativesolutions/',
+          facebook: 'https://www.facebook.com/profile.php?id=61584975975926',
+          pinterest: 'https://pinterest.com',
+          youtube: 'https://youtube.com/@light-hutdecorativesolutions?si=KKvN5-pzw1JikI-C',
+        },
       });
     } else {
       let needsSave = false;
@@ -52,8 +58,15 @@ export const getSettings = async (req, res, next) => {
         settings.mapUrl = 'https://maps.google.com/maps?q=28.678613662719727%2C77.15131378173828&z=17&hl=en';
         needsSave = true;
       }
-      if (settings.footerContent) {
-        settings.footerContent.copyrightText = '© 2026 M/S LIGHT-HUT DECORATIVE SOLUTIONS. All Rights Reserved.';
+      if (!settings.socialLinks) {
+        settings.socialLinks = {};
+      }
+      if (!settings.socialLinks.facebook || settings.socialLinks.facebook === 'https://facebook.com' || settings.socialLinks.facebook === 'https://facebook.com/lighthut') {
+        settings.socialLinks.facebook = 'https://www.facebook.com/profile.php?id=61584975975926';
+        needsSave = true;
+      }
+      if (!settings.socialLinks.youtube || settings.socialLinks.youtube === 'https://www.youtube.com' || settings.socialLinks.youtube === 'https://youtube.com') {
+        settings.socialLinks.youtube = 'https://youtube.com/@light-hutdecorativesolutions?si=KKvN5-pzw1JikI-C';
         needsSave = true;
       }
       if (needsSave) {
