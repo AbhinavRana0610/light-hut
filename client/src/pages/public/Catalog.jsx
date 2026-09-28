@@ -122,7 +122,7 @@ export const Catalog = () => {
 
   // Document Title
   useEffect(() => {
-    document.title = `Lamps & Lighting Catalog | ${settings.companyName || 'LightHut Decorative Solutions'}`;
+    document.title = `Lamps & Lighting Catalog | ${settings.companyName || 'Light-Hut Decorative Solutions'}`;
   }, [settings.companyName]);
 
   // Scroll to top on filter change
@@ -341,7 +341,7 @@ export const Catalog = () => {
       <html>
         <head>
           <meta charset="utf-8" />
-          <title>${categoryTitle} - LightHut Decorative Solutions Catalog</title>
+          <title>${categoryTitle} - Light-Hut Decorative Solutions Catalog</title>
           <style>
             @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap');
             * { box-sizing: border-box; }
@@ -538,7 +538,7 @@ export const Catalog = () => {
           <!-- Document Header -->
           <div class="header">
             <div style="display: flex; align-items: center; gap: 14px;">
-              <img src="/categories/logo.png" style="height: 48px; width: auto; object-fit: contain;" alt="LightHut Logo" />
+              <img src="/categories/logo.png" style="height: 48px; width: auto; object-fit: contain;" alt="Light-Hut Logo" />
               <div style="border-left: 2px solid #e2e8f0; padding-left: 12px; font-family: Calibri, 'Calibri (Body)', 'Carlito', sans-serif;">
                 <div style="font-size: 19px; font-weight: 700; letter-spacing: -0.01em; color: #0f172a; line-height: 1.1;">Light-<span style="color: #DC2626;">H</span>ut<sup style="font-size: 0.6em; top: -0.5em;">®</sup></div>
                 <div style="font-size: 10px; font-weight: 700; color: #0f172a; letter-spacing: 0.03em; margin-top: 2px;">Decorative <span style="color: #DC2626;">Solutions</span></div>

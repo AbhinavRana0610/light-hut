@@ -52,7 +52,7 @@ export const AboutSection = ({ section }) => {
                   e.currentTarget.onerror = null;
                   e.currentTarget.src = '/showroom-hero-hd.jpg';
                 }}
-                alt="LightHut Flagship Lighting Gallery"
+                alt="Light-Hut Flagship Lighting Gallery"
                 className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-1000 ease-out"
                 loading="lazy"
               />

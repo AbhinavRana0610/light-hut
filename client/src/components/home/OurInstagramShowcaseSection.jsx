@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Instagram, Heart, MessageCircle, ExternalLink, Play, Sparkles, X } from 'lucide-react';
 import { useSettings } from '../../context/SettingsContext';
+import { LightHut } from '../common/BrandWordmark';
 
 /* ── Curated Instagram Reels & Posts Showcasing Real Lighting Projects ── */
 const INSTAGRAM_POSTS_ROW1 = [
@@ -240,7 +241,7 @@ export const OurInstagramShowcaseSection = () => {
                         <Instagram className="w-2.5 h-2.5 text-rose-600" />
                       </div>
                     </div>
-                    <span>lighthut</span>
+                    <LightHut className="text-white text-[10px]" />
                   </div>
 
                   {post.type === 'reel' && (
@@ -309,7 +310,7 @@ export const OurInstagramShowcaseSection = () => {
                         <Instagram className="w-2.5 h-2.5 text-rose-600" />
                       </div>
                     </div>
-                    <span>lighthut</span>
+                    <LightHut className="text-white text-[10px]" />
                   </div>
 
                   {post.type === 'reel' && (
