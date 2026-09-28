@@ -64,8 +64,9 @@
   }
 
   .font-brand,
-  .font-calibri {
-    font-family: 'Calibri', 'Calibri (Body)', 'Carlito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  .font-calibri,
+  .brand-text {
+    font-family: 'Calibri', 'Calibri (Body)', 'Carlito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   }
 }
 

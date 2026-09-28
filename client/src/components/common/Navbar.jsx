@@ -217,7 +217,7 @@ export const Navbar = () => {
                 e.currentTarget.onerror = null;
                 e.currentTarget.src = '/categories/logo.png';
               }}
-              alt="LightHut"
+              alt="Light-Hut"
               className="h-10 sm:h-11 md:h-12 w-auto object-contain transition-transform group-hover:scale-105"
             />
           </Link>
@@ -391,7 +391,7 @@ export const Navbar = () => {
                       e.currentTarget.onerror = null;
                       e.currentTarget.src = '/categories/logo.png';
                     }}
-                    alt="LightHut"
+                    alt="Light-Hut"
                     className="h-9 sm:h-10 w-auto object-contain"
                   />
                 </Link>

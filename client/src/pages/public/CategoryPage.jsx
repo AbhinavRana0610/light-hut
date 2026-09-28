@@ -79,7 +79,7 @@ export const CategoryPage = () => {
 
         if (catData.success && catData.category) {
           setCategory(catData.category);
-          document.title = `${catData.category.name} | ${settings.companyName || 'LightHut Lighting'}`;
+          document.title = `${catData.category.name} | ${settings.companyName || 'Light-Hut Lighting'}`;
         }
 
         let prods = prodData.success ? prodData.products || [] : [];

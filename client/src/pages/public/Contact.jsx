@@ -21,6 +21,7 @@ import {
 import { useSettings } from '../../context/SettingsContext';
 import { inquiryService } from '../../services/api';
 import { useToast } from '../../context/ToastContext';
+import { LightHut } from '../../components/common/BrandWordmark';
 
 export const Contact = () => {
   const { settings } = useSettings();
@@ -39,7 +40,7 @@ export const Contact = () => {
   const cleanPhone = (settings.phone || '+91 8045811438').replace(/[^\d+]/g, '');
 
   useEffect(() => {
-    document.title = `Contact Us & Lighting Showroom | ${settings.companyName || 'LightHut'}`;
+    document.title = `Contact Us & Lighting Showroom | ${settings.companyName || 'Light-Hut'}`;
   }, [settings.companyName]);
 
   const handleSubmit = async (e) => {
@@ -128,7 +129,7 @@ export const Contact = () => {
                   <div>
                     <strong className="text-neutral-900 block mb-0.5 uppercase tracking-wide text-[11px]">Showroom Address</strong>
                     <p className="text-neutral-700 leading-relaxed font-normal">
-                      <span className="font-semibold text-neutral-900">M/S LIGHT-HUT DECORATIVE SOLUTIONS</span><br />
+                      <span className="font-bold text-neutral-900 font-calibri tracking-wide text-xs">M/S <LightHut /> DECORATIVE SOLUTIONS</span><br />
                       4B/27, Upper floor, Opp Govt School Gate no-02<br />
                       Devki Nandan road, Lighting market<br />
                       Tilak Nagar, New Delhi - 110018
@@ -154,7 +155,7 @@ export const Contact = () => {
                   <div>
                     <strong className="text-neutral-900 block mb-0.5 uppercase tracking-wide text-[11px]">Works Address</strong>
                     <p className="text-neutral-700 leading-relaxed font-normal">
-                      <span className="font-semibold text-neutral-900">M/S LIGHT-HUT DECORATIVE SOLUTIONS</span><br />
+                      <span className="font-bold text-neutral-900 font-calibri tracking-wide text-xs">M/S <LightHut /> DECORATIVE SOLUTIONS</span><br />
                       C37/4, Lawrence Road, Industrial Area<br />
                       New Delhi - 110035<br />
                       <span className="text-neutral-500 text-[11px]">(Near Metro Station Kanhaiya Nagar)</span>
@@ -331,7 +332,7 @@ export const Contact = () => {
                       Showroom Location
                     </span>
                     <h3 className="font-serif-luxury text-xl sm:text-2xl text-neutral-900 font-bold">
-                      Light-Hut Showroom
+                      <LightHut className="text-xl sm:text-2xl" /> Showroom
                     </h3>
                   </div>
                   <a
@@ -375,7 +376,7 @@ export const Contact = () => {
                       Works Location
                     </span>
                     <h3 className="font-serif-luxury text-xl sm:text-2xl text-neutral-900 font-bold">
-                      Light-Hut Works Unit
+                      <LightHut className="text-xl sm:text-2xl" /> Works Unit
                     </h3>
                   </div>
                   <a

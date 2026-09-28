@@ -5,6 +5,7 @@ import { Lock, Mail, ArrowRight, ShieldCheck, Loader2 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useSettings } from '../../context/SettingsContext';
 import { LHLogo } from '../../components/common/LHLogo';
+import { LightHut } from '../../components/common/BrandWordmark';
 
 export const AdminLogin = () => {
   const { login, isAuthenticated } = useAuth();
@@ -67,8 +68,8 @@ export const AdminLogin = () => {
           <span className="text-[10px] uppercase tracking-luxury text-[#DC2626] font-semibold block mb-1">
             Administrative Console
           </span>
-          <h1 className="text-2xl font-serif-luxury font-bold text-white tracking-tight">
-            {settings.companyName || 'LightHut'} Control Center
+          <h1 className="text-2xl font-bold text-white tracking-tight flex items-center justify-center gap-1.5 font-calibri">
+            <LightHut className="text-2xl text-white" /> Control Center
           </h1>
           <p className="text-xs text-neutral-400 mt-1">
             Sign in to manage the product catalog

@@ -28,6 +28,7 @@ import { ProductCard } from '../../components/catalog/ProductCard';
 import { InquiryModal } from '../../components/common/InquiryModal';
 import { useToast } from '../../context/ToastContext';
 import { useSettings } from '../../context/SettingsContext';
+import { LightHut } from '../../components/common/BrandWordmark';
 import { MASTER_PRODUCTS } from '../../data/catalogData';
 
 const CATEGORY_BANNER_MAP = {
@@ -280,7 +281,7 @@ export const ProductDetail = () => {
 
           setRelatedProducts(rel.slice(0, 8));
           setSelectedImageIndex(0);
-          document.title = `${data.product.name} (${data.product.sku}) | LightHut Architectural Lighting`;
+          document.title = `${data.product.name} (${data.product.sku}) | Light-Hut Architectural Lighting`;
         }
       } catch (err) {
         console.error('Failed to fetch product details:', err);
@@ -852,7 +853,7 @@ export const ProductDetail = () => {
               Live Architectural Projects Featuring This Typology
             </h2>
             <p className="text-xs sm:text-sm text-neutral-500 mt-2 leading-relaxed">
-              Curated luxury private estates, penthouse suites, and hospitality projects specified with LightHut luminaires.
+              Curated luxury private estates, penthouse suites, and hospitality projects specified with <LightHut /> luminaires.
             </p>
           </div>
 

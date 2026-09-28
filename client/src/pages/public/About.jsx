@@ -24,6 +24,7 @@ import {
   X,
 } from 'lucide-react';
 import { useSettings } from '../../context/SettingsContext';
+import { LightHut } from '../../components/common/BrandWordmark';
 
 export const About = () => {
   const { settings } = useSettings();
@@ -476,7 +477,7 @@ export const About = () => {
               Government Registrations & Official Certifications
             </h2>
             <p className="text-sm text-neutral-600 leading-relaxed font-normal">
-              M/S LIGHT-HUT DECORATIVE SOLUTIONS is a fully verified, legally registered enterprise certified by the Government of India for 100% statutory compliance, transparent B2B GST tax credit (ITC), and Ministry of MSME industrial recognition.
+              M/S <LightHut /> DECORATIVE SOLUTIONS is a fully verified, legally registered enterprise certified by the Government of India for 100% statutory compliance, transparent B2B GST tax credit (ITC), and Ministry of MSME industrial recognition.
             </p>
           </div>
 
@@ -543,8 +544,8 @@ export const About = () => {
                   <div className="space-y-2 text-xs font-mono">
                     <div className="flex justify-between items-center">
                       <span className="text-neutral-500 font-sans">Legal Name:</span>
-                      <span className="font-bold text-neutral-900 font-sans text-right">
-                        M/S LIGHT-HUT DECORATIVE SOLUTIONS
+                      <span className="font-bold text-neutral-900 font-calibri text-right text-xs">
+                        M/S <LightHut /> DECORATIVE SOLUTIONS
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
@@ -628,7 +629,7 @@ export const About = () => {
                   Udyam MSME Certificate
                 </h3>
                 <p className="text-xs text-neutral-600 leading-relaxed mb-5 font-normal">
-                  Officially accredited by the Ministry of MSME, Government of India, endorsing LightHut's domestic manufacturing, architectural lighting craftsmanship, and Make-in-India production excellence.
+                  Officially accredited by the Ministry of MSME, Government of India, endorsing <LightHut /> domestic manufacturing, architectural lighting craftsmanship, and Make-in-India production excellence.
                 </p>
 
                 {/* Visual Document Parchment Preview */}
@@ -661,8 +662,8 @@ export const About = () => {
                   <div className="space-y-2 text-xs font-mono">
                     <div className="flex justify-between items-center">
                       <span className="text-neutral-500 font-sans">Enterprise Name:</span>
-                      <span className="font-bold text-neutral-900 font-sans text-right">
-                        LIGHT HUT DECORATIVE SOLUTIONS
+                      <span className="font-bold text-neutral-900 font-calibri text-right text-xs">
+                        <LightHut /> DECORATIVE SOLUTIONS
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
@@ -789,8 +790,8 @@ export const About = () => {
                   <CheckCircle2 className="w-3.5 h-3.5" />
                   Statutory Certified Document • Government of India
                 </span>
-                <span className="text-neutral-500 font-mono text-[10.5px]">
-                  M/S LIGHT-HUT DECORATIVE SOLUTIONS
+                <span className="text-neutral-700 font-calibri font-bold text-xs">
+                  M/S <LightHut /> DECORATIVE SOLUTIONS
                 </span>
               </div>
             </motion.div>

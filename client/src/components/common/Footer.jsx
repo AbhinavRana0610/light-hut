@@ -10,6 +10,7 @@ import {
   Shield,
 } from 'lucide-react';
 import { useSettings } from '../../context/SettingsContext';
+import { LightHut } from './BrandWordmark';
 
 /**
  * Luxury Architectural Lighting Footer & Above-Footer Section
@@ -133,7 +134,7 @@ export const Footer = () => {
 
               {/* Paragraph 1 */}
               <p className="text-xs sm:text-[13px] text-neutral-400 font-light leading-relaxed max-w-md">
-                LightHut is the exclusive promoter and distributor of premier architectural lighting designs, handcrafted crystal chandeliers, and designer luminaires. Our curated collections feature statement pendants, wall sconces, and exterior fixtures crafted for exceptional living spaces.
+                <LightHut className="text-white" /> is the exclusive promoter and distributor of premier architectural lighting designs, handcrafted crystal chandeliers, and designer luminaires. Our curated collections feature statement pendants, wall sconces, and exterior fixtures crafted for exceptional living spaces.
               </p>
 
               {/* Paragraph 2 */}
@@ -212,8 +213,8 @@ export const Footer = () => {
                     >
                       <MapPin className="w-4 h-4 text-[#DC2626] group-hover/addr:scale-110 transition-transform shrink-0 mt-0.5" />
                       <div className="leading-relaxed">
-                        <strong className="block text-white font-medium text-xs group-hover/addr:text-red-300 transition-colors">
-                          M/S LIGHT-HUT DECORATIVE SOLUTIONS
+                        <strong className="block text-white font-bold text-xs group-hover/addr:text-red-300 transition-colors font-calibri tracking-wide">
+                          M/S <LightHut className="text-white" /> DECORATIVE SOLUTIONS
                         </strong>
                         <span className="text-neutral-300">4B/27, Upper floor, Opp Govt School Gate no-02</span>
                         <br />
@@ -322,8 +323,8 @@ export const Footer = () => {
       <div className="bg-[#090A0D] text-neutral-400 py-4 px-4 sm:px-8 lg:px-12 border-t border-white/10">
         <div className="max-w-[1600px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-[13px] font-medium tracking-wide">
           
-          <div className="text-neutral-400 text-center sm:text-left">
-            {settings?.footerContent?.copyrightText || '© 2026 LightHut Luxury Architectural Lighting. All Rights Reserved.'}
+          <div className="text-neutral-400 text-center sm:text-left font-calibri">
+            © 2026 M/S <LightHut className="text-neutral-200" /> Decorative Solutions. All Rights Reserved.
           </div>
 
           <div className="flex items-center gap-3">

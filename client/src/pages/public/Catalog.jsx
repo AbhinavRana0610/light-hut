@@ -574,7 +574,7 @@ export const Catalog = () => {
 
           <!-- Document Footer -->
           <div class="footer">
-            <div style="font-family: Calibri, 'Calibri (Body)', 'Carlito', sans-serif;"><strong>Light-Hut Decorative Solutions</strong> • All Rights Reserved</div>
+            <div style="font-family: Calibri, 'Calibri (Body)', 'Carlito', sans-serif;"><strong>Light-<span style="color: #DC2626;">H</span>ut Decorative Solutions</strong> • All Rights Reserved</div>
             <div>Official Inquiries: lighthut.in@gmail.com • Web: www.lighthut.in</div>
           </div>
 

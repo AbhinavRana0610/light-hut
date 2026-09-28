@@ -21,7 +21,7 @@ export const FloatingActionWidget = () => {
   const facebookUrl = settings?.socialLinks?.facebook || 'https://www.facebook.com/profile.php?id=61584975975926';
   const youtubeUrl = settings?.socialLinks?.youtube || 'https://youtube.com/@light-hutdecorativesolutions?si=KKvN5-pzw1JikI-C';
   const email = settings?.email || 'lighthutdecorativedlh@gmail.com';
-  const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent('Inquiry: LightHut Luxury Lighting')}`;
+  const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent('Inquiry: Light-Hut Luxury Lighting')}`;
 
   // Scroll visibility
   useEffect(() => {
