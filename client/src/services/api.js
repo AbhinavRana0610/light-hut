@@ -145,6 +145,17 @@ export const catalogService = {
     }
     return null;
   },
+  getCatalogDropdown: async () => {
+    try {
+      const res = await api.get('/catalog/dropdown');
+      if (res.data && res.data.success && Array.isArray(res.data.categories)) {
+        return res.data;
+      }
+    } catch (err) {
+      console.warn('[Catalog Dropdown Service] API notice:', err.message);
+    }
+    return null;
+  },
 };
 
 // Category Service
@@ -188,6 +199,18 @@ export const categoryService = {
   },
   reorderCategories: async (items) => {
     const res = await api.put('/categories/reorder', { items });
+    return res.data;
+  },
+  addSubcategory: async (categoryId, subcategoryData) => {
+    const res = await api.post(`/categories/${categoryId}/subcategories`, subcategoryData);
+    return res.data;
+  },
+  updateSubcategory: async (categoryId, subId, subcategoryData) => {
+    const res = await api.put(`/categories/${categoryId}/subcategories/${subId}`, subcategoryData);
+    return res.data;
+  },
+  deleteSubcategory: async (categoryId, subId) => {
+    const res = await api.delete(`/categories/${categoryId}/subcategories/${subId}`);
     return res.data;
   },
 };

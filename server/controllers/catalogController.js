@@ -1,120 +1,314 @@
 import Product from '../models/Product.js';
 import Category from '../models/Category.js';
 
-// Clean Parent-Child Category Hierarchy Definitions
+/**
+ * ============================================================================
+ * 🌟 10 MASTER LIGHTING CATEGORIES DEFINITION (Parent-Child Hierarchy)
+ * ============================================================================
+ * Ye static master list hai jo LightHut ke 10 primary categories aur unke
+ * subcategories, icons, tags, HD images aur descriptions ko define karti hai.
+ * Database me products inhi categories/subcategories ke slug se link hote hain.
+ */
 export const CATALOG_CATEGORY_GROUPS = [
+  // 1) WALL LAMP
   {
-    name: 'Chandeliers',
-    slug: 'chandelier',
-    tag: 'Grand Architectural Centerpieces',
-    description: 'Bespoke statement chandeliers handcrafted with optical K9 crystals, blown art glass, and architectural brass.',
-    image: '/categories/chandelier.jpg',
-    subcategories: [
-      { name: 'LED Chandelier', slug: 'led-chandelier' },
-      { name: 'E14 Chandelier', slug: 'e14-chandelier' },
-      { name: 'Profile Chandelier', slug: 'profile-chandelier' },
-      { name: 'Glass Chandelier', slug: 'glass-chandelier' },
-      { name: 'Italian Chandelier', slug: 'italian-chandelier' },
-      { name: 'Modern Chandelier', slug: 'modern-chandelier' },
-      { name: 'Antique Chandelier', slug: 'antique-chandelier' },
-      { name: 'Fan Chandelier', slug: 'fan-chandelier' },
-      { name: 'Ceiling Chandelier', slug: 'ceiling-chandelier' },
-    ],
-  },
-  {
-    name: 'Pendant Lamps',
-    slug: 'pendant-lamp',
-    tag: 'Suspended Linear & Cluster Pendants',
-    description: 'Precision downward illumination and sculptural glass drops for dining pavilions, kitchen islands, and bars.',
-    image: '/categories/pendant-lamp.jpg',
-    subcategories: [
-      { name: 'LED Hanging Lamp', slug: 'led-hanging-lamp' },
-      { name: 'E27 Hanging Lamp', slug: 'e27-hanging-lamp' },
-    ],
-  },
-  {
-    name: 'Wall Lamps',
+    name: 'Wall Lamp',
     slug: 'wall-lamp',
+    icon: '💡',
     tag: 'Bi-Directional Sconces & Facade Grazers',
     description: 'Architectural wall sconces delivering soft ambient halos, bedside task beams, and corridor vertical washes.',
     image: '/categories/wall-lamp.jpg',
     subcategories: [
-      { name: 'LED Wall Lamp', slug: 'led-wall-lamp' },
-      { name: 'E27 Wall Lamp', slug: 'e27-wall-lamp' },
+      {
+        name: 'Led Wall Lamp',
+        slug: 'led-wall-lamp',
+        image: '/categories/led-wall-lamp.jpg',
+        desc: 'Linear & Halo Minimalist Sconces',
+      },
+      {
+        name: 'E27 Wall Lamp',
+        slug: 'e27-wall-lamp',
+        image: '/categories/e27-wall-lamp.jpg',
+        desc: 'Fluted Glass & Vintage Sconces',
+      },
+    ],
+    previewGallery: [
+      { url: '/categories/led-wall-lamp.jpg', title: 'LH-WL101 Slim Linear LED', link: '/catalog?category=wall-lamp' },
+      { url: '/categories/wall-lamp.jpg', title: 'LH-WL102 Round Halo Light', link: '/catalog?category=wall-lamp' },
+      { url: '/categories/e27-wall-lamp.jpg', title: 'LH-WL201 Brass Swing-Arm Sconce', link: '/catalog?category=wall-lamp' },
+      { url: '/categories/wall-lamp.jpg', title: 'Bi-Directional Sconce', link: '/catalog?category=wall-lamp' },
     ],
   },
+
+  // 2) PENDANT LAMP
+  {
+    name: 'Pendant Lamp',
+    slug: 'pendant-lamp',
+    icon: '🔆',
+    tag: 'Suspended Linear & Cluster Pendants',
+    description: 'Precision downward illumination and sculptural glass drops for dining pavilions, kitchen islands, and bars.',
+    image: '/categories/pendant-lamp.jpg',
+    subcategories: [
+      {
+        name: 'Led Hanging Lamp',
+        slug: 'led-hanging-lamp',
+        image: '/categories/led-hanging-lamp.jpg',
+        desc: 'Integrated Architectural Suspensions',
+      },
+      {
+        name: 'E27 Hanging Lamp',
+        slug: 'e27-hanging-lamp',
+        image: '/categories/e27-hanging-lamp.jpg',
+        desc: 'Mouth-Blown Fluted Glass Drops',
+      },
+    ],
+    previewGallery: [
+      { url: '/categories/led-hanging-lamp.jpg', title: 'LH-PL101 Cone Pendant', link: '/catalog?category=pendant-lamp' },
+      { url: '/categories/e27-hanging-lamp.jpg', title: 'LH-PL201 Fluted Amber Glass', link: '/catalog?category=pendant-lamp' },
+      { url: '/categories/pendant-lamp.jpg', title: 'Sculptural Suspended Luminaire', link: '/catalog?category=pendant-lamp' },
+      { url: '/categories/led-hanging-lamp.jpg', title: 'Architectural Hanging Cone', link: '/catalog?category=pendant-lamp' },
+    ],
+  },
+
+  // 3) CHANDELIER
+  {
+    name: 'Chandelier',
+    slug: 'chandelier',
+    icon: '✨',
+    tag: 'Grand Architectural Centerpieces',
+    description: 'Bespoke statement chandeliers handcrafted with optical K9 crystals, blown art glass, and architectural brass.',
+    image: '/categories/chandelier.jpg',
+    subcategories: [
+      {
+        name: 'Led Chandelier',
+        slug: 'led-chandelier',
+        image: '/categories/chandelier.jpg',
+        desc: 'Architectural Geometric Rings',
+      },
+      {
+        name: 'E14 Chandelier',
+        slug: 'e14-chandelier',
+        image: '/categories/e14-chandelier.jpg',
+        desc: 'Multi-Arm European Candelabras',
+      },
+      {
+        name: 'Profile Chandelier',
+        slug: 'profile-chandelier',
+        image: '/categories/profile-chandelier.jpg',
+        desc: 'Linear Profile Suspensions',
+      },
+      {
+        name: 'Glass Chandelier',
+        slug: 'glass-chandelier',
+        image: '/categories/glass-chandelier.jpg',
+        desc: 'Handcrafted Optical Glass Elements',
+      },
+      {
+        name: 'Italian Chandelier',
+        slug: 'italian-chandelier',
+        image: '/categories/italian-chandelier.jpg',
+        desc: 'Venetian & Artisan European Glass',
+      },
+      {
+        name: 'Modern chandelier',
+        slug: 'modern-chandelier',
+        image: '/categories/modern-chandelier.jpg',
+        desc: 'Contemporary Sculptural Centerpieces',
+      },
+      {
+        name: 'Antic Chandelier',
+        slug: 'antic-chandelier',
+        image: '/categories/antic-chandelier.jpg',
+        desc: 'Heritage Gilded & Classic Ironwork',
+      },
+      {
+        name: 'Fan chandelier',
+        slug: 'fan-chandelier',
+        image: '/categories/fan-chandelier.jpg',
+        desc: 'Integrated Ceiling Fan & Lighting',
+      },
+      {
+        name: 'Celling chandelier',
+        slug: 'ceiling-chandelier',
+        image: '/categories/ceiling-chandelier.jpg',
+        desc: 'Semi-Flush Mount Centerpieces',
+      },
+    ],
+    previewGallery: [
+      { url: '/categories/chandelier.jpg', title: 'LH-CH101 Multi-Tier Ring Chandelier', link: '/catalog?category=chandelier' },
+      { url: '/categories/e14-chandelier.jpg', title: 'LH-CH201 E14 French Candelabra', link: '/catalog?category=chandelier' },
+      { url: '/categories/italian-chandelier.jpg', title: 'LH-CH501 Venetian Italian Chandelier', link: '/catalog?category=chandelier' },
+      { url: '/categories/fan-chandelier.jpg', title: 'LH-CH801 Retractable Fan Chandelier', link: '/catalog?category=chandelier' },
+    ],
+  },
+
+  // 4) DOUBLE HEIGHT
   {
     name: 'Double Height',
     slug: 'double-height',
+    icon: '🏛️',
     tag: 'Multi-Tier Grand Void Installations',
     description: 'Monumental chandeliers with suspension drops up to 10 meters, engineered for duplex villas and hotel atriums.',
     image: '/categories/double-height.jpg',
     subcategories: [
-      { name: 'Crystal Chandelier', slug: 'crystal-chandelier' },
-      { name: 'Modern Chandelier', slug: 'modern-chandelier-dh' },
+      {
+        name: 'Crystal Chandelier',
+        slug: 'crystal-chandelier',
+        image: '/categories/double-height.jpg',
+        desc: '18ft+ Monumental Staircase Drops',
+      },
+      {
+        name: 'Modern Chandelier',
+        slug: 'modern-chandelier-dh',
+        image: '/categories/modern-chandelier-dh.jpg',
+        desc: 'Spiral Duplex Void Rings',
+      },
+    ],
+    previewGallery: [
+      { url: '/categories/double-height.jpg', title: 'LH-DH101 Grand Crystal Cascade', link: '/catalog?category=double-height' },
+      { url: '/categories/modern-chandelier-dh.jpg', title: 'LH-DH201 Modern Staggered Rings', link: '/catalog?category=double-height' },
+      { url: '/categories/double-height.jpg', title: 'Atrium Void Suspension', link: '/catalog?category=double-height' },
+      { url: '/categories/modern-chandelier-dh.jpg', title: '18ft Architectural Suspension', link: '/catalog?category=double-height' },
     ],
   },
+
+  // 5) DINING TABLE LAMP
   {
-    name: 'Dining Table Lamps',
+    name: 'Dining Table Lamp',
     slug: 'dining-table-lamp',
+    icon: '🍽️',
     tag: 'Curated Banquet Illumination',
     description: 'Low-glare fixtures tailored for banquet tables, combining warm 2700K ambient glow with pristine table surface coverage.',
     image: '/categories/dining-table-lamp.jpg',
     subcategories: [],
+    previewGallery: [
+      { url: '/categories/dining-table-lamp.jpg', title: 'Cordless Touch Banquet Lamp', link: '/catalog?category=dining-table-lamp' },
+      { url: '/hero-pendant.jpg', title: 'Champagne Fluted Drops', link: '/catalog?category=dining-table-lamp' },
+      { url: '/banner-amalfi.jpg', title: 'Brushed Gold Dining Accent', link: '/catalog?category=dining-table-lamp' },
+      { url: '/showroom-hero-hd.jpg', title: 'Executive Dining Centerpiece', link: '/catalog?category=dining-table-lamp' },
+    ],
   },
+
+  // 6) OUTDOOR LIGHT
   {
-    name: 'Outdoor Lights',
+    name: 'Outdoor Light',
     slug: 'outdoor-light',
+    icon: '🌿',
     tag: 'IP65 Weatherproof Luminaires',
     description: 'Corrosion-resistant exterior lighting engineered for residential entrance gates, garden perimeters, and building facades.',
     image: '/categories/outdoor-light.jpg',
     subcategories: [
-      { name: 'Gate Lamp', slug: 'gate-lamp' },
-      { name: 'Outdoor Wall Lamp', slug: 'outdoor-wall-lamp' },
+      {
+        name: 'Gate Lamp',
+        slug: 'gate-lamp',
+        image: '/categories/outdoor-light.jpg',
+        desc: 'Heritage Weatherproof Lanterns',
+      },
+      {
+        name: 'Wall Lamp',
+        slug: 'outdoor-wall-lamp',
+        image: '/hero-outdoor.jpg',
+        desc: 'IP65 Die-Cast Exterior Sconces',
+      },
+    ],
+    previewGallery: [
+      { url: '/categories/outdoor-light.jpg', title: 'Heritage Gate Pillar Lantern', link: '/catalog?category=outdoor-light' },
+      { url: '/hero-outdoor.jpg', title: 'IP65 Architectural Sconce', link: '/catalog?category=outdoor-light' },
+      { url: '/hero-outdoor.jpg', title: 'Villa Pathway Bollard', link: '/catalog?category=outdoor-light' },
+      { url: '/categories/outdoor-light.jpg', title: 'Exterior Facade Grazer', link: '/catalog?category=outdoor-light' },
     ],
   },
+
+  // 7) TABLE LAMP
   {
-    name: 'Table Lamps',
+    name: 'Table Lamp',
     slug: 'table-lamp',
+    icon: '🪔',
     tag: 'Sculptural Marble & Metal Accents',
     description: 'Artisanal tabletop luminaires crafted with weighted Spanish marble bases, frosted glass diffusers, and tactile switches.',
     image: '/categories/table-lamp.jpg',
     subcategories: [],
+    previewGallery: [
+      { url: '/categories/table-lamp.jpg', title: 'Marble Base Mushroom Lamp', link: '/catalog?category=table-lamp' },
+      { url: '/banner-study.jpg', title: 'Architectural Brass Task Lamp', link: '/catalog?category=table-lamp' },
+      { url: '/banner-bed.jpg', title: 'Ceramic Bedside Ambient Light', link: '/catalog?category=table-lamp' },
+      { url: '/banner-study-hover.jpg', title: 'Articulated Reading Desk Light', link: '/catalog?category=table-lamp' },
+    ],
   },
+
+  // 8) FLOOR LAMP
   {
-    name: 'Floor Lamps',
+    name: 'Floor Lamp',
     slug: 'floor-lamp',
+    icon: '🕯️',
     tag: 'Freestanding Arcs & Lounge Columns',
     description: 'Statement floor lamps designed for reading lounges, executive suites, and architectural living pavilion corners.',
     image: '/categories/floor-lamp.jpg',
     subcategories: [],
+    previewGallery: [
+      { url: '/categories/floor-lamp.jpg', title: 'Arched Brass Living Room Arc', link: '/catalog?category=floor-lamp' },
+      { url: '/categories/floor-lamp.jpg', title: 'Heavy Marble Plinth Luminaire', link: '/catalog?category=floor-lamp' },
+      { url: '/hero-wall-lamp.jpg', title: 'Vertical Corner Ambient Bar', link: '/catalog?category=floor-lamp' },
+      { url: '/categories/floor-lamp.jpg', title: 'Mid-Century Brass Floor Lamp', link: '/catalog?category=floor-lamp' },
+    ],
   },
+
+  // 9) LED FILAMENT BULB
   {
-    name: 'LED Filament Bulbs',
+    name: 'LED Filament Bulb',
     slug: 'led-filament-bulb',
+    icon: '💫',
     tag: 'Warm Vintage Edison Filament',
     description: 'High-efficiency retro Edison bulbs (2200K–2700K) with golden amber tints and spiral filament cores.',
     image: '/categories/led-filament-bulb.jpg',
     subcategories: [],
+    previewGallery: [
+      { url: '/categories/led-filament-bulb.jpg', title: 'Amber ST64 Spiral Bulb', link: '/catalog?category=led-filament-bulb' },
+      { url: '/categories/led-filament-bulb.jpg', title: '2200K Edison Warm Glow', link: '/catalog?category=led-filament-bulb' },
+      { url: '/categories/led-filament-bulb.jpg', title: 'G125 Giant Globe Bulb', link: '/catalog?category=led-filament-bulb' },
+      { url: '/categories/led-filament-bulb.jpg', title: 'Vintage Spiral Filament', link: '/catalog?category=led-filament-bulb' },
+    ],
   },
+
+  // 10) SPARE PART & DRIVERS
   {
-    name: 'Spare Parts & Drivers',
+    name: 'Spare Part',
     slug: 'spare-part',
+    icon: '🔧',
     tag: 'Architectural Components & Power Supplies',
     description: 'Universal multi-port ceiling canopies, flicker-free dimmable constant voltage drivers, and suspension hardware.',
     image: '/categories/spare-part.jpg',
     subcategories: [
-      { name: 'Hanging Base', slug: 'hanging-base' },
-      { name: 'Spare Driver', slug: 'spare-driver' },
+      {
+        name: 'Hanging Base',
+        slug: 'hanging-base',
+        image: '/categories/hanging-base.jpg',
+        desc: 'Mounting Plates & Rigging Hardware',
+      },
+      {
+        name: 'Spare Driver',
+        slug: 'spare-driver',
+        image: '/categories/spare-driver.jpg',
+        desc: 'Constant Current LED Drivers',
+      },
+    ],
+    previewGallery: [
+      { url: '/categories/hanging-base.jpg', title: 'Brass Canopy & Rigging Base', link: '/catalog?category=spare-part' },
+      { url: '/categories/spare-driver.jpg', title: 'Constant Current LED Driver', link: '/catalog?category=spare-part' },
+      { url: '/categories/hanging-base.jpg', title: 'Telescopic Mounting Canopy', link: '/catalog?category=spare-part' },
+      { url: '/categories/spare-driver.jpg', title: 'Electronic Power Supply Unit', link: '/catalog?category=spare-part' },
     ],
   },
 ];
 
-// Helper to resolve all category slugs for a requested category query
+/**
+ * Helper function: Resolves all matching category and subcategory slugs
+ * for a given category query string.
+ */
 function resolveCategorySlugs(categoryQuery) {
   if (!categoryQuery || categoryQuery === 'all') return null;
 
-  // Check if it matches any parent group
+  // Check if query matches any parent group
   const parentGroup = CATALOG_CATEGORY_GROUPS.find((g) => g.slug === categoryQuery);
   if (parentGroup) {
     const slugs = [parentGroup.slug];
@@ -128,9 +322,159 @@ function resolveCategorySlugs(categoryQuery) {
   return [categoryQuery];
 }
 
-// @desc    Get complete catalog data with products, categories, dynamic metadata, and filters
-// @route   GET /api/catalog
-// @access  Public
+/**
+ * ============================================================================
+ * 🎯 CONTROLLER 1: getCatalogDropdown
+ * ============================================================================
+ * @desc    Navbar aur Filters ke Catalog Dropdown ke liye dynamic tree data
+ * @route   GET /api/catalog/dropdown
+ * @access  Public (Anyone can view)
+ * 
+ * 📝 KYA KARTA HAI YE FUNCTION:
+ * 1. MongoDB se saari active categories fetch karta hai.
+ * 2. Product collection se real-time me har category ke published products count karta hai.
+ * 3. 10 Master Categories + Subcategories ka clean tree banata hai (with Icons, Live Counts, Images).
+ * 4. Neat, clean aur professional JSON response bhejta hai jo frontend direct use kar sakta hai.
+ */
+export const getCatalogDropdown = async (req, res, next) => {
+  try {
+    // -------------------------------------------------------------
+    // STEP 1: Database se Active Categories aur Live Product Counts nikalna
+    // -------------------------------------------------------------
+    const [dbCategories, productCountAggregate] = await Promise.all([
+      // MongoDB se active categories fetch karo (with their subcategories, icon, tag)
+      Category.find({ isActive: true })
+        .sort({ sortOrder: 1, createdAt: 1 })
+        .lean(),
+
+      // MongoDB Aggregation: Har Category ID ke hisaab se published products ka total count
+      Product.aggregate([
+        { $match: { isPublished: true } },
+        { $group: { _id: '$category', count: { $sum: 1 } } },
+      ]),
+    ]);
+
+    // -------------------------------------------------------------
+    // STEP 2: Quick Lookup Maps banana (Fast calculation ke liye)
+    // -------------------------------------------------------------
+    // Category ID -> Product Count Map
+    const countMapById = {};
+    productCountAggregate.forEach((item) => {
+      if (item._id) {
+        countMapById[item._id.toString()] = item.count;
+      }
+    });
+
+    // Category Slug -> Info Map (ID, Name, Count)
+    const categorySlugMap = {};
+    dbCategories.forEach((cat) => {
+      const idStr = cat._id.toString();
+      const count = countMapById[idStr] || 0;
+      categorySlugMap[cat.slug] = {
+        id: idStr,
+        name: cat.name,
+        slug: cat.slug,
+        count: count,
+      };
+    });
+
+    // -------------------------------------------------------------
+    // STEP 3: Categories & Subcategories Tree build karna (Direct from MongoDB)
+    // -------------------------------------------------------------
+    let grandTotalProducts = 0;
+
+    // Source categories: MongoDB priority, fallback to CATALOG_CATEGORY_GROUPS if DB is empty
+    const sourceCategories = dbCategories.length > 0 ? dbCategories : CATALOG_CATEGORY_GROUPS;
+
+    const dropdownCategories = sourceCategories.map((cat) => {
+      // Find matching static definition for default fallbacks
+      const staticDef = CATALOG_CATEGORY_GROUPS.find((g) => g.slug === cat.slug);
+
+      // Subcategories: MongoDB array priority, fallback to staticDef
+      let rawSubs = Array.isArray(cat.subcategories) && cat.subcategories.length > 0
+        ? cat.subcategories
+        : (staticDef?.subcategories || []);
+
+      // Filter only active subcategories
+      rawSubs = rawSubs.filter((s) => s.isActive !== false);
+
+      // Parent category ka direct count
+      const directParentMatch = categorySlugMap[cat.slug];
+      let parentTotalCount = directParentMatch ? directParentMatch.count : 0;
+
+      // Subcategories ke counts calculate karna
+      const subcategoriesWithCounts = rawSubs.map((sub, idx) => {
+        const subMatch = categorySlugMap[sub.slug];
+        const subCount = subMatch ? subMatch.count : 0;
+
+        // Subcategory count parent category ke total me judega
+        parentTotalCount += subCount;
+
+        return {
+          id: sub._id ? sub._id.toString() : (subMatch ? subMatch.id : null),
+          _id: sub._id ? sub._id.toString() : (subMatch ? subMatch.id : null),
+          name: sub.name,
+          slug: sub.slug,
+          image: sub.image || cat.image || staticDef?.image || '/categories/wall-lamp.jpg',
+          desc: sub.desc || 'Architectural Typology',
+          productCount: subCount,
+          count: subCount, // Alias
+          sortOrder: sub.sortOrder !== undefined ? sub.sortOrder : idx,
+          isActive: sub.isActive !== undefined ? sub.isActive : true,
+          link: `/category/${cat.slug}/${sub.slug}`,
+        };
+      });
+
+      grandTotalProducts += parentTotalCount;
+
+      // Clean Parent Category Object
+      return {
+        id: cat._id ? cat._id.toString() : null,
+        _id: cat._id ? cat._id.toString() : null,
+        name: cat.name,
+        slug: cat.slug,
+        icon: cat.icon || staticDef?.icon || '💡',
+        tag: cat.tag || staticDef?.tag || '',
+        description: cat.description || staticDef?.description || '',
+        image: cat.image || staticDef?.image || '/categories/wall-lamp.jpg',
+        productCount: parentTotalCount,
+        count: parentTotalCount, // Alias
+        link: `/category/${cat.slug}`,
+        sub: subcategoriesWithCounts,
+        subcategories: subcategoriesWithCounts, // Alias
+        previewGallery: staticDef?.previewGallery || [],
+      };
+    });
+
+    // -------------------------------------------------------------
+    // STEP 4: Clean, Professional Response bhejna
+    // -------------------------------------------------------------
+    return res.status(200).json({
+      success: true,
+      message: 'Catalog dropdown hierarchy fetched successfully',
+      totalCategories: dropdownCategories.length,
+      totalProducts: grandTotalProducts,
+      categories: dropdownCategories,
+      data: {
+        totalCategories: dropdownCategories.length,
+        totalProducts: grandTotalProducts,
+        categories: dropdownCategories,
+      },
+    });
+  } catch (error) {
+    console.error('[Catalog Dropdown Controller Error]:', error);
+    return next(error);
+  }
+};
+
+/**
+ * ============================================================================
+ * 🎯 CONTROLLER 2: getCatalog
+ * ============================================================================
+ * @desc    Catalog page ke products, filters, dynamic metadata aur pagination
+ * @route   GET /api/catalog
+ * @access  Public
+ */
 export const getCatalog = async (req, res, next) => {
   try {
     const {
@@ -160,7 +504,6 @@ export const getCatalog = async (req, res, next) => {
         if (matchingCategories.length > 0) {
           query.category = { $in: matchingCategories.map((c) => c._id) };
         } else {
-          // If no categories found by slug, return empty products gracefully
           query.category = null;
         }
       }
@@ -251,17 +594,21 @@ export const getCatalog = async (req, res, next) => {
         return {
           ...sub,
           count: subCount,
+          productCount: subCount,
         };
       });
 
       return {
         name: group.name,
         slug: group.slug,
+        icon: group.icon || '💡',
         tag: group.tag,
         description: group.description,
         image: group.image,
         total: groupTotal,
+        productCount: groupTotal,
         subcategories: subcategoriesWithCount,
+        sub: subcategoriesWithCount,
       };
     });
 

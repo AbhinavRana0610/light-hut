@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ArrowRight, Layers } from 'lucide-react';
+import { catalogService } from '../../services/api';
 
 /* ─────────────────────────────────────────────────────────────
    10 Architectural Product Categories with Subcategories & HD Image Assets
@@ -270,7 +271,30 @@ export const PRODUCT_CATEGORIES_DATA = [
 ];
 
 export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
+  const [categoriesList, setCategoriesList] = useState(PRODUCT_CATEGORIES_DATA);
   const [activeCategory, setActiveCategory] = useState(PRODUCT_CATEGORIES_DATA[0]);
+
+  // Fetch real-time categories and live product counts from backend
+  useEffect(() => {
+    let isMounted = true;
+    const fetchBackendDropdownData = async () => {
+      try {
+        const res = await catalogService.getCatalogDropdown();
+        if (isMounted && res?.categories && res.categories.length > 0) {
+          setCategoriesList(res.categories);
+          setActiveCategory((prev) =>
+            res.categories.find((c) => c.slug === prev?.slug) || res.categories[0]
+          );
+        }
+      } catch (err) {
+        console.warn('Backend catalog dropdown offline, using static structure:', err.message);
+      }
+    };
+    fetchBackendDropdownData();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <motion.div
@@ -287,13 +311,14 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
             Categories
           </span>
           <span className="text-[10px] font-bold text-[#DC2626]">
-            {PRODUCT_CATEGORIES_DATA.length}
+            {categoriesList.length}
           </span>
         </div>
 
-        {PRODUCT_CATEGORIES_DATA.map((cat) => {
+        {categoriesList.map((cat) => {
           const hasSub = cat.sub && cat.sub.length > 0;
           const isHovered = activeCategory?.slug === cat.slug;
+          const count = cat.productCount ?? cat.count ?? 0;
 
           return (
             <div
@@ -317,13 +342,24 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
                   </span>
                 </div>
 
-                {hasSub && (
-                  <ChevronRight
-                    className={`w-3.5 h-3.5 transition-transform shrink-0 ${
-                      isHovered ? 'translate-x-0.5 text-[#DC2626]' : 'text-neutral-300'
-                    }`}
-                  />
-                )}
+                <div className="flex items-center gap-1.5 shrink-0">
+                  {count > 0 && (
+                    <span
+                      className={`text-[9.5px] px-1.5 py-0.5 rounded font-mono transition-colors ${
+                        isHovered ? 'bg-white/20 text-white' : 'bg-neutral-100 text-neutral-500'
+                      }`}
+                    >
+                      {count}
+                    </span>
+                  )}
+                  {hasSub && (
+                    <ChevronRight
+                      className={`w-3.5 h-3.5 transition-transform shrink-0 ${
+                        isHovered ? 'translate-x-0.5 text-[#DC2626]' : 'text-neutral-300'
+                      }`}
+                    />
+                  )}
+                </div>
               </Link>
 
               {/* Sub Dropdown Flyout to the Right — Clean, Compact & Image-Free */}
@@ -334,7 +370,7 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 4 }}
                     transition={{ duration: 0.14 }}
-                    className="absolute left-[calc(100%+6px)] top-0 w-[220px] bg-white rounded-2xl shadow-[0_16px_40px_rgba(0,0,0,0.14)] border border-neutral-200/90 p-2 z-50 flex flex-col justify-between"
+                    className="absolute left-[calc(100%+6px)] top-0 w-[230px] bg-white rounded-2xl shadow-[0_16px_40px_rgba(0,0,0,0.14)] border border-neutral-200/90 p-2 z-50 flex flex-col justify-between"
                   >
                     <div>
                       {/* Header */}
@@ -349,19 +385,29 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
 
                       {/* Clean Subcategory List */}
                       <div className="space-y-0.5">
-                        {cat.sub.map((subItem) => (
-                          <Link
-                            key={subItem.slug}
-                            to={`/category/${cat.slug}/${subItem.slug}`}
-                            onClick={onClose}
-                            className="group/sub flex items-center justify-between px-2.5 py-1.5 rounded-xl text-xs font-medium text-neutral-700 hover:text-[#DC2626] hover:bg-red-50/80 transition-all duration-150"
-                          >
-                            <span className="truncate group-hover/sub:translate-x-0.5 transition-transform duration-150">
-                              {subItem.name}
-                            </span>
-                            <ChevronRight className="w-3.5 h-3.5 text-neutral-300 group-hover/sub:text-[#DC2626] group-hover/sub:translate-x-0.5 transition-all shrink-0" />
-                          </Link>
-                        ))}
+                        {cat.sub.map((subItem) => {
+                          const subCount = subItem.productCount ?? subItem.count ?? 0;
+                          return (
+                            <Link
+                              key={subItem.slug}
+                              to={`/category/${cat.slug}/${subItem.slug}`}
+                              onClick={onClose}
+                              className="group/sub flex items-center justify-between px-2.5 py-1.5 rounded-xl text-xs font-medium text-neutral-700 hover:text-[#DC2626] hover:bg-red-50/80 transition-all duration-150"
+                            >
+                              <span className="truncate group-hover/sub:translate-x-0.5 transition-transform duration-150">
+                                {subItem.name}
+                              </span>
+                              <div className="flex items-center gap-1 shrink-0">
+                                {subCount > 0 && (
+                                  <span className="text-[9.5px] px-1.5 py-0.5 rounded bg-neutral-100 text-neutral-500 group-hover/sub:bg-red-100 group-hover/sub:text-[#DC2626] font-mono">
+                                    {subCount}
+                                  </span>
+                                )}
+                                <ChevronRight className="w-3.5 h-3.5 text-neutral-300 group-hover/sub:text-[#DC2626] group-hover/sub:translate-x-0.5 transition-all shrink-0" />
+                              </div>
+                            </Link>
+                          );
+                        })}
                       </div>
                     </div>
 

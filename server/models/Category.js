@@ -1,5 +1,55 @@
 import mongoose from 'mongoose';
 
+/**
+ * ============================================================================
+ * 🌿 Subcategory Schema (Sub-Dropdown Items)
+ * ============================================================================
+ * Har Category ke andar multiple Subcategories ho sakti hain.
+ * Inhe admin panel se create, edit aur delete kiya ja sakta hai.
+ */
+const subcategorySchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true, 'Subcategory name is required'],
+      trim: true,
+      maxlength: [120, 'Subcategory name cannot exceed 120 characters'],
+    },
+    slug: {
+      type: String,
+      required: [true, 'Subcategory slug is required'],
+      lowercase: true,
+      trim: true,
+    },
+    image: {
+      type: String,
+      default: '',
+    },
+    desc: {
+      type: String,
+      trim: true,
+      default: '',
+    },
+    sortOrder: {
+      type: Number,
+      default: 0,
+    },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  {
+    _id: true,
+    timestamps: true,
+  }
+);
+
+/**
+ * ============================================================================
+ * 🏛️ Master Category Schema
+ * ============================================================================
+ */
 const categorySchema = new mongoose.Schema(
   {
     name: {
@@ -16,6 +66,16 @@ const categorySchema = new mongoose.Schema(
       trim: true,
       index: true,
     },
+    icon: {
+      type: String,
+      trim: true,
+      default: '💡',
+    },
+    tag: {
+      type: String,
+      trim: true,
+      default: '',
+    },
     description: {
       type: String,
       trim: true,
@@ -24,6 +84,10 @@ const categorySchema = new mongoose.Schema(
     image: {
       type: String,
       default: '',
+    },
+    subcategories: {
+      type: [subcategorySchema],
+      default: [],
     },
     sortOrder: {
       type: Number,

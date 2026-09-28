@@ -45,9 +45,19 @@ export const CategoryManagement = () => {
   const [formData, setFormData] = useState({
     name: '',
     slug: '',
+    icon: '💡',
+    tag: '',
     description: '',
     image: '',
     isActive: true,
+    subcategories: [],
+  });
+
+  const [newSub, setNewSub] = useState({
+    name: '',
+    slug: '',
+    image: '',
+    desc: '',
   });
 
   const loadCategories = async () => {
@@ -73,10 +83,14 @@ export const CategoryManagement = () => {
     setFormData({
       name: '',
       slug: '',
+      icon: '💡',
+      tag: '',
       description: '',
       image: '',
       isActive: true,
+      subcategories: [],
     });
+    setNewSub({ name: '', slug: '', image: '', desc: '' });
     setModalOpen(true);
   };
 
@@ -85,11 +99,50 @@ export const CategoryManagement = () => {
     setFormData({
       name: cat.name || '',
       slug: cat.slug || '',
+      icon: cat.icon || '💡',
+      tag: cat.tag || '',
       description: cat.description || '',
       image: cat.image || '',
       isActive: cat.isActive !== undefined ? cat.isActive : true,
+      subcategories: Array.isArray(cat.subcategories) ? [...cat.subcategories] : [],
     });
+    setNewSub({ name: '', slug: '', image: '', desc: '' });
     setModalOpen(true);
+  };
+
+  const handleAddSubcategory = () => {
+    if (!newSub.name.trim()) {
+      addToast('Please enter a subcategory name.', 'error');
+      return;
+    }
+    const slug = newSub.slug.trim() || newSub.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    const currentSubs = Array.isArray(formData.subcategories) ? [...formData.subcategories] : [];
+    if (currentSubs.some((s) => s.slug === slug)) {
+      addToast(`Subcategory slug "${slug}" already exists in this category.`, 'error');
+      return;
+    }
+    setFormData((prev) => ({
+      ...prev,
+      subcategories: [
+        ...currentSubs,
+        {
+          name: newSub.name.trim(),
+          slug,
+          desc: newSub.desc.trim(),
+          image: newSub.image.trim(),
+          isActive: true,
+        },
+      ],
+    }));
+    setNewSub({ name: '', slug: '', image: '', desc: '' });
+    addToast('Subcategory item added. Click "Update Category" to save to database.', 'info');
+  };
+
+  const handleRemoveSubcategory = (index) => {
+    setFormData((prev) => ({
+      ...prev,
+      subcategories: prev.subcategories.filter((_, i) => i !== index),
+    }));
   };
 
   const handleNameChange = (e) => {
@@ -239,17 +292,40 @@ export const CategoryManagement = () => {
                 {/* Category Body */}
                 <div className="p-5">
                   <div className="flex items-center justify-between mb-1">
-                    <h3 className="text-base font-serif-luxury font-bold text-white tracking-wide">
-                      {cat.name}
-                    </h3>
-                    <span className="text-[10px] text-neutral-500 font-mono">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <span className="text-base shrink-0">{cat.icon || '💡'}</span>
+                      <h3 className="text-base font-serif-luxury font-bold text-white tracking-wide truncate">
+                        {cat.name}
+                      </h3>
+                    </div>
+                    <span className="text-[10px] text-neutral-500 font-mono shrink-0 ml-2">
                       /{cat.slug}
                     </span>
                   </div>
 
-                  <p className="text-xs text-neutral-400 line-clamp-2 leading-relaxed mt-2">
+                  {cat.tag && (
+                    <span className="text-[11px] text-[#DC2626] font-medium block truncate mt-0.5">
+                      {cat.tag}
+                    </span>
+                  )}
+
+                  <p className="text-xs text-neutral-400 line-clamp-2 leading-relaxed mt-1.5">
                     {cat.description || 'No detailed architectural description assigned.'}
                   </p>
+
+                  {/* Subcategories count badge */}
+                  <div className="mt-3 pt-2.5 border-t border-white/5 flex items-center justify-between">
+                    <span className="text-[10px] uppercase tracking-wider text-neutral-500 font-semibold">
+                      Sub-dropdown:
+                    </span>
+                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${
+                      cat.subcategories?.length > 0
+                        ? 'bg-red-500/10 text-red-300 border border-red-500/20'
+                        : 'bg-white/5 text-neutral-400'
+                    }`}>
+                      {cat.subcategories?.length || 0} Sub-items
+                    </span>
+                  </div>
                 </div>
               </div>
 
@@ -298,15 +374,16 @@ export const CategoryManagement = () => {
             onClick={() => setModalOpen(false)}
           />
 
-          <div className="relative w-full max-w-lg bg-[#14171d] border border-white/10 rounded-2xl shadow-2xl z-10 flex flex-col max-h-[90vh] overflow-hidden my-auto">
+          <div className="relative w-full max-w-2xl bg-[#14171d] border border-white/10 rounded-2xl shadow-2xl z-10 flex flex-col max-h-[90vh] overflow-hidden my-auto">
             {/* Modal Header */}
             <div className="p-5 sm:p-6 border-b border-white/10 flex items-center justify-between shrink-0 bg-[#14171d]">
               <div>
                 <span className="text-[10px] uppercase tracking-luxury text-[#DC2626] font-semibold block">
-                  {editingCategory ? 'Update Collection' : 'Create Collection'}
+                  {editingCategory ? 'Update Collection & Sub-Items' : 'Create Collection'}
                 </span>
-                <h3 className="text-lg font-serif-luxury font-bold text-white">
-                  {editingCategory ? editingCategory.name : 'New Category'}
+                <h3 className="text-lg font-serif-luxury font-bold text-white flex items-center gap-2">
+                  <span>{formData.icon || '💡'}</span>
+                  <span>{editingCategory ? editingCategory.name : 'New Category'}</span>
                 </h3>
               </div>
               <button
@@ -323,31 +400,63 @@ export const CategoryManagement = () => {
             <form noValidate onSubmit={handleFormSubmit} className="flex flex-col flex-1 overflow-hidden min-h-0">
               {/* Scrollable Form Body */}
               <div className="p-5 sm:p-6 space-y-4 overflow-y-auto flex-1 modal-scrollbar">
-                <div>
-                  <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
-                    Category Name *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={handleNameChange}
-                    placeholder="e.g. Wall Light, Italian Lights"
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs focus:outline-none focus:border-[#DC2626]"
-                  />
+                {/* Name & Slug Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
+                      Category Name *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={handleNameChange}
+                      placeholder="e.g. Wall Lamp, Chandelier"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs focus:outline-none focus:border-[#DC2626]"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
+                      URL Slug
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.slug}
+                      onChange={(e) => setFormData((p) => ({ ...p, slug: e.target.value }))}
+                      placeholder="wall-lamp"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs font-mono focus:outline-none focus:border-[#DC2626]"
+                    />
+                  </div>
                 </div>
 
-                <div>
-                  <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
-                    URL Slug
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.slug}
-                    onChange={(e) => setFormData((p) => ({ ...p, slug: e.target.value }))}
-                    placeholder="wall-light"
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs font-mono focus:outline-none focus:border-[#DC2626]"
-                  />
+                {/* Icon & Tagline Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div>
+                    <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
+                      Emoji / Icon
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.icon}
+                      onChange={(e) => setFormData((p) => ({ ...p, icon: e.target.value }))}
+                      placeholder="💡 or ✨ or 🏛️"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs text-center focus:outline-none focus:border-[#DC2626]"
+                    />
+                  </div>
+
+                  <div className="sm:col-span-2">
+                    <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
+                      Tagline / Subtitle
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.tag}
+                      onChange={(e) => setFormData((p) => ({ ...p, tag: e.target.value }))}
+                      placeholder="e.g. Grand Architectural Centerpieces"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs focus:outline-none focus:border-[#DC2626]"
+                    />
+                  </div>
                 </div>
 
                 <div>
@@ -355,12 +464,126 @@ export const CategoryManagement = () => {
                     Description
                   </label>
                   <textarea
-                    rows={3}
+                    rows={2}
                     value={formData.description}
                     onChange={(e) => setFormData((p) => ({ ...p, description: e.target.value }))}
                     placeholder="Summary of luminaires and design aesthetic in this category..."
                     className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-xs focus:outline-none focus:border-[#DC2626]"
                   />
+                </div>
+
+                {/* ── Sub-Dropdown Menu Items (Subcategories Editor) ── */}
+                <div className="pt-3 border-t border-white/10">
+                  <div className="flex items-center justify-between mb-2">
+                    <div>
+                      <span className="text-xs uppercase tracking-luxury text-[#DC2626] font-semibold block">
+                        Sub-Dropdown Menu Items
+                      </span>
+                      <p className="text-[11px] text-neutral-400">
+                        Subcategories displayed in the navbar flyout dropdown when hovering this category.
+                      </p>
+                    </div>
+                    <span className="text-xs font-mono px-2 py-0.5 rounded bg-white/5 text-white">
+                      {formData.subcategories?.length || 0} Sub-items
+                    </span>
+                  </div>
+
+                  {/* List of existing subcategories */}
+                  {formData.subcategories && formData.subcategories.length > 0 ? (
+                    <div className="space-y-1.5 mb-3 max-h-48 overflow-y-auto pr-1">
+                      {formData.subcategories.map((sub, sIdx) => (
+                        <div
+                          key={sIdx}
+                          className="p-2.5 rounded-xl bg-[#090a0d] border border-white/10 flex items-center justify-between gap-3 hover:border-white/20 transition-all"
+                        >
+                          <div className="w-8 h-8 rounded-lg overflow-hidden shrink-0 bg-neutral-900 border border-white/10 flex items-center justify-center">
+                            {sub.image ? (
+                              <img src={sub.image} alt={sub.name} className="w-full h-full object-cover" />
+                            ) : (
+                              <Layers className="w-3.5 h-3.5 text-neutral-600" />
+                            )}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs font-bold text-white truncate">{sub.name}</span>
+                              <span className="text-[10px] text-neutral-500 font-mono">/{sub.slug}</span>
+                            </div>
+                            {sub.desc && (
+                              <p className="text-[10px] text-neutral-400 truncate">{sub.desc}</p>
+                            )}
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => handleRemoveSubcategory(sIdx)}
+                            className="p-1 rounded-lg text-neutral-500 hover:text-red-400 hover:bg-red-500/10 transition-colors"
+                            title="Remove subcategory"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="p-3 mb-3 rounded-xl bg-white/5 text-center text-xs text-neutral-400 border border-dashed border-white/10">
+                      No subcategories added yet. Use the form below to add sub-items.
+                    </div>
+                  )}
+
+                  {/* Add New Subcategory Box */}
+                  <div className="p-3 rounded-xl bg-white/[0.03] border border-white/10 space-y-2.5">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-300 block flex items-center gap-1.5">
+                      <Plus className="w-3.5 h-3.5 text-[#DC2626]" /> Add Sub-Dropdown Item
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      <input
+                        type="text"
+                        placeholder="Subcategory Name (e.g. LED Wall Lamp)"
+                        value={newSub.name}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          setNewSub((p) => ({
+                            ...p,
+                            name: val,
+                            slug: val.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+                          }));
+                        }}
+                        className="px-3 py-1.5 rounded-lg bg-[#090a0d] border border-white/10 text-white text-xs placeholder-neutral-600 focus:outline-none focus:border-[#DC2626]"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Slug (e.g. led-wall-lamp)"
+                        value={newSub.slug}
+                        onChange={(e) => setNewSub((p) => ({ ...p, slug: e.target.value }))}
+                        className="px-3 py-1.5 rounded-lg bg-[#090a0d] border border-white/10 text-white text-xs font-mono placeholder-neutral-600 focus:outline-none focus:border-[#DC2626]"
+                      />
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      <input
+                        type="text"
+                        placeholder="Typology / Description (e.g. Linear Minimalist)"
+                        value={newSub.desc}
+                        onChange={(e) => setNewSub((p) => ({ ...p, desc: e.target.value }))}
+                        className="px-3 py-1.5 rounded-lg bg-[#090a0d] border border-white/10 text-white text-xs placeholder-neutral-600 focus:outline-none focus:border-[#DC2626]"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Image URL (e.g. /categories/led-wall-lamp.jpg)"
+                        value={newSub.image}
+                        onChange={(e) => setNewSub((p) => ({ ...p, image: e.target.value }))}
+                        className="px-3 py-1.5 rounded-lg bg-[#090a0d] border border-white/10 text-white text-xs font-mono placeholder-neutral-600 focus:outline-none focus:border-[#DC2626]"
+                      />
+                    </div>
+                    <div className="flex justify-end pt-1">
+                      <button
+                        type="button"
+                        onClick={handleAddSubcategory}
+                        className="px-3 py-1.5 rounded-lg bg-neutral-800 hover:bg-[#DC2626] text-white text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 transition-colors"
+                      >
+                        <Plus className="w-3.5 h-3.5" />
+                        <span>Add Subcategory to List</span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
 
                 <div>

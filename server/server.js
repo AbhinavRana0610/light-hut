@@ -22,6 +22,7 @@ import catalogRoutes from './routes/catalogRoutes.js';
 
 import Category from './models/Category.js';
 import { seedDatabase } from './scripts/seedData.js';
+import { CATALOG_CATEGORY_GROUPS } from './controllers/catalogController.js';
 
 // Load environment variables
 dotenv.config();
@@ -35,8 +36,40 @@ const initDB = async () => {
       console.log('[Server] Fresh database detected. Auto-seeding lighting catalog & admin...');
       await seedDatabase(false);
     }
+
+    // Auto-sync subcategories, icon, and tag into existing Category records in MongoDB
+    for (const group of CATALOG_CATEGORY_GROUPS) {
+      const cat = await Category.findOne({ slug: group.slug });
+      if (cat) {
+        let changed = false;
+        if (!cat.icon || cat.icon === '💡') {
+          cat.icon = group.icon;
+          changed = true;
+        }
+        if (!cat.tag) {
+          cat.tag = group.tag;
+          changed = true;
+        }
+        if (!cat.subcategories || cat.subcategories.length === 0) {
+          if (group.subcategories && group.subcategories.length > 0) {
+            cat.subcategories = group.subcategories.map((sub, idx) => ({
+              name: sub.name,
+              slug: sub.slug,
+              image: sub.image || group.image,
+              desc: sub.desc || '',
+              sortOrder: idx,
+              isActive: true,
+            }));
+            changed = true;
+          }
+        }
+        if (changed) {
+          await cat.save();
+        }
+      }
+    }
   } catch (err) {
-    console.warn('[Server] Auto-seed check notice:', err.message);
+    console.warn('[Server] Auto-seed/sync check notice:', err.message);
   }
 };
 initDB();

@@ -52,7 +52,7 @@ export const getCategoryBySlug = async (req, res, next) => {
 // @access  Private (Admin)
 export const createCategory = async (req, res, next) => {
   try {
-    let { name, slug, description, image, sortOrder, isActive, seoTitle, seoDescription } = req.body;
+    let { name, slug, icon, tag, description, image, subcategories, sortOrder, isActive, seoTitle, seoDescription } = req.body;
 
     if (!name || name.trim() === '') {
       return res.status(400).json({
@@ -80,8 +80,11 @@ export const createCategory = async (req, res, next) => {
     const category = await Category.create({
       name: name.trim(),
       slug: generatedSlug,
+      icon: icon || '💡',
+      tag: tag || '',
       description: description || '',
       image: image || '',
+      subcategories: Array.isArray(subcategories) ? subcategories : [],
       sortOrder: Number(sortOrder),
       isActive: isActive !== undefined ? isActive : true,
       seoTitle: seoTitle || name.trim(),
@@ -97,7 +100,7 @@ export const createCategory = async (req, res, next) => {
   }
 };
 
-// @desc    Update category
+// @desc    Update category (Including Subcategories list)
 // @route   PUT /api/categories/:id
 // @access  Private (Admin)
 export const updateCategory = async (req, res, next) => {
@@ -111,9 +114,24 @@ export const updateCategory = async (req, res, next) => {
       });
     }
 
-    const { name, slug, description, image, sortOrder, isActive, seoTitle, seoDescription } = req.body;
+    const {
+      name,
+      slug,
+      icon,
+      tag,
+      description,
+      image,
+      subcategories,
+      sortOrder,
+      isActive,
+      seoTitle,
+      seoDescription,
+    } = req.body;
 
     if (name) category.name = name.trim();
+    if (icon !== undefined) category.icon = icon;
+    if (tag !== undefined) category.tag = tag;
+
     if (slug) {
       const newSlug = slugify(slug);
       if (newSlug !== category.slug) {
@@ -127,6 +145,7 @@ export const updateCategory = async (req, res, next) => {
         category.slug = newSlug;
       }
     }
+
     if (description !== undefined) category.description = description;
     if (image !== undefined) category.image = image;
     if (sortOrder !== undefined) category.sortOrder = Number(sortOrder);
@@ -134,10 +153,173 @@ export const updateCategory = async (req, res, next) => {
     if (seoTitle !== undefined) category.seoTitle = seoTitle;
     if (seoDescription !== undefined) category.seoDescription = seoDescription;
 
+    // Subcategories update support
+    if (Array.isArray(subcategories)) {
+      category.subcategories = subcategories.map((sub, idx) => ({
+        _id: sub._id,
+        name: sub.name?.trim() || 'Untitled Subcategory',
+        slug: sub.slug ? slugify(sub.slug) : slugify(sub.name || 'sub'),
+        image: sub.image || '',
+        desc: sub.desc || '',
+        sortOrder: sub.sortOrder !== undefined ? Number(sub.sortOrder) : idx,
+        isActive: sub.isActive !== undefined ? Boolean(sub.isActive) : true,
+      }));
+    }
+
     await category.save();
 
     res.status(200).json({
       success: true,
+      message: 'Category and subcategories updated successfully.',
+      category,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// @desc    Add a single subcategory to a category
+// @route   POST /api/categories/:id/subcategories
+// @access  Private (Admin)
+export const addSubcategory = async (req, res, next) => {
+  try {
+    const category = await Category.findById(req.params.id);
+
+    if (!category) {
+      return res.status(404).json({
+        success: false,
+        message: 'Category not found.',
+      });
+    }
+
+    const { name, slug, image, desc, sortOrder, isActive } = req.body;
+
+    if (!name || name.trim() === '') {
+      return res.status(400).json({
+        success: false,
+        message: 'Subcategory name is required.',
+      });
+    }
+
+    const generatedSlug = slug ? slugify(slug) : slugify(name);
+
+    // Check duplicate slug in same category
+    const slugExists = category.subcategories.some((s) => s.slug === generatedSlug);
+    if (slugExists) {
+      return res.status(400).json({
+        success: false,
+        message: `Subcategory slug '${generatedSlug}' already exists in this category.`,
+      });
+    }
+
+    const newSubcategory = {
+      name: name.trim(),
+      slug: generatedSlug,
+      image: image || '',
+      desc: desc || '',
+      sortOrder: sortOrder !== undefined ? Number(sortOrder) : category.subcategories.length,
+      isActive: isActive !== undefined ? Boolean(isActive) : true,
+    };
+
+    category.subcategories.push(newSubcategory);
+    await category.save();
+
+    res.status(201).json({
+      success: true,
+      message: 'Subcategory added successfully.',
+      subcategory: category.subcategories[category.subcategories.length - 1],
+      category,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// @desc    Update a specific subcategory
+// @route   PUT /api/categories/:id/subcategories/:subId
+// @access  Private (Admin)
+export const updateSubcategory = async (req, res, next) => {
+  try {
+    const category = await Category.findById(req.params.id);
+
+    if (!category) {
+      return res.status(404).json({
+        success: false,
+        message: 'Category not found.',
+      });
+    }
+
+    const subcategory = category.subcategories.id(req.params.subId);
+    if (!subcategory) {
+      return res.status(404).json({
+        success: false,
+        message: 'Subcategory not found.',
+      });
+    }
+
+    const { name, slug, image, desc, sortOrder, isActive } = req.body;
+
+    if (name) subcategory.name = name.trim();
+    if (slug) {
+      const newSlug = slugify(slug);
+      // Check if new slug conflicts with another subcategory in the same category
+      const conflict = category.subcategories.some(
+        (s) => s.slug === newSlug && s._id.toString() !== req.params.subId
+      );
+      if (conflict) {
+        return res.status(400).json({
+          success: false,
+          message: `Slug '${newSlug}' is already used by another subcategory.`,
+        });
+      }
+      subcategory.slug = newSlug;
+    }
+    if (image !== undefined) subcategory.image = image;
+    if (desc !== undefined) subcategory.desc = desc;
+    if (sortOrder !== undefined) subcategory.sortOrder = Number(sortOrder);
+    if (isActive !== undefined) subcategory.isActive = Boolean(isActive);
+
+    await category.save();
+
+    res.status(200).json({
+      success: true,
+      message: 'Subcategory updated successfully.',
+      subcategory,
+      category,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// @desc    Delete a specific subcategory
+// @route   DELETE /api/categories/:id/subcategories/:subId
+// @access  Private (Admin)
+export const deleteSubcategory = async (req, res, next) => {
+  try {
+    const category = await Category.findById(req.params.id);
+
+    if (!category) {
+      return res.status(404).json({
+        success: false,
+        message: 'Category not found.',
+      });
+    }
+
+    const subcategory = category.subcategories.id(req.params.subId);
+    if (!subcategory) {
+      return res.status(404).json({
+        success: false,
+        message: 'Subcategory not found.',
+      });
+    }
+
+    category.subcategories.pull(req.params.subId);
+    await category.save();
+
+    res.status(200).json({
+      success: true,
+      message: 'Subcategory deleted successfully.',
       category,
     });
   } catch (error) {

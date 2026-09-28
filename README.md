@@ -33,7 +33,13 @@ LightHut is a modern full-stack web application designed for luxury architectura
 
 ## 🛠️ Quick Start Locally
 
-### 1. Install Dependencies
+### 1. Clone the Repository
+```bash
+git clone https://github.com/AnandSharma916/LIght-hut-live.git
+cd LIght-hut-live
+```
+
+### 2. Install Dependencies
 ```bash
 # Client
 cd client && npm install
@@ -42,10 +48,10 @@ cd client && npm install
 cd ../server && npm install
 ```
 
-### 2. Configure Environment
+### 3. Configure Environment
 Copy `server/.env.example` to `server/.env` and update your `MONGODB_URI`.
 
-### 3. Run Development Servers
+### 4. Run Development Servers
 ```bash
 # Terminal 1: Backend API (Port 5000)
 cd server && npm run dev
@@ -54,7 +60,7 @@ cd server && npm run dev
 cd client && npm run dev
 ```
 
-### 4. Admin Access
+### 5. Admin Access
 - **URL:** `http://localhost:3000/admin/login`
 - **Email:** `admin@lighthut.com`
 - **Password:** `admin123456`
