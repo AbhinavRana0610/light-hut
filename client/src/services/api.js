@@ -215,8 +215,12 @@ export const categoryService = {
     const res = await api.put(`/categories/${id}`, categoryData);
     return res.data;
   },
-  deleteCategory: async (id) => {
-    const res = await api.delete(`/categories/${id}`);
+  renameCategory: async (id, data) => {
+    const res = await api.patch(`/categories/${id}/rename`, data);
+    return res.data;
+  },
+  deleteCategory: async (id, force = false) => {
+    const res = await api.delete(`/categories/${id}${force ? '?force=true' : ''}`);
     return res.data;
   },
   reorderCategories: async (items) => {

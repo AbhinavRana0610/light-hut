@@ -4,6 +4,7 @@ import {
   getCategoryBySlug,
   createCategory,
   updateCategory,
+  renameCategory,
   deleteCategory,
   reorderCategories,
   addSubcategory,
@@ -35,6 +36,7 @@ router.get('/:slug', getCategoryBySlug);
 router.post('/', protectAdmin, createCategory);
 router.put('/reorder', protectAdmin, reorderCategories);
 router.put('/:id', protectAdmin, updateCategory);
+router.patch('/:id/rename', protectAdmin, renameCategory);
 router.delete('/:id', protectAdmin, deleteCategory);
 
 // Dedicated Sub-Dropdown (Subcategories) Management Routes

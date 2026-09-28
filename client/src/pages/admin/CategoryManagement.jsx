@@ -13,10 +13,10 @@ import {
   Save,
   AlertTriangle,
   UploadCloud,
+  PenLine,
 } from 'lucide-react';
 import { categoryService, uploadService } from '../../services/api';
 import { useToast } from '../../context/ToastContext';
-import { ConfirmModal } from '../../components/admin/ConfirmModal';
 import { ImageUploader } from '../../components/admin/ImageUploader';
 
 export const CategoryManagement = () => {
@@ -30,16 +30,24 @@ export const CategoryManagement = () => {
   const [imgError, setImgError] = useState(false);
   const [uploadingInput, setUploadingInput] = useState(false);
 
-  const isLocalPath = (str) => {
-    if (!str || typeof str !== 'string') return false;
-    const trimmed = str.trim();
-    return /^[a-zA-Z]:\\/i.test(trimmed) || trimmed.startsWith('file://') || (trimmed.includes('\\') && !trimmed.startsWith('http'));
-  };
+  // Quick Rename state
+  const [renameModalOpen, setRenameModalOpen] = useState(false);
+  const [categoryToRename, setCategoryToRename] = useState(null);
+  const [renameName, setRenameName] = useState('');
+  const [renameLoading, setRenameLoading] = useState(false);
 
   // Deletion state
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [categoryToDelete, setCategoryToDelete] = useState(null);
   const [deleteLoading, setDeleteLoading] = useState(false);
+  const [deleteWarning, setDeleteWarning] = useState('');
+  const [forceDelete, setForceDelete] = useState(false);
+
+  const isLocalPath = (str) => {
+    if (!str || typeof str !== 'string') return false;
+    const trimmed = str.trim();
+    return /^[a-zA-Z]:\\/i.test(trimmed) || trimmed.startsWith('file://') || (trimmed.includes('\\') && !trimmed.startsWith('http'));
+  };
 
   // Form State
   const [formData, setFormData] = useState({
@@ -195,19 +203,66 @@ export const CategoryManagement = () => {
     }
   };
 
+  const openRenameModal = (cat) => {
+    setCategoryToRename(cat);
+    setRenameName(cat.name || '');
+    setRenameModalOpen(true);
+  };
+
+  const handleRenameSubmit = async (e) => {
+    e.preventDefault();
+    if (!renameName.trim()) {
+      addToast('Please enter a valid category name.', 'error');
+      return;
+    }
+    try {
+      setRenameLoading(true);
+      const res = await categoryService.renameCategory(categoryToRename._id, {
+        name: renameName.trim(),
+      });
+      if (res.success) {
+        addToast(`Category renamed to "${res.category?.name || renameName.trim()}".`, 'success');
+        setRenameModalOpen(false);
+        setCategoryToRename(null);
+        loadCategories();
+      }
+    } catch (err) {
+      addToast(err.response?.data?.message || 'Failed to rename category.', 'error');
+    } finally {
+      setRenameLoading(false);
+    }
+  };
+
+  const openDeleteModal = (cat) => {
+    setCategoryToDelete(cat);
+    setDeleteWarning('');
+    setForceDelete(false);
+    setDeleteModalOpen(true);
+  };
+
   const confirmDelete = async () => {
     if (!categoryToDelete) return;
     try {
       setDeleteLoading(true);
-      const res = await categoryService.deleteCategory(categoryToDelete._id);
+      const res = await categoryService.deleteCategory(categoryToDelete._id, forceDelete);
       if (res.success) {
-        addToast(`Category "${categoryToDelete.name}" removed.`, 'info');
+        addToast(`Category "${categoryToDelete.name}" removed successfully.`, 'info');
         setDeleteModalOpen(false);
         setCategoryToDelete(null);
+        setDeleteWarning('');
+        setForceDelete(false);
         loadCategories();
       }
     } catch (err) {
-      addToast(err.response?.data?.message || 'Failed to delete category.', 'error');
+      const data = err.response?.data;
+      if (data?.hasProducts) {
+        setDeleteWarning(
+          data.message ||
+            `This category has ${data.productsCount || 'associated'} products. Check "Force delete" below to reassign them.`
+        );
+      } else {
+        addToast(data?.message || 'Failed to delete category.', 'error');
+      }
     } finally {
       setDeleteLoading(false);
     }
@@ -329,35 +384,48 @@ export const CategoryManagement = () => {
                 </div>
               </div>
 
-              {/* Bottom Actions */}
-              <div className="p-4 bg-[#0e1014] border-t border-white/5 flex items-center justify-between">
+              {/* Bottom Actions: Rename, Update, Delete */}
+              <div className="p-3.5 bg-[#0e1014] border-t border-white/5 flex flex-wrap items-center justify-between gap-2">
                 <a
                   href={`/catalog?category=${cat.slug}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-[11px] text-neutral-400 hover:text-white flex items-center gap-1 transition-colors"
+                  className="text-[11px] text-neutral-400 hover:text-white flex items-center gap-1 transition-colors group-hover:text-neutral-300"
                 >
-                  <ExternalLink className="w-3 h-3 text-[#DC2626]" />
-                  <span>View Public Page</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-[#DC2626]" />
+                  <span>Public View</span>
                 </a>
 
-                <div className="flex items-center gap-1">
+                {/* Explicit Category Options Buttons */}
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  {/* Option 1: Rename Name */}
+                  <button
+                    onClick={() => openRenameModal(cat)}
+                    className="px-2.5 py-1 rounded-lg text-[11px] font-semibold text-amber-300 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/25 flex items-center gap-1 transition-all"
+                    title="Quick Rename Category Name"
+                  >
+                    <PenLine className="w-3 h-3 text-amber-400" />
+                    <span>Rename</span>
+                  </button>
+
+                  {/* Option 2: Update Full Details */}
                   <button
                     onClick={() => openEditModal(cat)}
-                    className="p-1.5 rounded-lg text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"
-                    title="Edit category"
+                    className="px-2.5 py-1 rounded-lg text-[11px] font-semibold text-blue-300 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/25 flex items-center gap-1 transition-all"
+                    title="Update Details, Subcategories & Image"
                   >
-                    <Edit className="w-4 h-4" />
+                    <Edit className="w-3 h-3 text-blue-400" />
+                    <span>Update</span>
                   </button>
+
+                  {/* Option 3: Delete Category */}
                   <button
-                    onClick={() => {
-                      setCategoryToDelete(cat);
-                      setDeleteModalOpen(true);
-                    }}
-                    className="p-1.5 rounded-lg text-neutral-400 hover:text-red-400 hover:bg-red-500/10 transition-colors"
-                    title="Delete category"
+                    onClick={() => openDeleteModal(cat)}
+                    className="px-2.5 py-1 rounded-lg text-[11px] font-semibold text-red-300 bg-red-500/10 hover:bg-red-500/20 border border-red-500/25 flex items-center gap-1 transition-all"
+                    title="Delete this category"
                   >
-                    <Trash2 className="w-4 h-4" />
+                    <Trash2 className="w-3 h-3 text-red-400" />
+                    <span>Delete</span>
                   </button>
                 </div>
               </div>
@@ -726,20 +794,167 @@ export const CategoryManagement = () => {
         </div>
       )}
 
+      {/* Quick Rename Modal */}
+      {renameModalOpen && categoryToRename && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm"
+            onClick={() => {
+              if (!renameLoading) setRenameModalOpen(false);
+            }}
+          />
+
+          <div className="relative w-full max-w-md bg-[#14171d] border border-white/10 rounded-2xl shadow-2xl z-10 overflow-hidden my-auto">
+            <div className="p-5 border-b border-white/10 flex items-center justify-between bg-[#14171d]">
+              <div>
+                <span className="text-[10px] uppercase tracking-luxury text-amber-400 font-semibold block">
+                  Quick Name Update
+                </span>
+                <h3 className="text-base font-serif-luxury font-bold text-white flex items-center gap-2">
+                  <span>{categoryToRename.icon || '💡'}</span>
+                  <span>Rename "{categoryToRename.name}"</span>
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setRenameModalOpen(false)}
+                disabled={renameLoading}
+                className="text-neutral-400 hover:text-white p-1.5 rounded-lg hover:bg-white/5 transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <form onSubmit={handleRenameSubmit} className="p-5 space-y-4">
+              <div>
+                <label className="block text-xs uppercase tracking-luxury text-neutral-400 mb-1.5 font-medium">
+                  Category Name *
+                </label>
+                <input
+                  type="text"
+                  autoFocus
+                  required
+                  value={renameName}
+                  onChange={(e) => setRenameName(e.target.value)}
+                  placeholder="e.g. Architectural Chandeliers"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#090a0d] border border-white/10 text-white text-sm focus:outline-none focus:border-amber-400"
+                />
+              </div>
+
+              {renameName && (
+                <div className="p-2.5 rounded-lg bg-white/5 border border-white/5 text-[11px] text-neutral-400">
+                  <span className="text-neutral-500 block mb-0.5">Updated URL slug will be:</span>
+                  <code className="text-amber-300 font-mono">
+                    /{renameName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}
+                  </code>
+                </div>
+              )}
+
+              <div className="flex items-center justify-end gap-2.5 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setRenameModalOpen(false)}
+                  disabled={renameLoading}
+                  className="px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-luxury text-neutral-400 hover:text-white transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={renameLoading || !renameName.trim()}
+                  className="px-5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-luxury bg-amber-500 hover:bg-amber-400 text-black flex items-center gap-1.5 shadow-lg shadow-amber-500/20 transition-all disabled:opacity-50"
+                >
+                  {renameLoading ? (
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  ) : (
+                    <Save className="w-3.5 h-3.5" />
+                  )}
+                  <span>Save Name</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
       {/* Delete Confirmation Modal */}
-      <ConfirmModal
-        isOpen={deleteModalOpen}
-        title="Delete Category?"
-        message={`Are you sure you want to delete "${categoryToDelete?.name}"? Luminaires assigned to this category will not be deleted, but will be marked unassigned.`}
-        confirmText="Delete Category"
-        confirmVariant="danger"
-        loading={deleteLoading}
-        onConfirm={confirmDelete}
-        onClose={() => {
-          setDeleteModalOpen(false);
-          setCategoryToDelete(null);
-        }}
-      />
+      {deleteModalOpen && categoryToDelete && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm"
+            onClick={() => {
+              if (!deleteLoading) {
+                setDeleteModalOpen(false);
+                setCategoryToDelete(null);
+              }
+            }}
+          />
+
+          <div className="relative w-full max-w-md bg-[#14171d] border border-white/10 rounded-2xl shadow-2xl z-10 overflow-hidden my-auto p-6 space-y-4">
+            <div className="flex items-start gap-3.5">
+              <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center shrink-0">
+                <AlertTriangle className="w-5 h-5 text-red-400" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-base font-serif-luxury font-bold text-white mb-1">
+                  Delete Category: {categoryToDelete.name}?
+                </h3>
+                <p className="text-xs text-neutral-400 leading-relaxed">
+                  Are you sure you want to remove this category? It will no longer appear in the catalog dropdown.
+                </p>
+              </div>
+            </div>
+
+            {deleteWarning && (
+              <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs space-y-2">
+                <div className="flex items-center gap-1.5 font-semibold text-amber-400">
+                  <AlertTriangle className="w-4 h-4 shrink-0" />
+                  <span>Products Found</span>
+                </div>
+                <p className="text-[11px] text-amber-200/90 leading-relaxed">
+                  {deleteWarning}
+                </p>
+                <label className="flex items-center gap-2 cursor-pointer pt-1 text-white text-[11px] font-medium">
+                  <input
+                    type="checkbox"
+                    checked={forceDelete}
+                    onChange={(e) => setForceDelete(e.target.checked)}
+                    className="w-4 h-4 rounded text-red-500 focus:ring-red-500 bg-[#090a0d] border-white/20 cursor-pointer"
+                  />
+                  <span>Reassign linked products to another category and delete now</span>
+                </label>
+              </div>
+            )}
+
+            <div className="flex items-center justify-end gap-3 pt-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setDeleteModalOpen(false);
+                  setCategoryToDelete(null);
+                }}
+                disabled={deleteLoading}
+                className="px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-luxury text-neutral-400 hover:text-white transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={confirmDelete}
+                disabled={deleteLoading || (Boolean(deleteWarning) && !forceDelete)}
+                className="px-5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-luxury bg-red-600 hover:bg-red-500 text-white shadow-lg shadow-red-600/20 transition-all flex items-center gap-1.5 disabled:opacity-50"
+              >
+                {deleteLoading ? (
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                ) : (
+                  <Trash2 className="w-3.5 h-3.5" />
+                )}
+                <span>Confirm Delete</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

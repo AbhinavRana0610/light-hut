@@ -178,6 +178,54 @@ export const updateCategory = async (req, res, next) => {
   }
 };
 
+// @desc    Quick Rename Category Name
+// @route   PATCH /api/categories/:id/rename
+// @access  Private (Admin)
+export const renameCategory = async (req, res, next) => {
+  try {
+    const category = await Category.findById(req.params.id);
+
+    if (!category) {
+      return res.status(404).json({
+        success: false,
+        message: 'Category not found.',
+      });
+    }
+
+    const { name, updateSlug = true } = req.body;
+
+    if (!name || name.trim() === '') {
+      return res.status(400).json({
+        success: false,
+        message: 'Category name cannot be empty.',
+      });
+    }
+
+    const oldName = category.name;
+    category.name = name.trim();
+
+    if (updateSlug) {
+      const newSlug = slugify(name.trim());
+      if (newSlug !== category.slug) {
+        const slugExists = await Category.findOne({ slug: newSlug, _id: { $ne: category._id } });
+        if (!slugExists) {
+          category.slug = newSlug;
+        }
+      }
+    }
+
+    await category.save();
+
+    res.status(200).json({
+      success: true,
+      message: `Category renamed from "${oldName}" to "${category.name}".`,
+      category,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // @desc    Add a single subcategory to a category
 // @route   POST /api/categories/:id/subcategories
 // @access  Private (Admin)
@@ -344,10 +392,21 @@ export const deleteCategory = async (req, res, next) => {
     // Check if products belong to this category
     const productsUsingCategory = await Product.countDocuments({ category: category._id });
     if (productsUsingCategory > 0) {
-      return res.status(400).json({
-        success: false,
-        message: `Cannot delete category: ${productsUsingCategory} product(s) are currently associated with it. Please reassign or delete them first.`,
-      });
+      const isForce = req.query.force === 'true' || req.body?.force === true;
+      if (isForce) {
+        // Reassign products to a fallback category or clear category
+        const fallbackCategory = await Category.findOne({ _id: { $ne: category._id } });
+        if (fallbackCategory) {
+          await Product.updateMany({ category: category._id }, { category: fallbackCategory._id });
+        }
+      } else {
+        return res.status(400).json({
+          success: false,
+          hasProducts: true,
+          productsCount: productsUsingCategory,
+          message: `Cannot delete category: ${productsUsingCategory} product(s) are currently associated with it. Please reassign them or confirm force delete.`,
+        });
+      }
     }
 
     await category.deleteOne();
