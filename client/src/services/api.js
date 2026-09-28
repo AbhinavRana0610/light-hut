@@ -156,6 +156,17 @@ export const catalogService = {
     }
     return null;
   },
+  getCatalogOptions: async () => {
+    try {
+      const res = await api.get('/catalog/options');
+      if (res.data && res.data.success) {
+        return res.data;
+      }
+    } catch (err) {
+      console.warn('[Catalog Options Service] API notice:', err.message);
+    }
+    return null;
+  },
 };
 
 // Category Service

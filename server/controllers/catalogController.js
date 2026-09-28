@@ -341,7 +341,7 @@ export const getCatalogDropdown = async (req, res, next) => {
     // -------------------------------------------------------------
     // STEP 1: Database se Active Categories aur Live Product Counts nikalna
     // -------------------------------------------------------------
-    const [dbCategories, productCountAggregate] = await Promise.all([
+    const [dbCategories, productCountAggregate, subcategoryCountAggregate] = await Promise.all([
       // MongoDB se active categories fetch karo (with their subcategories, icon, tag)
       Category.find({ isActive: true })
         .sort({ sortOrder: 1, createdAt: 1 })
@@ -351,6 +351,12 @@ export const getCatalogDropdown = async (req, res, next) => {
       Product.aggregate([
         { $match: { isPublished: true } },
         { $group: { _id: '$category', count: { $sum: 1 } } },
+      ]),
+
+      // MongoDB Aggregation: Har Subcategory slug ke hisaab se published products ka total count
+      Product.aggregate([
+        { $match: { isPublished: true, subcategory: { $exists: true, $ne: '' } } },
+        { $group: { _id: '$subcategory', count: { $sum: 1 } } },
       ]),
     ]);
 
@@ -362,6 +368,14 @@ export const getCatalogDropdown = async (req, res, next) => {
     productCountAggregate.forEach((item) => {
       if (item._id) {
         countMapById[item._id.toString()] = item.count;
+      }
+    });
+
+    // Subcategory Slug -> Product Count Map
+    const subcategoryCountMap = {};
+    subcategoryCountAggregate.forEach((item) => {
+      if (item._id) {
+        subcategoryCountMap[item._id.toString().toLowerCase()] = item.count;
       }
     });
 
@@ -404,11 +418,15 @@ export const getCatalogDropdown = async (req, res, next) => {
 
       // Subcategories ke counts calculate karna
       const subcategoriesWithCounts = rawSubs.map((sub, idx) => {
-        const subMatch = categorySlugMap[sub.slug];
-        const subCount = subMatch ? subMatch.count : 0;
+        const subSlug = (sub.slug || '').toLowerCase();
+        const subMatch = categorySlugMap[subSlug];
+        // Count from subcategory field on Product, or from direct category slug match
+        const subCount = (subcategoryCountMap[subSlug] || 0) + (subMatch ? subMatch.count : 0);
 
-        // Subcategory count parent category ke total me judega
-        parentTotalCount += subCount;
+        // If parent category doesn't have direct products, sum up subcategory products
+        if (!directParentMatch || directParentMatch.count === 0) {
+          parentTotalCount += subCount;
+        }
 
         return {
           id: sub._id ? sub._id.toString() : (subMatch ? subMatch.id : null),
@@ -421,7 +439,7 @@ export const getCatalogDropdown = async (req, res, next) => {
           count: subCount, // Alias
           sortOrder: sub.sortOrder !== undefined ? sub.sortOrder : idx,
           isActive: sub.isActive !== undefined ? sub.isActive : true,
-          link: `/category/${cat.slug}/${sub.slug}`,
+          link: `/catalog?category=${cat.slug}&sub=${sub.slug}`,
         };
       });
 
@@ -479,8 +497,18 @@ export const getCatalog = async (req, res, next) => {
   try {
     const {
       category = 'all',
+      sub = '',
+      subcategory = '',
       search = '',
       featured = '',
+      finish = '',
+      material = '',
+      cct = '',
+      colorTemperature = '',
+      ipRating = '',
+      installationType = '',
+      minPrice = '',
+      maxPrice = '',
       sort = 'sortOrder',
       page = 1,
       limit = 24,
@@ -493,7 +521,21 @@ export const getCatalog = async (req, res, next) => {
       query.isFeatured = true;
     }
 
-    // 2. Category Filter
+    // 2. Subcategory Filter
+    const targetSub = (sub || subcategory || '').trim().toLowerCase();
+    if (targetSub && targetSub !== 'all') {
+      const matchingSubCat = await Category.findOne({ slug: targetSub }).select('_id');
+      if (matchingSubCat) {
+        query.$or = [
+          { subcategory: targetSub },
+          { category: matchingSubCat._id },
+        ];
+      } else {
+        query.subcategory = targetSub;
+      }
+    }
+
+    // 3. Category Filter
     if (category && category !== 'all') {
       const allowedSlugs = resolveCategorySlugs(category);
       if (allowedSlugs && allowedSlugs.length > 0) {
@@ -502,26 +544,70 @@ export const getCatalog = async (req, res, next) => {
         }).select('_id');
 
         if (matchingCategories.length > 0) {
-          query.category = { $in: matchingCategories.map((c) => c._id) };
+          const catIds = matchingCategories.map((c) => c._id);
+          if (query.$or) {
+            query.$and = [{ category: { $in: catIds } }, { $or: query.$or }];
+            delete query.$or;
+          } else {
+            query.category = { $in: catIds };
+          }
         } else {
           query.category = null;
         }
       }
     }
 
-    // 3. Search Filter
+    // 4. Specification Filters
+    if (finish && finish.trim() !== '') {
+      query['specifications.finish'] = new RegExp(finish.trim(), 'i');
+    }
+    if (material && material.trim() !== '') {
+      query['specifications.material'] = new RegExp(material.trim(), 'i');
+    }
+    const targetCCT = (cct || colorTemperature || '').trim();
+    if (targetCCT) {
+      query['specifications.colorTemperature'] = new RegExp(targetCCT, 'i');
+    }
+    if (ipRating && ipRating.trim() !== '') {
+      query['specifications.ipRating'] = new RegExp(ipRating.trim(), 'i');
+    }
+    if (installationType && installationType.trim() !== '') {
+      query['specifications.installationType'] = new RegExp(installationType.trim(), 'i');
+    }
+
+    // 5. Price Range Filter
+    if ((minPrice !== undefined && minPrice !== '') || (maxPrice !== undefined && maxPrice !== '')) {
+      query.price = {};
+      if (minPrice !== undefined && minPrice !== '') {
+        query.price.$gte = Number(minPrice);
+      }
+      if (maxPrice !== undefined && maxPrice !== '') {
+        query.price.$lte = Number(maxPrice);
+      }
+    }
+
+    // 6. Search Filter
     if (search && search.trim() !== '') {
       const searchRegex = new RegExp(search.trim(), 'i');
-      query.$or = [
+      const searchClauses = [
         { name: searchRegex },
         { sku: searchRegex },
         { shortDescription: searchRegex },
+        { subcategoryName: searchRegex },
         { 'specifications.material': searchRegex },
         { 'specifications.finish': searchRegex },
       ];
+      if (query.$and) {
+        query.$and.push({ $or: searchClauses });
+      } else if (query.$or) {
+        query.$and = [{ $or: query.$or }, { $or: searchClauses }];
+        delete query.$or;
+      } else {
+        query.$or = searchClauses;
+      }
     }
 
-    // 4. Sorting
+    // 7. Sorting
     let sortOption = {};
     switch (sort) {
       case 'newest':
@@ -529,6 +615,12 @@ export const getCatalog = async (req, res, next) => {
         break;
       case 'oldest':
         sortOption = { createdAt: 1 };
+        break;
+      case 'price_asc':
+        sortOption = { price: 1, createdAt: -1 };
+        break;
+      case 'price_desc':
+        sortOption = { price: -1, createdAt: -1 };
         break;
       case 'name_asc':
         sortOption = { name: 1 };
@@ -545,13 +637,13 @@ export const getCatalog = async (req, res, next) => {
         break;
     }
 
-    // 5. Pagination
+    // 8. Pagination
     const pageNumber = Math.max(1, parseInt(page, 10));
     const pageSize = Math.max(1, parseInt(limit, 10));
     const skip = (pageNumber - 1) * pageSize;
 
-    // 6. Execute Product Query
-    const [totalMatching, rawProducts, allCategoriesInDb] = await Promise.all([
+    // 9. Execute Product Query & Categories Count
+    const [totalMatching, rawProducts, allCategoriesInDb, productCountAggregate, subcategoryCountAggregate] = await Promise.all([
       Product.countDocuments(query),
       Product.find(query)
         .populate('category', 'name slug description image')
@@ -559,19 +651,29 @@ export const getCatalog = async (req, res, next) => {
         .skip(skip)
         .limit(pageSize)
         .lean(),
-      Category.find({ isActive: true }).select('name slug image').lean(),
+      Category.find({ isActive: true }).select('name slug image subcategories icon tag description').lean(),
+      Product.aggregate([
+        { $match: { isPublished: true } },
+        { $group: { _id: '$category', count: { $sum: 1 } } },
+      ]),
+      Product.aggregate([
+        { $match: { isPublished: true, subcategory: { $exists: true, $ne: '' } } },
+        { $group: { _id: '$subcategory', count: { $sum: 1 } } },
+      ]),
     ]);
 
-    // 7. Calculate Real-Time Product Counts Per Category
-    const productCountAggregate = await Product.aggregate([
-      { $match: { isPublished: true } },
-      { $group: { _id: '$category', count: { $sum: 1 } } },
-    ]);
-
+    // 10. Calculate Real-Time Product Counts Per Category & Subcategory
     const countMap = {};
     productCountAggregate.forEach((item) => {
       if (item._id) {
         countMap[item._id.toString()] = item.count;
+      }
+    });
+
+    const subcategoryCountMap = {};
+    subcategoryCountAggregate.forEach((item) => {
+      if (item._id) {
+        subcategoryCountMap[item._id.toString().toLowerCase()] = item.count;
       }
     });
 
@@ -585,28 +687,50 @@ export const getCatalog = async (req, res, next) => {
     });
 
     // Compute parent family totals
-    const structuredCategories = CATALOG_CATEGORY_GROUPS.map((group) => {
+    const sourceGroups = allCategoriesInDb.length > 0 ? allCategoriesInDb : CATALOG_CATEGORY_GROUPS;
+    const structuredCategories = sourceGroups.map((group) => {
+      const staticDef = CATALOG_CATEGORY_GROUPS.find((g) => g.slug === group.slug);
       let groupTotal = categorySlugToCountMap[group.slug] || 0;
 
-      const subcategoriesWithCount = (group.subcategories || []).map((sub) => {
-        const subCount = categorySlugToCountMap[sub.slug] || 0;
-        groupTotal += subCount;
-        return {
-          ...sub,
-          count: subCount,
-          productCount: subCount,
-        };
-      });
+      const rawSubs = Array.isArray(group.subcategories) && group.subcategories.length > 0
+        ? group.subcategories
+        : (staticDef?.subcategories || []);
+
+      const subcategoriesWithCount = rawSubs
+        .filter((s) => s.isActive !== false)
+        .map((sub) => {
+          const subSlug = (sub.slug || '').toLowerCase();
+          const subMatch = categorySlugToCountMap[subSlug] || 0;
+          const subDirectCount = subcategoryCountMap[subSlug] || 0;
+          const subCount = subDirectCount + subMatch;
+          
+          if (!groupTotal || groupTotal === 0) {
+            groupTotal += subCount;
+          }
+
+          return {
+            name: sub.name,
+            slug: sub.slug,
+            image: sub.image || group.image || staticDef?.image || '/categories/wall-lamp.jpg',
+            desc: sub.desc || 'Architectural Typology',
+            count: subCount,
+            productCount: subCount,
+            link: `/catalog?category=${group.slug}&sub=${sub.slug}`,
+          };
+        });
 
       return {
+        id: group._id ? group._id.toString() : null,
+        _id: group._id ? group._id.toString() : null,
         name: group.name,
         slug: group.slug,
-        icon: group.icon || '💡',
-        tag: group.tag,
-        description: group.description,
-        image: group.image,
+        icon: group.icon || staticDef?.icon || '💡',
+        tag: group.tag || staticDef?.tag || '',
+        description: group.description || staticDef?.description || '',
+        image: group.image || staticDef?.image || '/categories/wall-lamp.jpg',
         total: groupTotal,
         productCount: groupTotal,
+        count: groupTotal,
         subcategories: subcategoriesWithCount,
         sub: subcategoriesWithCount,
       };
@@ -615,7 +739,7 @@ export const getCatalog = async (req, res, next) => {
     // Total published products across all categories
     const allPublishedTotal = await Product.countDocuments({ isPublished: true });
 
-    // 8. Active Category Metadata (for dynamic hero banner)
+    // 11. Active Category Metadata (for dynamic hero banner)
     let activeCategory = {
       name: 'All Architectural Lighting',
       slug: 'all',
@@ -637,7 +761,6 @@ export const getCatalog = async (req, res, next) => {
           total: parentMatch.total,
         };
       } else {
-        // Check subcategories
         for (const parent of structuredCategories) {
           const subMatch = parent.subcategories.find((s) => s.slug === category);
           if (subMatch) {
@@ -655,7 +778,7 @@ export const getCatalog = async (req, res, next) => {
       }
     }
 
-    // 9. Format Products cleanly for client consumption
+    // 12. Format Products cleanly for client consumption
     const products = rawProducts.map((p) => {
       const coverImg =
         p.images?.find((img) => img.isCover)?.url ||
@@ -676,6 +799,9 @@ export const getCatalog = async (req, res, next) => {
         category: p.category || null,
         categoryName: p.category?.name || 'Architectural Luminaire',
         categorySlug: p.category?.slug || 'lighting',
+        subcategory: p.subcategory || '',
+        subcategoryName: p.subcategoryName || '',
+        price: p.price ?? 0,
         shortDescription: p.shortDescription || '',
         description: p.description || '',
         images: p.images || [],
@@ -706,6 +832,263 @@ export const getCatalog = async (req, res, next) => {
       },
     });
   } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * ============================================================================
+ * 🎯 CONTROLLER 3: getCatalogOptions
+ * ============================================================================
+ * @desc    Get all dropdown & filter options for catalog page in a single call:
+ *          - Categories with live subcategories and product counts
+ *          - Available Specifications (Finishes, Materials, CCT, IP, Wattage)
+ *          - Price range (min, max)
+ *          - Sort options
+ * @route   GET /api/catalog/options
+ * @access  Public
+ */
+export const getCatalogOptions = async (req, res, next) => {
+  try {
+    const [
+      dbCategories,
+      productCountAggregate,
+      subcategoryCountAggregate,
+      finishesAgg,
+      materialsAgg,
+      cctAgg,
+      ipAgg,
+      installationAgg,
+      wattageAgg,
+      priceAgg,
+      totalPublished,
+    ] = await Promise.all([
+      Category.find({ isActive: true }).sort({ sortOrder: 1, createdAt: 1 }).lean(),
+      Product.aggregate([
+        { $match: { isPublished: true } },
+        { $group: { _id: '$category', count: { $sum: 1 } } },
+      ]),
+      Product.aggregate([
+        { $match: { isPublished: true, subcategory: { $exists: true, $ne: '' } } },
+        { $group: { _id: '$subcategory', count: { $sum: 1 } } },
+      ]),
+      Product.aggregate([
+        { $match: { isPublished: true, 'specifications.finish': { $exists: true, $ne: '' } } },
+        { $group: { _id: '$specifications.finish', count: { $sum: 1 } } },
+        { $sort: { count: -1 } },
+      ]),
+      Product.aggregate([
+        { $match: { isPublished: true, 'specifications.material': { $exists: true, $ne: '' } } },
+        { $group: { _id: '$specifications.material', count: { $sum: 1 } } },
+        { $sort: { count: -1 } },
+      ]),
+      Product.aggregate([
+        { $match: { isPublished: true, 'specifications.colorTemperature': { $exists: true, $ne: '' } } },
+        { $group: { _id: '$specifications.colorTemperature', count: { $sum: 1 } } },
+        { $sort: { count: -1 } },
+      ]),
+      Product.aggregate([
+        { $match: { isPublished: true, 'specifications.ipRating': { $exists: true, $ne: '' } } },
+        { $group: { _id: '$specifications.ipRating', count: { $sum: 1 } } },
+        { $sort: { count: -1 } },
+      ]),
+      Product.aggregate([
+        { $match: { isPublished: true, 'specifications.installationType': { $exists: true, $ne: '' } } },
+        { $group: { _id: '$specifications.installationType', count: { $sum: 1 } } },
+        { $sort: { count: -1 } },
+      ]),
+      Product.aggregate([
+        { $match: { isPublished: true, 'specifications.wattage': { $exists: true, $ne: '' } } },
+        { $group: { _id: '$specifications.wattage', count: { $sum: 1 } } },
+        { $sort: { count: -1 } },
+      ]),
+      Product.aggregate([
+        { $match: { isPublished: true, price: { $gt: 0 } } },
+        { $group: { _id: null, minPrice: { $min: '$price' }, maxPrice: { $max: '$price' } } },
+      ]),
+      Product.countDocuments({ isPublished: true }),
+    ]);
+
+    // Build Category lookup
+    const countMapById = {};
+    productCountAggregate.forEach((item) => {
+      if (item._id) countMapById[item._id.toString()] = item.count;
+    });
+
+    const subcategoryCountMap = {};
+    subcategoryCountAggregate.forEach((item) => {
+      if (item._id) subcategoryCountMap[item._id.toString().toLowerCase()] = item.count;
+    });
+
+    const categorySlugMap = {};
+    dbCategories.forEach((cat) => {
+      const idStr = cat._id.toString();
+      categorySlugMap[cat.slug] = {
+        id: idStr,
+        name: cat.name,
+        slug: cat.slug,
+        count: countMapById[idStr] || 0,
+      };
+    });
+
+    const sourceCategories = dbCategories.length > 0 ? dbCategories : CATALOG_CATEGORY_GROUPS;
+
+    const categoriesTree = sourceCategories.map((cat) => {
+      const staticDef = CATALOG_CATEGORY_GROUPS.find((g) => g.slug === cat.slug);
+      let rawSubs = Array.isArray(cat.subcategories) && cat.subcategories.length > 0
+        ? cat.subcategories
+        : (staticDef?.subcategories || []);
+
+      rawSubs = rawSubs.filter((s) => s.isActive !== false);
+
+      const directParentMatch = categorySlugMap[cat.slug];
+      let parentTotalCount = directParentMatch ? directParentMatch.count : 0;
+
+      const subcategories = rawSubs.map((sub, idx) => {
+        const subSlug = (sub.slug || '').toLowerCase();
+        const subMatch = categorySlugMap[subSlug];
+        const subCount = (subcategoryCountMap[subSlug] || 0) + (subMatch ? subMatch.count : 0);
+
+        if (!directParentMatch || directParentMatch.count === 0) {
+          parentTotalCount += subCount;
+        }
+
+        return {
+          id: sub._id ? sub._id.toString() : (subMatch ? subMatch.id : null),
+          _id: sub._id ? sub._id.toString() : (subMatch ? subMatch.id : null),
+          name: sub.name,
+          slug: sub.slug,
+          image: sub.image || cat.image || staticDef?.image || '/categories/wall-lamp.jpg',
+          desc: sub.desc || 'Architectural Typology',
+          count: subCount,
+          productCount: subCount,
+          sortOrder: sub.sortOrder !== undefined ? sub.sortOrder : idx,
+          isActive: sub.isActive !== undefined ? sub.isActive : true,
+          link: `/catalog?category=${cat.slug}&sub=${sub.slug}`,
+        };
+      });
+
+      return {
+        id: cat._id ? cat._id.toString() : null,
+        _id: cat._id ? cat._id.toString() : null,
+        name: cat.name,
+        slug: cat.slug,
+        icon: cat.icon || staticDef?.icon || '💡',
+        tag: cat.tag || staticDef?.tag || '',
+        description: cat.description || staticDef?.description || '',
+        image: cat.image || staticDef?.image || '/categories/wall-lamp.jpg',
+        count: parentTotalCount,
+        productCount: parentTotalCount,
+        link: `/catalog?category=${cat.slug}`,
+        sub: subcategories,
+        subcategories,
+      };
+    });
+
+    // Helper to merge DB aggregations with curated standard lighting options
+    const mergeOptions = (aggList, standardList) => {
+      const set = new Set();
+      const result = [];
+
+      aggList.forEach((item) => {
+        const val = String(item._id || '').trim();
+        if (val && !set.has(val.toLowerCase())) {
+          set.add(val.toLowerCase());
+          result.push({ value: val, label: val, count: item.count });
+        }
+      });
+
+      standardList.forEach((std) => {
+        if (!set.has(std.toLowerCase())) {
+          set.add(std.toLowerCase());
+          result.push({ value: std, label: std, count: 0 });
+        }
+      });
+
+      return result;
+    };
+
+    const curatedFinishes = [
+      'Brushed Gold',
+      'Matte Black',
+      'Satin Brass',
+      'Champagne Bronze',
+      'Polished Chrome',
+      'Matte White',
+      'Antique Brass',
+      'Rose Gold',
+    ];
+
+    const curatedMaterials = [
+      'Die-Cast Aluminum',
+      'K9 Optical Crystal',
+      'Architectural Brass',
+      'Mouth-Blown Fluted Glass',
+      'Wrought Iron',
+      'Optical Acrylic',
+      'Natural Marble',
+    ];
+
+    const curatedCCTs = [
+      '3000K Warm White',
+      '4000K Natural White',
+      '6000K Cool White',
+      '3-in-1 Tunable CCT',
+      '2200K Vintage Warm',
+    ];
+
+    const curatedIPs = [
+      'IP20 (Indoor Standard)',
+      'IP44 (Bathroom & Splash Proof)',
+      'IP65 (Outdoor Waterproof)',
+      'IP67 (Heavy Weather & Submersion)',
+    ];
+
+    const curatedInstallation = [
+      'Surface Mounted',
+      'Suspended / Pendant',
+      'Recessed / Flush Mount',
+      'Magnetic Track',
+      'Wall Sconce Mount',
+    ];
+
+    const curatedWattages = [
+      '5W - 10W',
+      '12W - 18W',
+      '20W - 35W',
+      '36W - 60W',
+      '60W+',
+    ];
+
+    res.status(200).json({
+      success: true,
+      message: 'Catalog dropdown & filter options fetched successfully',
+      categories: categoriesTree,
+      specifications: {
+        finishes: mergeOptions(finishesAgg, curatedFinishes),
+        materials: mergeOptions(materialsAgg, curatedMaterials),
+        colorTemperatures: mergeOptions(cctAgg, curatedCCTs),
+        ipRatings: mergeOptions(ipAgg, curatedIPs),
+        installationTypes: mergeOptions(installationAgg, curatedInstallation),
+        wattages: mergeOptions(wattageAgg, curatedWattages),
+      },
+      priceRange: {
+        min: priceAgg[0]?.minPrice || 0,
+        max: priceAgg[0]?.maxPrice || 150000,
+      },
+      sortOptions: [
+        { value: 'sortOrder', label: 'Curated / Featured Order' },
+        { value: 'newest', label: 'Newest Arrivals' },
+        { value: 'price_asc', label: 'Price: Low to High' },
+        { value: 'price_desc', label: 'Price: High to Low' },
+        { value: 'name_asc', label: 'Product Name (A to Z)' },
+        { value: 'name_desc', label: 'Product Name (Z to A)' },
+        { value: 'sku_asc', label: 'SKU Code Order' },
+      ],
+      totalProducts: totalPublished,
+    });
+  } catch (error) {
+    console.error('[Catalog Options Controller Error]:', error);
     next(error);
   }
 };

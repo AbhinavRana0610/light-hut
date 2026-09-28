@@ -34,11 +34,20 @@ export const ProductForm = () => {
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  // Simple form state with only the required fields
+  // Form state with subcategory and full architectural specifications
   const [formData, setFormData] = useState({
     name: '',          // Heading Name / Product Name
     category: '',      // Category ID
+    subcategory: '',   // Subcategory slug (e.g. led-wall-lamp)
+    subcategoryName: '', // Subcategory display name
     size: '',          // Size / Dimensions (e.g. Diameter: 250mm, Height: 300mm)
+    finish: '',        // Finish (e.g. Brushed Gold, Matte Black)
+    material: '',      // Material (e.g. Die-cast Aluminum, K9 Optical Crystal)
+    colorTemperature: '', // CCT (e.g. 3000K Warm White)
+    wattage: '',       // Wattage (e.g. 24W LED)
+    ipRating: '',      // IP Rating (e.g. IP20, IP65)
+    installationType: '', // Mounting / Installation type
+    voltage: '',       // Voltage (e.g. AC 220-240V)
     price: '',         // Product Price (₹)
     description: '',   // Product Description
     photo: '',         // Product Photo URL
@@ -85,7 +94,16 @@ export const ProductForm = () => {
           setFormData({
             name: p.name || p.title || '',
             category: p.category?._id || p.category || '',
+            subcategory: p.subcategory || '',
+            subcategoryName: p.subcategoryName || '',
             size: p.specifications?.dimensions || p.dimensions || p.size || '',
+            finish: p.specifications?.finish || '',
+            material: p.specifications?.material || '',
+            colorTemperature: p.specifications?.colorTemperature || '',
+            wattage: p.specifications?.wattage || '',
+            ipRating: p.specifications?.ipRating || '',
+            installationType: p.specifications?.installationType || '',
+            voltage: p.specifications?.voltage || '',
             price: p.price ?? '',
             description: p.description || p.shortDescription || '',
             photo: coverImg,
@@ -141,6 +159,8 @@ export const ProductForm = () => {
         name: formData.name.trim(),
         title: formData.name.trim(),
         category: formData.category,
+        subcategory: (formData.subcategory || '').trim().toLowerCase(),
+        subcategoryName: (formData.subcategoryName || '').trim(),
         price: formData.price !== '' ? Number(formData.price) : 0,
         description: formData.description.trim(),
         shortDescription: formData.description.trim().slice(0, 160),
@@ -151,6 +171,13 @@ export const ProductForm = () => {
         sku: generatedSku,
         specifications: {
           dimensions: formData.size.trim(),
+          finish: formData.finish.trim(),
+          material: formData.material.trim(),
+          colorTemperature: formData.colorTemperature.trim(),
+          wattage: formData.wattage.trim(),
+          ipRating: formData.ipRating.trim(),
+          installationType: formData.installationType.trim(),
+          voltage: formData.voltage.trim(),
         },
         isPublished: true,
       };
@@ -158,13 +185,13 @@ export const ProductForm = () => {
       if (isEditMode) {
         const res = await productService.updateProduct(id, payload);
         if (res.success) {
-          addToast('Product updated successfully!', 'success');
+          addToast('Product updated successfully with specifications!', 'success');
           navigate('/admin/products');
         }
       } else {
         const res = await productService.createProduct(payload);
         if (res.success) {
-          addToast('Product created successfully!', 'success');
+          addToast('Product created successfully with specifications!', 'success');
           navigate('/admin/products');
         }
       }
@@ -242,54 +269,97 @@ export const ProductForm = () => {
             </p>
           </div>
 
-          {/* 2. Category, Size & Price Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            {/* Category Dropdown */}
-            <div className="space-y-2">
-              <label className="text-xs font-semibold uppercase tracking-wider text-neutral-300 flex items-center gap-1.5">
-                <Layers className="w-3.5 h-3.5 text-[#DC2626]" />
-                <span>Product Category</span>
-                <span className="text-[#DC2626]">*</span>
-              </label>
-              <select
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white focus:border-[#DC2626] focus:outline-none transition-all text-sm font-medium cursor-pointer"
-              >
-                <option value="" disabled className="bg-[#14171d] text-neutral-500">
-                  Select a category...
-                </option>
-                {categories.map((cat) => (
-                  <option key={cat._id} value={cat._id} className="bg-[#14171d] text-white">
-                    {cat.name}
-                  </option>
-                ))}
-              </select>
-              <p className="text-[11px] text-neutral-400">
-                Collection where luminaire appears.
-              </p>
-            </div>
+          {/* 2. Category & Subcategory Selection Grid */}
+          {(() => {
+            const selectedCategoryObj = categories.find((c) => c._id === formData.category);
+            const availableSubcategories =
+              selectedCategoryObj?.subcategories?.filter((s) => s.isActive !== false) || [];
 
-            {/* Product Size / Dimensions */}
-            <div className="space-y-2">
-              <label className="text-xs font-semibold uppercase tracking-wider text-neutral-300 flex items-center gap-1.5">
-                <span>Product Size / Dimensions</span>
-              </label>
-              <input
-                type="text"
-                name="size"
-                value={formData.size}
-                onChange={handleChange}
-                placeholder="e.g. Dia: 250mm, H: 300mm"
-                className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-neutral-500 focus:border-[#DC2626] focus:outline-none transition-all text-sm font-medium"
-              />
-              <p className="text-[11px] text-neutral-400">
-                Shown on the product catalog card.
-              </p>
-            </div>
+            return (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {/* Category Dropdown */}
+                <div className="space-y-2">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-neutral-300 flex items-center justify-between">
+                    <span className="flex items-center gap-1.5">
+                      <Layers className="w-3.5 h-3.5 text-[#DC2626]" />
+                      <span>Product Category</span>
+                      <span className="text-[#DC2626]">*</span>
+                    </span>
+                    <span className="text-[10px] text-neutral-400 font-mono">Step 1</span>
+                  </label>
+                  <select
+                    name="category"
+                    value={formData.category}
+                    onChange={(e) => {
+                      const newCatId = e.target.value;
+                      setFormData((prev) => ({
+                        ...prev,
+                        category: newCatId,
+                        subcategory: '',
+                        subcategoryName: '',
+                      }));
+                    }}
+                    required
+                    className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white focus:border-[#DC2626] focus:outline-none transition-all text-sm font-medium cursor-pointer"
+                  >
+                    <option value="" disabled className="bg-[#14171d] text-neutral-500">
+                      Select a category...
+                    </option>
+                    {categories.map((cat) => (
+                      <option key={cat._id} value={cat._id} className="bg-[#14171d] text-white">
+                        {cat.icon || '💡'} {cat.name}
+                      </option>
+                    ))}
+                  </select>
+                  <p className="text-[11px] text-neutral-400">
+                    Primary lighting family for this luminaire.
+                  </p>
+                </div>
 
+                {/* Subcategory Dropdown (Konse subcategory maye dalna hai) */}
+                <div className="space-y-2">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-neutral-300 flex items-center justify-between">
+                    <span className="flex items-center gap-1.5">
+                      <Package className="w-3.5 h-3.5 text-[#DC2626]" />
+                      <span>Subcategory / Type Option</span>
+                    </span>
+                    <span className="text-[10px] text-neutral-400 font-mono">Step 2</span>
+                  </label>
+                  <select
+                    name="subcategory"
+                    value={formData.subcategory}
+                    onChange={(e) => {
+                      const selectedSlug = e.target.value;
+                      const matched = availableSubcategories.find((s) => s.slug === selectedSlug);
+                      setFormData((prev) => ({
+                        ...prev,
+                        subcategory: selectedSlug,
+                        subcategoryName: matched ? matched.name : (selectedSlug ? selectedSlug.replace(/-/g, ' ').toUpperCase() : ''),
+                      }));
+                    }}
+                    className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white focus:border-[#DC2626] focus:outline-none transition-all text-sm font-medium cursor-pointer"
+                  >
+                    <option value="" className="bg-[#14171d] text-neutral-400">
+                      -- Direct in {selectedCategoryObj?.name || 'Category'} (General / No Subcategory) --
+                    </option>
+                    {availableSubcategories.map((sub) => (
+                      <option key={sub.slug} value={sub.slug} className="bg-[#14171d] text-white">
+                        {sub.name}
+                      </option>
+                    ))}
+                  </select>
+                  <p className="text-[11px] text-neutral-400">
+                    {availableSubcategories.length > 0
+                      ? `Select which ${selectedCategoryObj?.name || ''} subcategory to assign this product to.`
+                      : 'Selected category does not have subcategories yet.'}
+                  </p>
+                </div>
+              </div>
+            );
+          })()}
+
+          {/* 3. Price & SKU Code Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {/* Product Price (₹) */}
             <div className="space-y-2">
               <label className="text-xs font-semibold uppercase tracking-wider text-neutral-300 flex items-center gap-1.5">
@@ -313,6 +383,214 @@ export const ProductForm = () => {
               <p className="text-[11px] text-neutral-400">
                 Studio price in INR.
               </p>
+            </div>
+
+            {/* SKU / Model Code */}
+            <div className="space-y-2">
+              <label className="text-xs font-semibold uppercase tracking-wider text-neutral-300 flex items-center justify-between">
+                <span>SKU / Model Number</span>
+                <span className="text-[10px] text-neutral-400 font-normal lowercase">(auto if blank)</span>
+              </label>
+              <input
+                type="text"
+                name="sku"
+                value={formData.sku}
+                onChange={handleChange}
+                placeholder="e.g. LH-WL101"
+                className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-neutral-500 focus:border-[#DC2626] focus:outline-none transition-all text-sm font-mono uppercase"
+              />
+              <p className="text-[11px] text-neutral-400">
+                Unique identifier for tracking and ordering.
+              </p>
+            </div>
+          </div>
+
+          {/* 4. Complete Architectural Specifications Section */}
+          <div className="space-y-4 pt-4 border-t border-white/10">
+            <div className="flex items-center justify-between">
+              <label className="text-xs font-semibold uppercase tracking-wider text-neutral-300 flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-[#DC2626]" />
+                <span>Architectural Specifications & Filters</span>
+              </label>
+              <span className="text-[10px] text-neutral-400">Appears on Catalog Cards & Technical Specs</span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Dimensions / Size */}
+              <div className="space-y-1.5">
+                <label className="text-[11px] font-medium text-neutral-300">Dimensions / Size</label>
+                <input
+                  type="text"
+                  name="size"
+                  value={formData.size}
+                  onChange={handleChange}
+                  placeholder="e.g. Ø 600mm x H 1200mm or 450 x 120 mm"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-black/40 border border-white/10 text-white placeholder-neutral-500 focus:border-[#DC2626] focus:outline-none text-xs"
+                />
+              </div>
+
+              {/* Finish / Color */}
+              <div className="space-y-1.5">
+                <label className="text-[11px] font-medium text-neutral-300">Finish / Color</label>
+                <input
+                  type="text"
+                  name="finish"
+                  value={formData.finish}
+                  onChange={handleChange}
+                  placeholder="e.g. Brushed Gold, Matte Black, Satin Brass"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-black/40 border border-white/10 text-white placeholder-neutral-500 focus:border-[#DC2626] focus:outline-none text-xs"
+                />
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {['Brushed Gold', 'Matte Black', 'Satin Brass', 'Chrome', 'White', 'Antique Bronze'].map((f) => (
+                    <button
+                      key={f}
+                      type="button"
+                      onClick={() => setFormData((prev) => ({ ...prev, finish: f }))}
+                      className="text-[10px] px-2 py-0.5 rounded-md bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white border border-white/10 transition-colors cursor-pointer"
+                    >
+                      {f}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Material */}
+              <div className="space-y-1.5">
+                <label className="text-[11px] font-medium text-neutral-300">Material Composition</label>
+                <input
+                  type="text"
+                  name="material"
+                  value={formData.material}
+                  onChange={handleChange}
+                  placeholder="e.g. Die-Cast Aluminum & K9 Optical Crystal"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-black/40 border border-white/10 text-white placeholder-neutral-500 focus:border-[#DC2626] focus:outline-none text-xs"
+                />
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {['Die-Cast Aluminum', 'K9 Crystal', 'Architectural Brass', 'Fluted Glass', 'Natural Marble'].map((m) => (
+                    <button
+                      key={m}
+                      type="button"
+                      onClick={() => setFormData((prev) => ({ ...prev, material: m }))}
+                      className="text-[10px] px-2 py-0.5 rounded-md bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white border border-white/10 transition-colors cursor-pointer"
+                    >
+                      {m}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Color Temperature (CCT) */}
+              <div className="space-y-1.5">
+                <label className="text-[11px] font-medium text-neutral-300">Color Temperature (CCT)</label>
+                <input
+                  type="text"
+                  name="colorTemperature"
+                  value={formData.colorTemperature}
+                  onChange={handleChange}
+                  placeholder="e.g. 3000K Warm White or 3-in-1 CCT"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-black/40 border border-white/10 text-white placeholder-neutral-500 focus:border-[#DC2626] focus:outline-none text-xs"
+                />
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {['3000K Warm White', '4000K Natural White', '6000K Cool White', '3-in-1 Tunable CCT'].map((cct) => (
+                    <button
+                      key={cct}
+                      type="button"
+                      onClick={() => setFormData((prev) => ({ ...prev, colorTemperature: cct }))}
+                      className="text-[10px] px-2 py-0.5 rounded-md bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white border border-white/10 transition-colors cursor-pointer"
+                    >
+                      {cct}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Wattage */}
+              <div className="space-y-1.5">
+                <label className="text-[11px] font-medium text-neutral-300">Wattage / Power</label>
+                <input
+                  type="text"
+                  name="wattage"
+                  value={formData.wattage}
+                  onChange={handleChange}
+                  placeholder="e.g. 15W, 36W LED, 48W"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-black/40 border border-white/10 text-white placeholder-neutral-500 focus:border-[#DC2626] focus:outline-none text-xs"
+                />
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {['12W LED', '24W LED', '36W LED', '48W LED', '60W+'].map((w) => (
+                    <button
+                      key={w}
+                      type="button"
+                      onClick={() => setFormData((prev) => ({ ...prev, wattage: w }))}
+                      className="text-[10px] px-2 py-0.5 rounded-md bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white border border-white/10 transition-colors cursor-pointer"
+                    >
+                      {w}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* IP Rating */}
+              <div className="space-y-1.5">
+                <label className="text-[11px] font-medium text-neutral-300">IP Rating</label>
+                <input
+                  type="text"
+                  name="ipRating"
+                  value={formData.ipRating}
+                  onChange={handleChange}
+                  placeholder="e.g. IP20 Indoor, IP65 Outdoor"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-black/40 border border-white/10 text-white placeholder-neutral-500 focus:border-[#DC2626] focus:outline-none text-xs"
+                />
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {['IP20 (Indoor)', 'IP44 (Bathroom)', 'IP65 (Outdoor Waterproof)'].map((ip) => (
+                    <button
+                      key={ip}
+                      type="button"
+                      onClick={() => setFormData((prev) => ({ ...prev, ipRating: ip }))}
+                      className="text-[10px] px-2 py-0.5 rounded-md bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white border border-white/10 transition-colors cursor-pointer"
+                    >
+                      {ip}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Installation Type */}
+              <div className="space-y-1.5">
+                <label className="text-[11px] font-medium text-neutral-300">Installation / Mounting</label>
+                <input
+                  type="text"
+                  name="installationType"
+                  value={formData.installationType}
+                  onChange={handleChange}
+                  placeholder="e.g. Surface Mounted, Suspended, Recessed"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-black/40 border border-white/10 text-white placeholder-neutral-500 focus:border-[#DC2626] focus:outline-none text-xs"
+                />
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {['Surface Mounted', 'Suspended / Pendant', 'Recessed / Flush Mount', 'Magnetic Track'].map((inst) => (
+                    <button
+                      key={inst}
+                      type="button"
+                      onClick={() => setFormData((prev) => ({ ...prev, installationType: inst }))}
+                      className="text-[10px] px-2 py-0.5 rounded-md bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white border border-white/10 transition-colors cursor-pointer"
+                    >
+                      {inst}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Operating Voltage */}
+              <div className="space-y-1.5">
+                <label className="text-[11px] font-medium text-neutral-300">Operating Voltage</label>
+                <input
+                  type="text"
+                  name="voltage"
+                  value={formData.voltage}
+                  onChange={handleChange}
+                  placeholder="e.g. AC 220-240V, 50/60Hz"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-black/40 border border-white/10 text-white placeholder-neutral-500 focus:border-[#DC2626] focus:outline-none text-xs"
+                />
+              </div>
             </div>
           </div>
 

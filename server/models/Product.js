@@ -49,6 +49,18 @@ const productSchema = new mongoose.Schema(
       required: [true, 'Product must belong to a category'],
       index: true,
     },
+    subcategory: {
+      type: String,
+      lowercase: true,
+      trim: true,
+      default: '',
+      index: true,
+    },
+    subcategoryName: {
+      type: String,
+      trim: true,
+      default: '',
+    },
     shortDescription: {
       type: String,
       trim: true,

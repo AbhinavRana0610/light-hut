@@ -33,9 +33,19 @@ export const getProducts = async (req, res, next) => {
   try {
     const {
       category,
+      subcategory,
+      sub,
       search,
       featured,
       published,
+      finish,
+      material,
+      cct,
+      colorTemperature,
+      ipRating,
+      installationType,
+      minPrice,
+      maxPrice,
       sort = 'sortOrder',
       page = 1,
       limit = 12,
@@ -56,6 +66,12 @@ export const getProducts = async (req, res, next) => {
     // Filter by featured
     if (featured !== undefined && featured !== '') {
       query.isFeatured = featured === 'true';
+    }
+
+    // Filter by subcategory (if provided directly)
+    const targetSub = (subcategory || sub || '').trim().toLowerCase();
+    if (targetSub && targetSub !== 'all') {
+      query.subcategory = targetSub;
     }
 
     // Filter by category (can be slug or category ID)
@@ -89,6 +105,35 @@ export const getProducts = async (req, res, next) => {
       }
     }
 
+    // Specification Filters
+    if (finish && finish.trim() !== '') {
+      query['specifications.finish'] = new RegExp(finish.trim(), 'i');
+    }
+    if (material && material.trim() !== '') {
+      query['specifications.material'] = new RegExp(material.trim(), 'i');
+    }
+    const targetCCT = (cct || colorTemperature || '').trim();
+    if (targetCCT) {
+      query['specifications.colorTemperature'] = new RegExp(targetCCT, 'i');
+    }
+    if (ipRating && ipRating.trim() !== '') {
+      query['specifications.ipRating'] = new RegExp(ipRating.trim(), 'i');
+    }
+    if (installationType && installationType.trim() !== '') {
+      query['specifications.installationType'] = new RegExp(installationType.trim(), 'i');
+    }
+
+    // Price Range Filter
+    if (minPrice !== undefined && minPrice !== '' || maxPrice !== undefined && maxPrice !== '') {
+      query.price = {};
+      if (minPrice !== undefined && minPrice !== '') {
+        query.price.$gte = Number(minPrice);
+      }
+      if (maxPrice !== undefined && maxPrice !== '') {
+        query.price.$lte = Number(maxPrice);
+      }
+    }
+
     // Search query: search by name, SKU, shortDescription, or material
     if (search && search.trim() !== '') {
       const searchRegex = new RegExp(search.trim(), 'i');
@@ -109,6 +154,12 @@ export const getProducts = async (req, res, next) => {
         break;
       case 'oldest':
         sortOption = { createdAt: 1 };
+        break;
+      case 'price_asc':
+        sortOption = { price: 1, createdAt: -1 };
+        break;
+      case 'price_desc':
+        sortOption = { price: -1, createdAt: -1 };
         break;
       case 'name_asc':
         sortOption = { name: 1 };
@@ -292,6 +343,9 @@ export const createProduct = async (req, res, next) => {
       slug,
       sku,
       category,
+      subcategory,
+      subcategoryName,
+      sub,
       shortDescription,
       description,
       price,
@@ -338,12 +392,36 @@ export const createProduct = async (req, res, next) => {
       const fallbackCat = await Category.findOne();
       if (fallbackCat) {
         targetCategory = fallbackCat._id;
+        categoryExists = fallbackCat;
       } else {
         return res.status(400).json({
           success: false,
           message: 'No category found in database.',
         });
       }
+    }
+
+    // Resolve subcategory and display name
+    let finalSubcategory = (subcategory || sub || '').trim().toLowerCase();
+    let finalSubcategoryName = (subcategoryName || '').trim();
+
+    if (finalSubcategory && categoryExists?.subcategories?.length > 0) {
+      const matchedSub = categoryExists.subcategories.find(
+        (s) => s.slug === finalSubcategory || s.name.toLowerCase() === finalSubcategory
+      );
+      if (matchedSub) {
+        finalSubcategory = matchedSub.slug;
+        if (!finalSubcategoryName) {
+          finalSubcategoryName = matchedSub.name;
+        }
+      }
+    }
+
+    if (!finalSubcategoryName && finalSubcategory) {
+      finalSubcategoryName = finalSubcategory
+        .split('-')
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(' ');
     }
 
     // Check SKU uniqueness; if exists, append random suffix
@@ -378,6 +456,8 @@ export const createProduct = async (req, res, next) => {
       slug: finalSlug,
       sku: productSku,
       category: targetCategory,
+      subcategory: finalSubcategory,
+      subcategoryName: finalSubcategoryName,
       shortDescription: shortDescription || '',
       description: description || '',
       price: Math.max(0, Number(price) || 0),
@@ -424,6 +504,9 @@ export const updateProduct = async (req, res, next) => {
       slug,
       sku,
       category,
+      subcategory,
+      subcategoryName,
+      sub,
       shortDescription,
       description,
       price,
@@ -482,6 +565,34 @@ export const updateProduct = async (req, res, next) => {
         });
       }
       product.category = category;
+    }
+
+    if (subcategory !== undefined || sub !== undefined) {
+      let updatedSub = (subcategory !== undefined ? subcategory : sub || '').trim().toLowerCase();
+      let updatedSubName = (subcategoryName !== undefined ? subcategoryName : '').trim();
+
+      const currentCat = await Category.findById(product.category);
+      if (updatedSub && currentCat?.subcategories?.length > 0) {
+        const matchedSub = currentCat.subcategories.find(
+          (s) => s.slug === updatedSub || s.name.toLowerCase() === updatedSub
+        );
+        if (matchedSub) {
+          updatedSub = matchedSub.slug;
+          if (!updatedSubName) {
+            updatedSubName = matchedSub.name;
+          }
+        }
+      }
+
+      if (!updatedSubName && updatedSub) {
+        updatedSubName = updatedSub
+          .split('-')
+          .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+          .join(' ');
+      }
+
+      product.subcategory = updatedSub;
+      product.subcategoryName = updatedSubName;
     }
 
     if (shortDescription !== undefined) product.shortDescription = shortDescription;
