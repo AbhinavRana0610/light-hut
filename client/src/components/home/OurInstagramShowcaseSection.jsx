@@ -1,167 +1,406 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Instagram, Heart, MessageCircle, ExternalLink, Play, Sparkles, X } from 'lucide-react';
+import { Instagram, ExternalLink, Play, X } from 'lucide-react';
 import { useSettings } from '../../context/SettingsContext';
 import { LightHut } from '../common/BrandWordmark';
 
-/* ── Curated Instagram Reels & Posts Showcasing Real Lighting Projects ── */
-const INSTAGRAM_POSTS_ROW1 = [
+/* ── Light-Hut Instagram posts (client/public/instagram/posts) ──
+   'reel' = 9:16 reel cover, 'post' = feed post. Feed posts are shown whole ('contain'). */
+const INSTAGRAM_POSTS = [
   {
-    id: 'insta-1',
-    handle: '@lighthutofficial',
-    likes: '3.4k',
-    comments: '128',
-    caption: 'Transforming a double-height villa living room with our monumental cascading crystal chandelier ✨ #LuxuryLighting #InteriorDesign',
-    image: '/categories/double-height.jpg',
+    id: 'insta-03',
+    caption: 'Choose a chandelier that matches your space & style. ✨',
+    image: '/instagram/posts/03-crystal-chandelier-living-room-choose-a-chandelier.jpg',
     type: 'reel',
-    views: '48.2k',
+    fit: 'cover',
   },
   {
-    id: 'insta-2',
-    handle: '@lighthutofficial',
-    likes: '2.8k',
-    comments: '94',
-    caption: 'Soft ambient evenings in this minimalist master sanctuary. 2700K warm circadian bedside drops. 🌙',
-    image: '/banner-bedroom.jpg',
+    id: 'insta-04',
+    caption: 'The power of lighting – crystal hanging lamps lining a warm corridor.',
+    image: '/instagram/posts/04-crystal-hanging-lamps-corridor-power-of-lighting.jpg',
+    type: 'reel',
+    fit: 'cover',
+  },
+  {
+    id: 'insta-05',
+    caption: 'Elegant crystal design – a fan chandelier that cools and dazzles.',
+    image: '/instagram/posts/05-crystal-fan-chandelier-elegant-crystal-design.jpg',
+    type: 'reel',
+    fit: 'cover',
+  },
+  {
+    id: 'insta-06',
+    caption: 'Interior styles that always look expensive, crowned by a floating LED ring chandelier.',
+    image: '/instagram/posts/06-ring-led-chandelier-interior-styles-look-expensive.jpg',
     type: 'post',
+    fit: 'contain',
   },
   {
-    id: 'insta-3',
-    handle: '@lighthutofficial',
-    likes: '4.1k',
-    comments: '215',
-    caption: 'Exterior architectural facade grazing in Bel Air. Balcony illumination that breathes life at twilight.',
-    image: '/hero-outdoor.jpg',
-    type: 'reel',
-    views: '82.5k',
-  },
-  {
-    id: 'insta-4',
-    handle: '@lighthutofficial',
-    likes: '1.9k',
-    comments: '67',
-    caption: 'Mouth-blown fluted glass pendant cluster over a custom monolithic marble dining table. Perfection in every cut.',
-    image: '/categories/e27-hanging-lamp.jpg',
+    id: 'insta-07',
+    caption: 'A touch of brilliance for spaces that deserve to shine.',
+    image: '/instagram/posts/07-crystal-chandelier-pink-glow-touch-of-brilliance.jpg',
     type: 'post',
+    fit: 'contain',
   },
   {
-    id: 'insta-5',
-    handle: '@lighthutofficial',
-    likes: '3.9k',
-    comments: '182',
-    caption: 'Backlit Himalayan onyx vanity mirror for this bespoke Milan penthouse bathroom remodel. 💫',
-    image: '/categories/led-wall-lamp.jpg',
+    id: 'insta-08',
+    caption: 'Happy Krishna Janmashtami from the Light-Hut family. 🪈',
+    image: '/instagram/posts/08-crystal-chandelier-happy-janmashtami.jpg',
     type: 'reel',
-    views: '64.1k',
+    fit: 'cover',
   },
   {
-    id: 'insta-6',
-    handle: '@lighthutofficial',
-    likes: '2.5k',
-    comments: '88',
-    caption: 'Art deco symmetry with virgin brushed brass sconces and borosilicate fluting. Parisian salon vibes.',
-    image: '/categories/e27-wall-lamp.jpg',
-    type: 'post',
-  },
-  {
-    id: 'insta-7',
-    handle: '@lighthutofficial',
-    likes: '5.2k',
-    comments: '310',
-    caption: 'Floating cantilevered staircase with concealed warm step-grazers & sculptural brass pendants. ✨',
-    image: '/categories/modern-chandelier-dh.jpg',
+    id: 'insta-09',
+    caption: 'Slim glass-and-gold wall lamps for a refined, modern wall.',
+    image: '/instagram/posts/09-glass-wall-lamp-gold-collage.jpg',
     type: 'reel',
-    views: '110k',
-  },
-  {
-    id: 'insta-8',
-    handle: '@lighthutofficial',
-    likes: '2.1k',
-    comments: '74',
-    caption: 'Warm cove indirect lighting highlights the fluted timber wall of this quiet Scandinavian retreat.',
-    image: '/categories/floor-lamp.jpg',
-    type: 'post',
-  },
-];
-
-const INSTAGRAM_POSTS_ROW2 = [
-  {
-    id: 'insta-9',
-    handle: '@lighthutofficial',
-    likes: '4.7k',
-    comments: '240',
-    caption: 'Infinity pool nightfall reflection in Santorini. IP68 underwater fixtures and low-glare terrace wash. 🌊',
-    image: '/categories/outdoor-light.jpg',
-    type: 'reel',
-    views: '93.4k',
+    fit: 'cover',
   },
   {
     id: 'insta-10',
-    handle: '@lighthutofficial',
-    likes: '3.1k',
-    comments: '114',
-    caption: 'Linear kitchen island lighting crafted from extruded aviation aluminum and optic diffusion lenses.',
-    image: '/categories/profile-chandelier.jpg',
+    caption: 'Illuminate your space in style – the perfect blend of glamour, light & comfort.',
+    image: '/instagram/posts/10-crystal-fan-chandelier-illuminate-your-space-in-style.jpg',
     type: 'post',
+    fit: 'contain',
   },
   {
     id: 'insta-11',
-    handle: '@lighthutofficial',
-    likes: '3.8k',
-    comments: '166',
-    caption: 'Curating warm low-glare illumination for private art collections. True 98+ CRI color fidelity.',
-    image: '/categories/italian-chandelier.jpg',
+    caption: 'Sculpted white-and-gold leaf chandelier for statement ceilings.',
+    image: '/instagram/posts/11-white-gold-leaf-chandelier.jpg',
     type: 'reel',
-    views: '57.8k',
+    fit: 'cover',
   },
   {
     id: 'insta-12',
-    handle: '@lighthutofficial',
-    likes: '2.9k',
-    comments: '99',
-    caption: 'Japandi bedside aesthetic: raw textured plaster, handcrafted paper halo, and soft diffused glow. 🌿',
-    image: '/banner-bed.jpg',
+    caption: 'This Raksha Bandhan, let Light-Hut be part of the moments that bring siblings closer. 🪔',
+    image: '/instagram/posts/12-crystal-chandelier-raksha-bandhan.jpg',
     type: 'post',
+    fit: 'contain',
   },
   {
     id: 'insta-13',
-    handle: '@lighthutofficial',
-    likes: '4.3k',
-    comments: '198',
-    caption: 'Multi-tiered brass ring halo suspended over a 12-seater Mayfair dining table. Pure theatrical drama.',
-    image: '/categories/chandelier.jpg',
+    caption: 'Outdoor wall light – classic lanterns that welcome you home.',
+    image: '/instagram/posts/13-outdoor-wall-light-lantern.jpg',
     type: 'reel',
-    views: '76.0k',
+    fit: 'cover',
   },
   {
     id: 'insta-14',
-    handle: '@lighthutofficial',
-    likes: '2.6k',
-    comments: '82',
-    caption: 'Modern private library alcove with integrated micro-grazers tucked beneath walnut shelves.',
-    image: '/banner-study.jpg',
-    type: 'post',
+    caption: 'Feather-leaf chandelier, soft and sculptural.',
+    image: '/instagram/posts/14-feather-leaf-chandelier-with-model.jpg',
+    type: 'reel',
+    fit: 'cover',
   },
   {
     id: 'insta-15',
-    handle: '@lighthutofficial',
-    likes: '3.6k',
-    comments: '143',
-    caption: 'Four-level glass & timber villa illuminated with synchronized scene controllers from sunset to midnight.',
-    image: '/showroom-hero-hd.jpg',
+    caption: 'Illuminate elegance – a feather-shaped LED wall lamp.',
+    image: '/instagram/posts/15-feather-led-wall-lamp-illuminate-elegance.jpg',
     type: 'reel',
-    views: '68.9k',
+    fit: 'cover',
   },
   {
     id: 'insta-16',
-    handle: '@lighthutofficial',
-    likes: '2.3k',
-    comments: '79',
-    caption: 'Monochrome architectural lounge featuring trimless recessed downlights and indirect perimeter cove.',
-    image: '/categories/dining-table-lamp.jpg',
+    caption: 'Happy Independence Day – proud to be part of a brighter tomorrow. 🇮🇳',
+    image: '/instagram/posts/16-grand-crystal-chandelier-happy-independence-day.jpg',
     type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-17',
+    caption: 'Globe gate lamp for modern pillars and gardens.',
+    image: '/instagram/posts/17-outdoor-globe-gate-lamp-on-pillar.jpg',
+    type: 'reel',
+    fit: 'cover',
+  },
+  {
+    id: 'insta-18',
+    caption: 'Turn every ceiling into a statement – elegant crystal lighting for timeless interiors.',
+    image: '/instagram/posts/18-amber-glass-chandelier-turn-every-ceiling-into-a-statement.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-19',
+    caption: 'LH-920 GL outdoor gate lamp.',
+    image: '/instagram/posts/19-lh-920-gl-outdoor-gate-lamp.jpg',
+    type: 'reel',
+    fit: 'cover',
+  },
+  {
+    id: 'insta-20',
+    caption: 'Illuminate every moment with a cascading crystal chandelier.',
+    image: '/instagram/posts/20-crystal-chandelier-illuminate-every-moment.jpg',
+    type: 'reel',
+    fit: 'cover',
+  },
+  {
+    id: 'insta-21',
+    caption: 'Elegance that welcomes every entrance – classic outdoor wall lantern.',
+    image: '/instagram/posts/21-outdoor-wall-lantern-elegance-that-welcomes-every-entrance.jpg',
+    type: 'reel',
+    fit: 'cover',
+  },
+  {
+    id: 'insta-22',
+    caption: 'Model Flora – illuminate every entrance with timeless style.',
+    image: '/instagram/posts/22-flora-outdoor-gate-lamp-illuminate-every-entrance.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-23',
+    caption: 'Crafted to shine, designed to captivate.',
+    image: '/instagram/posts/23-leaf-chandelier-crafted-to-shine.jpg',
+    type: 'reel',
+    fit: 'cover',
+  },
+  {
+    id: 'insta-24',
+    caption: 'Luxury that lights the room.',
+    image: '/instagram/posts/24-leaf-chandelier-luxury-that-lights-the-room.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-25',
+    caption: 'A grand crystal chandelier for double-height living rooms.',
+    image: '/instagram/posts/25-grand-crystal-chandelier-living-room.jpg',
+    type: 'reel',
+    fit: 'cover',
+  },
+  {
+    id: 'insta-26',
+    caption: 'Not every light is meant to blend in.',
+    image: '/instagram/posts/26-double-height-crystal-cascade-chandelier-not-every-light-blends-in.jpg',
+    type: 'reel',
+    fit: 'cover',
+  },
+  {
+    id: 'insta-27',
+    caption: 'Transform your space with premium lighting – glass pendants over the dining table.',
+    image: '/instagram/posts/27-glass-pendant-lights-dining-premium-lighting.jpg',
+    type: 'reel',
+    fit: 'cover',
+  },
+  {
+    id: 'insta-28',
+    caption: 'Designed to illuminate beautiful spaces.',
+    image: '/instagram/posts/28-dining-chandelier-designed-to-illuminate-beautiful-spaces.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-29',
+    caption: 'Lighting that speaks luxury.',
+    image: '/instagram/posts/29-crystal-glass-wall-lamp-lighting-that-speaks-luxury.jpg',
+    type: 'reel',
+    fit: 'cover',
+  },
+  {
+    id: 'insta-30',
+    caption: 'The right lighting can completely transform how a room feels.',
+    image: '/instagram/posts/30-spiral-ring-led-chandelier-staircase.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-31',
+    caption: 'A statement piece for modern interiors.',
+    image: '/instagram/posts/31-gold-curve-wall-lamp-statement-piece-for-modern-interiors.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-32',
+    caption: 'The secret behind beautiful interiors.',
+    image: '/instagram/posts/32-glass-pendant-cluster-secret-behind-beautiful-interiors.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-33',
+    caption: 'Glow with elegance – premium quality, modern design, soft & warm glow.',
+    image: '/instagram/posts/33-gold-wall-lamp-glow-with-elegance.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-34',
+    caption: 'A gold bird wall lamp – art that lights up.',
+    image: '/instagram/posts/34-gold-bird-wall-lamp.jpg',
+    type: 'reel',
+    fit: 'cover',
+  },
+  {
+    id: 'insta-35',
+    caption: 'Warm light, beautiful nights – glow with elegance.',
+    image: '/instagram/posts/35-gold-ring-wall-lamp-glow-with-elegance-features.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-36',
+    caption: 'Crafted to elevate every space – our wall lamp collection.',
+    image: '/instagram/posts/36-wall-lamp-collection-crafted-to-elevate-every-space.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-37',
+    caption: 'Warm light, beautiful nights.',
+    image: '/instagram/posts/37-acrylic-led-wall-lamp-warm-light-beautiful-nights.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-38',
+    caption: 'Soft light, safer steps – LED step lights with a 2-year warranty.',
+    image: '/instagram/posts/38-led-step-light-soft-light-safer-steps.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-39',
+    caption: 'Timeless comfort – wall lights that add warmth, charm & a timeless glow.',
+    image: '/instagram/posts/39-glass-wall-lamp-timeless-comfort.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-40',
+    caption: 'Illuminate every corner with elegance.',
+    image: '/instagram/posts/40-antique-wall-lamp-collection-illuminate-every-corner.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-41',
+    caption: 'Lights that bring warmth and elevate every moment.',
+    image: '/instagram/posts/41-wall-lamp-collection-lights-that-bring-warmth.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-42',
+    caption: 'Lighting that transforms every moment – modern geometric pendants.',
+    image: '/instagram/posts/42-geometric-pendant-lights-lighting-that-transforms-every-moment.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-43',
+    caption: 'Lighting that elevates your everyday.',
+    image: '/instagram/posts/43-pendant-lights-lighting-that-elevates-your-everyday.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-44',
+    caption: 'Lighting that elevates every moment – our pendant light collection.',
+    image: '/instagram/posts/44-pendant-lights-lighting-that-elevates-every-moment.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-45',
+    caption: 'Light that transforms every space.',
+    image: '/instagram/posts/45-pendant-light-collection-transforms-every-space.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-46',
+    caption: 'Decorative lights – trendy looks, timeless feels. Discover your new favourites today.',
+    image: '/instagram/posts/46-decorative-lights-contact-us-banner.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-47',
+    caption: 'Chandeliers and wall lamps from our collection.',
+    image: '/instagram/posts/47-chandelier-and-wall-lamp-collage.jpg',
+    type: 'reel',
+    fit: 'cover',
+  },
+  {
+    id: 'insta-48',
+    caption: 'Classic wall lamp collection – model LH-155WL.',
+    image: '/instagram/posts/48-lh-155wl-classic-wall-lamp-collection-banner.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-49',
+    caption: 'Exclusive design of wall lamp.',
+    image: '/instagram/posts/49-led-wall-lamp-exclusive-design.jpg',
+    type: 'reel',
+    fit: 'cover',
+  },
+  {
+    id: 'insta-50',
+    caption: '24V SMPS series – high quality and good performance.',
+    image: '/instagram/posts/50-24v-smps-led-driver-series.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-51',
+    caption: 'Foto LED picture light for mirrors and artwork.',
+    image: '/instagram/posts/51-foto-led-picture-mirror-light.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-52',
+    caption: 'Magic Series – rimless illumination for every space.',
+    image: '/instagram/posts/52-magic-series-rimless-led-panel-light.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-53',
+    caption: 'Gold deer-antler linear wall lamp.',
+    image: '/instagram/posts/53-gold-deer-antler-linear-wall-lamp.jpg',
+    type: 'post',
+    fit: 'contain',
+  },
+  {
+    id: 'insta-54',
+    caption: 'Warm festive wishes from Light-Hut. 🔥',
+    image: '/instagram/posts/54-happy-lohri-festival-greeting.jpg',
+    type: 'reel',
+    fit: 'cover',
   },
 ];
+
+const INSTAGRAM_POSTS_ROW1 = INSTAGRAM_POSTS.slice(0, 26);
+const INSTAGRAM_POSTS_ROW2 = INSTAGRAM_POSTS.slice(26);
+
+const InstagramImage = ({ post }) =>
+  post.fit === 'contain' ? (
+    <>
+      <img
+        src={post.image}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover scale-110 blur-xl brightness-75"
+        loading="lazy"
+      />
+      <img
+        src={post.image}
+        alt={post.caption}
+        className="relative w-full h-full object-contain object-center transform group-hover:scale-105 transition-transform duration-700 ease-out"
+        loading="lazy"
+      />
+    </>
+  ) : (
+    <img
+      src={post.image}
+      alt={post.caption}
+      className="w-full h-full object-cover object-center transform group-hover:scale-108 transition-transform duration-700 ease-out"
+      loading="lazy"
+    />
+  );
 
 export const OurInstagramShowcaseSection = () => {
   const { settings } = useSettings();
@@ -223,15 +462,7 @@ export const OurInstagramShowcaseSection = () => {
                 onClick={() => setSelectedPost(post)}
                 className="group relative w-[160px] sm:w-[210px] md:w-[245px] aspect-[9/15] rounded-sm sm:rounded-md overflow-hidden bg-neutral-900 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-2xl cursor-pointer transition-all duration-500 shrink-0 border border-neutral-300/80 hover:-translate-y-1.5"
               >
-                <img
-                  src={post.image}
-                  onError={(e) => {
-                    e.target.src = '/hero-chandelier.jpg';
-                  }}
-                  alt={post.caption}
-                  className="w-full h-full object-cover object-center transform group-hover:scale-108 transition-transform duration-700 ease-out"
-                  loading="lazy"
-                />
+                <InstagramImage post={post} />
 
                 {/* Top Instagram badge */}
                 <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between z-10 pointer-events-none">
@@ -260,18 +491,7 @@ export const OurInstagramShowcaseSection = () => {
                     {post.caption}
                   </p>
 
-                  <div className="flex items-center justify-between text-white/90 text-xs pt-2 border-t border-white/20">
-                    <div className="flex items-center gap-3">
-                      <span className="flex items-center gap-1">
-                        <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
-                        <span className="text-[11px] font-semibold">{post.likes}</span>
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <MessageCircle className="w-3.5 h-3.5 text-white/80" />
-                        <span className="text-[11px] font-semibold">{post.comments}</span>
-                      </span>
-                    </div>
-
+                  <div className="flex items-center justify-end text-white/90 text-xs pt-2 border-t border-white/20">
                     <span className="text-[10px] uppercase font-bold tracking-wider text-amber-300 flex items-center gap-1">
                       <span>View</span>
                       <ExternalLink className="w-3 h-3" />
@@ -292,15 +512,7 @@ export const OurInstagramShowcaseSection = () => {
                 onClick={() => setSelectedPost(post)}
                 className="group relative w-[160px] sm:w-[210px] md:w-[245px] aspect-[9/15] rounded-sm sm:rounded-md overflow-hidden bg-neutral-900 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-2xl cursor-pointer transition-all duration-500 shrink-0 border border-neutral-300/80 hover:-translate-y-1.5"
               >
-                <img
-                  src={post.image}
-                  onError={(e) => {
-                    e.target.src = '/hero-pendant.jpg';
-                  }}
-                  alt={post.caption}
-                  className="w-full h-full object-cover object-center transform group-hover:scale-108 transition-transform duration-700 ease-out"
-                  loading="lazy"
-                />
+                <InstagramImage post={post} />
 
                 {/* Top Instagram badge */}
                 <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between z-10 pointer-events-none">
@@ -329,18 +541,7 @@ export const OurInstagramShowcaseSection = () => {
                     {post.caption}
                   </p>
 
-                  <div className="flex items-center justify-between text-white/90 text-xs pt-2 border-t border-white/20">
-                    <div className="flex items-center gap-3">
-                      <span className="flex items-center gap-1">
-                        <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
-                        <span className="text-[11px] font-semibold">{post.likes}</span>
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <MessageCircle className="w-3.5 h-3.5 text-white/80" />
-                        <span className="text-[11px] font-semibold">{post.comments}</span>
-                      </span>
-                    </div>
-
+                  <div className="flex items-center justify-end text-white/90 text-xs pt-2 border-t border-white/20">
                     <span className="text-[10px] uppercase font-bold tracking-wider text-amber-300 flex items-center gap-1">
                       <span>View</span>
                       <ExternalLink className="w-3 h-3" />
@@ -380,7 +581,7 @@ export const OurInstagramShowcaseSection = () => {
                   <img
                     src={selectedPost.image}
                     alt={selectedPost.caption}
-                    className="w-full h-full object-cover object-center"
+                    className="w-full h-full object-contain object-center"
                   />
                 </div>
 
@@ -402,16 +603,6 @@ export const OurInstagramShowcaseSection = () => {
                       {selectedPost.caption}
                     </p>
 
-                    <div className="flex items-center gap-4 text-white/80 text-xs mb-6">
-                      <span className="flex items-center gap-1.5">
-                        <Heart className="w-4 h-4 text-rose-500 fill-rose-500" />
-                        <span className="font-semibold">{selectedPost.likes} Likes</span>
-                      </span>
-                      <span className="flex items-center gap-1.5">
-                        <MessageCircle className="w-4 h-4 text-white/80" />
-                        <span className="font-semibold">{selectedPost.comments} Comments</span>
-                      </span>
-                    </div>
                   </div>
 
                   <a

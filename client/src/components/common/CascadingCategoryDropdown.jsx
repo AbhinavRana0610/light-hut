@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ArrowRight, Layers } from 'lucide-react';
@@ -283,6 +283,18 @@ export const PRODUCT_CATEGORIES_DATA = [
 export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
   const [categoriesList, setCategoriesList] = useState(PRODUCT_CATEGORIES_DATA);
   const [activeCategory, setActiveCategory] = useState(PRODUCT_CATEGORIES_DATA[0]);
+  // Sub-menu is rendered outside the scrollable list (so it isn't clipped); track its vertical offset
+  const [flyoutTop, setFlyoutTop] = useState(0);
+  const rootRef = useRef(null);
+  const itemRefs = useRef({});
+
+  const syncFlyoutTop = () => {
+    const item = itemRefs.current[activeCategory?.slug];
+    if (!rootRef.current || !item) return;
+    setFlyoutTop(item.getBoundingClientRect().top - rootRef.current.getBoundingClientRect().top);
+  };
+
+  useEffect(syncFlyoutTop, [activeCategory, categoriesList]);
 
   // Fetch real-time categories and live product counts from backend
   useEffect(() => {
@@ -308,23 +320,28 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
 
   return (
     <motion.div
+      ref={rootRef}
       initial={{ opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 4 }}
       transition={{ duration: 0.15 }}
       className={`relative bg-white text-neutral-800 rounded-2xl shadow-[0_16px_40px_rgba(0,0,0,0.12)] border border-neutral-200/90 p-2 w-[245px] select-none ${className}`}
     >
-      {/* Category List */}
-      <div className="space-y-0.5">
-        <div className="px-2.5 py-1 mb-1 border-b border-neutral-100 flex items-center justify-between">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">
-            Catalog Categories
-          </span>
-          <span className="text-[10px] font-bold text-[#DC2626]">
-            {categoriesList.length}
-          </span>
-        </div>
+      <div className="px-2.5 py-1 mb-1 border-b border-neutral-100 flex items-center justify-between">
+        <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">
+          Catalog Categories
+        </span>
+        <span className="text-[10px] font-bold text-[#DC2626]">
+          {categoriesList.length}
+        </span>
+      </div>
 
+      {/* Category List (scrollable) */}
+      <div
+        data-lenis-prevent
+        onScroll={syncFlyoutTop}
+        className="space-y-0.5 max-h-[min(420px,calc(100vh-11rem))] overflow-y-auto overscroll-contain modal-scrollbar pr-1"
+      >
         {categoriesList.map((cat) => {
           const hasSub = cat.sub && cat.sub.length > 0;
           const isHovered = activeCategory?.slug === cat.slug;
@@ -333,7 +350,9 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
           return (
             <div
               key={cat.slug}
-              className="relative"
+              ref={(el) => {
+                itemRefs.current[cat.slug] = el;
+              }}
               onMouseEnter={() => setActiveCategory(cat)}
             >
               <Link
@@ -373,74 +392,76 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
                   )}
                 </div>
               </Link>
-
-              {/* Sub Dropdown Flyout to the Right — Clean, Compact & Image-Free */}
-              <AnimatePresence>
-                {isHovered && hasSub && (
-                  <motion.div
-                    initial={{ opacity: 0, x: 6 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 4 }}
-                    transition={{ duration: 0.14 }}
-                    className="absolute left-[calc(100%+6px)] top-0 w-[230px] bg-white rounded-2xl shadow-[0_16px_40px_rgba(0,0,0,0.14)] border border-neutral-200/90 p-2 z-50 flex flex-col justify-between"
-                  >
-                    <div>
-                      {/* Header */}
-                      <div className="px-2.5 py-1 mb-1 border-b border-neutral-100 flex items-center justify-between">
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#DC2626] truncate">
-                          {cat.name} Types
-                        </span>
-                        <span className="text-[10px] text-neutral-400 font-mono">
-                          {cat.sub.length}
-                        </span>
-                      </div>
-
-                      {/* Clean Subcategory List */}
-                      <div className="space-y-0.5">
-                        {cat.sub.map((subItem) => {
-                          const subCount = subItem.productCount ?? subItem.count ?? 0;
-                          return (
-                            <Link
-                              key={subItem.slug}
-                              to={`/catalog?category=${cat.slug}&sub=${subItem.slug}`}
-                              onClick={onClose}
-                              className="group/sub flex items-center justify-between px-2.5 py-1.5 rounded-xl text-xs font-medium text-neutral-700 hover:text-[#DC2626] hover:bg-red-50/80 transition-all duration-150"
-                            >
-                              <span className="truncate group-hover/sub:translate-x-0.5 transition-transform duration-150">
-                                {subItem.name}
-                              </span>
-                              <div className="flex items-center gap-1 shrink-0">
-                                {subCount > 0 && (
-                                  <span className="text-[9.5px] px-1.5 py-0.5 rounded bg-neutral-100 text-neutral-500 group-hover/sub:bg-red-100 group-hover/sub:text-[#DC2626] font-mono">
-                                    {subCount}
-                                  </span>
-                                )}
-                                <ChevronRight className="w-3.5 h-3.5 text-neutral-300 group-hover/sub:text-[#DC2626] group-hover/sub:translate-x-0.5 transition-all shrink-0" />
-                              </div>
-                            </Link>
-                          );
-                        })}
-                      </div>
-                    </div>
-
-                    {/* Bottom Link: All Category Fixtures in Catalog */}
-                    <div className="mt-1.5 pt-1.5 border-t border-neutral-100 px-1">
-                      <Link
-                        to={`/catalog?category=${cat.slug}`}
-                        onClick={onClose}
-                        className="text-[11px] font-semibold text-[#DC2626] hover:text-[#B91C1C] flex items-center justify-between px-1.5 py-1 rounded-lg hover:bg-red-50/50 transition-colors group/link"
-                      >
-                        <span>Explore All {cat.name}s</span>
-                        <ArrowRight className="w-3.5 h-3.5 transform group-hover/link:translate-x-0.5 transition-transform" />
-                      </Link>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </div>
           );
         })}
       </div>
+
+      {/* Sub Dropdown Flyout to the Right — Clean, Compact & Image-Free */}
+      <AnimatePresence>
+        {activeCategory?.sub?.length > 0 && (
+          <motion.div
+            key={activeCategory.slug}
+            style={{ top: flyoutTop }}
+            initial={{ opacity: 0, x: 6 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 4 }}
+            transition={{ duration: 0.14 }}
+            className="absolute left-[calc(100%+6px)] w-[230px] bg-white rounded-2xl shadow-[0_16px_40px_rgba(0,0,0,0.14)] border border-neutral-200/90 p-2 z-50 flex flex-col justify-between"
+          >
+            <div>
+              {/* Header */}
+              <div className="px-2.5 py-1 mb-1 border-b border-neutral-100 flex items-center justify-between">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#DC2626] truncate">
+                  {activeCategory.name} Types
+                </span>
+                <span className="text-[10px] text-neutral-400 font-mono">
+                  {activeCategory.sub.length}
+                </span>
+              </div>
+
+              {/* Clean Subcategory List */}
+              <div className="space-y-0.5">
+                {activeCategory.sub.map((subItem) => {
+                  const subCount = subItem.productCount ?? subItem.count ?? 0;
+                  return (
+                    <Link
+                      key={subItem.slug}
+                      to={`/catalog?category=${activeCategory.slug}&sub=${subItem.slug}`}
+                      onClick={onClose}
+                      className="group/sub flex items-center justify-between px-2.5 py-1.5 rounded-xl text-xs font-medium text-neutral-700 hover:text-[#DC2626] hover:bg-red-50/80 transition-all duration-150"
+                    >
+                      <span className="truncate group-hover/sub:translate-x-0.5 transition-transform duration-150">
+                        {subItem.name}
+                      </span>
+                      <div className="flex items-center gap-1 shrink-0">
+                        {subCount > 0 && (
+                          <span className="text-[9.5px] px-1.5 py-0.5 rounded bg-neutral-100 text-neutral-500 group-hover/sub:bg-red-100 group-hover/sub:text-[#DC2626] font-mono">
+                            {subCount}
+                          </span>
+                        )}
+                        <ChevronRight className="w-3.5 h-3.5 text-neutral-300 group-hover/sub:text-[#DC2626] group-hover/sub:translate-x-0.5 transition-all shrink-0" />
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Bottom Link: All Category Fixtures in Catalog */}
+            <div className="mt-1.5 pt-1.5 border-t border-neutral-100 px-1">
+              <Link
+                to={`/catalog?category=${activeCategory.slug}`}
+                onClick={onClose}
+                className="text-[11px] font-semibold text-[#DC2626] hover:text-[#B91C1C] flex items-center justify-between px-1.5 py-1 rounded-lg hover:bg-red-50/50 transition-colors group/link"
+              >
+                <span>Explore All {activeCategory.name}s</span>
+                <ArrowRight className="w-3.5 h-3.5 transform group-hover/link:translate-x-0.5 transition-transform" />
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Bottom link: View All Catalog Categories (All Fixtures) */}
       <div className="mt-1.5 pt-1.5 border-t border-neutral-100 px-1">

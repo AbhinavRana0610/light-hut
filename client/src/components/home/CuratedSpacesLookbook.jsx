@@ -11,7 +11,7 @@ const CURATED_SPACES = [
     title: 'Master Canopy Bed Suite',
     category: 'Bedside Pendants & Warm Grazers',
     link: '/catalog?category=pendant-lamp',
-    image: '/banner-bedroom.jpg',
+    image: '/home/pendant-lh-380.jpg',
     tag: 'Bedroom Sanctuary',
   },
   {
@@ -19,7 +19,7 @@ const CURATED_SPACES = [
     title: 'Modern Fluted Wood Lounge',
     category: 'Linear Sconces & Cove Illumination',
     link: '/catalog?category=wall-lamp',
-    image: '/categories/led-wall-lamp.jpg',
+    image: '/home/wall-lh-3441wl.jpg',
     tag: 'Living Architecture',
   },
   {
@@ -35,7 +35,7 @@ const CURATED_SPACES = [
     title: 'Warm Hospitality Dining Room',
     category: 'Clustered Borosilicate Glass Drops',
     link: '/catalog?category=pendant-lamp',
-    image: '/categories/pendant-lamp.jpg',
+    image: '/home/pendant-lh-2635.jpg',
     tag: 'Culinary Pavilion',
   },
   {
@@ -51,7 +51,7 @@ const CURATED_SPACES = [
     title: 'Architectural Facade & Terrace',
     category: 'IP65 Weatherproof Marine Grazers',
     link: '/catalog?category=outdoor-light',
-    image: '/hero-outdoor.jpg',
+    image: '/home/outdoor-lh-2150wl.jpg',
     tag: 'Exterior Facade',
   },
   {

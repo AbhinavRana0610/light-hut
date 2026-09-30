@@ -690,7 +690,8 @@ export const getCatalog = async (req, res, next) => {
     const sourceGroups = allCategoriesInDb.length > 0 ? allCategoriesInDb : CATALOG_CATEGORY_GROUPS;
     const structuredCategories = sourceGroups.map((group) => {
       const staticDef = CATALOG_CATEGORY_GROUPS.find((g) => g.slug === group.slug);
-      let groupTotal = categorySlugToCountMap[group.slug] || 0;
+      const directTotal = categorySlugToCountMap[group.slug] || 0;
+      let groupTotal = directTotal;
 
       const rawSubs = Array.isArray(group.subcategories) && group.subcategories.length > 0
         ? group.subcategories
@@ -704,7 +705,8 @@ export const getCatalog = async (req, res, next) => {
           const subDirectCount = subcategoryCountMap[subSlug] || 0;
           const subCount = subDirectCount + subMatch;
           
-          if (!groupTotal || groupTotal === 0) {
+          // Parent without its own products: total is the sum of all its subcategories
+          if (!directTotal) {
             groupTotal += subCount;
           }
 

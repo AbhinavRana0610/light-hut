@@ -6,6 +6,10 @@ import Category from '../models/Category.js';
 import Product from '../models/Product.js';
 import HomepageSection from '../models/HomepageSection.js';
 import SiteSettings from '../models/SiteSettings.js';
+import { LED_HANGING_LAMPS } from './data/ledHangingLamps.js';
+import { WALL_LAMPS } from './data/wallLamps.js';
+import { E27_HANGING_LAMPS } from './data/e27HangingLamps.js';
+import { OUTDOOR_LAMPS } from './data/outdoorLamps.js';
 
 dotenv.config();
 
@@ -363,172 +367,15 @@ const seedAll = async (isStandalone = false) => {
     // 3. Seed Products
     console.log('[Seed] Seeding LightHut product catalog...');
     const productsData = [
-      // ── LED WALL LAMP ─────────────────────────────────────────────
-      {
-        name: 'LH-WL101 Slim LED Wall Lamp',
-        slug: 'lh-wl101-slim-led-wall-lamp',
-        sku: 'LH-WL101',
-        category: catMap['led-wall-lamp'],
-        shortDescription: 'Sleek linear LED wall lamp with a brushed gold frame and frosted acrylic diffuser.',
-        description: 'The LH-WL101 brings a refined horizontal glow to feature walls, headboards, and corridor niches. Its micro-prismatic acrylic diffuser eliminates hotspots for a smooth, uniform luminous surface.',
-        images: [
-          { url: '/categories/led-wall-lamp.jpg', alt: 'LH-WL101 LED Wall Lamp', isCover: true },
-        ],
-        specifications: {
-          dimensions: '600mm x 80mm x 55mm',
-          material: 'Extruded Aluminum & Acrylic',
-          finish: 'Brushed Champagne Gold',
-          wattage: '16W Integrated LED',
-          voltage: 'AC 100-240V 50/60Hz',
-          colorTemperature: '3000K Warm White (CRI > 92)',
-          ipRating: 'IP20 Indoor',
-          installationType: 'Surface Wall Mount',
-          beamAngle: '120° Diffuse',
-          cri: 'Ra > 92',
-          luminousFlux: '1450 Lumens',
-        },
-        isFeatured: true,
-        isPublished: true,
-        sortOrder: 0,
-      },
-      {
-        name: 'LH-WL102 Round LED Halo Wall Light',
-        slug: 'lh-wl102-round-led-halo-wall-light',
-        sku: 'LH-WL102',
-        category: catMap['led-wall-lamp'],
-        shortDescription: 'Circular LED wall light with indirect 360° halo glow – perfect for bedroom feature walls.',
-        description: 'Soft perimeter LED illumination wraps the circular disc, casting a warm halo against the wall. Die-cast aluminum body with a matte white powder coat ensures long-lasting durability.',
-        images: [
-          { url: '/categories/wall-lamp.jpg', alt: 'LH-WL102 Round Halo', isCover: true },
-        ],
-        specifications: {
-          dimensions: 'Diameter: 300mm, Depth: 40mm',
-          material: 'Die-Cast Aluminum',
-          finish: 'Matte White',
-          wattage: '12W Integrated LED',
-          voltage: 'AC 100-240V',
-          colorTemperature: '3000K / 4000K Switchable',
-          ipRating: 'IP20 Indoor',
-          installationType: 'Flush Wall Mount',
-          beamAngle: 'Indirect 360° Halo',
-          cri: 'Ra > 90',
-          luminousFlux: '1000 Lumens',
-        },
-        isFeatured: false,
-        isPublished: true,
-        sortOrder: 1,
-      },
-      // ── E27 WALL LAMP ─────────────────────────────────────────────
-      {
-        name: 'LH-WL201 Brass E27 Swing-Arm Wall Lamp',
-        slug: 'lh-wl201-brass-e27-swing-arm-wall-lamp',
-        sku: 'LH-WL201',
-        category: catMap['e27-wall-lamp'],
-        shortDescription: 'Articulating swing-arm E27 wall lamp in hand-brushed satin brass – timeless bedside companion.',
-        description: 'Inspired by mid-century European reading lamps, the LH-WL201 features a fully articulated swing arm and a conical shade in satin brass. Compatible with any standard E27 bulb up to 60W.',
-        images: [
-          { url: '/categories/e27-wall-lamp.jpg', alt: 'LH-WL201 Brass E27 Wall Lamp', isCover: true },
-        ],
-        specifications: {
-          dimensions: 'Arm Reach: 450mm, Shade Dia: 180mm',
-          material: 'Solid Brass & Steel',
-          finish: 'Satin Antique Brass',
-          wattage: 'E27 Max 60W (Bulb Not Included)',
-          voltage: 'AC 220-240V',
-          colorTemperature: 'Depends on Bulb',
-          ipRating: 'IP20 Indoor',
-          installationType: 'Surface Wall Mount',
-          beamAngle: 'Adjustable Directional',
-          cri: 'Depends on Bulb',
-          luminousFlux: 'Depends on Bulb',
-        },
-        isFeatured: true,
-        isPublished: true,
-        sortOrder: 0,
-      },
+      // ── WALL LAMP: LED + E27 ──────────────────────────────────────
+      // Catalogue products: see ./data/wallLamps.js
+      ...WALL_LAMPS.map(({ categorySlug, ...p }) => ({ ...p, category: catMap[categorySlug] })),
       // ── LED HANGING LAMP ──────────────────────────────────────────
-      {
-        name: 'LH-PL101 Cone LED Pendant Lamp',
-        slug: 'lh-pl101-cone-led-pendant-lamp',
-        sku: 'LH-PL101',
-        category: catMap['led-hanging-lamp'],
-        shortDescription: 'Minimalist matte-black cone LED pendant with focused downlight beam – ideal for dining tables.',
-        description: 'The LH-PL101 delivers focused warm illumination directly onto dining surfaces. Its seamless spun-aluminum cone in matte black hides the LED array completely for a clean, glare-free appearance.',
-        images: [
-          { url: '/categories/led-hanging-lamp.jpg', alt: 'LH-PL101 Cone Pendant', isCover: true },
-        ],
-        specifications: {
-          dimensions: 'Shade Dia: 250mm, Height: 220mm, Cord: 1500mm adj.',
-          material: 'Spun Aluminum',
-          finish: 'Matte Black',
-          wattage: '15W Integrated LED',
-          voltage: 'AC 100-240V',
-          colorTemperature: '3000K Warm White',
-          ipRating: 'IP20 Indoor',
-          installationType: 'Ceiling Pendant',
-          beamAngle: '90° Direct Downlight',
-          cri: 'Ra > 92',
-          luminousFlux: '1350 Lumens',
-        },
-        isFeatured: true,
-        isPublished: true,
-        sortOrder: 0,
-      },
-      {
-        name: 'LH-PL102 Geometric LED Cluster Pendant',
-        slug: 'lh-pl102-geometric-led-cluster-pendant',
-        sku: 'LH-PL102',
-        category: catMap['led-hanging-lamp'],
-        shortDescription: 'Three-head geometric LED pendant cluster in gold – perfect over kitchen islands.',
-        description: 'A trio of hexagonal LED heads suspended on individual cords from a shared ceiling rose. Each head angle is adjustable, allowing you to tailor light distribution over breakfast bars and kitchen islands.',
-        images: [
-          { url: '/categories/pendant-lamp.jpg', alt: 'LH-PL102 Cluster Pendant', isCover: true },
-        ],
-        specifications: {
-          dimensions: 'Canopy: 150mm Dia, Individual Head: 120mm',
-          material: 'Aluminum Alloy',
-          finish: 'Brushed Gold',
-          wattage: '3 x 8W LED (24W Total)',
-          voltage: 'AC 100-240V',
-          colorTemperature: '3000K Warm White',
-          ipRating: 'IP20 Indoor',
-          installationType: 'Ceiling Cluster Pendant',
-          beamAngle: '60° Each Head',
-          cri: 'Ra > 90',
-          luminousFlux: '2100 Lumens',
-        },
-        isFeatured: false,
-        isPublished: true,
-        sortOrder: 1,
-      },
-      // ── E27 HANGING LAMP ──────────────────────────────────────────
-      {
-        name: 'LH-PL201 Rattan E27 Globe Pendant',
-        slug: 'lh-pl201-rattan-e27-globe-pendant',
-        sku: 'LH-PL201',
-        category: catMap['e27-hanging-lamp'],
-        shortDescription: 'Handwoven natural rattan globe pendant with E27 socket – bohemian warmth for any room.',
-        description: 'Each LH-PL201 globe is individually woven by hand from sustainable rattan. The open weave creates beautiful dappled light patterns on walls and ceilings when paired with a warm Edison filament bulb.',
-        images: [
-          { url: '/categories/e27-hanging-lamp.jpg', alt: 'LH-PL201 Rattan Globe', isCover: true },
-        ],
-        specifications: {
-          dimensions: 'Globe Dia: 300mm, Cord: 2000mm adj.',
-          material: 'Natural Rattan & Jute Cord',
-          finish: 'Natural Brown',
-          wattage: 'E27 Max 40W (Bulb Not Included)',
-          voltage: 'AC 220-240V',
-          colorTemperature: 'Depends on Bulb',
-          ipRating: 'IP20 Indoor',
-          installationType: 'Ceiling Pendant',
-          beamAngle: '360° Omnidirectional',
-          cri: 'Depends on Bulb',
-          luminousFlux: 'Depends on Bulb',
-        },
-        isFeatured: true,
-        isPublished: true,
-        sortOrder: 0,
-      },
+      // Catalogue products: see ./data/ledHangingLamps.js
+      ...LED_HANGING_LAMPS.map((p) => ({ ...p, category: catMap['led-hanging-lamp'] })),
+      // ── E27 HANGING LAMP (+ one LED foam lamp) ────────────────────
+      // Catalogue products: see ./data/e27HangingLamps.js
+      ...E27_HANGING_LAMPS.map(({ categorySlug, ...p }) => ({ ...p, category: catMap[categorySlug] })),
       // ── LED CHANDELIER ────────────────────────────────────────────
       {
         name: 'LH-CH101 Sputnik LED Chandelier',
@@ -893,89 +740,9 @@ const seedAll = async (isStandalone = false) => {
         isPublished: true,
         sortOrder: 0,
       },
-      // ── GATE LAMP ─────────────────────────────────────────────────
-      {
-        name: 'LH-OD101 Victorian Gate Post Lamp',
-        slug: 'lh-od101-victorian-gate-post-lamp',
-        sku: 'LH-OD101',
-        category: catMap['gate-lamp'],
-        shortDescription: 'IP44 Victorian-style lantern gate lamp in matte black cast aluminum – suits pillars and posts.',
-        description: 'The LH-OD101 reinterprets the classic gas lantern in durable powder-coated cast aluminum. Its clear seeded glass panels and black ironwork provide an elegant first impression at residential gateways and driveways.',
-        images: [
-          { url: '/categories/outdoor-light.jpg', alt: 'LH-OD101 Victorian Gate Lamp', isCover: true },
-        ],
-        specifications: {
-          dimensions: '220mm x 220mm x 400mm (H)',
-          material: 'Die-Cast Aluminum & Clear Glass',
-          finish: 'Matte Black Powder Coat',
-          wattage: 'E27 Max 60W (Bulb Not Included)',
-          voltage: 'AC 220-240V',
-          colorTemperature: 'Depends on Bulb',
-          ipRating: 'IP44 Outdoor',
-          installationType: 'Post Top / Wall Surface Mount',
-          beamAngle: 'Omnidirectional',
-          cri: 'Depends on Bulb',
-          luminousFlux: 'Depends on Bulb',
-        },
-        isFeatured: true,
-        isPublished: true,
-        sortOrder: 0,
-      },
-      {
-        name: 'LH-OD102 Modern Pillar Gate Light',
-        slug: 'lh-od102-modern-pillar-gate-light',
-        sku: 'LH-OD102',
-        category: catMap['gate-lamp'],
-        shortDescription: 'Sleek rectangular LED gate pillar light in anthracite – suits modern villas and bungalows.',
-        description: 'Clean architectural lines make the LH-OD102 the perfect companion for contemporary residential gate pillars. Integrated LED strips on two faces provide balanced, glare-free illumination of the entrance.',
-        images: [
-          { url: '/categories/outdoor-light.jpg', alt: 'LH-OD102 Modern Pillar Gate Light', isCover: true },
-        ],
-        specifications: {
-          dimensions: '150mm x 150mm x 500mm (H)',
-          material: 'Die-Cast Aluminum',
-          finish: 'Textured Anthracite',
-          wattage: '2 x 6W LED (12W Total)',
-          voltage: 'AC 100-240V',
-          colorTemperature: '3000K Warm White',
-          ipRating: 'IP65 Outdoor',
-          installationType: 'Pillar Top Mount',
-          beamAngle: 'Dual 120° Side Emission',
-          cri: 'Ra > 80',
-          luminousFlux: '1000 Lumens',
-        },
-        isFeatured: false,
-        isPublished: true,
-        sortOrder: 1,
-      },
-      // ── OUTDOOR WALL LAMP ─────────────────────────────────────────
-      {
-        name: 'LH-OD201 IP65 LED Outdoor Wall Light',
-        slug: 'lh-od201-ip65-led-outdoor-wall-light',
-        sku: 'LH-OD201',
-        category: catMap['outdoor-wall-lamp'],
-        shortDescription: 'Weatherproof LED outdoor wall light with motion sensor – ideal for porches and facades.',
-        description: 'IP65-rated for full protection against water jets and dust ingress. The integrated PIR motion sensor activates the light upon detecting movement within a 10-metre range, enhancing both security and convenience.',
-        images: [
-          { url: '/hero-outdoor.jpg', alt: 'LH-OD201 Outdoor LED Wall Light', isCover: true },
-        ],
-        specifications: {
-          dimensions: '200mm x 120mm x 90mm',
-          material: 'Die-Cast Aluminum',
-          finish: 'Textured Anthracite Grey',
-          wattage: '18W Integrated LED',
-          voltage: 'AC 100-240V',
-          colorTemperature: '4000K Cool White',
-          ipRating: 'IP65 Outdoor',
-          installationType: 'Exterior Surface Wall Mount',
-          beamAngle: '120° Wide',
-          cri: 'Ra > 80',
-          luminousFlux: '1600 Lumens',
-        },
-        isFeatured: false,
-        isPublished: true,
-        sortOrder: 0,
-      },
+      // ── OUTDOOR LIGHT: GATE LAMP + OUTDOOR WALL LAMP ─────────────
+      // Catalogue products: see ./data/outdoorLamps.js
+      ...OUTDOOR_LAMPS.map(({ categorySlug, ...p }) => ({ ...p, category: catMap[categorySlug] })),
       // ── TABLE LAMP ────────────────────────────────────────────────
       {
         name: 'LH-TL101 Marble & Brass Table Lamp',

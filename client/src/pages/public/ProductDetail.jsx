@@ -6,7 +6,6 @@ import {
   Download,
   Send,
   Sparkles,
-  ShieldCheck,
   CheckCircle2,
   ChevronRight,
   Maximize2,
@@ -64,136 +63,6 @@ const CATEGORY_BANNER_MAP = {
   'hanging-base': '/craft-main.jpg',
   'spare-driver': '/craft-main.jpg',
   'led-filament-bulb': '/craft-detail.jpg',
-};
-
-// Comprehensive Category-Tailored High-Resolution Perspectives (12 Ultra-HD Perspectives Per Typology)
-const CATEGORY_PERSPECTIVES_MAP = {
-  'chandelier': [
-    { url: '/categories/chandelier.jpg', label: 'Primary Studio Silhouette', tag: 'Studio Specimen' },
-    { url: '/hero-chandelier.jpg', label: 'Grand Ballroom Architectural Centerpiece', tag: 'Ballroom Installation' },
-    { url: '/craft-detail.jpg', label: 'Precision K9 Cut Optical Prisms', tag: 'Optical Macro' },
-    { url: '/hero-chandelier.jpg', label: 'Evening Illuminated Warm Glow (2700K)', tag: 'Warm Ambiance' },
-    { url: '/banner-empire.jpg', label: 'Regal Gilded Empire Crystal Cascade', tag: 'French Royalty' },
-    { url: '/banner-amalfi.jpg', label: 'Handcrafted Brass Ring Dining Setting', tag: 'Dining Salon' },
-    { url: '/categories/double-height.jpg', label: 'Double-Height Atrium Suspension View', tag: 'Atrium Scale' },
-    { url: '/categories/led-hanging-lamp.jpg', label: 'Modern Sputnik Starburst Luminaire', tag: 'Mid-Century Art' },
-    { url: '/craft-main.jpg', label: 'Master Goldsmith Hand-Set Crystals', tag: 'Artisan Craft' },
-    { url: '/categories/led-wall-lamp.jpg', label: 'Ceiling Canopy & High-Tensile Rigging', tag: 'Hardware Detail' },
-    { url: '/categories/double-height.jpg', label: 'Twilight Glass Wall Reflection Ambiance', tag: 'Evening Grandeur' },
-    { url: '/banner-amalfi.jpg', label: 'Low-Angle Optical Starburst Dispersion', tag: 'Beam Pattern' },
-  ],
-  'pendant-lamp': [
-    { url: '/categories/pendant-lamp.jpg', label: 'Studio Pendant Elevation', tag: 'Primary Specimen' },
-    { url: '/hero-pendant.jpg', label: 'Linear Kitchen Island Trio Array', tag: 'Island Array' },
-    { url: '/banner-pendant.jpg', label: 'Mouth-Blown Fluted Borosilicate Glass', tag: 'Italian Glass' },
-    { url: '/banner-pend.jpg', label: 'Nordic Matte Dome Architectural Pendant', tag: 'Scandinavian' },
-    { url: '/banner-amalfi.jpg', label: 'Executive Dining Room Warm Accent', tag: 'Dining Setting' },
-    { url: '/categories/led-wall-lamp.jpg', label: 'Architectural Downlight Cone Spread', tag: 'Optical Cone' },
-    { url: '/categories/led-hanging-lamp.jpg', label: 'Brushed Brass Shade & Texture Detail', tag: 'Macro Brass' },
-    { url: '/banner-amalfi.jpg', label: 'Smoked Amber Glass Warm Drop', tag: 'Warm Horizon' },
-    { url: '/craft-detail.jpg', label: 'Ceiling Rose & Braided Fabric Cable', tag: 'Hardware Detail' },
-    { url: '/categories/dining-table-lamp.jpg', label: 'Intimate Breakfast Nook Perspective', tag: 'In-Situ Nook' },
-    { url: '/categories/floor-lamp.jpg', label: 'Architectural Matte Black Cylinder Array', tag: 'Linear Array' },
-    { url: '/hero-chandelier.jpg', label: 'Evening Ambient Table Atmosphere', tag: 'Circadian Glow' },
-  ],
-  'wall-lamp': [
-    { url: '/categories/wall-lamp.jpg', label: 'Frontal Sconce Elevation', tag: 'Primary Specimen' },
-    { url: '/hero-wall-lamp.jpg', label: 'Bedside Suite Reading Illumination', tag: 'Bedside Suite' },
-    { url: '/categories/led-wall-lamp.jpg', label: 'Bi-Directional Up & Down Wall Grazer', tag: 'Dual Wall Wash' },
-    { url: '/categories/led-hanging-lamp.jpg', label: 'Fluted Borosilicate Glass Cylinder', tag: 'Glass Texture' },
-    { url: '/banner-amalfi.jpg', label: 'Minimalist Halo Perimeter Glow', tag: 'Halo Ambient' },
-    { url: '/categories/table-lamp.jpg', label: 'Corridor Gallery Feature Illumination', tag: 'Corridor Wash' },
-    { url: '/categories/double-height.jpg', label: 'Natural Stone Facade Texture Grazing', tag: 'Material Interaction' },
-    { url: '/craft-detail.jpg', label: 'Brushed Champagne Gold Armature Detail', tag: 'Macro Craft' },
-    { url: '/hero-wall-lamp.jpg', label: 'Backlit Vanity Mirror Framing', tag: 'Vanity Suite' },
-    { url: '/categories/e27-wall-lamp.jpg', label: 'Floating Headboard Circadian Glow', tag: 'Bedroom Mood' },
-    { url: '/banner-bedroom.jpg', label: 'Architectural Foyer Sconce Pair', tag: 'Foyer Setting' },
-    { url: '/categories/floor-lamp.jpg', label: 'Evening Ambient Soft Diffuser Glow', tag: 'Warm Ambiance' },
-  ],
-  'double-height': [
-    { url: '/categories/double-height.jpg', label: 'Full Cascading Elevation', tag: 'Primary Specimen' },
-    { url: '/hero-double-height.jpg', label: 'Spiral Staircase Void Installation', tag: 'Staircase Void' },
-    { url: '/hero-chandelier.jpg', label: 'High-Ceiling Atrium Raindrop Chandelier', tag: 'Atrium Scale' },
-    { url: '/categories/led-hanging-lamp.jpg', label: 'Floating Ring Multi-Tier LED Cascade', tag: 'Tiered Rings' },
-    { url: '/banner-empire.jpg', label: '18-Foot Grand Staircase Chandelier', tag: 'Grand Scale' },
-    { url: '/categories/chandelier.jpg', label: 'Mezzanine Balcony Perspective', tag: 'High-Angle View' },
-    { url: '/craft-detail.jpg', label: 'Multi-Tier Optical K9 Crystal Refraction', tag: 'Refraction Macro' },
-    { url: '/categories/double-height.jpg', label: 'Evening Twilight Exterior Glass Reflection', tag: 'Night Illumination' },
-    { url: '/craft-main.jpg', label: 'High-Tensile Stainless Steel Rigging Detail', tag: 'Safety Rigging' },
-    { url: '/banner-amalfi.jpg', label: 'Duplex Penthouse Living Room Grandeur', tag: 'Penthouse Living' },
-    { url: '/categories/outdoor-light.jpg', label: 'Architectural Void Illuminated Volume', tag: 'Spatial Volume' },
-    { url: '/banner-amalfi.jpg', label: 'Low-Angle Optical Starburst View', tag: 'Prism Pattern' },
-  ],
-  'table-lamp': [
-    { url: '/banner-bedroom.jpg', label: 'Marble Base Mushroom Lamp Studio View', tag: 'Studio Specimen' },
-    { url: '/banner-study.jpg', label: 'Architectural Brass Desk Lamp', tag: 'Desk Luminaire' },
-    { url: '/banner-bed.jpg', label: 'Ceramic Bedside Ambient Lamp', tag: 'Bedside Ambient' },
-    { url: '/banner-study-hover.jpg', label: 'Articulated Task Reading Lamp', tag: 'Articulated Arm' },
-    { url: '/banner-amalfi.jpg', label: 'Frosted Globe Nightstand Glow', tag: 'Globe Diffuser' },
-    { url: '/categories/table-lamp.jpg', label: 'Solid Brass Turned Base Detail', tag: 'Brass Macro' },
-    { url: '/categories/floor-lamp.jpg', label: 'Executive Library Work Desk Setting', tag: 'Library Study' },
-    { url: '/craft-detail.jpg', label: 'In-Line Dimmer & Fabric Braided Cable', tag: 'Hardware Detail' },
-    { url: '/categories/led-wall-lamp.jpg', label: 'Console Table Ambient Accent', tag: 'Console Accent' },
-    { url: '/categories/e27-wall-lamp.jpg', label: 'Warm 2700K Evening Bedroom Atmosphere', tag: 'Circadian Bedside' },
-    { url: '/categories/led-hanging-lamp.jpg', label: 'Sculptural Ceramic Glaze Macro', tag: 'Texture Finish' },
-    { url: '/categories/hanging-base.jpg', label: 'Minimalist Nordic Nightstand Light', tag: 'Nordic Style' },
-  ],
-  'floor-lamp': [
-    { url: '/categories/floor-lamp.jpg', label: 'Arched Brass Cantilever Floor Lamp', tag: 'Primary Specimen' },
-    { url: '/categories/led-filament-bulb.jpg', label: 'Heavy Weighted Marble Plinth Base', tag: 'Plinth Detail' },
-    { url: '/banner-amalfi.jpg', label: 'Minimalist Vertical Corner Light Bar', tag: 'Vertical Column' },
-    { url: '/categories/table-lamp.jpg', label: 'Mid-Century Brass Tripod Lamp', tag: 'Tripod Form' },
-    { url: '/categories/led-wall-lamp.jpg', label: 'Fabric Shade Lounge Reading Corner', tag: 'Reading Lounge' },
-    { url: '/categories/led-hanging-lamp.jpg', label: 'Dual-Source Indirect Ceiling Grazer', tag: 'Ceiling Wash' },
-    { url: '/banner-study.jpg', label: 'Living Room Sectional Sofa Framing', tag: 'Living Framing' },
-    { url: '/craft-detail.jpg', label: 'Telescopic Height Adjustment Detail', tag: 'Hardware Detail' },
-    { url: '/categories/double-height.jpg', label: 'Evening Horizon Glow Ambiance', tag: 'Evening Warmth' },
-    { url: '/banner-bedroom.jpg', label: 'Brushed Brass Armature Macro', tag: 'Brass Finish' },
-    { url: '/categories/floor-lamp.jpg', label: 'Executive Lounge Standing Column', tag: 'Lounge Ambience' },
-    { url: '/categories/hanging-base.jpg', label: 'Architectural Shadow & Beam Profile', tag: 'Beam Horizon' },
-  ],
-  'dining-table-lamp': [
-    { url: '/banner-amalfi.jpg', label: 'Studio Dining Chandelier View', tag: 'Primary Specimen' },
-    { url: '/banner-amalfi.jpg', label: '10-Seater Marble Dining Banquet', tag: 'Banquet Setting' },
-    { url: '/categories/dining-table-lamp.jpg', label: 'Champagne Fluted Borosilicate Glass', tag: 'Fluted Glass' },
-    { url: '/banner-bedroom.jpg', label: 'Cordless Touch Dimming Dining Lamp', tag: 'Cordless Tech' },
-    { url: '/hero-chandelier.jpg', label: 'Candlelight Warm Evening Mood', tag: 'Dinner Mood' },
-    { url: '/categories/pendant-lamp.jpg', label: 'Linear Profile Over Dining Island', tag: 'Linear Profile' },
-    { url: '/banner-study.jpg', label: 'Brushed Gold Intimate Centerpiece', tag: 'Centerpiece' },
-    { url: '/categories/led-hanging-lamp.jpg', label: 'Low-Glare Dining Table Light Spread', tag: 'Optical Glare' },
-    { url: '/craft-detail.jpg', label: 'Heavy Brass Base & Micro-Prism Optics', tag: 'Optics Macro' },
-    { url: '/banner-empire.jpg', label: 'Luxury Penthouse Dining Salon', tag: 'Penthouse Salon' },
-    { url: '/hero-pendant.jpg', label: 'Modern Linear Track Downlight Spread', tag: 'Track Lighting' },
-    { url: '/categories/led-wall-lamp.jpg', label: 'Evening Ambient Wine Tasting Glow', tag: 'Warm Horizon' },
-  ],
-  'outdoor-light': [
-    { url: '/categories/outdoor-light.jpg', label: 'Heritage Gate Pillar Lantern', tag: 'Gate Pillar' },
-    { url: '/hero-outdoor.jpg', label: 'IP65 Weatherproof Exterior Wall Sconce', tag: 'Exterior Wall' },
-    { url: '/categories/outdoor-light.jpg', label: 'Villa Pathway Bollard Daylight View', tag: 'Pathway Bollard' },
-    { url: '/categories/double-height.jpg', label: 'Evening Illuminated Facade Uplight', tag: 'Facade Graze' },
-    { url: '/craft-detail.jpg', label: 'IP65 Silicone Gasket & Tempered Glass Seal', tag: 'Gasket Tech' },
-    { url: '/banner-amalfi.jpg', label: 'Die-Cast Aluminum Garden Sconce', tag: 'Garden Lighting' },
-    { url: '/categories/outdoor-light.jpg', label: 'Luxury Estate Entrance Pillar Illumination', tag: 'Estate Entrance' },
-    { url: '/categories/led-hanging-lamp.jpg', label: 'Textured Stone Wall Uplighting', tag: 'Stone Uplight' },
-    { url: '/hero-chandelier.jpg', label: 'Poolside & Garden Terrace Ambiance', tag: 'Poolside Glow' },
-    { url: '/hero-outdoor.jpg', label: 'Marine-Grade Corrosion Resistant Black Finish', tag: 'Marine Coating' },
-    { url: '/categories/led-wall-lamp.jpg', label: 'Low-Angle Upward Beam Wash', tag: 'Beam Dispersion' },
-    { url: '/categories/dining-table-lamp.jpg', label: 'Twilight Landscape Garden Illumination', tag: 'Twilight Garden' },
-  ],
-  'led-filament-bulb': [
-    { url: '/categories/led-filament-bulb.jpg', label: 'Amber ST64 Spiral Filament Bulb', tag: 'Spiral Edison' },
-    { url: '/banner-amalfi.jpg', label: 'Warm 2200K Edison Heritage Glow', tag: 'Golden Warmth' },
-    { url: '/categories/led-wall-lamp.jpg', label: 'G125 Giant Globe Filament Luminaire', tag: 'Giant Globe' },
-    { url: '/categories/led-hanging-lamp.jpg', label: 'Tubular T30 Antique Filament Bar', tag: 'Tubular Bar' },
-    { url: '/craft-detail.jpg', label: 'Dimmable Golden Tinted Glass Coating', tag: 'Glass Coating' },
-    { url: '/hero-chandelier.jpg', label: 'Multi-Bulb Filament Cluster Array', tag: 'Cluster Array' },
-    { url: '/categories/wall-lamp.jpg', label: 'Exposed Filament Sconce Pairing', tag: 'Sconce Pairing' },
-    { url: '/craft-main.jpg', label: 'Brass E27 Socket Threading Detail', tag: 'Socket Thread' },
-    { url: '/banner-amalfi.jpg', label: 'Evening Bar & Lounge Warm Ambiance', tag: 'Lounge Bar' },
-    { url: '/categories/table-lamp.jpg', label: 'Cross-Pattern Filament Element Close-Up', tag: 'Element Macro' },
-    { url: '/banner-study.jpg', label: 'Clear vs Amber Glass Comparison', tag: 'Glass Options' },
-    { url: '/categories/floor-lamp.jpg', label: 'Dim-To-Warm Circadian Glow Range', tag: 'Dim-to-Warm' },
-  ],
 };
 
 // Real-World Architectural Project Installations Data (Curated for spatial context)
@@ -332,9 +201,7 @@ export const ProductDetail = () => {
       ? product.category.toLowerCase()
       : product.category?.slug?.toLowerCase() || 'chandelier';
 
-  // Build a rich 12-image gallery (combines product's uploaded images + ultra-HD category perspectives)
-  const categoryExtras = CATEGORY_PERSPECTIVES_MAP[catKey] || CATEGORY_PERSPECTIVES_MAP['chandelier'];
-
+  // Gallery shows only the product's own images
   const rawImages = [];
   if (product.images && product.images.length > 0) {
     product.images.forEach((img, i) => {
@@ -350,19 +217,17 @@ export const ProductDetail = () => {
     });
   }
 
-  // Augment with perspective images to guarantee up to 12 high-definition images
-  categoryExtras.forEach((extra) => {
-    if (!rawImages.some((r) => r.url === extra.url)) {
-      rawImages.push({
-        url: extra.url,
-        label: extra.label,
-        tag: extra.tag,
-        alt: `${product.name} - ${extra.label}`,
-      });
-    }
-  });
+  // Products without uploaded images fall back to their category cover
+  if (rawImages.length === 0) {
+    rawImages.push({
+      url: CATEGORY_BANNER_MAP[catKey] || '/categories/chandelier.jpg',
+      label: 'Primary Studio View',
+      tag: 'Official Specimen',
+      alt: product.name,
+    });
+  }
 
-  const images = rawImages.slice(0, 12); // Rich 12-image gallery
+  const images = rawImages;
   const currentImage = images[selectedImageIndex] || images[0];
 
   const specsList = [
@@ -753,28 +618,11 @@ export const ProductDetail = () => {
               </div>
             </div>
 
-            {/* Full Architectural Description */}
-            {product.description && (
-              <div className="pt-6 border-t border-neutral-200 space-y-3">
-                <h3 className="font-serif-luxury text-sm uppercase tracking-luxury text-neutral-900 font-bold">
-                  Architectural Description
-                </h3>
-                <p className="text-xs text-neutral-600 leading-relaxed whitespace-pre-line">
-                  {product.description}
-                </p>
-              </div>
-            )}
-
-            {/* Architectural Trust Guarantee */}
-            <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200 flex items-center gap-3 text-xs text-neutral-600">
-              <ShieldCheck className="w-5 h-5 text-[#DC2626] shrink-0" />
-              <span>5-Year Manufacturer Warranty on solid brass forging, electroplating, and constant-current LED drivers.</span>
-            </div>
-
           </div>
         </div>
 
         {/* ── 2. EXPANDED IN-SITU ARCHITECTURAL LOOKBOOK (8 High-Res Perspectives) ── */}
+        {inSituGallery.length > 0 && (
         <section className="mt-20 pt-14 border-t border-neutral-200">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
             <div className="max-w-2xl">
@@ -842,6 +690,7 @@ export const ProductDetail = () => {
             ))}
           </div>
         </section>
+        )}
 
         {/* ── 3. REAL ARCHITECTURAL PROJECTS & RESIDENTIAL INSTALLATIONS SHOWCASE ── */}
         <section className="mt-20 pt-14 border-t border-neutral-200">

@@ -4,12 +4,12 @@ import { MASTER_CATEGORIES } from '../../data/catalogData';
 
 // Tailored high-definition photography for each of the 10 lighting categories
 const CATEGORY_IMAGE_MAP = {
-  'wall-lamp': '/categories/wall-lamp.jpg',
-  'pendant-lamp': '/categories/pendant-lamp.jpg',
+  'wall-lamp': '/home/wall-lh-503w.jpg',
+  'pendant-lamp': '/home/pendant-lh-842.jpg',
   'chandelier': '/categories/chandelier.jpg',
   'double-height': '/categories/double-height.jpg',
   'dining-table-lamp': '/categories/dining-table-lamp.jpg',
-  'outdoor-light': '/categories/outdoor-light.jpg',
+  'outdoor-light': '/home/outdoor-lh-9023.jpg',
   'table-lamp': '/categories/table-lamp.jpg',
   'floor-lamp': '/categories/floor-lamp.jpg',
   'led-filament-bulb': '/categories/led-filament-bulb.jpg',

@@ -21,8 +21,8 @@ const FEATURED_BANNERS = [
     description: 'Mouth-blown fluted glass & sleek modern silhouettes for statement spaces.',
     buttonText: 'SHOW MORE',
     link: '/catalog?category=pendant-lamp',
-    image: '/banner-pendant.jpg',
-    hoverImage: '/categories/pendant-lamp.jpg',
+    image: '/home/pendant-lh-2478.jpg',
+    hoverImage: '/home/pendant-lh-842.jpg',
   },
   {
     id: 'banner-floor-lamp',
@@ -51,8 +51,8 @@ const FEATURED_BANNERS = [
     description: 'Refined wall illumination with direct and ambient wash for corridors & walls.',
     buttonText: 'SHOW MORE',
     link: '/catalog?category=wall-lamp',
-    image: '/wall-lamp-banner-v2.jpg',
-    hoverImage: '/categories/wall-lamp.jpg',
+    image: '/home/wall-lh-141w.jpg',
+    hoverImage: '/home/wall-lh-7080w.jpg',
   },
 ];
 
