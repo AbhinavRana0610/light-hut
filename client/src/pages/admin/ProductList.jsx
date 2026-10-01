@@ -11,6 +11,7 @@ import {
   Check,
   Image as ImageIcon,
   ExternalLink,
+  Link as LinkIcon,
 } from 'lucide-react';
 import { productService, categoryService } from '../../services/api';
 import { useToast } from '../../context/ToastContext';
@@ -560,44 +561,81 @@ export const ProductList = () => {
               </div>
 
               {/* 4. Product Photo */}
-              <div className="space-y-2 pt-2 border-t border-white/10">
-                <label className="text-xs font-semibold uppercase tracking-wider text-neutral-300 flex items-center gap-1.5">
-                  <ImageIcon className="w-3.5 h-3.5 text-[#DC2626]" />
-                  <span>Product Photo</span>
-                </label>
+              <div className="space-y-3 pt-2 border-t border-white/10">
+                <div className="flex items-center justify-between">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-neutral-300 flex items-center gap-1.5">
+                    <ImageIcon className="w-3.5 h-3.5 text-[#DC2626]" />
+                    <span>Product Photo</span>
+                  </label>
+                  <span className="text-[10px] text-emerald-400 font-semibold bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                    Direct Link Mode (0 MB Server Space)
+                  </span>
+                </div>
 
-                {/* PC File Uploader */}
-                <ImageUploader
-                  label="Upload Photo from Computer"
-                  onUploadSuccess={(url) => setForm({ ...form, photo: url })}
-                />
+                {/* Primary: Direct Image URL Input */}
+                <div className="space-y-1.5">
+                  <div className="relative">
+                    <LinkIcon className="w-4 h-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="text"
+                      value={form.photo}
+                      onChange={(e) => setForm({ ...form, photo: e.target.value })}
+                      placeholder="Paste Image URL: e.g. https://i.postimg.cc/... or /categories/chandelier.jpg"
+                      className="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-black/40 border border-white/20 text-white placeholder-neutral-500 focus:outline-none focus:border-[#DC2626] text-xs font-mono"
+                    />
+                  </div>
+                  <p className="text-[11px] text-neutral-400">
+                    💡 Tip: Paste direct image link from <a href="https://postimages.org" target="_blank" rel="noreferrer" className="text-[#DC2626] hover:underline font-semibold">Postimages.org</a>, ImgBB, or any web URL without taking server storage.
+                  </p>
+                </div>
 
-                {/* Or URL input */}
-                <input
-                  type="text"
-                  value={form.photo}
-                  onChange={(e) => setForm({ ...form, photo: e.target.value })}
-                  placeholder="Or enter image URL: /categories/chandelier.jpg"
-                  className="w-full px-3.5 py-2 rounded-xl bg-black/30 border border-white/15 text-white placeholder-neutral-500 focus:outline-none focus:border-[#DC2626] text-xs font-mono"
-                />
+                {/* Secondary: PC File Uploader */}
+                <div className="pt-1">
+                  <details className="text-xs text-neutral-400 group">
+                    <summary className="cursor-pointer hover:text-white transition-colors text-[11px] font-medium flex items-center gap-1">
+                      <span>Or upload photo file from computer</span>
+                      <span className="text-[10px] text-neutral-500">(saves to /uploads)</span>
+                    </summary>
+                    <div className="mt-2">
+                      <ImageUploader
+                        label="Choose image file from PC"
+                        onUploadSuccess={(url) => setForm({ ...form, photo: url })}
+                      />
+                    </div>
+                  </details>
+                </div>
 
                 {/* Live Preview */}
                 {form.photo && (
-                  <div className="p-3 rounded-xl bg-black/40 border border-white/10 flex items-center gap-3 mt-2">
-                    <div className="w-14 h-14 rounded-lg bg-black border border-white/20 overflow-hidden shrink-0">
-                      <img
-                        src={form.photo}
-                        onError={(e) => {
-                          e.currentTarget.onerror = null;
-                          e.currentTarget.src = '/categories/chandelier.jpg';
-                        }}
-                        alt="Preview"
-                        className="w-full h-full object-cover"
-                      />
+                  <div className="p-3 rounded-xl bg-black/40 border border-white/10 flex items-center justify-between gap-3 mt-2">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-14 h-14 rounded-lg bg-black border border-white/20 overflow-hidden shrink-0">
+                        <img
+                          src={form.photo}
+                          onError={(e) => {
+                            e.currentTarget.onerror = null;
+                            e.currentTarget.src = '/categories/chandelier.jpg';
+                          }}
+                          alt="Preview"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="min-w-0">
+                        <span className="text-xs text-emerald-400 font-semibold flex items-center gap-1">
+                          ✓ Photo Ready
+                        </span>
+                        <p className="text-[10px] text-neutral-400 truncate font-mono max-w-[200px]">
+                          {form.photo}
+                        </p>
+                      </div>
                     </div>
-                    <span className="text-xs text-emerald-400 font-semibold truncate">
-                      ✓ Photo Selected
-                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setForm({ ...form, photo: '' })}
+                      className="text-xs text-red-400 hover:text-red-300 px-2 py-1 rounded hover:bg-red-500/10 transition-colors"
+                    >
+                      Clear
+                    </button>
                   </div>
                 )}
               </div>
