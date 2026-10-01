@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ArrowRight, Layers } from 'lucide-react';
@@ -283,6 +283,16 @@ export const PRODUCT_CATEGORIES_DATA = [
 export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
   const [categoriesList, setCategoriesList] = useState(PRODUCT_CATEGORIES_DATA);
   const [activeCategory, setActiveCategory] = useState(PRODUCT_CATEGORIES_DATA[0]);
+  // Only top-level categories are listed; subcategories appear in the flyout.
+  // Some subcategory slugs differ from their category record (e.g. antic- vs antique-chandelier),
+  // so a category counts as top-level when it has subcategories or is one of the known main categories.
+  const mainCategories = useMemo(() => {
+    const mainSlugs = new Set(PRODUCT_CATEGORIES_DATA.map((c) => c.slug));
+    return categoriesList.filter((c) => (c.sub && c.sub.length > 0) || mainSlugs.has(c.slug));
+  }, [categoriesList]);
+
+  const activeSubs = activeCategory?.sub || [];
+
   // Sub-menu is rendered outside the scrollable list (so it isn't clipped); track its vertical offset
   const [flyoutTop, setFlyoutTop] = useState(0);
   const rootRef = useRef(null);
@@ -332,7 +342,7 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
           Catalog Categories
         </span>
         <span className="text-[10px] font-bold text-[#DC2626]">
-          {categoriesList.length}
+          {mainCategories.length}
         </span>
       </div>
 
@@ -342,7 +352,7 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
         onScroll={syncFlyoutTop}
         className="space-y-0.5 max-h-[min(420px,calc(100vh-11rem))] overflow-y-auto overscroll-contain modal-scrollbar pr-1"
       >
-        {categoriesList.map((cat) => {
+        {mainCategories.map((cat) => {
           const hasSub = cat.sub && cat.sub.length > 0;
           const isHovered = activeCategory?.slug === cat.slug;
           const count = cat.productCount ?? cat.count ?? 0;
@@ -399,7 +409,7 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
 
       {/* Sub Dropdown Flyout to the Right — Clean, Compact & Image-Free */}
       <AnimatePresence>
-        {activeCategory?.sub?.length > 0 && (
+        {activeCategory && (
           <motion.div
             key={activeCategory.slug}
             style={{ top: flyoutTop }}
@@ -413,16 +423,17 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
               {/* Header */}
               <div className="px-2.5 py-1 mb-1 border-b border-neutral-100 flex items-center justify-between">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-[#DC2626] truncate">
-                  {activeCategory.name} Types
+                  {activeSubs.length > 0 ? `${activeCategory.name} Types` : activeCategory.name}
                 </span>
                 <span className="text-[10px] text-neutral-400 font-mono">
-                  {activeCategory.sub.length}
+                  {activeSubs.length > 0 ? activeSubs.length : activeCategory.productCount ?? activeCategory.count ?? ''}
                 </span>
               </div>
 
               {/* Clean Subcategory List */}
+              {activeSubs.length > 0 && (
               <div className="space-y-0.5">
-                {activeCategory.sub.map((subItem) => {
+                {activeSubs.map((subItem) => {
                   const subCount = subItem.productCount ?? subItem.count ?? 0;
                   return (
                     <Link
@@ -446,6 +457,7 @@ export const CascadingCategoryDropdown = ({ onClose, className = '' }) => {
                   );
                 })}
               </div>
+              )}
             </div>
 
             {/* Bottom Link: All Category Fixtures in Catalog */}
