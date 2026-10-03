@@ -1,4 +1,4 @@
-// E27 Hanging Lamp products extracted from the "LH-FANCY 2609 HL-WL" catalogue (pages 37–89).
+// Hanging Lamp products extracted from the "LH-FANCY 2609 HL-WL" catalogue (pages 37–89).
 // Page 83 (foam lamp) has an LED light source, so it is listed under LED Hanging Lamp.
 // Prices are catalogue MRP; where a page lists several MRPs the lowest is used.
 export const E27_HANGING_LAMPS = [
@@ -8,7 +8,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-26-1l-3l-metal-hanging-lamp",
     "sku": "LH-26/1L-3L",
     "shortDescription": "Woven rope dome shades on a round black canopy.",
-    "description": "Woven rope dome shades on a round black canopy. Iron / Rope body in natural rope finish with an E27 bulb holder per light. Available as 1L (₹1,300) and 3L (₹3,855).",
+    "description": "Woven rope dome shades on a round black canopy. Iron / Rope body in natural rope finish with a bulb holder per light. Available as 1L (₹1,300) and 3L (₹3,855).",
     "price": 1300,
     "images": [
       {
@@ -26,7 +26,6 @@ export const E27_HANGING_LAMPS = [
       "dimensions": "D200mm per lamp",
       "material": "Iron / Rope",
       "finish": "Natural Rope",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -44,7 +43,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-r50-1l-metal-hanging-lamp",
     "sku": "LH-R50/1L",
     "shortDescription": "Open woven rope globe shade.",
-    "description": "Open woven rope globe shade. Iron / Rope body in natural rope finish with an E27 bulb holder per light.",
+    "description": "Open woven rope globe shade. Iron / Rope body in natural rope finish with a bulb holder per light.",
     "price": 1475,
     "images": [
       {
@@ -62,7 +61,6 @@ export const E27_HANGING_LAMPS = [
       "dimensions": "D250mm",
       "material": "Iron / Rope",
       "finish": "Natural Rope",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -80,7 +78,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-2307-1l-metal-hanging-lamp",
     "sku": "LH-2307/1L",
     "shortDescription": "Large woven rope cone shade with a black cap.",
-    "description": "Large woven rope cone shade with a black cap. Iron / Rope body in black finish with an E27 bulb holder per light.",
+    "description": "Large woven rope cone shade with a black cap. Iron / Rope body in black finish with a bulb holder per light.",
     "price": 2215,
     "images": [
       {
@@ -97,7 +95,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron / Rope",
       "finish": "Black",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -115,7 +112,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-2847-1l-metal-hanging-lamp",
     "sku": "LH-2847/1L",
     "shortDescription": "Woven rope bell shade with a black cap.",
-    "description": "Woven rope bell shade with a black cap. Iron / Rope body in black finish with an E27 bulb holder per light.",
+    "description": "Woven rope bell shade with a black cap. Iron / Rope body in black finish with a bulb holder per light.",
     "price": 1170,
     "images": [
       {
@@ -132,7 +129,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron / Rope",
       "finish": "Black",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -150,7 +146,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-r27-1l-metal-hanging-lamp",
     "sku": "LH-R27/1L",
     "shortDescription": "Small rope-wrapped cone shade with black fittings.",
-    "description": "Small rope-wrapped cone shade with black fittings. Iron / Rope body in black finish with an E27 bulb holder per light.",
+    "description": "Small rope-wrapped cone shade with black fittings. Iron / Rope body in black finish with a bulb holder per light.",
     "price": 1220,
     "images": [
       {
@@ -167,7 +163,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron / Rope",
       "finish": "Black",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -185,7 +180,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-2850-1l-metal-hanging-lamp",
     "sku": "LH-2850/1L",
     "shortDescription": "Rope and wood cone shade with black fittings.",
-    "description": "Rope and wood cone shade with black fittings. Iron / Rope / Wood body in black finish with an E27 bulb holder per light.",
+    "description": "Rope and wood cone shade with black fittings. Iron / Rope / Wood body in black finish with a bulb holder per light.",
     "price": 1170,
     "images": [
       {
@@ -202,7 +197,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron / Rope / Wood",
       "finish": "Black",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -220,7 +214,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-823-1l-metal-hanging-lamp",
     "sku": "LH-823/1L",
     "shortDescription": "Black-trimmed woven rope cone shade.",
-    "description": "Black-trimmed woven rope cone shade. Iron / Rope body in black finish with an E27 bulb holder per light.",
+    "description": "Black-trimmed woven rope cone shade. Iron / Rope body in black finish with a bulb holder per light.",
     "price": 1025,
     "images": [
       {
@@ -237,7 +231,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron / Rope",
       "finish": "Black",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -255,7 +248,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-2700-1l-metal-hanging-lamp",
     "sku": "LH-2700/1L",
     "shortDescription": "Wide hat-shaped rope and iron shade.",
-    "description": "Wide hat-shaped rope and iron shade. Iron / Rope body in black finish with an E27 bulb holder per light.",
+    "description": "Wide hat-shaped rope and iron shade. Iron / Rope body in black finish with a bulb holder per light.",
     "price": 2590,
     "images": [
       {
@@ -272,7 +265,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron / Rope",
       "finish": "Black",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -290,7 +282,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-37-1l-lh-38-1l-thread-hanging-lamp",
     "sku": "LH-37/1L & LH-38/1L",
     "shortDescription": "Wooden frame globe wrapped in fine thread.",
-    "description": "Wooden frame globe wrapped in fine thread. Wood / Thread body in natural wood finish with an E27 bulb holder per light. Available as LH-37 290mm (₹2,700) and LH-38 390mm (₹3,300).",
+    "description": "Wooden frame globe wrapped in fine thread. Wood / Thread body in natural wood finish with a bulb holder per light. Available as LH-37 290mm (₹2,700) and LH-38 390mm (₹3,300).",
     "price": 2700,
     "images": [
       {
@@ -308,7 +300,6 @@ export const E27_HANGING_LAMPS = [
       "dimensions": "290mm / 390mm",
       "material": "Wood / Thread",
       "finish": "Natural Wood",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -326,7 +317,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-41-1l-3l-metal-hanging-lamp",
     "sku": "LH-41/1L-3L",
     "shortDescription": "Cream fabric bell shades.",
-    "description": "Cream fabric bell shades. Iron / Cloth body in cream finish with an E27 bulb holder per light. Available as 1L (₹1,275) and 3L (₹3,720).",
+    "description": "Cream fabric bell shades. Iron / Cloth body in cream finish with a bulb holder per light. Available as 1L (₹1,275) and 3L (₹3,720).",
     "price": 1275,
     "images": [
       {
@@ -343,7 +334,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron / Cloth",
       "finish": "Cream",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -361,7 +351,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-48-1l-3l-metal-hanging-lamp",
     "sku": "LH-48/1L-3L",
     "shortDescription": "Cream fabric globe shades.",
-    "description": "Cream fabric globe shades. Iron / Cloth body in cream finish with an E27 bulb holder per light. Available as 1L (₹1,275) and 3L (₹3,720).",
+    "description": "Cream fabric globe shades. Iron / Cloth body in cream finish with a bulb holder per light. Available as 1L (₹1,275) and 3L (₹3,720).",
     "price": 1275,
     "images": [
       {
@@ -378,7 +368,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron / Cloth",
       "finish": "Cream",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -396,7 +385,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-47-1l-3l-metal-hanging-lamp",
     "sku": "LH-47/1L-3L",
     "shortDescription": "Cream fabric double-globe shades.",
-    "description": "Cream fabric double-globe shades. Iron / Cloth body in cream finish with an E27 bulb holder per light. Available as 1L (₹1,275) and 3L (₹3,720).",
+    "description": "Cream fabric double-globe shades. Iron / Cloth body in cream finish with a bulb holder per light. Available as 1L (₹1,275) and 3L (₹3,720).",
     "price": 1275,
     "images": [
       {
@@ -413,7 +402,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron / Cloth",
       "finish": "Cream",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -431,7 +419,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-9830-1l-metal-hanging-lamp",
     "sku": "LH-9830/1L",
     "shortDescription": "Black iron lantern cage around a glass globe.",
-    "description": "Black iron lantern cage around a glass globe. Iron / Glass body in black finish with an E27 bulb holder per light.",
+    "description": "Black iron lantern cage around a glass globe. Iron / Glass body in black finish with a bulb holder per light.",
     "price": 2900,
     "images": [
       {
@@ -448,7 +436,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron / Glass",
       "finish": "Black",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -466,7 +453,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-2423-1l-metal-hanging-lamp",
     "sku": "LH-2423/1L",
     "shortDescription": "Black wire dome cage with a glass shade.",
-    "description": "Black wire dome cage with a glass shade. Iron / Glass body in black finish with an E27 bulb holder per light.",
+    "description": "Black wire dome cage with a glass shade. Iron / Glass body in black finish with a bulb holder per light.",
     "price": 1970,
     "images": [
       {
@@ -483,7 +470,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron / Glass",
       "finish": "Black",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -501,7 +487,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-519-1l-metal-hanging-lamp",
     "sku": "LH-519/1L",
     "shortDescription": "Black iron lantern with glass panels.",
-    "description": "Black iron lantern with glass panels. Iron / Glass body in black finish with an E27 bulb holder per light.",
+    "description": "Black iron lantern with glass panels. Iron / Glass body in black finish with a bulb holder per light.",
     "price": 2760,
     "images": [
       {
@@ -518,7 +504,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron / Glass",
       "finish": "Black",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -536,7 +521,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-2635-1l-metal-hanging-lamp",
     "sku": "LH-2635/1L",
     "shortDescription": "Wooden-frame glass lantern shade.",
-    "description": "Wooden-frame glass lantern shade. Wood / Glass body in wooden finish with an E27 bulb holder per light.",
+    "description": "Wooden-frame glass lantern shade. Wood / Glass body in wooden finish with a bulb holder per light.",
     "price": 2160,
     "images": [
       {
@@ -553,7 +538,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Wood / Glass",
       "finish": "Wooden",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -571,7 +555,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-2478-1l-glass-hanging-lamp",
     "sku": "LH-2478/1L",
     "shortDescription": "Ribbed glass cylinder shade with a gold cap.",
-    "description": "Ribbed glass cylinder shade with a gold cap. Iron / Glass body in gold plating with an E27 bulb holder per light.",
+    "description": "Ribbed glass cylinder shade with a gold cap. Iron / Glass body in gold plating with a bulb holder per light.",
     "price": 1850,
     "images": [
       {
@@ -588,7 +572,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron / Glass",
       "finish": "Gold Plating",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -606,7 +589,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-2571-1l-glass-hanging-lamp",
     "sku": "LH-2571/1L",
     "shortDescription": "Clear glass globe shade with black fittings.",
-    "description": "Clear glass globe shade with black fittings. Iron / Glass body in black finish with an E27 bulb holder per light.",
+    "description": "Clear glass globe shade with black fittings. Iron / Glass body in black finish with a bulb holder per light.",
     "price": 2340,
     "images": [
       {
@@ -623,7 +606,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron / Glass",
       "finish": "Black",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -641,7 +623,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-2216-1l-glass-hanging-lamp",
     "sku": "LH-2216/1L",
     "shortDescription": "Amber ribbed glass globe shade.",
-    "description": "Amber ribbed glass globe shade. Iron / Glass body in black finish with an E27 bulb holder per light.",
+    "description": "Amber ribbed glass globe shade. Iron / Glass body in black finish with a bulb holder per light.",
     "price": 2590,
     "images": [
       {
@@ -658,7 +640,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron / Glass",
       "finish": "Black",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -676,7 +657,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-2068-1l-metal-hanging-lamp",
     "sku": "LH-2068/1L",
     "shortDescription": "Black geometric iron sphere cage.",
-    "description": "Black geometric iron sphere cage. Iron body in black finish with an E27 bulb holder per light.",
+    "description": "Black geometric iron sphere cage. Iron body in black finish with a bulb holder per light.",
     "price": 1230,
     "images": [
       {
@@ -693,7 +674,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron",
       "finish": "Black",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -711,7 +691,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-9683-1l-metal-hanging-lamp",
     "sku": "LH-9683/1L",
     "shortDescription": "Slim black iron cone cage.",
-    "description": "Slim black iron cone cage. Iron body in black finish with an E27 bulb holder per light.",
+    "description": "Slim black iron cone cage. Iron body in black finish with a bulb holder per light.",
     "price": 925,
     "images": [
       {
@@ -728,7 +708,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron",
       "finish": "Black",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -746,7 +725,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-819-1l-metal-hanging-lamp",
     "sku": "LH-819/1L",
     "shortDescription": "Black and gold geometric cage shade.",
-    "description": "Black and gold geometric cage shade. Iron body in black + gold finish with an E27 bulb holder per light.",
+    "description": "Black and gold geometric cage shade. Iron body in black + gold finish with a bulb holder per light.",
     "price": 1250,
     "images": [
       {
@@ -764,7 +743,6 @@ export const E27_HANGING_LAMPS = [
       "dimensions": "190*210mm",
       "material": "Iron",
       "finish": "Black + Gold",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -782,7 +760,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-820-1l-metal-hanging-lamp",
     "sku": "LH-820/1L",
     "shortDescription": "Black and gold faceted cage shade.",
-    "description": "Black and gold faceted cage shade. Iron body in black + gold finish with an E27 bulb holder per light.",
+    "description": "Black and gold faceted cage shade. Iron body in black + gold finish with a bulb holder per light.",
     "price": 1250,
     "images": [
       {
@@ -800,7 +778,6 @@ export const E27_HANGING_LAMPS = [
       "dimensions": "190*210mm",
       "material": "Iron",
       "finish": "Black + Gold",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -818,7 +795,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-829-1l-3l-metal-hanging-lamp",
     "sku": "LH-829/1L-3L",
     "shortDescription": "Gold-plated geometric cage shades.",
-    "description": "Gold-plated geometric cage shades. Iron body in gold plating with an E27 bulb holder per light. Available as 1L (₹1,290) and 3L (₹3,855).",
+    "description": "Gold-plated geometric cage shades. Iron body in gold plating with a bulb holder per light. Available as 1L (₹1,290) and 3L (₹3,855).",
     "price": 1290,
     "images": [
       {
@@ -835,7 +812,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron",
       "finish": "Gold Plating",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -853,7 +829,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-910-1l-3l-metal-hanging-lamp",
     "sku": "LH-910/1L-3L",
     "shortDescription": "Black cage shades with French gold detailing.",
-    "description": "Black cage shades with French gold detailing. Iron body in black + french gold finish with an E27 bulb holder per light. Available as 1L (₹1,080) and 3L (₹3,240).",
+    "description": "Black cage shades with French gold detailing. Iron body in black + french gold finish with a bulb holder per light. Available as 1L (₹1,080) and 3L (₹3,240).",
     "price": 1080,
     "images": [
       {
@@ -870,7 +846,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron",
       "finish": "Black + French Gold",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -888,7 +863,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-911-1l-3l-metal-hanging-lamp",
     "sku": "LH-911/1L-3L",
     "shortDescription": "Black shades with a French gold diamond-cut cage.",
-    "description": "Black shades with a French gold diamond-cut cage. Iron body in black + french gold finish with an E27 bulb holder per light. Available as 1L (₹1,080) and 3L (₹3,240).",
+    "description": "Black shades with a French gold diamond-cut cage. Iron body in black + french gold finish with a bulb holder per light. Available as 1L (₹1,080) and 3L (₹3,240).",
     "price": 1080,
     "images": [
       {
@@ -905,7 +880,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron",
       "finish": "Black + French Gold",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -923,7 +897,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-912-1l-3l-metal-hanging-lamp",
     "sku": "LH-912/1L-3L",
     "shortDescription": "Black dome shade with a French gold lattice.",
-    "description": "Black dome shade with a French gold lattice. Iron body in black + french gold finish with an E27 bulb holder per light. Available as 1L (₹1,080) and 3L (₹3,240).",
+    "description": "Black dome shade with a French gold lattice. Iron body in black + french gold finish with a bulb holder per light. Available as 1L (₹1,080) and 3L (₹3,240).",
     "price": 1080,
     "images": [
       {
@@ -940,7 +914,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron",
       "finish": "Black + French Gold",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -958,7 +931,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-914-1l-3l-metal-hanging-lamp",
     "sku": "LH-914/1L-3L",
     "shortDescription": "French gold lattice shades with black caps.",
-    "description": "French gold lattice shades with black caps. Iron body in black + french gold finish with an E27 bulb holder per light. Available as 1L (₹1,080) and 3L (₹3,240).",
+    "description": "French gold lattice shades with black caps. Iron body in black + french gold finish with a bulb holder per light. Available as 1L (₹1,080) and 3L (₹3,240).",
     "price": 1080,
     "images": [
       {
@@ -975,7 +948,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron",
       "finish": "Black + French Gold",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -993,7 +965,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-916-1l-3l-metal-hanging-lamp",
     "sku": "LH-916/1L-3L",
     "shortDescription": "Black and French gold lantern shades.",
-    "description": "Black and French gold lantern shades. Iron body in black + french gold finish with an E27 bulb holder per light. Available as 1L (₹1,080) and 3L (₹3,240).",
+    "description": "Black and French gold lantern shades. Iron body in black + french gold finish with a bulb holder per light. Available as 1L (₹1,080) and 3L (₹3,240).",
     "price": 1080,
     "images": [
       {
@@ -1010,7 +982,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron",
       "finish": "Black + French Gold",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -1028,7 +999,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-718-1l-3l-metal-hanging-lamp",
     "sku": "LH-718/1L-3L",
     "shortDescription": "Perforated black shades with French gold accents.",
-    "description": "Perforated black shades with French gold accents. Iron body in black + french gold finish with an E27 bulb holder per light. Available as 1L (₹1,110) and 3L (₹3,330).",
+    "description": "Perforated black shades with French gold accents. Iron body in black + french gold finish with a bulb holder per light. Available as 1L (₹1,110) and 3L (₹3,330).",
     "price": 1110,
     "images": [
       {
@@ -1045,7 +1016,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron",
       "finish": "Black + French Gold",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -1063,7 +1033,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-508-1l-3l-metal-hanging-lamp",
     "sku": "LH-508/1L-3L",
     "shortDescription": "Perforated patterned metal shade.",
-    "description": "Perforated patterned metal shade. Iron body in WTP finish with an E27 bulb holder per light. Available as 1L (₹1,110) and 3L (₹3,330).",
+    "description": "Perforated patterned metal shade. Iron body in WTP finish with a bulb holder per light. Available as 1L (₹1,110) and 3L (₹3,330).",
     "price": 1110,
     "images": [
       {
@@ -1080,7 +1050,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron",
       "finish": "WTP",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -1098,7 +1067,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-903-1l-3l-metal-hanging-lamp",
     "sku": "LH-903/1L-3L",
     "shortDescription": "Black perforated patterned cylinder shades.",
-    "description": "Black perforated patterned cylinder shades. Iron body in black finish with an E27 bulb holder per light. Available as 1L (₹1,080) and 3L (₹3,240).",
+    "description": "Black perforated patterned cylinder shades. Iron body in black finish with a bulb holder per light. Available as 1L (₹1,080) and 3L (₹3,240).",
     "price": 1080,
     "images": [
       {
@@ -1115,7 +1084,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron",
       "finish": "Black",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -1133,7 +1101,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-310-1l-3l-metal-hanging-lamp",
     "sku": "LH-310/1L-3L",
     "shortDescription": "Perforated patterned cylinder shades.",
-    "description": "Perforated patterned cylinder shades. Iron body in WG finish with an E27 bulb holder per light. Available as 1L (₹1,110) and 3L (₹3,330).",
+    "description": "Perforated patterned cylinder shades. Iron body in WG finish with a bulb holder per light. Available as 1L (₹1,110) and 3L (₹3,330).",
     "price": 1110,
     "images": [
       {
@@ -1150,7 +1118,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron",
       "finish": "WG",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -1168,7 +1135,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-902-1l-3l-metal-hanging-lamp",
     "sku": "LH-902/1L-3L",
     "shortDescription": "Black perforated patterned lantern shades.",
-    "description": "Black perforated patterned lantern shades. Iron body in black finish with an E27 bulb holder per light. Available as 1L (₹1,080) and 3L (₹3,240).",
+    "description": "Black perforated patterned lantern shades. Iron body in black finish with a bulb holder per light. Available as 1L (₹1,080) and 3L (₹3,240).",
     "price": 1080,
     "images": [
       {
@@ -1185,7 +1152,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron",
       "finish": "Black",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -1203,7 +1169,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-h011-1-3l-metal-hanging-lamp",
     "sku": "LH-H011/1-3L",
     "shortDescription": "Black perforated capsule shades.",
-    "description": "Black perforated capsule shades. Iron body in black finish with an E27 bulb holder per light. Available as 1L (₹1,080) and 3L (₹3,240).",
+    "description": "Black perforated capsule shades. Iron body in black finish with a bulb holder per light. Available as 1L (₹1,080) and 3L (₹3,240).",
     "price": 1080,
     "images": [
       {
@@ -1220,7 +1186,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron",
       "finish": "Black",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -1238,7 +1203,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-h012-1-3l-metal-hanging-lamp",
     "sku": "LH-H012/1-3L",
     "shortDescription": "Gold perforated capsule shades.",
-    "description": "Gold perforated capsule shades. Iron body in gold finish with an E27 bulb holder per light. Available as 1L (₹1,080) and 3L (₹3,240).",
+    "description": "Gold perforated capsule shades. Iron body in gold finish with a bulb holder per light. Available as 1L (₹1,080) and 3L (₹3,240).",
     "price": 1080,
     "images": [
       {
@@ -1255,7 +1220,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron",
       "finish": "Gold",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -1273,7 +1237,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-906-1-3l-metal-hanging-lamp",
     "sku": "LH-906/1-3L",
     "shortDescription": "Black perforated cylinder shades.",
-    "description": "Black perforated cylinder shades. Iron body in black finish with an E27 bulb holder per light. Available as 1L (₹840) and 3L (₹2,520).",
+    "description": "Black perforated cylinder shades. Iron body in black finish with a bulb holder per light. Available as 1L (₹840) and 3L (₹2,520).",
     "price": 840,
     "images": [
       {
@@ -1290,7 +1254,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron",
       "finish": "Black",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -1308,7 +1271,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-209-1l-3l-metal-hanging-lamp",
     "sku": "LH-209/1L-3L",
     "shortDescription": "Slim metal cone shades.",
-    "description": "Slim metal cone shades. Iron body in WTP finish with an E27 bulb holder per light. Available as 1L (₹1,110) and 3L (₹3,330).",
+    "description": "Slim metal cone shades. Iron body in WTP finish with a bulb holder per light. Available as 1L (₹1,110) and 3L (₹3,330).",
     "price": 1110,
     "images": [
       {
@@ -1325,7 +1288,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron",
       "finish": "WTP",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -1343,7 +1305,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-p012-1-lh-p013-1-metal-hanging-lamp",
     "sku": "LH-P012/1 & LH-P013/1",
     "shortDescription": "Minimal metal dome shade in black, white or grey.",
-    "description": "Minimal metal dome shade in black, white or grey. Iron body in black / white / grey finish with an E27 bulb holder per light. Available as LH-P012 250mm (₹1,370) and LH-P013 300mm (₹1,530).",
+    "description": "Minimal metal dome shade in black, white or grey. Iron body in black / white / grey finish with a bulb holder per light. Available as LH-P012 250mm (₹1,370) and LH-P013 300mm (₹1,530).",
     "price": 1370,
     "images": [
       {
@@ -1361,7 +1323,6 @@ export const E27_HANGING_LAMPS = [
       "dimensions": "250mm / 300mm",
       "material": "Iron",
       "finish": "Black / White / Grey",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -1379,7 +1340,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-014-bn-1l-3l-metal-hanging-lamp",
     "sku": "LH-014 BN/1L-3L",
     "shortDescription": "Metal cone shades with wooden caps.",
-    "description": "Metal cone shades with wooden caps. Iron / Wood body in BN finish with an E27 bulb holder per light. Available as 1L (₹650) and 3L (₹1,860).",
+    "description": "Metal cone shades with wooden caps. Iron / Wood body in BN finish with a bulb holder per light. Available as 1L (₹650) and 3L (₹1,860).",
     "price": 650,
     "images": [
       {
@@ -1396,7 +1357,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron / Wood",
       "finish": "BN",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -1414,7 +1374,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-014-bk-1l-3l-metal-hanging-lamp",
     "sku": "LH-014 BK/1L-3L",
     "shortDescription": "Black metal cone shades.",
-    "description": "Black metal cone shades. Iron body in black finish with an E27 bulb holder per light. Available as 1L (₹650) and 3L (₹1,860).",
+    "description": "Black metal cone shades. Iron body in black finish with a bulb holder per light. Available as 1L (₹650) and 3L (₹1,860).",
     "price": 650,
     "images": [
       {
@@ -1431,7 +1391,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron",
       "finish": "Black",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -1449,7 +1408,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-352-1l-3l-metal-hanging-lamp",
     "sku": "LH-352/1L-3L",
     "shortDescription": "Dark wood-finish metal dome shades.",
-    "description": "Dark wood-finish metal dome shades. Iron body in dark wood finish with an E27 bulb holder per light. Available as 1L (₹1,260) and 3L (₹3,760).",
+    "description": "Dark wood-finish metal dome shades. Iron body in dark wood finish with a bulb holder per light. Available as 1L (₹1,260) and 3L (₹3,760).",
     "price": 1260,
     "images": [
       {
@@ -1466,7 +1425,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron",
       "finish": "Dark Wood",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -1484,7 +1442,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-019-3l-metal-hanging-lamp",
     "sku": "LH-019/3L",
     "shortDescription": "Three tapered shades in black, grey and white.",
-    "description": "Three tapered shades in black, grey and white. Iron body in black + grey + white finish with an E27 bulb holder per light.",
+    "description": "Three tapered shades in black, grey and white. Iron body in black + grey + white finish with a bulb holder per light.",
     "price": 2500,
     "images": [
       {
@@ -1501,7 +1459,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron",
       "finish": "Black + Grey + White",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -1519,7 +1476,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-018-3l-metal-hanging-lamp",
     "sku": "LH-018/3L",
     "shortDescription": "Three flared shades in black, grey and white.",
-    "description": "Three flared shades in black, grey and white. Iron body in black + grey + white finish with an E27 bulb holder per light.",
+    "description": "Three flared shades in black, grey and white. Iron body in black + grey + white finish with a bulb holder per light.",
     "price": 2500,
     "images": [
       {
@@ -1536,7 +1493,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron",
       "finish": "Black + Grey + White",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -1554,7 +1510,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-020-1l-3l-metal-hanging-lamp",
     "sku": "LH-020/1L-3L",
     "shortDescription": "White bell shades with wooden caps.",
-    "description": "White bell shades with wooden caps. Iron body in white finish with an E27 bulb holder per light. Available as 1L (₹850) and 3L (₹2,500).",
+    "description": "White bell shades with wooden caps. Iron body in white finish with a bulb holder per light. Available as 1L (₹850) and 3L (₹2,500).",
     "price": 850,
     "images": [
       {
@@ -1571,7 +1527,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron",
       "finish": "White",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -1589,7 +1544,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-021-1l-3l-metal-hanging-lamp",
     "sku": "LH-021/1L-3L",
     "shortDescription": "Black bell shades with wooden caps.",
-    "description": "Black bell shades with wooden caps. Iron body in black finish with an E27 bulb holder per light. Available as 1L (₹850) and 3L (₹2,500).",
+    "description": "Black bell shades with wooden caps. Iron body in black finish with a bulb holder per light. Available as 1L (₹850) and 3L (₹2,500).",
     "price": 850,
     "images": [
       {
@@ -1606,7 +1561,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron",
       "finish": "Black",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -1661,7 +1615,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-p07-1l-metal-hanging-lamp",
     "sku": "LH-P07/1L",
     "shortDescription": "Black dome shade with a white interior.",
-    "description": "Black dome shade with a white interior. Iron body in black + white finish with an E27 bulb holder per light.",
+    "description": "Black dome shade with a white interior. Iron body in black + white finish with a bulb holder per light.",
     "price": 1220,
     "images": [
       {
@@ -1679,7 +1633,6 @@ export const E27_HANGING_LAMPS = [
       "dimensions": "250mm",
       "material": "Iron",
       "finish": "Black + White",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -1697,7 +1650,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-403-1l-metal-hanging-lamp",
     "sku": "LH-403/1L",
     "shortDescription": "Grey dome shade with a white interior.",
-    "description": "Grey dome shade with a white interior. Iron body in grey + white finish with an E27 bulb holder per light.",
+    "description": "Grey dome shade with a white interior. Iron body in grey + white finish with a bulb holder per light.",
     "price": 650,
     "images": [
       {
@@ -1715,7 +1668,6 @@ export const E27_HANGING_LAMPS = [
       "dimensions": "250mm",
       "material": "Iron",
       "finish": "Grey + White",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -1733,7 +1685,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-338-1l-lh-339-1l-lh-402-1l-metal-hanging-lamp",
     "sku": "LH-338/1L, LH-339/1L & LH-402/1L",
     "shortDescription": "Wide dome shade in black-white (LH-338), white (LH-339) or black-gold (LH-402).",
-    "description": "Wide dome shade in black-white (LH-338), white (LH-339) or black-gold (LH-402). Iron body in black / white finish with an E27 bulb holder per light.",
+    "description": "Wide dome shade in black-white (LH-338), white (LH-339) or black-gold (LH-402). Iron body in black / white finish with a bulb holder per light.",
     "price": 650,
     "images": [
       {
@@ -1751,7 +1703,6 @@ export const E27_HANGING_LAMPS = [
       "dimensions": "250mm",
       "material": "Iron",
       "finish": "Black / White",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -1769,7 +1720,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-p015-1l-bk-metal-hanging-lamp",
     "sku": "LH-P015/1L BK",
     "shortDescription": "Black wave-edged dome shade.",
-    "description": "Black wave-edged dome shade. Iron body in black finish with an E27 bulb holder per light.",
+    "description": "Black wave-edged dome shade. Iron body in black finish with a bulb holder per light.",
     "price": 1000,
     "images": [
       {
@@ -1787,7 +1738,6 @@ export const E27_HANGING_LAMPS = [
       "dimensions": "250mm",
       "material": "Iron",
       "finish": "Black",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -1805,7 +1755,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-p015-1l-wh-metal-hanging-lamp",
     "sku": "LH-P015/1L WH",
     "shortDescription": "White wave-edged dome shade.",
-    "description": "White wave-edged dome shade. Iron body in white finish with an E27 bulb holder per light.",
+    "description": "White wave-edged dome shade. Iron body in white finish with a bulb holder per light.",
     "price": 1000,
     "images": [
       {
@@ -1823,7 +1773,6 @@ export const E27_HANGING_LAMPS = [
       "dimensions": "250mm",
       "material": "Iron",
       "finish": "White",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [
@@ -1841,7 +1790,7 @@ export const E27_HANGING_LAMPS = [
     "slug": "lh-531-3l-metal-hanging-lamp",
     "sku": "LH-531/3L",
     "shortDescription": "Rectangular black iron and rope frame with three lights.",
-    "description": "Rectangular black iron and rope frame with three lights. Iron / Rope body in black finish with an E27 bulb holder per light.",
+    "description": "Rectangular black iron and rope frame with three lights. Iron / Rope body in black finish with a bulb holder per light.",
     "price": 4680,
     "images": [
       {
@@ -1858,7 +1807,6 @@ export const E27_HANGING_LAMPS = [
     "specifications": {
       "material": "Iron / Rope",
       "finish": "Black",
-      "wattage": "E27",
       "installationType": "Ceiling Hanging"
     },
     "tags": [

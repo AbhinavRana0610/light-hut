@@ -1,5 +1,5 @@
 // Wall Lamp products extracted from the "LH-FANCY 2609 HL-WL" catalogue
-// (LED Wall Lamp: pages 90–114, E27 Wall Lamp: pages 117–127; pages 115–116 repeat 100–101).
+// (LED Wall Lamp: pages 90–114, Wall Lamp: pages 117–127; pages 115–116 repeat 100–101).
 // Prices are catalogue MRP; where a page lists several MRPs the lowest is used.
 export const WALL_LAMPS = [
   {
@@ -189,7 +189,7 @@ export const WALL_LAMPS = [
     "slug": "lh-w3030-led-wall-lamp",
     "sku": "LH-W3030",
     "shortDescription": "Curved gold LED stem holding a glass tulip shade.",
-    "description": "Curved gold LED stem holding a glass tulip shade. Iron / Glass / Silicon body in gold plating with integrated LED plus an E27 bulb holder.",
+    "description": "Curved gold LED stem holding a glass tulip shade. Iron / Glass / Silicon body in gold plating with integrated LED plus a bulb holder.",
     "price": 2280,
     "images": [
       {
@@ -206,7 +206,7 @@ export const WALL_LAMPS = [
     "specifications": {
       "material": "Iron / Glass / Silicon",
       "finish": "Gold Plating",
-      "wattage": "LED + E27",
+      "wattage": "LED + Bulb Holder",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -918,7 +918,7 @@ export const WALL_LAMPS = [
     "slug": "lh-050w-modern-wall-lamp",
     "sku": "LH-050W",
     "shortDescription": "Slim gold rod sconce with a clear cylindrical glass shade.",
-    "description": "Slim gold rod sconce with a clear cylindrical glass shade. Iron / Glass body in gold plating with one E27 bulb holder.",
+    "description": "Slim gold rod sconce with a clear cylindrical glass shade. Iron / Glass body in gold plating with one bulb holder.",
     "price": 915,
     "images": [
       {
@@ -936,7 +936,7 @@ export const WALL_LAMPS = [
       "dimensions": "H440*W80mm",
       "material": "Iron / Glass",
       "finish": "Gold Plating",
-      "wattage": "E27 × 1",
+      "wattage": "1 Bulb Holder",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -954,7 +954,7 @@ export const WALL_LAMPS = [
     "slug": "lh-503w-modern-wall-lamp",
     "sku": "LH-503W",
     "shortDescription": "Antique-brass arm with an oval caged glass shade.",
-    "description": "Antique-brass arm with an oval caged glass shade. Iron / Glass body in antique brass plating with an E27 bulb holder.",
+    "description": "Antique-brass arm with an oval caged glass shade. Iron / Glass body in antique brass plating with a bulb holder.",
     "price": 1260,
     "images": [
       {
@@ -972,7 +972,6 @@ export const WALL_LAMPS = [
       "dimensions": "320*100mm",
       "material": "Iron / Glass",
       "finish": "Antique Brass Plating",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -990,7 +989,7 @@ export const WALL_LAMPS = [
     "slug": "lh-048w-modern-wall-lamp",
     "sku": "LH-048W",
     "shortDescription": "Antique-brass sconce with a textured glass shade.",
-    "description": "Antique-brass sconce with a textured glass shade. Iron / Glass body in antique brass plating with an E27 bulb holder.",
+    "description": "Antique-brass sconce with a textured glass shade. Iron / Glass body in antique brass plating with a bulb holder.",
     "price": 1080,
     "images": [
       {
@@ -1007,7 +1006,6 @@ export const WALL_LAMPS = [
     "specifications": {
       "material": "Iron / Glass",
       "finish": "Antique Brass Plating",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -1060,7 +1058,7 @@ export const WALL_LAMPS = [
     "slug": "lh-928w-modern-wall-lamp",
     "sku": "LH-928W",
     "shortDescription": "Black and antique-brass C-shaped arm with a clear glass shade.",
-    "description": "Black and antique-brass C-shaped arm with a clear glass shade. Iron / Glass body in black / antique brass finish with one E27 bulb holder.",
+    "description": "Black and antique-brass C-shaped arm with a clear glass shade. Iron / Glass body in black / antique brass finish with one bulb holder.",
     "price": 1320,
     "images": [
       {
@@ -1077,7 +1075,7 @@ export const WALL_LAMPS = [
     "specifications": {
       "material": "Iron / Glass",
       "finish": "Black / Antique Brass",
-      "wattage": "E27 × 1",
+      "wattage": "1 Bulb Holder",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -1095,7 +1093,7 @@ export const WALL_LAMPS = [
     "slug": "lh-3215w-modern-wall-lamp",
     "sku": "LH-3215W",
     "shortDescription": "Black backplate with an amber glass cylinder shade.",
-    "description": "Black backplate with an amber glass cylinder shade. Iron / Glass body in black / amber finish with an E27 bulb holder.",
+    "description": "Black backplate with an amber glass cylinder shade. Iron / Glass body in black / amber finish with a bulb holder.",
     "price": 1980,
     "images": [
       {
@@ -1113,7 +1111,6 @@ export const WALL_LAMPS = [
       "dimensions": "330*120mm",
       "material": "Iron / Glass",
       "finish": "Black / Amber",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -1131,7 +1128,7 @@ export const WALL_LAMPS = [
     "slug": "lh-3003w-modern-wall-lamp",
     "sku": "LH-3003W",
     "shortDescription": "Angular gold frame around a glass shade.",
-    "description": "Angular gold frame around a glass shade. Iron / Glass body in gold plating with an E27 bulb holder.",
+    "description": "Angular gold frame around a glass shade. Iron / Glass body in gold plating with a bulb holder.",
     "price": 2120,
     "images": [
       {
@@ -1149,7 +1146,6 @@ export const WALL_LAMPS = [
       "dimensions": "280*130mm",
       "material": "Iron / Glass",
       "finish": "Gold Plating",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -1167,7 +1163,7 @@ export const WALL_LAMPS = [
     "slug": "lh-w528-modern-wall-lamp",
     "sku": "LH-W528",
     "shortDescription": "Gold ring arm with a ribbed amber glass shade.",
-    "description": "Gold ring arm with a ribbed amber glass shade. Iron / Glass body in gold plating with an E27 bulb holder.",
+    "description": "Gold ring arm with a ribbed amber glass shade. Iron / Glass body in gold plating with a bulb holder.",
     "price": 1920,
     "images": [
       {
@@ -1185,7 +1181,6 @@ export const WALL_LAMPS = [
       "dimensions": "340*230mm",
       "material": "Iron / Glass",
       "finish": "Gold Plating",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -1203,7 +1198,7 @@ export const WALL_LAMPS = [
     "slug": "lh-7080w-modern-wall-lamp",
     "sku": "LH-7080W",
     "shortDescription": "Two-light gold sconce with pleated fabric shades.",
-    "description": "Two-light gold sconce with pleated fabric shades. Iron / Fabric body in gold plating with an E27 bulb holder.",
+    "description": "Two-light gold sconce with pleated fabric shades. Iron / Fabric body in gold plating with a bulb holder.",
     "price": 2280,
     "images": [
       {
@@ -1220,7 +1215,6 @@ export const WALL_LAMPS = [
     "specifications": {
       "material": "Iron / Fabric",
       "finish": "Gold Plating",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -1238,7 +1232,7 @@ export const WALL_LAMPS = [
     "slug": "lh-7632w-modern-wall-lamp",
     "sku": "LH-7632W",
     "shortDescription": "Ornate antique-brass two-light sconce with amber glass shades.",
-    "description": "Ornate antique-brass two-light sconce with amber glass shades. Iron / Glass body in antique brass plating with an E27 bulb holder.",
+    "description": "Ornate antique-brass two-light sconce with amber glass shades. Iron / Glass body in antique brass plating with a bulb holder.",
     "price": 1800,
     "images": [
       {
@@ -1255,7 +1249,6 @@ export const WALL_LAMPS = [
     "specifications": {
       "material": "Iron / Glass",
       "finish": "Antique Brass Plating",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -1273,7 +1266,7 @@ export const WALL_LAMPS = [
     "slug": "lh-8828w-modern-wall-lamp",
     "sku": "LH-8828W",
     "shortDescription": "Antique scrolled sconce with a frosted tulip glass shade.",
-    "description": "Antique scrolled sconce with a frosted tulip glass shade. Iron / Glass body in antique finish with an E27 bulb holder.",
+    "description": "Antique scrolled sconce with a frosted tulip glass shade. Iron / Glass body in antique finish with a bulb holder.",
     "price": 750,
     "images": [
       {
@@ -1290,7 +1283,6 @@ export const WALL_LAMPS = [
     "specifications": {
       "material": "Iron / Glass",
       "finish": "Antique",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [

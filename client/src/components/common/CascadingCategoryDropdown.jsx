@@ -23,7 +23,7 @@ export const PRODUCT_CATEGORIES_DATA = [
         desc: 'Linear & Halo Minimalist Sconces',
       },
       {
-        name: 'E27 Wall Lamp',
+        name: 'Wall Lamp',
         slug: 'e27-wall-lamp',
         image: '/categories/e27-wall-lamp.jpg',
         desc: 'Fluted Glass & Vintage Sconces',
@@ -51,7 +51,7 @@ export const PRODUCT_CATEGORIES_DATA = [
         desc: 'Integrated Architectural Suspensions',
       },
       {
-        name: 'E27 Hanging Lamp',
+        name: 'Hanging Lamp',
         slug: 'e27-hanging-lamp',
         image: '/categories/e27-hanging-lamp.jpg',
         desc: 'Mouth-Blown Fluted Glass Drops',

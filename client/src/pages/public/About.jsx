@@ -158,7 +158,7 @@ export const About = () => {
     },
     {
       q: 'Do you offer replacement bulbs, extra crystals, and spare drivers?',
-      a: 'Yes. We maintain a dedicated inventory of replacement optical crystals, spare drivers, E27/E14 vintage warm filament LED bulbs, and mounting hardware for all current and legacy collections. You can order spares directly through our catalog or concierge team.',
+      a: 'Yes. We maintain a dedicated inventory of replacement optical crystals, spare drivers, vintage warm filament LED bulbs, and mounting hardware for all current and legacy collections. You can order spares directly through our catalog or concierge team.',
     },
   ];
 

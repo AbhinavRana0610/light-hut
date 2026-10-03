@@ -62,8 +62,8 @@ const seedAll = async (isStandalone = false) => {
         image: '/categories/wall-lamp.jpg',
         sortOrder: 0,
         isActive: true,
-        seoTitle: 'Wall Lamps – LED & E27 | LightHut',
-        seoDescription: 'Shop LED and E27 wall lamps for modern, classic, and luxury interiors.',
+        seoTitle: 'Wall Lamps – LED & Classic | LightHut',
+        seoDescription: 'Shop LED and classic wall lamps for modern, classic, and luxury interiors.',
       },
       {
         name: 'LED Wall Lamp',
@@ -76,14 +76,14 @@ const seedAll = async (isStandalone = false) => {
         seoDescription: 'Browse our collection of high-efficiency LED wall lamps with premium finishes.',
       },
       {
-        name: 'E27 Wall Lamp',
+        name: 'Wall Lamp',
         slug: 'e27-wall-lamp',
-        description: 'Classic E27 socket wall lamps compatible with standard bulbs – ideal for bedside and hallway use.',
+        description: 'Classic socket wall lamps compatible with standard bulbs – ideal for bedside and hallway use.',
         image: '/categories/e27-wall-lamp.jpg',
         sortOrder: 2,
         isActive: true,
-        seoTitle: 'E27 Wall Lamps | LightHut',
-        seoDescription: 'E27 wall lamps for classic and contemporary spaces.',
+        seoTitle: 'Wall Lamps | LightHut',
+        seoDescription: 'Wall lamps for classic and contemporary spaces.',
       },
       // ── 2. PENDANT LAMP ───────────────────────────────────
       {
@@ -93,8 +93,8 @@ const seedAll = async (isStandalone = false) => {
         image: '/categories/pendant-lamp.jpg',
         sortOrder: 10,
         isActive: true,
-        seoTitle: 'Pendant Lamps – LED & E27 Hanging Lights | LightHut',
-        seoDescription: 'Explore pendant lamps in LED and E27 variants for stylish suspended lighting.',
+        seoTitle: 'Pendant Lamps – LED & Classic Hanging Lights | LightHut',
+        seoDescription: 'Explore pendant lamps in LED and classic variants for stylish suspended lighting.',
       },
       {
         name: 'LED Hanging Lamp',
@@ -107,14 +107,14 @@ const seedAll = async (isStandalone = false) => {
         seoDescription: 'Energy-saving LED pendant lamps for dining, kitchen, and feature spaces.',
       },
       {
-        name: 'E27 Hanging Lamp',
+        name: 'Hanging Lamp',
         slug: 'e27-hanging-lamp',
-        description: 'Versatile E27 pendant lamps with decorative fabric cords and adjustable drop heights.',
+        description: 'Versatile pendant lamps with decorative fabric cords and adjustable drop heights.',
         image: '/categories/e27-hanging-lamp.jpg',
         sortOrder: 12,
         isActive: true,
-        seoTitle: 'E27 Hanging Lamps | LightHut',
-        seoDescription: 'E27 socket pendant lamps compatible with decorative filament bulbs.',
+        seoTitle: 'Hanging Lamps | LightHut',
+        seoDescription: 'Socket pendant lamps compatible with decorative filament bulbs.',
       },
       // ── 3. CHANDELIER ────────────────────────────────────
       {
@@ -367,13 +367,13 @@ const seedAll = async (isStandalone = false) => {
     // 3. Seed Products
     console.log('[Seed] Seeding LightHut product catalog...');
     const productsData = [
-      // ── WALL LAMP: LED + E27 ──────────────────────────────────────
+      // ── WALL LAMP: LED + Classic ──────────────────────────────────────
       // Catalogue products: see ./data/wallLamps.js
       ...WALL_LAMPS.map(({ categorySlug, ...p }) => ({ ...p, category: catMap[categorySlug] })),
       // ── LED HANGING LAMP ──────────────────────────────────────────
       // Catalogue products: see ./data/ledHangingLamps.js
       ...LED_HANGING_LAMPS.map((p) => ({ ...p, category: catMap['led-hanging-lamp'] })),
-      // ── E27 HANGING LAMP (+ one LED foam lamp) ────────────────────
+      // ── HANGING LAMP (+ one LED foam lamp) ────────────────────
       // Catalogue products: see ./data/e27HangingLamps.js
       ...E27_HANGING_LAMPS.map(({ categorySlug, ...p }) => ({ ...p, category: catMap[categorySlug] })),
       // ── LED CHANDELIER ────────────────────────────────────────────
@@ -727,7 +727,7 @@ const seedAll = async (isStandalone = false) => {
           dimensions: 'Height: 520mm, Shade Dia: 300mm',
           material: 'Hand-Thrown Ceramic & Linen',
           finish: 'Matte Ivory Glaze & Natural Linen',
-          wattage: 'E27 Max 25W (LED Bulb Included)',
+          wattage: 'Max 25W (LED Bulb Included)',
           voltage: 'AC 220-240V',
           colorTemperature: '2700K Warm White',
           ipRating: 'IP20 Indoor',
@@ -758,7 +758,7 @@ const seedAll = async (isStandalone = false) => {
           dimensions: 'Height: 580mm, Shade Dia: 320mm',
           material: 'Carrara Marble & Solid Brass',
           finish: 'Natural White Marble / Polished Brass',
-          wattage: 'E27 Max 25W (LED Bulb Included)',
+          wattage: 'Max 25W (LED Bulb Included)',
           voltage: 'AC 220-240V',
           colorTemperature: '2700K Warm White',
           ipRating: 'IP20 Indoor',
@@ -785,7 +785,7 @@ const seedAll = async (isStandalone = false) => {
           dimensions: 'Height: 420mm, Shade Dia: 280mm',
           material: 'Rattan & Bamboo',
           finish: 'Natural Rattan',
-          wattage: 'E27 Max 25W (Bulb Not Included)',
+          wattage: 'Max 25W (Bulb Not Included)',
           voltage: 'AC 220-240V',
           colorTemperature: 'Depends on Bulb',
           ipRating: 'IP20 Indoor',
@@ -813,7 +813,7 @@ const seedAll = async (isStandalone = false) => {
           dimensions: 'Height: 1800mm, Arc Reach: 1200mm, Base: 300mm',
           material: 'Steel & Aluminum',
           finish: 'Brushed Gold / Matte Black Shade Interior',
-          wattage: 'E27 Max 40W (LED Bulb Included)',
+          wattage: 'Max 40W (LED Bulb Included)',
           voltage: 'AC 220-240V',
           colorTemperature: '2700K Warm White',
           ipRating: 'IP20 Indoor',
@@ -840,7 +840,7 @@ const seedAll = async (isStandalone = false) => {
           dimensions: 'Height: 1600mm, Shade Dia: 400mm',
           material: 'Solid Wood & Linen',
           finish: 'Walnut Stain / Natural Linen',
-          wattage: 'E27 Max 40W (Bulb Not Included)',
+          wattage: 'Max 40W (Bulb Not Included)',
           voltage: 'AC 220-240V',
           colorTemperature: 'Depends on Bulb',
           ipRating: 'IP20 Indoor',
@@ -859,7 +859,7 @@ const seedAll = async (isStandalone = false) => {
         slug: 'lh-fb101-st64-edison-led-filament-bulb',
         sku: 'LH-FB101',
         category: catMap['led-filament-bulb'],
-        shortDescription: 'ST64 vintage Edison LED filament bulb 6W – warm 2200K amber glow, E27 base.',
+        shortDescription: 'ST64 vintage Edison LED filament bulb 6W – warm 2200K amber glow, screw base.',
         description: 'Recreates the warm, amber nostalgia of the original carbon filament lamp with 90% less energy consumption. The visible spiral LED filament is seen through the smoke-tinted globe for an authentic vintage aesthetic.',
         images: [
           { url: '/categories/led-filament-bulb.jpg', alt: 'LH-FB101 ST64 Filament Bulb', isCover: true },
@@ -869,10 +869,10 @@ const seedAll = async (isStandalone = false) => {
           material: 'Glass & Tungsten Filament LED',
           finish: 'Smoke Tinted Globe',
           wattage: '6W LED (Equiv. 60W Incandescent)',
-          voltage: 'AC 220-240V E27',
+          voltage: 'AC 220-240V',
           colorTemperature: '2200K Sunset Amber',
           ipRating: 'IP20 Indoor',
-          installationType: 'E27 Screw Base',
+          installationType: 'Screw Base',
           beamAngle: '360° Omnidirectional',
           cri: 'Ra > 80',
           luminousFlux: '550 Lumens',
@@ -886,7 +886,7 @@ const seedAll = async (isStandalone = false) => {
         slug: 'lh-fb102-g95-globe-led-filament-bulb',
         sku: 'LH-FB102',
         category: catMap['led-filament-bulb'],
-        shortDescription: 'G95 large globe LED filament bulb 8W – clear glass, warm 2700K, E27 base.',
+        shortDescription: 'G95 large globe LED filament bulb 8W – clear glass, warm 2700K, screw base.',
         description: 'The LH-FB102 features a 95mm diameter globe with a clear glass envelope showcasing the full spiral filament array. Perfect for exposed-bulb pendant lamps, industrial pendants, and decorative chandeliers.',
         images: [
           { url: '/categories/led-filament-bulb.jpg', alt: 'LH-FB102 G95 Globe Filament Bulb', isCover: true },
@@ -896,10 +896,10 @@ const seedAll = async (isStandalone = false) => {
           material: 'Clear Glass & LED Filament',
           finish: 'Clear Glass',
           wattage: '8W LED (Equiv. 75W Incandescent)',
-          voltage: 'AC 220-240V E27',
+          voltage: 'AC 220-240V',
           colorTemperature: '2700K Warm White',
           ipRating: 'IP20 Indoor',
-          installationType: 'E27 Screw Base',
+          installationType: 'Screw Base',
           beamAngle: '360° Omnidirectional',
           cri: 'Ra > 80',
           luminousFlux: '750 Lumens',
@@ -923,10 +923,10 @@ const seedAll = async (isStandalone = false) => {
           material: 'Clear Glass & LED Filament',
           finish: 'Clear / Amber Tint',
           wattage: '4W LED (Equiv. 40W Incandescent)',
-          voltage: 'AC 220-240V E27',
+          voltage: 'AC 220-240V',
           colorTemperature: '2200K Amber',
           ipRating: 'IP20 Indoor',
-          installationType: 'E27 Screw Base',
+          installationType: 'Screw Base',
           beamAngle: '360° Omnidirectional',
           cri: 'Ra > 80',
           luminousFlux: '400 Lumens',

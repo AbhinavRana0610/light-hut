@@ -8,7 +8,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-920-gate-outdoor-gate-lamp",
     "sku": "LH-920 (Gate)",
     "shortDescription": "Classic lantern with frosted glass panels, also available as a wall lamp.",
-    "description": "Classic lantern with frosted glass panels, also available as a wall lamp. Aluminium / Glass body in black / coffee + antique brass finish with frosted glass and an E27 bulb holder.",
+    "description": "Classic lantern with frosted glass panels, also available as a wall lamp. Aluminium / Glass body in black / coffee + antique brass finish with frosted glass and a bulb holder.",
     "price": 3415,
     "images": [
       {
@@ -26,7 +26,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "400*200mm",
       "material": "Aluminium / Glass",
       "finish": "Black / Coffee + Antique Brass (Frosted glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -45,7 +44,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-920-wall-outdoor-wall-lamp",
     "sku": "LH-920 (Wall)",
     "shortDescription": "Classic wall lantern with frosted glass panels, also available as a gate lamp.",
-    "description": "Classic wall lantern with frosted glass panels, also available as a gate lamp. Aluminium / Glass body in black / coffee + antique brass finish with frosted glass and an E27 bulb holder.",
+    "description": "Classic wall lantern with frosted glass panels, also available as a gate lamp. Aluminium / Glass body in black / coffee + antique brass finish with frosted glass and a bulb holder.",
     "price": 3415,
     "images": [
       {
@@ -63,7 +62,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "400*200mm",
       "material": "Aluminium / Glass",
       "finish": "Black / Coffee + Antique Brass (Frosted glass)",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -82,7 +80,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-5906gl-outdoor-gate-lamp",
     "sku": "LH-5906GL",
     "shortDescription": "Black pillar lantern with clear melt-glass panels.",
-    "description": "Black pillar lantern with clear melt-glass panels. Aluminium / Glass body in black finish with clear melt glass and an E27 bulb holder.",
+    "description": "Black pillar lantern with clear melt-glass panels. Aluminium / Glass body in black finish with clear melt glass and a bulb holder.",
     "price": 3900,
     "images": [
       {
@@ -100,7 +98,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "460*180mm",
       "material": "Aluminium / Glass",
       "finish": "Black (Clear melt glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -119,7 +116,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-5906wl-outdoor-wall-lamp",
     "sku": "LH-5906WL",
     "shortDescription": "Black scroll-arm wall lantern with clear melt-glass panels.",
-    "description": "Black scroll-arm wall lantern with clear melt-glass panels. Aluminium / Glass body in black finish with clear melt glass and an E27 bulb holder.",
+    "description": "Black scroll-arm wall lantern with clear melt-glass panels. Aluminium / Glass body in black finish with clear melt glass and a bulb holder.",
     "price": 4410,
     "images": [
       {
@@ -137,7 +134,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "420*180mm",
       "material": "Aluminium / Glass",
       "finish": "Black (Clear melt glass)",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -156,7 +152,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-5706gl-outdoor-gate-lamp",
     "sku": "LH-5706GL",
     "shortDescription": "Black pillar lantern with clear crushed-glass panels.",
-    "description": "Black pillar lantern with clear crushed-glass panels. Aluminium / Glass body in black finish with clear crush glass and an E27 bulb holder.",
+    "description": "Black pillar lantern with clear crushed-glass panels. Aluminium / Glass body in black finish with clear crush glass and a bulb holder.",
     "price": 4340,
     "images": [
       {
@@ -174,7 +170,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "415*205mm",
       "material": "Aluminium / Glass",
       "finish": "Black (Clear crush glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -193,7 +188,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-5706wl-outdoor-wall-lamp",
     "sku": "LH-5706WL",
     "shortDescription": "Black scroll-arm wall lantern with clear crushed-glass panels.",
-    "description": "Black scroll-arm wall lantern with clear crushed-glass panels. Aluminium / Glass body in black finish with clear crush glass and an E27 bulb holder.",
+    "description": "Black scroll-arm wall lantern with clear crushed-glass panels. Aluminium / Glass body in black finish with clear crush glass and a bulb holder.",
     "price": 4785,
     "images": [
       {
@@ -211,7 +206,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "420*180mm",
       "material": "Aluminium / Glass",
       "finish": "Black (Clear crush glass)",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -230,7 +224,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-5506gl-outdoor-gate-lamp",
     "sku": "LH-5506GL",
     "shortDescription": "Black pillar lantern with a criss-cross frame and clear glass.",
-    "description": "Black pillar lantern with a criss-cross frame and clear glass. Aluminium / Glass body in black finish with clear glass and an E27 bulb holder.",
+    "description": "Black pillar lantern with a criss-cross frame and clear glass. Aluminium / Glass body in black finish with clear glass and a bulb holder.",
     "price": 4350,
     "images": [
       {
@@ -248,7 +242,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "415*205mm",
       "material": "Aluminium / Glass",
       "finish": "Black (Clear glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -267,7 +260,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-5506wl-outdoor-wall-lamp",
     "sku": "LH-5506WL",
     "shortDescription": "Black wall lantern with a criss-cross frame and clear glass.",
-    "description": "Black wall lantern with a criss-cross frame and clear glass. Aluminium / Glass body in black finish with clear glass and an E27 bulb holder.",
+    "description": "Black wall lantern with a criss-cross frame and clear glass. Aluminium / Glass body in black finish with clear glass and a bulb holder.",
     "price": 4785,
     "images": [
       {
@@ -285,7 +278,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "420*180mm",
       "material": "Aluminium / Glass",
       "finish": "Black (Clear glass)",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -304,7 +296,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-2150gl-outdoor-gate-lamp",
     "sku": "LH-2150GL",
     "shortDescription": "Black pillar lantern with fluted glass panels.",
-    "description": "Black pillar lantern with fluted glass panels. Aluminium / Glass body in black finish with flute glass and an E27 bulb holder.",
+    "description": "Black pillar lantern with fluted glass panels. Aluminium / Glass body in black finish with flute glass and a bulb holder.",
     "price": 3510,
     "images": [
       {
@@ -322,7 +314,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "400*200mm",
       "material": "Aluminium / Glass",
       "finish": "Black (Flute glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -341,7 +332,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-2150wl-outdoor-wall-lamp",
     "sku": "LH-2150WL",
     "shortDescription": "Tall black wall lantern with fluted glass panels.",
-    "description": "Tall black wall lantern with fluted glass panels. Aluminium / Glass body in black finish with flute glass and an E27 bulb holder.",
+    "description": "Tall black wall lantern with fluted glass panels. Aluminium / Glass body in black finish with flute glass and a bulb holder.",
     "price": 4350,
     "images": [
       {
@@ -359,7 +350,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "580*200mm",
       "material": "Aluminium / Glass",
       "finish": "Black (Flute glass)",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -378,7 +368,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-1908gl-bk-lh-1909gl-cf-outdoor-gate-lamp",
     "sku": "LH-1908GL-BK / LH-1909GL-CF",
     "shortDescription": "Tall classic pillar lantern with crushed-glass panels, in black or coffee and three heights.",
-    "description": "Tall classic pillar lantern with crushed-glass panels, in black or coffee and three heights. Aluminium / Glass body in black / coffee finish with crush glass and an E27 bulb holder. Available as H500 – LH-1908GL-BK / LH-1909GL-CF (₹2,700), H600 – LH-1710GL-BK / LH-1709GL-CF (₹3,480), H650 – LH-1910GL-BK / LH-1911GL-CF (₹6,300).",
+    "description": "Tall classic pillar lantern with crushed-glass panels, in black or coffee and three heights. Aluminium / Glass body in black / coffee finish with crush glass and a bulb holder. Available as H500 – LH-1908GL-BK / LH-1909GL-CF (₹2,700), H600 – LH-1710GL-BK / LH-1709GL-CF (₹3,480), H650 – LH-1910GL-BK / LH-1911GL-CF (₹6,300).",
     "price": 2700,
     "images": [
       {
@@ -396,7 +386,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "H500*W230 / H600*W230 / H650*W290mm",
       "material": "Aluminium / Glass",
       "finish": "Black / Coffee (Crush glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -415,7 +404,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-1905wl-bk-lh-1906wl-cf-lh-1706wl-cf-outdoor-wall-lamp",
     "sku": "LH-1905WL-BK / LH-1906WL-CF / LH-1706WL-CF",
     "shortDescription": "Scroll-arm wall lantern with crushed-glass panels, in black or coffee.",
-    "description": "Scroll-arm wall lantern with crushed-glass panels, in black or coffee. Aluminium / Glass body in black / coffee finish with crush glass and an E27 bulb holder. Available as H500 – LH-1905WL-BK / LH-1906WL-CF (₹3,780), H660 – LH-1706WL-CF (₹6,990).",
+    "description": "Scroll-arm wall lantern with crushed-glass panels, in black or coffee. Aluminium / Glass body in black / coffee finish with crush glass and a bulb holder. Available as H500 – LH-1905WL-BK / LH-1906WL-CF (₹3,780), H660 – LH-1706WL-CF (₹6,990).",
     "price": 3780,
     "images": [
       {
@@ -433,7 +422,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "H500*W230 / H660*W280mm",
       "material": "Aluminium / Glass",
       "finish": "Black / Coffee (Crush glass)",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -452,7 +440,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-602gl-melt-glass-outdoor-gate-lamp",
     "sku": "LH-602GL (Melt Glass)",
     "shortDescription": "Coffee lantern with an ornate top and melt-glass panels.",
-    "description": "Coffee lantern with an ornate top and melt-glass panels. Aluminium / Glass body in coffee finish with melt glass and an E27 bulb holder.",
+    "description": "Coffee lantern with an ornate top and melt-glass panels. Aluminium / Glass body in coffee finish with melt glass and a bulb holder.",
     "price": 3200,
     "images": [
       {
@@ -470,7 +458,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "H450*W210mm",
       "material": "Aluminium / Glass",
       "finish": "Coffee (Melt glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -489,7 +476,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-602gl-flute-glass-outdoor-gate-lamp",
     "sku": "LH-602GL (Flute Glass)",
     "shortDescription": "Compact pillar lantern with fluted glass, in black or coffee.",
-    "description": "Compact pillar lantern with fluted glass, in black or coffee. Aluminium / Glass body in black / coffee finish with flute glass and an E27 bulb holder. Available as Black (₹2,790), Coffee (₹2,820).",
+    "description": "Compact pillar lantern with fluted glass, in black or coffee. Aluminium / Glass body in black / coffee finish with flute glass and a bulb holder. Available as Black (₹2,790), Coffee (₹2,820).",
     "price": 2790,
     "images": [
       {
@@ -507,7 +494,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "H380*W180mm",
       "material": "Aluminium / Glass",
       "finish": "Black / Coffee (Flute glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -526,7 +512,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-998-gate-outdoor-gate-lamp",
     "sku": "LH-998 (Gate)",
     "shortDescription": "Coffee and antique-brass lantern with a patterned cut-out frame; wall version LH-998 (Wall) ₹5,400.",
-    "description": "Coffee and antique-brass lantern with a patterned cut-out frame; wall version LH-998 (Wall) ₹5,400. Aluminium / Glass body in coffee + antique brass finish with frosted glass and an E27 bulb holder.",
+    "description": "Coffee and antique-brass lantern with a patterned cut-out frame; wall version LH-998 (Wall) ₹5,400. Aluminium / Glass body in coffee + antique brass finish with frosted glass and a bulb holder.",
     "price": 4680,
     "images": [
       {
@@ -544,7 +530,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "H390*W190mm",
       "material": "Aluminium / Glass",
       "finish": "Coffee + Antique Brass (Frosted glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -563,7 +548,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-998-wall-outdoor-wall-lamp",
     "sku": "LH-998 (Wall)",
     "shortDescription": "Coffee and antique-brass wall lantern with a patterned cut-out frame; gate version LH-998 (Gate) ₹4,680.",
-    "description": "Coffee and antique-brass wall lantern with a patterned cut-out frame; gate version LH-998 (Gate) ₹4,680. Aluminium / Glass body in coffee + antique brass finish with frosted glass and an E27 bulb holder.",
+    "description": "Coffee and antique-brass wall lantern with a patterned cut-out frame; gate version LH-998 (Gate) ₹4,680. Aluminium / Glass body in coffee + antique brass finish with frosted glass and a bulb holder.",
     "price": 5400,
     "images": [
       {
@@ -581,7 +566,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "H400*L250*W190mm",
       "material": "Aluminium / Glass",
       "finish": "Coffee + Antique Brass (Frosted glass)",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -600,7 +584,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-615-gate-outdoor-gate-lamp",
     "sku": "LH-615 (Gate)",
     "shortDescription": "Coffee lantern with horizontal louvres and fluted glass, also available as a wall lamp.",
-    "description": "Coffee lantern with horizontal louvres and fluted glass, also available as a wall lamp. Aluminium / Glass body in coffee finish with flute glass and an E27 bulb holder.",
+    "description": "Coffee lantern with horizontal louvres and fluted glass, also available as a wall lamp. Aluminium / Glass body in coffee finish with flute glass and a bulb holder.",
     "price": 3480,
     "images": [
       {
@@ -618,7 +602,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "400*200mm",
       "material": "Aluminium / Glass",
       "finish": "Coffee (Flute glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -637,7 +620,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-615-wall-outdoor-wall-lamp",
     "sku": "LH-615 (Wall)",
     "shortDescription": "Coffee wall lantern with horizontal louvres and fluted glass, also available as a gate lamp.",
-    "description": "Coffee wall lantern with horizontal louvres and fluted glass, also available as a gate lamp. Aluminium / Glass body in coffee finish with flute glass and an E27 bulb holder.",
+    "description": "Coffee wall lantern with horizontal louvres and fluted glass, also available as a gate lamp. Aluminium / Glass body in coffee finish with flute glass and a bulb holder.",
     "price": 3480,
     "images": [
       {
@@ -655,7 +638,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "300*150mm",
       "material": "Aluminium / Glass",
       "finish": "Coffee (Flute glass)",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -674,7 +656,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-625-gate-outdoor-gate-lamp",
     "sku": "LH-625 (Gate)",
     "shortDescription": "Coffee lantern with frosted glass, also available as a wall lamp.",
-    "description": "Coffee lantern with frosted glass, also available as a wall lamp. Aluminium / Glass body in coffee finish with frosted glass and an E27 bulb holder.",
+    "description": "Coffee lantern with frosted glass, also available as a wall lamp. Aluminium / Glass body in coffee finish with frosted glass and a bulb holder.",
     "price": 3480,
     "images": [
       {
@@ -692,7 +674,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "400*200mm",
       "material": "Aluminium / Glass",
       "finish": "Coffee (Frosted glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -711,7 +692,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-625-wall-outdoor-wall-lamp",
     "sku": "LH-625 (Wall)",
     "shortDescription": "Coffee wall lantern with frosted glass, also available as a gate lamp.",
-    "description": "Coffee wall lantern with frosted glass, also available as a gate lamp. Aluminium / Glass body in coffee finish with frosted glass and an E27 bulb holder.",
+    "description": "Coffee wall lantern with frosted glass, also available as a gate lamp. Aluminium / Glass body in coffee finish with frosted glass and a bulb holder.",
     "price": 3480,
     "images": [
       {
@@ -729,7 +710,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "300*150mm",
       "material": "Aluminium / Glass",
       "finish": "Coffee (Frosted glass)",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -748,7 +728,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-9381gl-outdoor-gate-lamp",
     "sku": "LH-9381GL",
     "shortDescription": "Coffee pillar lantern with a diamond lattice.",
-    "description": "Coffee pillar lantern with a diamond lattice. Aluminium / Glass body in coffee finish with frosted glass and an E27 bulb holder.",
+    "description": "Coffee pillar lantern with a diamond lattice. Aluminium / Glass body in coffee finish with frosted glass and a bulb holder.",
     "price": 2175,
     "images": [
       {
@@ -766,7 +746,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "390*180mm",
       "material": "Aluminium / Glass",
       "finish": "Coffee (Frosted glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -785,7 +764,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-9382gl-lh-9383gl-outdoor-gate-lamp",
     "sku": "LH-9382GL / LH-9383GL",
     "shortDescription": "Coffee pillar lantern with a decorative scroll lattice, in two patterns.",
-    "description": "Coffee pillar lantern with a decorative scroll lattice, in two patterns. Aluminium / Glass body in coffee finish with frosted glass and an E27 bulb holder.",
+    "description": "Coffee pillar lantern with a decorative scroll lattice, in two patterns. Aluminium / Glass body in coffee finish with frosted glass and a bulb holder.",
     "price": 2175,
     "images": [
       {
@@ -803,7 +782,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "390*180mm",
       "material": "Aluminium / Glass",
       "finish": "Coffee (Frosted glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -822,7 +800,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-9361gl-lh-9362gl-lh-9364gl-outdoor-gate-lamp",
     "sku": "LH-9361GL / LH-9362GL / LH-9364GL",
     "shortDescription": "Antique-brass pillar lantern with a decorative lattice, in three patterns.",
-    "description": "Antique-brass pillar lantern with a decorative lattice, in three patterns. Aluminium / Glass body in antique brass finish with frosted glass and an E27 bulb holder.",
+    "description": "Antique-brass pillar lantern with a decorative lattice, in three patterns. Aluminium / Glass body in antique brass finish with frosted glass and a bulb holder.",
     "price": 2240,
     "images": [
       {
@@ -840,7 +818,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "390*180mm",
       "material": "Aluminium / Glass",
       "finish": "Antique Brass (Frosted glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -859,7 +836,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-9023-outdoor-gate-lamp",
     "sku": "LH-9023",
     "shortDescription": "Antique-brass pillar lantern with melting-glass panels.",
-    "description": "Antique-brass pillar lantern with melting-glass panels. Aluminium / Glass body in antique brass finish with melting glass and an E27 bulb holder. Available as 360*180mm (₹2,240), 430*230mm (₹2,590).",
+    "description": "Antique-brass pillar lantern with melting-glass panels. Aluminium / Glass body in antique brass finish with melting glass and a bulb holder. Available as 360*180mm (₹2,240), 430*230mm (₹2,590).",
     "price": 2240,
     "images": [
       {
@@ -877,7 +854,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "360*180mm / 430*230mm",
       "material": "Aluminium / Glass",
       "finish": "Antique Brass (Melting glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -896,7 +872,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-9023wl-outdoor-wall-lamp",
     "sku": "LH-9023WL",
     "shortDescription": "Antique-brass scroll-arm wall lantern with melting-glass panels.",
-    "description": "Antique-brass scroll-arm wall lantern with melting-glass panels. Aluminium / Glass body in antique brass finish with melting glass and an E27 bulb holder.",
+    "description": "Antique-brass scroll-arm wall lantern with melting-glass panels. Aluminium / Glass body in antique brass finish with melting glass and a bulb holder.",
     "price": 3450,
     "images": [
       {
@@ -914,7 +890,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "420*230mm",
       "material": "Aluminium / Glass",
       "finish": "Antique Brass (Melting glass)",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -933,7 +908,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-155gl-frosted-outdoor-gate-lamp",
     "sku": "LH-155GL (Frosted)",
     "shortDescription": "Victorian-style ornate pillar lantern with frosted glass.",
-    "description": "Victorian-style ornate pillar lantern with frosted glass. Aluminium / Glass body in antique finish with frosted glass and an E27 bulb holder. Available as H470 (₹2,460), H500 (₹4,680).",
+    "description": "Victorian-style ornate pillar lantern with frosted glass. Aluminium / Glass body in antique finish with frosted glass and a bulb holder. Available as H470 (₹2,460), H500 (₹4,680).",
     "price": 2460,
     "images": [
       {
@@ -951,7 +926,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "H470*W180 / H500*W230mm",
       "material": "Aluminium / Glass",
       "finish": "Antique (Frosted glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -970,7 +944,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-155wl-frosted-outdoor-wall-lamp",
     "sku": "LH-155WL (Frosted)",
     "shortDescription": "Victorian-style ornate wall lantern with frosted glass.",
-    "description": "Victorian-style ornate wall lantern with frosted glass. Aluminium / Glass body in antique / black finish with frosted glass and an E27 bulb holder.",
+    "description": "Victorian-style ornate wall lantern with frosted glass. Aluminium / Glass body in antique / black finish with frosted glass and a bulb holder.",
     "price": 5100,
     "images": [
       {
@@ -988,7 +962,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "H500*W220*L330mm",
       "material": "Aluminium / Glass",
       "finish": "Antique / Black (Frosted glass)",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -1007,7 +980,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-155gl-clear-outdoor-gate-lamp",
     "sku": "LH-155GL (Clear)",
     "shortDescription": "Victorian-style ornate pillar lantern with clear glass, in antique or black.",
-    "description": "Victorian-style ornate pillar lantern with clear glass, in antique or black. Aluminium / Glass body in antique / black finish with clear glass and an E27 bulb holder.",
+    "description": "Victorian-style ornate pillar lantern with clear glass, in antique or black. Aluminium / Glass body in antique / black finish with clear glass and a bulb holder.",
     "price": 4680,
     "images": [
       {
@@ -1025,7 +998,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "H500*W230mm",
       "material": "Aluminium / Glass",
       "finish": "Antique / Black (Clear glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -1044,7 +1016,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-155wl-clear-outdoor-wall-lamp",
     "sku": "LH-155WL (Clear)",
     "shortDescription": "Victorian-style ornate wall lantern with clear glass, in antique or black.",
-    "description": "Victorian-style ornate wall lantern with clear glass, in antique or black. Aluminium / Glass body in antique / black finish with clear glass and an E27 bulb holder. Available as H420 (₹2,880), H500 (₹5,100).",
+    "description": "Victorian-style ornate wall lantern with clear glass, in antique or black. Aluminium / Glass body in antique / black finish with clear glass and a bulb holder. Available as H420 (₹2,880), H500 (₹5,100).",
     "price": 2880,
     "images": [
       {
@@ -1062,7 +1034,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "H420*W180*L260 / H500*W220*L330mm",
       "material": "Aluminium / Glass",
       "finish": "Antique / Black (Clear glass)",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -1081,7 +1052,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-194-gate-outdoor-gate-lamp",
     "sku": "LH-194 (Gate)",
     "shortDescription": "Slim classic lantern in black or antique brass, also available as wall and hanging lamps.",
-    "description": "Slim classic lantern in black or antique brass, also available as wall and hanging lamps. Aluminium / Glass body in black / antique brass finish with clear glass and an E27 bulb holder.",
+    "description": "Slim classic lantern in black or antique brass, also available as wall and hanging lamps. Aluminium / Glass body in black / antique brass finish with clear glass and a bulb holder.",
     "price": 1500,
     "images": [
       {
@@ -1099,7 +1070,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "H47*W16cm",
       "material": "Aluminium / Glass",
       "finish": "Black / Antique Brass (Clear glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -1118,7 +1088,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-194-wall-outdoor-wall-lamp",
     "sku": "LH-194 (Wall)",
     "shortDescription": "Slim classic wall lantern in black or antique brass, also available as gate and hanging lamps.",
-    "description": "Slim classic wall lantern in black or antique brass, also available as gate and hanging lamps. Aluminium / Glass body in black / antique brass finish with clear glass and an E27 bulb holder.",
+    "description": "Slim classic wall lantern in black or antique brass, also available as gate and hanging lamps. Aluminium / Glass body in black / antique brass finish with clear glass and a bulb holder.",
     "price": 1500,
     "images": [
       {
@@ -1136,7 +1106,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "H42*W16*L21cm",
       "material": "Aluminium / Glass",
       "finish": "Black / Antique Brass (Clear glass)",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -1155,7 +1124,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-218-gate-outdoor-gate-lamp",
     "sku": "LH-218 (Gate)",
     "shortDescription": "Classic lantern in black or antique brass, also available as a wall lamp.",
-    "description": "Classic lantern in black or antique brass, also available as a wall lamp. Aluminium / Glass body in black / antique brass finish with frosted glass and an E27 bulb holder.",
+    "description": "Classic lantern in black or antique brass, also available as a wall lamp. Aluminium / Glass body in black / antique brass finish with frosted glass and a bulb holder.",
     "price": 1075,
     "images": [
       {
@@ -1173,7 +1142,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "350*165mm",
       "material": "Aluminium / Glass",
       "finish": "Black / Antique Brass (Frosted glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -1192,7 +1160,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-218-wall-outdoor-wall-lamp",
     "sku": "LH-218 (Wall)",
     "shortDescription": "Classic wall lantern in black or antique brass, also available as a gate lamp.",
-    "description": "Classic wall lantern in black or antique brass, also available as a gate lamp. Aluminium / Glass body in black / antique brass finish with frosted glass and an E27 bulb holder.",
+    "description": "Classic wall lantern in black or antique brass, also available as a gate lamp. Aluminium / Glass body in black / antique brass finish with frosted glass and a bulb holder.",
     "price": 1075,
     "images": [
       {
@@ -1210,7 +1178,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "320*165mm",
       "material": "Aluminium / Glass",
       "finish": "Black / Antique Brass (Frosted glass)",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -1229,7 +1196,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-6221-gate-outdoor-gate-lamp",
     "sku": "LH-6221 (Gate)",
     "shortDescription": "Tall classic lantern in black or antique brass, also available as a wall lamp.",
-    "description": "Tall classic lantern in black or antique brass, also available as a wall lamp. Aluminium / Glass body in black / antique brass finish with clear glass and an E27 bulb holder.",
+    "description": "Tall classic lantern in black or antique brass, also available as a wall lamp. Aluminium / Glass body in black / antique brass finish with clear glass and a bulb holder.",
     "price": 1075,
     "images": [
       {
@@ -1247,7 +1214,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "450*150mm",
       "material": "Aluminium / Glass",
       "finish": "Black / Antique Brass (Clear glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -1266,7 +1232,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-6221-wall-outdoor-wall-lamp",
     "sku": "LH-6221 (Wall)",
     "shortDescription": "Tall classic wall lantern in black or antique brass, also available as a gate lamp.",
-    "description": "Tall classic wall lantern in black or antique brass, also available as a gate lamp. Aluminium / Glass body in black / antique brass finish with clear glass and an E27 bulb holder.",
+    "description": "Tall classic wall lantern in black or antique brass, also available as a gate lamp. Aluminium / Glass body in black / antique brass finish with clear glass and a bulb holder.",
     "price": 1075,
     "images": [
       {
@@ -1284,7 +1250,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "400*150mm",
       "material": "Aluminium / Glass",
       "finish": "Black / Antique Brass (Clear glass)",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -1303,7 +1268,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-216-gate-outdoor-gate-lamp",
     "sku": "LH-216 (Gate)",
     "shortDescription": "Classic lantern in black or antique brass, also available as a wall lamp.",
-    "description": "Classic lantern in black or antique brass, also available as a wall lamp. Aluminium / Glass body in black / antique brass finish with clear glass and an E27 bulb holder.",
+    "description": "Classic lantern in black or antique brass, also available as a wall lamp. Aluminium / Glass body in black / antique brass finish with clear glass and a bulb holder.",
     "price": 1075,
     "images": [
       {
@@ -1321,7 +1286,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "350*165mm",
       "material": "Aluminium / Glass",
       "finish": "Black / Antique Brass (Clear glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -1340,7 +1304,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-216-wall-outdoor-wall-lamp",
     "sku": "LH-216 (Wall)",
     "shortDescription": "Classic wall lantern in black or antique brass, also available as a gate lamp.",
-    "description": "Classic wall lantern in black or antique brass, also available as a gate lamp. Aluminium / Glass body in black / antique brass finish with clear glass and an E27 bulb holder.",
+    "description": "Classic wall lantern in black or antique brass, also available as a gate lamp. Aluminium / Glass body in black / antique brass finish with clear glass and a bulb holder.",
     "price": 1075,
     "images": [
       {
@@ -1358,7 +1322,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "320*165mm",
       "material": "Aluminium / Glass",
       "finish": "Black / Antique Brass (Clear glass)",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -1377,7 +1340,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-306wl-outdoor-wall-lamp",
     "sku": "LH-306WL",
     "shortDescription": "Classic wall lantern in black or antique brass.",
-    "description": "Classic wall lantern in black or antique brass. Aluminium / Glass body in black / antique brass finish with foggy glass and an E27 bulb holder.",
+    "description": "Classic wall lantern in black or antique brass. Aluminium / Glass body in black / antique brass finish with foggy glass and a bulb holder.",
     "price": 1075,
     "images": [
       {
@@ -1395,7 +1358,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "320*155*185mm",
       "material": "Aluminium / Glass",
       "finish": "Black / Antique Brass (Foggy glass)",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -1414,7 +1376,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-237f-gl-outdoor-gate-lamp",
     "sku": "LH-237F GL",
     "shortDescription": "Black pillar lantern with frosted glass.",
-    "description": "Black pillar lantern with frosted glass. Aluminium / Glass body in black finish with frosted glass and an E27 bulb holder.",
+    "description": "Black pillar lantern with frosted glass. Aluminium / Glass body in black finish with frosted glass and a bulb holder.",
     "price": 1525,
     "images": [
       {
@@ -1432,7 +1394,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "H450*W190mm",
       "material": "Aluminium / Glass",
       "finish": "Black (Frosted glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -1451,7 +1412,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-2050wl-iron-outdoor-wall-lamp",
     "sku": "LH-2050WL (Iron)",
     "shortDescription": "Rectangular wall lantern with fluted glass, made in India.",
-    "description": "Rectangular wall lantern with fluted glass, made in India. Iron / Glass body in black / coffee finish with flute glass and an E27 bulb holder. Available as 375*180mm (₹1,340), 600*200mm (₹2,150).",
+    "description": "Rectangular wall lantern with fluted glass, made in India. Iron / Glass body in black / coffee finish with flute glass and a bulb holder. Available as 375*180mm (₹1,340), 600*200mm (₹2,150).",
     "price": 1340,
     "images": [
       {
@@ -1469,7 +1430,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "375*180 / 600*200mm",
       "material": "Iron / Glass",
       "finish": "Black / Coffee (Flute glass)",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -1488,7 +1448,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-2050wl-iron-alu-outdoor-wall-lamp",
     "sku": "LH-2050WL (Iron/Alu)",
     "shortDescription": "Rectangular iron and aluminium wall lantern with fluted glass, made in India.",
-    "description": "Rectangular iron and aluminium wall lantern with fluted glass, made in India. Iron / Aluminium / Glass body in black / coffee finish with flute glass and an E27 bulb holder. Available as 375*180mm (₹1,660), 600*200mm (₹2,750).",
+    "description": "Rectangular iron and aluminium wall lantern with fluted glass, made in India. Iron / Aluminium / Glass body in black / coffee finish with flute glass and a bulb holder. Available as 375*180mm (₹1,660), 600*200mm (₹2,750).",
     "price": 1660,
     "images": [
       {
@@ -1506,7 +1466,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "375*180 / 600*200mm",
       "material": "Iron / Aluminium / Glass",
       "finish": "Black / Coffee (Flute glass)",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -1525,7 +1484,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-5806-outdoor-wall-lamp",
     "sku": "LH-5806",
     "shortDescription": "Black wall lantern with an ornate cut-out frame.",
-    "description": "Black wall lantern with an ornate cut-out frame. Aluminium / Glass body in black finish with foggy glass and an E27 bulb holder.",
+    "description": "Black wall lantern with an ornate cut-out frame. Aluminium / Glass body in black finish with foggy glass and a bulb holder.",
     "price": 4680,
     "images": [
       {
@@ -1543,7 +1502,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "H500*W200mm",
       "material": "Aluminium / Glass",
       "finish": "Black (Foggy glass)",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -1562,7 +1520,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-1079-outdoor-wall-lamp",
     "sku": "LH-1079",
     "shortDescription": "Black cube wall lantern with a grid frame.",
-    "description": "Black cube wall lantern with a grid frame. Aluminium / Glass body in black finish with frosted glass and an E27 bulb holder.",
+    "description": "Black cube wall lantern with a grid frame. Aluminium / Glass body in black finish with frosted glass and a bulb holder.",
     "price": 3360,
     "images": [
       {
@@ -1580,7 +1538,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "H370*W180mm",
       "material": "Aluminium / Glass",
       "finish": "Black (Frosted glass)",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -1599,7 +1556,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-626-gate-outdoor-gate-lamp",
     "sku": "LH-626 (Gate)",
     "shortDescription": "Coffee lantern with frosted glass; wall version LH-626 (Wall) ₹3,480.",
-    "description": "Coffee lantern with frosted glass; wall version LH-626 (Wall) ₹3,480. Aluminium / Glass body in coffee finish with frosted glass and an E27 bulb holder.",
+    "description": "Coffee lantern with frosted glass; wall version LH-626 (Wall) ₹3,480. Aluminium / Glass body in coffee finish with frosted glass and a bulb holder.",
     "price": 4680,
     "images": [
       {
@@ -1617,7 +1574,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "H400*W200mm",
       "material": "Aluminium / Glass",
       "finish": "Coffee (Frosted glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -1636,7 +1592,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-626-wall-outdoor-wall-lamp",
     "sku": "LH-626 (Wall)",
     "shortDescription": "Coffee scroll-arm wall lantern with frosted glass; gate version LH-626 (Gate) ₹4,680.",
-    "description": "Coffee scroll-arm wall lantern with frosted glass; gate version LH-626 (Gate) ₹4,680. Aluminium / Glass body in coffee finish with frosted glass and an E27 bulb holder.",
+    "description": "Coffee scroll-arm wall lantern with frosted glass; gate version LH-626 (Gate) ₹4,680. Aluminium / Glass body in coffee finish with frosted glass and a bulb holder.",
     "price": 3480,
     "images": [
       {
@@ -1654,7 +1610,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "H300*W150mm",
       "material": "Aluminium / Glass",
       "finish": "Coffee (Frosted glass)",
-      "wattage": "E27",
       "installationType": "Wall Mounted"
     },
     "tags": [
@@ -1673,7 +1628,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-9106-outdoor-gate-lamp",
     "sku": "LH-9106",
     "shortDescription": "Antique-brass pillar lantern with frosted glass.",
-    "description": "Antique-brass pillar lantern with frosted glass. Aluminium / Glass body in antique brass finish with frosted glass and an E27 bulb holder.",
+    "description": "Antique-brass pillar lantern with frosted glass. Aluminium / Glass body in antique brass finish with frosted glass and a bulb holder.",
     "price": 2520,
     "images": [
       {
@@ -1691,7 +1646,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "H390*W180mm",
       "material": "Aluminium / Glass",
       "finish": "Antique Brass (Frosted glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [
@@ -1710,7 +1664,7 @@ export const OUTDOOR_LAMPS = [
     "slug": "lh-9109-outdoor-gate-lamp",
     "sku": "LH-9109",
     "shortDescription": "Antique-brass pillar lantern with clear glass.",
-    "description": "Antique-brass pillar lantern with clear glass. Aluminium / Glass body in antique brass finish with clear glass and an E27 bulb holder.",
+    "description": "Antique-brass pillar lantern with clear glass. Aluminium / Glass body in antique brass finish with clear glass and a bulb holder.",
     "price": 2520,
     "images": [
       {
@@ -1728,7 +1682,6 @@ export const OUTDOOR_LAMPS = [
       "dimensions": "H390*W180mm",
       "material": "Aluminium / Glass",
       "finish": "Antique Brass (Clear glass)",
-      "wattage": "E27",
       "installationType": "Gate / Pillar Mounted"
     },
     "tags": [

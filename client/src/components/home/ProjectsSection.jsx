@@ -18,7 +18,7 @@ const LIGHTING_COLLECTIONS = [
     name: 'WALL LAMP',
     image: '/products/led-wall-lamp/lh-141w-led-wall-lamp.jpg',
     description: 'Bi-directional wall grazers, fluted borosilicate glass sconces, and indirect perimeter illumination for corridors, foyers, and bedside alcoves.',
-    fixtures: ['Led Wall Lamp', 'E27 Wall Lamp'],
+    fixtures: ['Led Wall Lamp', 'Wall Lamp'],
     link: '/catalog?category=wall-lamp',
     subImages: [
       { url: '/products/led-wall-lamp/lh-141w-led-wall-lamp.jpg', title: 'LH-141W Led Wall Lamp' },
@@ -35,7 +35,7 @@ const LIGHTING_COLLECTIONS = [
     name: 'PENDANT LAMP',
     image: '/products/led-hanging-lamp/lh-842-1l-3l-led-hanging-lamp.jpg',
     description: 'Suspended architectural lighting fixtures, mouth-blown fluted glass, and spun brass pendants designed for dining islands and reception spaces.',
-    fixtures: ['Led Hanging Lamp', 'E27 Hanging Lamp'],
+    fixtures: ['Led Hanging Lamp', 'Hanging Lamp'],
     link: '/catalog?category=pendant-lamp',
     subImages: [
       { url: '/products/led-hanging-lamp/lh-842-1l-3l-led-hanging-lamp.jpg', title: 'LH-842/1L-3L Led Hanging Lamp' },
@@ -174,7 +174,7 @@ const LIGHTING_COLLECTIONS = [
       { url: '/categories/led-filament-bulb.jpg', title: 'Warm 2200K Edison Heritage Filament Bulb' },
       { url: '/categories/led-filament-bulb.jpg', title: 'G125 Giant Globe LED Filament Bulb' },
       { url: '/categories/led-filament-bulb.jpg', title: 'Tubular T30 Antique Filament Bulb' },
-      { url: '/categories/led-filament-bulb.jpg', title: 'Dimmable Golden Tinted E27 Filament Bulb' },
+      { url: '/categories/led-filament-bulb.jpg', title: 'Dimmable Golden Tinted Filament Bulb' },
       { url: '/categories/led-filament-bulb.jpg', title: 'C35 Candle Tip Chandelier Filament Bulb' },
     ],
   },

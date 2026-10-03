@@ -25,6 +25,7 @@ import catalogRoutes from './routes/catalogRoutes.js';
 import Category from './models/Category.js';
 import { seedDatabase } from './scripts/seedData.js';
 import { syncCatalogProducts } from './scripts/syncCatalogProducts.js';
+import { removeE27Text } from './scripts/removeE27Text.js';
 import { CATALOG_CATEGORY_GROUPS } from './controllers/catalogController.js';
 
 // Connect to MongoDB and Auto-seed if empty
@@ -76,6 +77,12 @@ const initDB = async () => {
     await syncCatalogProducts();
   } catch (err) {
     console.warn('[Server] Catalogue product sync notice:', err.message);
+  }
+
+  try {
+    await removeE27Text();
+  } catch (err) {
+    console.warn('[Server] E27 text cleanup notice:', err.message);
   }
 };
 
