@@ -1,0 +1,55 @@
+name: Deploy to Production
+
+# Production deploys run ONLY from the `production` branch.
+# Release flow: merge main -> production (via PR), CI runs again, then deploy.
+on:
+  push:
+    branches: [production]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci.yml
+
+  deploy:
+    name: Deploy
+    needs: ci
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: production
+      url: ${{ vars.PRODUCTION_URL }}
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Backend first, so the API is updated before the new frontend goes live.
+      - name: Deploy backend (Render deploy hook)
+        if: env.RENDER_DEPLOY_HOOK_URL != ''
+        run: curl -fsS -X POST "$RENDER_DEPLOY_HOOK_URL"
+
+      - name: Deploy frontend (Vercel)
+        if: env.VERCEL_TOKEN != ''
+        run: |
+          npx --yes vercel@latest pull --yes --environment=production --token="$VERCEL_TOKEN"
+          npx --yes vercel@latest build --prod --token="$VERCEL_TOKEN"
+          npx --yes vercel@latest deploy --prebuilt --prod --token="$VERCEL_TOKEN"
+
+      - name: Warn about missing deploy secrets
+        if: env.VERCEL_TOKEN == '' || env.RENDER_DEPLOY_HOOK_URL == ''
+        run: |
+          [ -z "$RENDER_DEPLOY_HOOK_URL" ] && echo "::warning::RENDER_DEPLOY_HOOK_URL not set - backend deploy skipped"
+          [ -z "$VERCEL_TOKEN" ] && echo "::warning::VERCEL_TOKEN/VERCEL_ORG_ID/VERCEL_PROJECT_ID not set - frontend deploy skipped"
+          true
