@@ -1,9 +1,11 @@
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
+import os from 'os';
 
-// Ensure uploads folder exists for local storage fallback
-const uploadDir = path.resolve('uploads');
+// Ensure uploads folder exists for local storage fallback.
+// Vercel's filesystem is read-only except /tmp, so files land there only until pushed to Cloudinary.
+const uploadDir = process.env.VERCEL ? path.join(os.tmpdir(), 'uploads') : path.resolve('uploads');
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }

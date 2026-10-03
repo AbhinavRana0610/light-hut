@@ -1,5 +1,7 @@
+// Must be the first import: ES module imports are hoisted, so modules that read
+// process.env at load time (e.g. config/cloudinary.js) need .env loaded before them.
+import 'dotenv/config';
 import express from 'express';
-import dotenv from 'dotenv';
 import cors from 'cors';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
@@ -23,9 +25,6 @@ import catalogRoutes from './routes/catalogRoutes.js';
 import Category from './models/Category.js';
 import { seedDatabase } from './scripts/seedData.js';
 import { CATALOG_CATEGORY_GROUPS } from './controllers/catalogController.js';
-
-// Load environment variables
-dotenv.config();
 
 // Connect to MongoDB and Auto-seed if empty
 const initDB = async () => {
@@ -72,9 +71,25 @@ const initDB = async () => {
     console.warn('[Server] Auto-seed/sync check notice:', err.message);
   }
 };
-initDB();
+
+// Shared DB init promise. On Vercel each cold start re-runs this; requests wait for it.
+// A failed attempt is cleared so the next request retries instead of failing forever.
+let dbReady = null;
+const ensureDB = () => {
+  if (!dbReady) {
+    dbReady = initDB().catch((err) => {
+      dbReady = null;
+      throw err;
+    });
+  }
+  return dbReady;
+};
+ensureDB().catch((err) => console.error('[DB] Initial connection failed:', err.message));
 
 const app = express();
+
+// Behind Vercel / Render proxies: needed for correct client IPs in rate limiting
+app.set('trust proxy', 1);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -152,6 +167,16 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Wait for the database before handling any other API request
+app.use('/api', async (req, res, next) => {
+  try {
+    await ensureDB();
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
+
 // Mount Routes
 app.use('/api/auth', authLimiter, authRoutes);
 app.use('/api/products', productRoutes);
@@ -168,9 +193,12 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
-const server = app.listen(PORT, () => {
-  console.log(`[Server] LightHut API running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
-});
+// On Vercel the app is exported as a serverless handler (see /api/index.js), not listened on
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`[Server] LightHut API running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
+  });
+}
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (err) => {

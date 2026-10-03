@@ -3,6 +3,9 @@ import mongoose from 'mongoose';
 let memoryServer = null;
 
 export const connectDB = async () => {
+  // Reuse a live connection (warm serverless invocations)
+  if (mongoose.connection.readyState === 1) return;
+
   try {
     const uri = process.env.MONGODB_URI;
 
@@ -20,7 +23,7 @@ export const connectDB = async () => {
     }
 
     // Fallback in development: Start in-memory MongoDB so system works immediately
-    if (process.env.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
       console.log('[DB] Launching embedded MongoDB instance for development & testing...');
       const { MongoMemoryServer } = await import('mongodb-memory-server');
       memoryServer = await MongoMemoryServer.create({
@@ -32,10 +35,15 @@ export const connectDB = async () => {
       const conn = await mongoose.connect(memUri);
       console.log(`[DB] Embedded MongoDB connected successfully at ${memUri}`);
     } else {
-      throw new Error('MONGODB_URI is required in production environment.');
+      throw new Error(
+        uri ? 'Could not connect to MongoDB (check MONGODB_URI and Atlas network access).'
+            : 'MONGODB_URI is required in production environment.'
+      );
     }
   } catch (error) {
     console.error(`[DB Error]: ${error.message}`);
+    // Serverless: surface the error to the request (and retry next time) instead of killing the function
+    if (process.env.VERCEL) throw error;
     process.exit(1);
   }
 };
