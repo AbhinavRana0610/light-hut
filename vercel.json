@@ -4,8 +4,8 @@
     "client": {
       "root": "client/",
       "framework": "vite",
-      "installCommand": "npm ci",
-      "buildCommand": "npm run build",
+      "installCommand": "npm ci --include=dev",
+      "buildCommand": "NODE_OPTIONS=--max-old-space-size=4096 npm run build",
       "outputDirectory": "dist",
       "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
     },
