@@ -24,6 +24,7 @@ import catalogRoutes from './routes/catalogRoutes.js';
 
 import Category from './models/Category.js';
 import { seedDatabase } from './scripts/seedData.js';
+import { syncCatalogProducts } from './scripts/syncCatalogProducts.js';
 import { CATALOG_CATEGORY_GROUPS } from './controllers/catalogController.js';
 
 // Connect to MongoDB and Auto-seed if empty
@@ -69,6 +70,12 @@ const initDB = async () => {
     }
   } catch (err) {
     console.warn('[Server] Auto-seed/sync check notice:', err.message);
+  }
+
+  try {
+    await syncCatalogProducts();
+  } catch (err) {
+    console.warn('[Server] Catalogue product sync notice:', err.message);
   }
 };
 
