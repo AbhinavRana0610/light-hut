@@ -1,9 +1,9 @@
 // Hanging Lamp products extracted from the "LH-FANCY 2609 HL-WL" catalogue (pages 37–89).
 // Page 83 (foam lamp) has an LED light source, so it is listed under LED Hanging Lamp.
 // Prices are catalogue MRP; where a page lists several MRPs the lowest is used.
-export const E27_HANGING_LAMPS = [
+export const CLASSIC_HANGING_LAMPS = [
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-26/1L-3L Metal Hanging Lamp",
     "slug": "lh-26-1l-3l-metal-hanging-lamp",
     "sku": "LH-26/1L-3L",
@@ -12,12 +12,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1300,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-26-1l-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-26-1l-3l-metal-hanging-lamp.jpg",
         "alt": "LH-26/1L-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-26-1l-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-26-1l-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-26/1L-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -38,7 +38,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 0
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-R50/1L Metal Hanging Lamp",
     "slug": "lh-r50-1l-metal-hanging-lamp",
     "sku": "LH-R50/1L",
@@ -47,12 +47,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1475,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-r50-1l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-r50-1l-metal-hanging-lamp.jpg",
         "alt": "LH-R50/1L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-r50-1l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-r50-1l-metal-hanging-lamp-full.jpg",
         "alt": "LH-R50/1L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -73,7 +73,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 1
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-2307/1L Metal Hanging Lamp",
     "slug": "lh-2307-1l-metal-hanging-lamp",
     "sku": "LH-2307/1L",
@@ -82,12 +82,12 @@ export const E27_HANGING_LAMPS = [
     "price": 2215,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-2307-1l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-2307-1l-metal-hanging-lamp.jpg",
         "alt": "LH-2307/1L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-2307-1l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-2307-1l-metal-hanging-lamp-full.jpg",
         "alt": "LH-2307/1L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -107,7 +107,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 2
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-2847/1L Metal Hanging Lamp",
     "slug": "lh-2847-1l-metal-hanging-lamp",
     "sku": "LH-2847/1L",
@@ -116,12 +116,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1170,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-2847-1l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-2847-1l-metal-hanging-lamp.jpg",
         "alt": "LH-2847/1L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-2847-1l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-2847-1l-metal-hanging-lamp-full.jpg",
         "alt": "LH-2847/1L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -141,7 +141,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 3
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-R27/1L Metal Hanging Lamp",
     "slug": "lh-r27-1l-metal-hanging-lamp",
     "sku": "LH-R27/1L",
@@ -150,12 +150,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1220,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-r27-1l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-r27-1l-metal-hanging-lamp.jpg",
         "alt": "LH-R27/1L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-r27-1l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-r27-1l-metal-hanging-lamp-full.jpg",
         "alt": "LH-R27/1L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -175,7 +175,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 4
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-2850/1L Metal Hanging Lamp",
     "slug": "lh-2850-1l-metal-hanging-lamp",
     "sku": "LH-2850/1L",
@@ -184,12 +184,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1170,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-2850-1l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-2850-1l-metal-hanging-lamp.jpg",
         "alt": "LH-2850/1L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-2850-1l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-2850-1l-metal-hanging-lamp-full.jpg",
         "alt": "LH-2850/1L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -209,7 +209,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 5
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-823/1L Metal Hanging Lamp",
     "slug": "lh-823-1l-metal-hanging-lamp",
     "sku": "LH-823/1L",
@@ -218,12 +218,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1025,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-823-1l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-823-1l-metal-hanging-lamp.jpg",
         "alt": "LH-823/1L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-823-1l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-823-1l-metal-hanging-lamp-full.jpg",
         "alt": "LH-823/1L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -243,7 +243,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 6
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-2700/1L Metal Hanging Lamp",
     "slug": "lh-2700-1l-metal-hanging-lamp",
     "sku": "LH-2700/1L",
@@ -252,12 +252,12 @@ export const E27_HANGING_LAMPS = [
     "price": 2590,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-2700-1l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-2700-1l-metal-hanging-lamp.jpg",
         "alt": "LH-2700/1L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-2700-1l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-2700-1l-metal-hanging-lamp-full.jpg",
         "alt": "LH-2700/1L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -277,7 +277,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 7
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-37/1L & LH-38/1L Thread Hanging Lamp",
     "slug": "lh-37-1l-lh-38-1l-thread-hanging-lamp",
     "sku": "LH-37/1L & LH-38/1L",
@@ -286,12 +286,12 @@ export const E27_HANGING_LAMPS = [
     "price": 2700,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-37-1l-lh-38-1l-thread-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-37-1l-lh-38-1l-thread-hanging-lamp.jpg",
         "alt": "LH-37/1L & LH-38/1L Thread Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-37-1l-lh-38-1l-thread-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-37-1l-lh-38-1l-thread-hanging-lamp-full.jpg",
         "alt": "LH-37/1L & LH-38/1L Thread Hanging Lamp installed view",
         "isCover": false
       }
@@ -312,7 +312,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 8
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-41/1L-3L Metal Hanging Lamp",
     "slug": "lh-41-1l-3l-metal-hanging-lamp",
     "sku": "LH-41/1L-3L",
@@ -321,12 +321,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1275,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-41-1l-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-41-1l-3l-metal-hanging-lamp.jpg",
         "alt": "LH-41/1L-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-41-1l-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-41-1l-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-41/1L-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -346,7 +346,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 9
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-48/1L-3L Metal Hanging Lamp",
     "slug": "lh-48-1l-3l-metal-hanging-lamp",
     "sku": "LH-48/1L-3L",
@@ -355,12 +355,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1275,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-48-1l-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-48-1l-3l-metal-hanging-lamp.jpg",
         "alt": "LH-48/1L-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-48-1l-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-48-1l-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-48/1L-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -380,7 +380,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 10
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-47/1L-3L Metal Hanging Lamp",
     "slug": "lh-47-1l-3l-metal-hanging-lamp",
     "sku": "LH-47/1L-3L",
@@ -389,12 +389,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1275,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-47-1l-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-47-1l-3l-metal-hanging-lamp.jpg",
         "alt": "LH-47/1L-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-47-1l-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-47-1l-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-47/1L-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -414,7 +414,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 11
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-9830/1L Metal Hanging Lamp",
     "slug": "lh-9830-1l-metal-hanging-lamp",
     "sku": "LH-9830/1L",
@@ -423,12 +423,12 @@ export const E27_HANGING_LAMPS = [
     "price": 2900,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-9830-1l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-9830-1l-metal-hanging-lamp.jpg",
         "alt": "LH-9830/1L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-9830-1l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-9830-1l-metal-hanging-lamp-full.jpg",
         "alt": "LH-9830/1L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -448,7 +448,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 12
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-2423/1L Metal Hanging Lamp",
     "slug": "lh-2423-1l-metal-hanging-lamp",
     "sku": "LH-2423/1L",
@@ -457,12 +457,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1970,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-2423-1l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-2423-1l-metal-hanging-lamp.jpg",
         "alt": "LH-2423/1L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-2423-1l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-2423-1l-metal-hanging-lamp-full.jpg",
         "alt": "LH-2423/1L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -482,7 +482,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 13
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-519/1L Metal Hanging Lamp",
     "slug": "lh-519-1l-metal-hanging-lamp",
     "sku": "LH-519/1L",
@@ -491,12 +491,12 @@ export const E27_HANGING_LAMPS = [
     "price": 2760,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-519-1l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-519-1l-metal-hanging-lamp.jpg",
         "alt": "LH-519/1L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-519-1l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-519-1l-metal-hanging-lamp-full.jpg",
         "alt": "LH-519/1L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -516,7 +516,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 14
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-2635/1L Metal Hanging Lamp",
     "slug": "lh-2635-1l-metal-hanging-lamp",
     "sku": "LH-2635/1L",
@@ -525,12 +525,12 @@ export const E27_HANGING_LAMPS = [
     "price": 2160,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-2635-1l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-2635-1l-metal-hanging-lamp.jpg",
         "alt": "LH-2635/1L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-2635-1l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-2635-1l-metal-hanging-lamp-full.jpg",
         "alt": "LH-2635/1L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -550,7 +550,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 15
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-2478/1L Glass Hanging Lamp",
     "slug": "lh-2478-1l-glass-hanging-lamp",
     "sku": "LH-2478/1L",
@@ -559,12 +559,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1850,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-2478-1l-glass-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-2478-1l-glass-hanging-lamp.jpg",
         "alt": "LH-2478/1L Glass Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-2478-1l-glass-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-2478-1l-glass-hanging-lamp-full.jpg",
         "alt": "LH-2478/1L Glass Hanging Lamp installed view",
         "isCover": false
       }
@@ -584,7 +584,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 16
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-2571/1L Glass Hanging Lamp",
     "slug": "lh-2571-1l-glass-hanging-lamp",
     "sku": "LH-2571/1L",
@@ -593,12 +593,12 @@ export const E27_HANGING_LAMPS = [
     "price": 2340,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-2571-1l-glass-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-2571-1l-glass-hanging-lamp.jpg",
         "alt": "LH-2571/1L Glass Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-2571-1l-glass-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-2571-1l-glass-hanging-lamp-full.jpg",
         "alt": "LH-2571/1L Glass Hanging Lamp installed view",
         "isCover": false
       }
@@ -618,7 +618,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 17
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-2216/1L Glass Hanging Lamp",
     "slug": "lh-2216-1l-glass-hanging-lamp",
     "sku": "LH-2216/1L",
@@ -627,12 +627,12 @@ export const E27_HANGING_LAMPS = [
     "price": 2590,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-2216-1l-glass-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-2216-1l-glass-hanging-lamp.jpg",
         "alt": "LH-2216/1L Glass Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-2216-1l-glass-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-2216-1l-glass-hanging-lamp-full.jpg",
         "alt": "LH-2216/1L Glass Hanging Lamp installed view",
         "isCover": false
       }
@@ -652,7 +652,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 18
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-2068/1L Metal Hanging Lamp",
     "slug": "lh-2068-1l-metal-hanging-lamp",
     "sku": "LH-2068/1L",
@@ -661,12 +661,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1230,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-2068-1l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-2068-1l-metal-hanging-lamp.jpg",
         "alt": "LH-2068/1L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-2068-1l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-2068-1l-metal-hanging-lamp-full.jpg",
         "alt": "LH-2068/1L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -686,7 +686,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 19
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-9683/1L Metal Hanging Lamp",
     "slug": "lh-9683-1l-metal-hanging-lamp",
     "sku": "LH-9683/1L",
@@ -695,12 +695,12 @@ export const E27_HANGING_LAMPS = [
     "price": 925,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-9683-1l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-9683-1l-metal-hanging-lamp.jpg",
         "alt": "LH-9683/1L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-9683-1l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-9683-1l-metal-hanging-lamp-full.jpg",
         "alt": "LH-9683/1L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -720,7 +720,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 20
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-819/1L Metal Hanging Lamp",
     "slug": "lh-819-1l-metal-hanging-lamp",
     "sku": "LH-819/1L",
@@ -729,12 +729,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1250,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-819-1l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-819-1l-metal-hanging-lamp.jpg",
         "alt": "LH-819/1L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-819-1l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-819-1l-metal-hanging-lamp-full.jpg",
         "alt": "LH-819/1L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -755,7 +755,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 21
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-820/1L Metal Hanging Lamp",
     "slug": "lh-820-1l-metal-hanging-lamp",
     "sku": "LH-820/1L",
@@ -764,12 +764,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1250,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-820-1l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-820-1l-metal-hanging-lamp.jpg",
         "alt": "LH-820/1L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-820-1l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-820-1l-metal-hanging-lamp-full.jpg",
         "alt": "LH-820/1L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -790,7 +790,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 22
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-829/1L-3L Metal Hanging Lamp",
     "slug": "lh-829-1l-3l-metal-hanging-lamp",
     "sku": "LH-829/1L-3L",
@@ -799,12 +799,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1290,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-829-1l-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-829-1l-3l-metal-hanging-lamp.jpg",
         "alt": "LH-829/1L-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-829-1l-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-829-1l-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-829/1L-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -824,7 +824,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 23
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-910/1L-3L Metal Hanging Lamp",
     "slug": "lh-910-1l-3l-metal-hanging-lamp",
     "sku": "LH-910/1L-3L",
@@ -833,12 +833,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1080,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-910-1l-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-910-1l-3l-metal-hanging-lamp.jpg",
         "alt": "LH-910/1L-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-910-1l-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-910-1l-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-910/1L-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -858,7 +858,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 24
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-911/1L-3L Metal Hanging Lamp",
     "slug": "lh-911-1l-3l-metal-hanging-lamp",
     "sku": "LH-911/1L-3L",
@@ -867,12 +867,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1080,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-911-1l-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-911-1l-3l-metal-hanging-lamp.jpg",
         "alt": "LH-911/1L-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-911-1l-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-911-1l-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-911/1L-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -892,7 +892,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 25
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-912/1L-3L Metal Hanging Lamp",
     "slug": "lh-912-1l-3l-metal-hanging-lamp",
     "sku": "LH-912/1L-3L",
@@ -901,12 +901,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1080,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-912-1l-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-912-1l-3l-metal-hanging-lamp.jpg",
         "alt": "LH-912/1L-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-912-1l-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-912-1l-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-912/1L-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -926,7 +926,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 26
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-914/1L-3L Metal Hanging Lamp",
     "slug": "lh-914-1l-3l-metal-hanging-lamp",
     "sku": "LH-914/1L-3L",
@@ -935,12 +935,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1080,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-914-1l-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-914-1l-3l-metal-hanging-lamp.jpg",
         "alt": "LH-914/1L-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-914-1l-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-914-1l-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-914/1L-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -960,7 +960,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 27
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-916/1L-3L Metal Hanging Lamp",
     "slug": "lh-916-1l-3l-metal-hanging-lamp",
     "sku": "LH-916/1L-3L",
@@ -969,12 +969,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1080,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-916-1l-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-916-1l-3l-metal-hanging-lamp.jpg",
         "alt": "LH-916/1L-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-916-1l-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-916-1l-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-916/1L-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -994,7 +994,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 28
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-718/1L-3L Metal Hanging Lamp",
     "slug": "lh-718-1l-3l-metal-hanging-lamp",
     "sku": "LH-718/1L-3L",
@@ -1003,12 +1003,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1110,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-718-1l-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-718-1l-3l-metal-hanging-lamp.jpg",
         "alt": "LH-718/1L-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-718-1l-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-718-1l-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-718/1L-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -1028,7 +1028,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 29
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-508/1L-3L Metal Hanging Lamp",
     "slug": "lh-508-1l-3l-metal-hanging-lamp",
     "sku": "LH-508/1L-3L",
@@ -1037,12 +1037,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1110,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-508-1l-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-508-1l-3l-metal-hanging-lamp.jpg",
         "alt": "LH-508/1L-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-508-1l-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-508-1l-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-508/1L-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -1062,7 +1062,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 30
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-903/1L-3L Metal Hanging Lamp",
     "slug": "lh-903-1l-3l-metal-hanging-lamp",
     "sku": "LH-903/1L-3L",
@@ -1071,12 +1071,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1080,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-903-1l-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-903-1l-3l-metal-hanging-lamp.jpg",
         "alt": "LH-903/1L-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-903-1l-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-903-1l-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-903/1L-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -1096,7 +1096,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 31
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-310/1L-3L Metal Hanging Lamp",
     "slug": "lh-310-1l-3l-metal-hanging-lamp",
     "sku": "LH-310/1L-3L",
@@ -1105,12 +1105,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1110,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-310-1l-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-310-1l-3l-metal-hanging-lamp.jpg",
         "alt": "LH-310/1L-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-310-1l-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-310-1l-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-310/1L-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -1130,7 +1130,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 32
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-902/1L-3L Metal Hanging Lamp",
     "slug": "lh-902-1l-3l-metal-hanging-lamp",
     "sku": "LH-902/1L-3L",
@@ -1139,12 +1139,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1080,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-902-1l-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-902-1l-3l-metal-hanging-lamp.jpg",
         "alt": "LH-902/1L-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-902-1l-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-902-1l-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-902/1L-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -1164,7 +1164,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 33
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-H011/1-3L Metal Hanging Lamp",
     "slug": "lh-h011-1-3l-metal-hanging-lamp",
     "sku": "LH-H011/1-3L",
@@ -1173,12 +1173,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1080,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-h011-1-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-h011-1-3l-metal-hanging-lamp.jpg",
         "alt": "LH-H011/1-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-h011-1-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-h011-1-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-H011/1-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -1198,7 +1198,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 34
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-H012/1-3L Metal Hanging Lamp",
     "slug": "lh-h012-1-3l-metal-hanging-lamp",
     "sku": "LH-H012/1-3L",
@@ -1207,12 +1207,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1080,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-h012-1-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-h012-1-3l-metal-hanging-lamp.jpg",
         "alt": "LH-H012/1-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-h012-1-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-h012-1-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-H012/1-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -1232,7 +1232,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 35
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-906/1-3L Metal Hanging Lamp",
     "slug": "lh-906-1-3l-metal-hanging-lamp",
     "sku": "LH-906/1-3L",
@@ -1241,12 +1241,12 @@ export const E27_HANGING_LAMPS = [
     "price": 840,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-906-1-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-906-1-3l-metal-hanging-lamp.jpg",
         "alt": "LH-906/1-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-906-1-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-906-1-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-906/1-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -1266,7 +1266,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 36
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-209/1L-3L Metal Hanging Lamp",
     "slug": "lh-209-1l-3l-metal-hanging-lamp",
     "sku": "LH-209/1L-3L",
@@ -1275,12 +1275,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1110,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-209-1l-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-209-1l-3l-metal-hanging-lamp.jpg",
         "alt": "LH-209/1L-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-209-1l-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-209-1l-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-209/1L-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -1300,7 +1300,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 37
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-P012/1 & LH-P013/1 Metal Hanging Lamp",
     "slug": "lh-p012-1-lh-p013-1-metal-hanging-lamp",
     "sku": "LH-P012/1 & LH-P013/1",
@@ -1309,12 +1309,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1370,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-p012-1-lh-p013-1-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-p012-1-lh-p013-1-metal-hanging-lamp.jpg",
         "alt": "LH-P012/1 & LH-P013/1 Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-p012-1-lh-p013-1-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-p012-1-lh-p013-1-metal-hanging-lamp-full.jpg",
         "alt": "LH-P012/1 & LH-P013/1 Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -1335,7 +1335,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 38
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-014 BN/1L-3L Metal Hanging Lamp",
     "slug": "lh-014-bn-1l-3l-metal-hanging-lamp",
     "sku": "LH-014 BN/1L-3L",
@@ -1344,12 +1344,12 @@ export const E27_HANGING_LAMPS = [
     "price": 650,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-014-bn-1l-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-014-bn-1l-3l-metal-hanging-lamp.jpg",
         "alt": "LH-014 BN/1L-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-014-bn-1l-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-014-bn-1l-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-014 BN/1L-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -1369,7 +1369,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 39
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-014 BK/1L-3L Metal Hanging Lamp",
     "slug": "lh-014-bk-1l-3l-metal-hanging-lamp",
     "sku": "LH-014 BK/1L-3L",
@@ -1378,12 +1378,12 @@ export const E27_HANGING_LAMPS = [
     "price": 650,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-014-bk-1l-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-014-bk-1l-3l-metal-hanging-lamp.jpg",
         "alt": "LH-014 BK/1L-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-014-bk-1l-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-014-bk-1l-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-014 BK/1L-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -1403,7 +1403,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 40
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-352/1L-3L Metal Hanging Lamp",
     "slug": "lh-352-1l-3l-metal-hanging-lamp",
     "sku": "LH-352/1L-3L",
@@ -1412,12 +1412,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1260,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-352-1l-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-352-1l-3l-metal-hanging-lamp.jpg",
         "alt": "LH-352/1L-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-352-1l-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-352-1l-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-352/1L-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -1437,7 +1437,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 41
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-019/3L Metal Hanging Lamp",
     "slug": "lh-019-3l-metal-hanging-lamp",
     "sku": "LH-019/3L",
@@ -1446,12 +1446,12 @@ export const E27_HANGING_LAMPS = [
     "price": 2500,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-019-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-019-3l-metal-hanging-lamp.jpg",
         "alt": "LH-019/3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-019-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-019-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-019/3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -1471,7 +1471,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 42
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-018/3L Metal Hanging Lamp",
     "slug": "lh-018-3l-metal-hanging-lamp",
     "sku": "LH-018/3L",
@@ -1480,12 +1480,12 @@ export const E27_HANGING_LAMPS = [
     "price": 2500,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-018-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-018-3l-metal-hanging-lamp.jpg",
         "alt": "LH-018/3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-018-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-018-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-018/3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -1505,7 +1505,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 43
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-020/1L-3L Metal Hanging Lamp",
     "slug": "lh-020-1l-3l-metal-hanging-lamp",
     "sku": "LH-020/1L-3L",
@@ -1514,12 +1514,12 @@ export const E27_HANGING_LAMPS = [
     "price": 850,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-020-1l-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-020-1l-3l-metal-hanging-lamp.jpg",
         "alt": "LH-020/1L-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-020-1l-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-020-1l-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-020/1L-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -1539,7 +1539,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 44
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-021/1L-3L Metal Hanging Lamp",
     "slug": "lh-021-1l-3l-metal-hanging-lamp",
     "sku": "LH-021/1L-3L",
@@ -1548,12 +1548,12 @@ export const E27_HANGING_LAMPS = [
     "price": 850,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-021-1l-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-021-1l-3l-metal-hanging-lamp.jpg",
         "alt": "LH-021/1L-3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-021-1l-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-021-1l-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-021/1L-3L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -1610,7 +1610,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 34
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-P07/1L Metal Hanging Lamp",
     "slug": "lh-p07-1l-metal-hanging-lamp",
     "sku": "LH-P07/1L",
@@ -1619,12 +1619,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1220,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-p07-1l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-p07-1l-metal-hanging-lamp.jpg",
         "alt": "LH-P07/1L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-p07-1l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-p07-1l-metal-hanging-lamp-full.jpg",
         "alt": "LH-P07/1L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -1645,7 +1645,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 46
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-403/1L Metal Hanging Lamp",
     "slug": "lh-403-1l-metal-hanging-lamp",
     "sku": "LH-403/1L",
@@ -1654,12 +1654,12 @@ export const E27_HANGING_LAMPS = [
     "price": 650,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-403-1l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-403-1l-metal-hanging-lamp.jpg",
         "alt": "LH-403/1L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-403-1l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-403-1l-metal-hanging-lamp-full.jpg",
         "alt": "LH-403/1L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -1680,7 +1680,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 47
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-338/1L, LH-339/1L & LH-402/1L Metal Hanging Lamp",
     "slug": "lh-338-1l-lh-339-1l-lh-402-1l-metal-hanging-lamp",
     "sku": "LH-338/1L, LH-339/1L & LH-402/1L",
@@ -1689,12 +1689,12 @@ export const E27_HANGING_LAMPS = [
     "price": 650,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-338-1l-lh-339-1l-lh-402-1l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-338-1l-lh-339-1l-lh-402-1l-metal-hanging-lamp.jpg",
         "alt": "LH-338/1L, LH-339/1L & LH-402/1L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-338-1l-lh-339-1l-lh-402-1l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-338-1l-lh-339-1l-lh-402-1l-metal-hanging-lamp-full.jpg",
         "alt": "LH-338/1L, LH-339/1L & LH-402/1L Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -1715,7 +1715,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 48
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-P015/1L BK Metal Hanging Lamp",
     "slug": "lh-p015-1l-bk-metal-hanging-lamp",
     "sku": "LH-P015/1L BK",
@@ -1724,12 +1724,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1000,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-p015-1l-bk-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-p015-1l-bk-metal-hanging-lamp.jpg",
         "alt": "LH-P015/1L BK Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-p015-1l-bk-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-p015-1l-bk-metal-hanging-lamp-full.jpg",
         "alt": "LH-P015/1L BK Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -1750,7 +1750,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 49
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-P015/1L WH Metal Hanging Lamp",
     "slug": "lh-p015-1l-wh-metal-hanging-lamp",
     "sku": "LH-P015/1L WH",
@@ -1759,12 +1759,12 @@ export const E27_HANGING_LAMPS = [
     "price": 1000,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-p015-1l-wh-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-p015-1l-wh-metal-hanging-lamp.jpg",
         "alt": "LH-P015/1L WH Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-p015-1l-wh-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-p015-1l-wh-metal-hanging-lamp-full.jpg",
         "alt": "LH-P015/1L WH Metal Hanging Lamp installed view",
         "isCover": false
       }
@@ -1785,7 +1785,7 @@ export const E27_HANGING_LAMPS = [
     "sortOrder": 50
   },
   {
-    "categorySlug": "e27-hanging-lamp",
+    "categorySlug": "classic-hanging-lamp",
     "name": "LH-531/3L Metal Hanging Lamp",
     "slug": "lh-531-3l-metal-hanging-lamp",
     "sku": "LH-531/3L",
@@ -1794,12 +1794,12 @@ export const E27_HANGING_LAMPS = [
     "price": 4680,
     "images": [
       {
-        "url": "/products/e27-hanging-lamp/lh-531-3l-metal-hanging-lamp.jpg",
+        "url": "/products/classic-hanging-lamp/lh-531-3l-metal-hanging-lamp.jpg",
         "alt": "LH-531/3L Metal Hanging Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-hanging-lamp/lh-531-3l-metal-hanging-lamp-full.jpg",
+        "url": "/products/classic-hanging-lamp/lh-531-3l-metal-hanging-lamp-full.jpg",
         "alt": "LH-531/3L Metal Hanging Lamp installed view",
         "isCover": false
       }

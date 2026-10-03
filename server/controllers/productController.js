@@ -3,8 +3,8 @@ import Category from '../models/Category.js';
 import { slugify } from '../utils/slugify.js';
 
 const CATEGORY_FAMILY_MAP = {
-  'pendant-lamp': ['pendant-lamp', 'led-hanging-lamp', 'e27-hanging-lamp', 'pendant'],
-  'wall-lamp': ['wall-lamp', 'led-wall-lamp', 'e27-wall-lamp', 'wall'],
+  'pendant-lamp': ['pendant-lamp', 'led-hanging-lamp', 'classic-hanging-lamp', 'pendant'],
+  'wall-lamp': ['wall-lamp', 'led-wall-lamp', 'classic-wall-lamp', 'wall'],
   'chandelier': [
     'chandelier',
     'led-chandelier',

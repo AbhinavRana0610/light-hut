@@ -12,7 +12,7 @@ export const CATALOG_CATEGORY_DEFINITIONS = [
     image: '/categories/wall-lamp.jpg',
     subcategories: [
       { name: 'Led Wall Lamp', slug: 'led-wall-lamp', image: '/categories/led-wall-lamp.jpg' },
-      { name: 'Wall Lamp', slug: 'e27-wall-lamp', image: '/categories/e27-wall-lamp.jpg' },
+      { name: 'Wall Lamp', slug: 'classic-wall-lamp', image: '/categories/classic-wall-lamp.jpg' },
     ],
   },
   {
@@ -26,7 +26,7 @@ export const CATALOG_CATEGORY_DEFINITIONS = [
     image: '/categories/pendant-lamp.jpg',
     subcategories: [
       { name: 'Led Hanging Lamp', slug: 'led-hanging-lamp', image: '/categories/led-hanging-lamp.jpg' },
-      { name: 'Hanging Lamp', slug: 'e27-hanging-lamp', image: '/categories/e27-hanging-lamp.jpg' },
+      { name: 'Hanging Lamp', slug: 'classic-hanging-lamp', image: '/categories/classic-hanging-lamp.jpg' },
     ],
   },
   {
@@ -203,16 +203,16 @@ export const INITIAL_CATALOG_ITEMS = [
   {
     catalogId: 'LH-CAT-003',
     name: 'LH-WL201 Brass Swing-Arm Wall Lamp',
-    slug: 'lh-wl201-brass-e27-swing-arm-wall-lamp',
+    slug: 'lh-wl201-brass-swing-arm-wall-lamp',
     sku: 'LH-WL201',
     category: 'wall-lamp',
-    subcategory: 'e27-wall-lamp',
+    subcategory: 'classic-wall-lamp',
     categoryName: 'Wall Lamp',
     shortDescription: 'Articulating swing-arm wall lamp in hand-brushed satin brass.',
     description: 'Inspired by mid-century European reading lamps, the LH-WL201 features a fully articulated swing arm and a conical shade in satin brass. Compatible with standard bulbs.',
     price: 3199,
     originalPrice: 4299,
-    images: [{ url: '/categories/e27-wall-lamp.jpg', alt: 'LH-WL201 Brass Wall Lamp', isCover: true }],
+    images: [{ url: '/categories/classic-wall-lamp.jpg', alt: 'LH-WL201 Brass Wall Lamp', isCover: true }],
     specifications: {
       dimensions: 'Arm Reach: 450mm, Shade Dia: 180mm',
       material: 'Solid Brass & Steel',
@@ -265,16 +265,16 @@ export const INITIAL_CATALOG_ITEMS = [
   {
     catalogId: 'LH-CAT-005',
     name: 'LH-PL201 Fluted Glass Pendant',
-    slug: 'lh-pl201-fluted-glass-e27-pendant',
+    slug: 'lh-pl201-fluted-glass-pendant',
     sku: 'LH-PL201',
     category: 'pendant-lamp',
-    subcategory: 'e27-hanging-lamp',
+    subcategory: 'classic-hanging-lamp',
     categoryName: 'Pendant Lamp',
     shortDescription: 'Mouth-blown fluted amber glass pendant with brushed gold hardware.',
     description: 'Handcrafted vertical ribbing in warm amber glass casts gentle linear refraction onto surrounding surfaces. Accommodates standard decorative filament bulbs.',
     price: 3699,
     originalPrice: 4999,
-    images: [{ url: '/categories/e27-hanging-lamp.jpg', alt: 'LH-PL201 Fluted Pendant', isCover: true }],
+    images: [{ url: '/categories/classic-hanging-lamp.jpg', alt: 'LH-PL201 Fluted Pendant', isCover: true }],
     specifications: {
       dimensions: 'Diameter: 250mm, Glass Height: 280mm',
       material: 'Mouth-Blown Fluted Glass & Brass',

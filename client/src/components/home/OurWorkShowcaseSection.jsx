@@ -90,7 +90,7 @@ const WORK_ITEMS_ROW2 = [
     title: 'Japandi Bedside Zen Alcove',
     category: 'Halo Sconce & Drops',
     location: 'Kyoto Sanctuary',
-    image: '/categories/e27-hanging-lamp.jpg',
+    image: '/categories/classic-hanging-lamp.jpg',
   },
   {
     id: 'work-13',

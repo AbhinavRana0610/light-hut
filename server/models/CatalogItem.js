@@ -36,7 +36,7 @@ const catalogItemSchema = new mongoose.Schema(
       index: true,
     },
     subcategory: {
-      type: String, // 'led-wall-lamp', 'e27-wall-lamp', 'led-chandelier', 'e14-chandelier', etc.
+      type: String, // 'led-wall-lamp', 'classic-wall-lamp', 'led-chandelier', 'e14-chandelier', etc.
       default: '',
       lowercase: true,
       trim: true,

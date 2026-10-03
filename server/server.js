@@ -26,6 +26,7 @@ import Category from './models/Category.js';
 import { seedDatabase } from './scripts/seedData.js';
 import { syncCatalogProducts } from './scripts/syncCatalogProducts.js';
 import { removeE27Text } from './scripts/removeE27Text.js';
+import { normalizeLegacySlug } from './utils/legacySlug.js';
 import { CATALOG_CATEGORY_GROUPS } from './controllers/catalogController.js';
 
 // Connect to MongoDB and Auto-seed if empty
@@ -73,16 +74,17 @@ const initDB = async () => {
     console.warn('[Server] Auto-seed/sync check notice:', err.message);
   }
 
+  // Before the catalogue sync, so existing products already carry the current slugs
+  try {
+    await removeE27Text();
+  } catch (err) {
+    console.warn('[Server] E27 cleanup notice:', err.message);
+  }
+
   try {
     await syncCatalogProducts();
   } catch (err) {
     console.warn('[Server] Catalogue product sync notice:', err.message);
-  }
-
-  try {
-    await removeE27Text();
-  } catch (err) {
-    console.warn('[Server] E27 text cleanup notice:', err.message);
   }
 };
 
@@ -179,6 +181,17 @@ app.get('/api/health', (req, res) => {
     service: 'LightHut Lighting Catalog API',
     timestamp: new Date().toISOString(),
   });
+});
+
+// Keep old e27 category/product links working (e.g. ?category=e27-wall-lamp)
+app.use('/api', (req, res, next) => {
+  if (req.url.includes('e27')) {
+    req.url = normalizeLegacySlug(req.url);
+    for (const [key, value] of Object.entries(req.query)) {
+      req.query[key] = normalizeLegacySlug(value);
+    }
+  }
+  next();
 });
 
 // Wait for the database before handling any other API request

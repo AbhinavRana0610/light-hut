@@ -8,7 +8,7 @@ import HomepageSection from '../models/HomepageSection.js';
 import SiteSettings from '../models/SiteSettings.js';
 import { LED_HANGING_LAMPS } from './data/ledHangingLamps.js';
 import { WALL_LAMPS } from './data/wallLamps.js';
-import { E27_HANGING_LAMPS } from './data/e27HangingLamps.js';
+import { CLASSIC_HANGING_LAMPS } from './data/classicHangingLamps.js';
 import { OUTDOOR_LAMPS } from './data/outdoorLamps.js';
 
 dotenv.config();
@@ -77,9 +77,9 @@ const seedAll = async (isStandalone = false) => {
       },
       {
         name: 'Wall Lamp',
-        slug: 'e27-wall-lamp',
+        slug: 'classic-wall-lamp',
         description: 'Classic socket wall lamps compatible with standard bulbs – ideal for bedside and hallway use.',
-        image: '/categories/e27-wall-lamp.jpg',
+        image: '/categories/classic-wall-lamp.jpg',
         sortOrder: 2,
         isActive: true,
         seoTitle: 'Wall Lamps | LightHut',
@@ -108,9 +108,9 @@ const seedAll = async (isStandalone = false) => {
       },
       {
         name: 'Hanging Lamp',
-        slug: 'e27-hanging-lamp',
+        slug: 'classic-hanging-lamp',
         description: 'Versatile pendant lamps with decorative fabric cords and adjustable drop heights.',
-        image: '/categories/e27-hanging-lamp.jpg',
+        image: '/categories/classic-hanging-lamp.jpg',
         sortOrder: 12,
         isActive: true,
         seoTitle: 'Hanging Lamps | LightHut',
@@ -374,8 +374,8 @@ const seedAll = async (isStandalone = false) => {
       // Catalogue products: see ./data/ledHangingLamps.js
       ...LED_HANGING_LAMPS.map((p) => ({ ...p, category: catMap['led-hanging-lamp'] })),
       // ── HANGING LAMP (+ one LED foam lamp) ────────────────────
-      // Catalogue products: see ./data/e27HangingLamps.js
-      ...E27_HANGING_LAMPS.map(({ categorySlug, ...p }) => ({ ...p, category: catMap[categorySlug] })),
+      // Catalogue products: see ./data/classicHangingLamps.js
+      ...CLASSIC_HANGING_LAMPS.map(({ categorySlug, ...p }) => ({ ...p, category: catMap[categorySlug] })),
       // ── LED CHANDELIER ────────────────────────────────────────────
       {
         name: 'LH-CH101 Sputnik LED Chandelier',

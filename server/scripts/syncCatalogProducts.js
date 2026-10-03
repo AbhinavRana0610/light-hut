@@ -3,7 +3,7 @@ import Category from '../models/Category.js';
 import Product from '../models/Product.js';
 import { LED_HANGING_LAMPS } from './data/ledHangingLamps.js';
 import { WALL_LAMPS } from './data/wallLamps.js';
-import { E27_HANGING_LAMPS } from './data/e27HangingLamps.js';
+import { CLASSIC_HANGING_LAMPS } from './data/classicHangingLamps.js';
 import { OUTDOOR_LAMPS } from './data/outdoorLamps.js';
 
 // Bump this when new catalogue data files are added so existing databases pick them up once.
@@ -21,7 +21,7 @@ export const syncCatalogProducts = async () => {
   const catalog = [
     ...WALL_LAMPS,
     ...LED_HANGING_LAMPS.map((p) => ({ categorySlug: 'led-hanging-lamp', ...p })),
-    ...E27_HANGING_LAMPS,
+    ...CLASSIC_HANGING_LAMPS,
     ...OUTDOOR_LAMPS,
   ];
 

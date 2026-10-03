@@ -30,6 +30,18 @@ function CategoryRedirect() {
   return <Navigate to={`/catalog${query ? `?${query}` : ''}`} replace />;
 }
 
+// Helper: Old links carried the "e27" label (e.g. ?category=e27-wall-lamp); send them to the current URLs
+function LegacySlugRedirect() {
+  const { pathname, search, hash } = useLocation();
+  const url = `${pathname}${search}`;
+  if (!url.includes('e27')) return null;
+  const next = url
+    .replace(/e27-(wall|hanging)-lamp/g, 'classic-$1-lamp')
+    .replace(/(^|[-/=])e27-/g, '$1')
+    .replace(/-e27(?=$|[-/?&#])/g, '');
+  return <Navigate to={`${next}${hash}`} replace />;
+}
+
 // Admin Pages
 import { AdminLogin } from './pages/admin/AdminLogin';
 import { Dashboard } from './pages/admin/Dashboard';
@@ -48,6 +60,7 @@ function App() {
         <SettingsProvider>
           <AuthProvider>
             <BrowserRouter>
+            <LegacySlugRedirect />
             <Routes>
               {/* Public Storefront Layout */}
               <Route path="/" element={<PublicLayout />}>

@@ -913,7 +913,7 @@ export const WALL_LAMPS = [
     "sortOrder": 24
   },
   {
-    "categorySlug": "e27-wall-lamp",
+    "categorySlug": "classic-wall-lamp",
     "name": "LH-050W Modern Wall Lamp",
     "slug": "lh-050w-modern-wall-lamp",
     "sku": "LH-050W",
@@ -922,12 +922,12 @@ export const WALL_LAMPS = [
     "price": 915,
     "images": [
       {
-        "url": "/products/e27-wall-lamp/lh-050w-modern-wall-lamp.jpg",
+        "url": "/products/classic-wall-lamp/lh-050w-modern-wall-lamp.jpg",
         "alt": "LH-050W Modern Wall Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-wall-lamp/lh-050w-modern-wall-lamp-full.jpg",
+        "url": "/products/classic-wall-lamp/lh-050w-modern-wall-lamp-full.jpg",
         "alt": "LH-050W Modern Wall Lamp installed view",
         "isCover": false
       }
@@ -949,7 +949,7 @@ export const WALL_LAMPS = [
     "sortOrder": 25
   },
   {
-    "categorySlug": "e27-wall-lamp",
+    "categorySlug": "classic-wall-lamp",
     "name": "LH-503W Modern Wall Lamp",
     "slug": "lh-503w-modern-wall-lamp",
     "sku": "LH-503W",
@@ -958,12 +958,12 @@ export const WALL_LAMPS = [
     "price": 1260,
     "images": [
       {
-        "url": "/products/e27-wall-lamp/lh-503w-modern-wall-lamp.jpg",
+        "url": "/products/classic-wall-lamp/lh-503w-modern-wall-lamp.jpg",
         "alt": "LH-503W Modern Wall Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-wall-lamp/lh-503w-modern-wall-lamp-full.jpg",
+        "url": "/products/classic-wall-lamp/lh-503w-modern-wall-lamp-full.jpg",
         "alt": "LH-503W Modern Wall Lamp installed view",
         "isCover": false
       }
@@ -984,7 +984,7 @@ export const WALL_LAMPS = [
     "sortOrder": 26
   },
   {
-    "categorySlug": "e27-wall-lamp",
+    "categorySlug": "classic-wall-lamp",
     "name": "LH-048W Modern Wall Lamp",
     "slug": "lh-048w-modern-wall-lamp",
     "sku": "LH-048W",
@@ -993,12 +993,12 @@ export const WALL_LAMPS = [
     "price": 1080,
     "images": [
       {
-        "url": "/products/e27-wall-lamp/lh-048w-modern-wall-lamp.jpg",
+        "url": "/products/classic-wall-lamp/lh-048w-modern-wall-lamp.jpg",
         "alt": "LH-048W Modern Wall Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-wall-lamp/lh-048w-modern-wall-lamp-full.jpg",
+        "url": "/products/classic-wall-lamp/lh-048w-modern-wall-lamp-full.jpg",
         "alt": "LH-048W Modern Wall Lamp installed view",
         "isCover": false
       }
@@ -1018,7 +1018,7 @@ export const WALL_LAMPS = [
     "sortOrder": 27
   },
   {
-    "categorySlug": "e27-wall-lamp",
+    "categorySlug": "classic-wall-lamp",
     "name": "LH-6003W Modern Wall Lamp",
     "slug": "lh-6003w-modern-wall-lamp",
     "sku": "LH-6003W",
@@ -1027,12 +1027,12 @@ export const WALL_LAMPS = [
     "price": 2400,
     "images": [
       {
-        "url": "/products/e27-wall-lamp/lh-6003w-modern-wall-lamp.jpg",
+        "url": "/products/classic-wall-lamp/lh-6003w-modern-wall-lamp.jpg",
         "alt": "LH-6003W Modern Wall Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-wall-lamp/lh-6003w-modern-wall-lamp-full.jpg",
+        "url": "/products/classic-wall-lamp/lh-6003w-modern-wall-lamp-full.jpg",
         "alt": "LH-6003W Modern Wall Lamp installed view",
         "isCover": false
       }
@@ -1053,7 +1053,7 @@ export const WALL_LAMPS = [
     "sortOrder": 28
   },
   {
-    "categorySlug": "e27-wall-lamp",
+    "categorySlug": "classic-wall-lamp",
     "name": "LH-928W Modern Wall Lamp",
     "slug": "lh-928w-modern-wall-lamp",
     "sku": "LH-928W",
@@ -1062,12 +1062,12 @@ export const WALL_LAMPS = [
     "price": 1320,
     "images": [
       {
-        "url": "/products/e27-wall-lamp/lh-928w-modern-wall-lamp.jpg",
+        "url": "/products/classic-wall-lamp/lh-928w-modern-wall-lamp.jpg",
         "alt": "LH-928W Modern Wall Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-wall-lamp/lh-928w-modern-wall-lamp-full.jpg",
+        "url": "/products/classic-wall-lamp/lh-928w-modern-wall-lamp-full.jpg",
         "alt": "LH-928W Modern Wall Lamp installed view",
         "isCover": false
       }
@@ -1088,7 +1088,7 @@ export const WALL_LAMPS = [
     "sortOrder": 29
   },
   {
-    "categorySlug": "e27-wall-lamp",
+    "categorySlug": "classic-wall-lamp",
     "name": "LH-3215W Modern Wall Lamp",
     "slug": "lh-3215w-modern-wall-lamp",
     "sku": "LH-3215W",
@@ -1097,12 +1097,12 @@ export const WALL_LAMPS = [
     "price": 1980,
     "images": [
       {
-        "url": "/products/e27-wall-lamp/lh-3215w-modern-wall-lamp.jpg",
+        "url": "/products/classic-wall-lamp/lh-3215w-modern-wall-lamp.jpg",
         "alt": "LH-3215W Modern Wall Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-wall-lamp/lh-3215w-modern-wall-lamp-full.jpg",
+        "url": "/products/classic-wall-lamp/lh-3215w-modern-wall-lamp-full.jpg",
         "alt": "LH-3215W Modern Wall Lamp installed view",
         "isCover": false
       }
@@ -1123,7 +1123,7 @@ export const WALL_LAMPS = [
     "sortOrder": 30
   },
   {
-    "categorySlug": "e27-wall-lamp",
+    "categorySlug": "classic-wall-lamp",
     "name": "LH-3003W Modern Wall Lamp",
     "slug": "lh-3003w-modern-wall-lamp",
     "sku": "LH-3003W",
@@ -1132,12 +1132,12 @@ export const WALL_LAMPS = [
     "price": 2120,
     "images": [
       {
-        "url": "/products/e27-wall-lamp/lh-3003w-modern-wall-lamp.jpg",
+        "url": "/products/classic-wall-lamp/lh-3003w-modern-wall-lamp.jpg",
         "alt": "LH-3003W Modern Wall Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-wall-lamp/lh-3003w-modern-wall-lamp-full.jpg",
+        "url": "/products/classic-wall-lamp/lh-3003w-modern-wall-lamp-full.jpg",
         "alt": "LH-3003W Modern Wall Lamp installed view",
         "isCover": false
       }
@@ -1158,7 +1158,7 @@ export const WALL_LAMPS = [
     "sortOrder": 31
   },
   {
-    "categorySlug": "e27-wall-lamp",
+    "categorySlug": "classic-wall-lamp",
     "name": "LH-W528 Modern Wall Lamp",
     "slug": "lh-w528-modern-wall-lamp",
     "sku": "LH-W528",
@@ -1167,12 +1167,12 @@ export const WALL_LAMPS = [
     "price": 1920,
     "images": [
       {
-        "url": "/products/e27-wall-lamp/lh-w528-modern-wall-lamp.jpg",
+        "url": "/products/classic-wall-lamp/lh-w528-modern-wall-lamp.jpg",
         "alt": "LH-W528 Modern Wall Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-wall-lamp/lh-w528-modern-wall-lamp-full.jpg",
+        "url": "/products/classic-wall-lamp/lh-w528-modern-wall-lamp-full.jpg",
         "alt": "LH-W528 Modern Wall Lamp installed view",
         "isCover": false
       }
@@ -1193,7 +1193,7 @@ export const WALL_LAMPS = [
     "sortOrder": 32
   },
   {
-    "categorySlug": "e27-wall-lamp",
+    "categorySlug": "classic-wall-lamp",
     "name": "LH-7080W Modern Wall Lamp",
     "slug": "lh-7080w-modern-wall-lamp",
     "sku": "LH-7080W",
@@ -1202,12 +1202,12 @@ export const WALL_LAMPS = [
     "price": 2280,
     "images": [
       {
-        "url": "/products/e27-wall-lamp/lh-7080w-modern-wall-lamp.jpg",
+        "url": "/products/classic-wall-lamp/lh-7080w-modern-wall-lamp.jpg",
         "alt": "LH-7080W Modern Wall Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-wall-lamp/lh-7080w-modern-wall-lamp-full.jpg",
+        "url": "/products/classic-wall-lamp/lh-7080w-modern-wall-lamp-full.jpg",
         "alt": "LH-7080W Modern Wall Lamp installed view",
         "isCover": false
       }
@@ -1227,7 +1227,7 @@ export const WALL_LAMPS = [
     "sortOrder": 33
   },
   {
-    "categorySlug": "e27-wall-lamp",
+    "categorySlug": "classic-wall-lamp",
     "name": "LH-7632W Modern Wall Lamp",
     "slug": "lh-7632w-modern-wall-lamp",
     "sku": "LH-7632W",
@@ -1236,12 +1236,12 @@ export const WALL_LAMPS = [
     "price": 1800,
     "images": [
       {
-        "url": "/products/e27-wall-lamp/lh-7632w-modern-wall-lamp.jpg",
+        "url": "/products/classic-wall-lamp/lh-7632w-modern-wall-lamp.jpg",
         "alt": "LH-7632W Modern Wall Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-wall-lamp/lh-7632w-modern-wall-lamp-full.jpg",
+        "url": "/products/classic-wall-lamp/lh-7632w-modern-wall-lamp-full.jpg",
         "alt": "LH-7632W Modern Wall Lamp installed view",
         "isCover": false
       }
@@ -1261,7 +1261,7 @@ export const WALL_LAMPS = [
     "sortOrder": 34
   },
   {
-    "categorySlug": "e27-wall-lamp",
+    "categorySlug": "classic-wall-lamp",
     "name": "LH-8828W Modern Wall Lamp",
     "slug": "lh-8828w-modern-wall-lamp",
     "sku": "LH-8828W",
@@ -1270,12 +1270,12 @@ export const WALL_LAMPS = [
     "price": 750,
     "images": [
       {
-        "url": "/products/e27-wall-lamp/lh-8828w-modern-wall-lamp.jpg",
+        "url": "/products/classic-wall-lamp/lh-8828w-modern-wall-lamp.jpg",
         "alt": "LH-8828W Modern Wall Lamp",
         "isCover": true
       },
       {
-        "url": "/products/e27-wall-lamp/lh-8828w-modern-wall-lamp-full.jpg",
+        "url": "/products/classic-wall-lamp/lh-8828w-modern-wall-lamp-full.jpg",
         "alt": "LH-8828W Modern Wall Lamp installed view",
         "isCover": false
       }

@@ -18,10 +18,10 @@ import { useSettings } from '../../context/SettingsContext';
 const CATEGORY_HOVER_MAP = {
   'wall-lamp': '/categories/wall-lamp.jpg',
   'led-wall-lamp': '/categories/led-wall-lamp.jpg',
-  'e27-wall-lamp': '/categories/e27-wall-lamp.jpg',
+  'classic-wall-lamp': '/categories/classic-wall-lamp.jpg',
   'pendant-lamp': '/categories/pendant-lamp.jpg',
   'led-hanging-lamp': '/categories/led-hanging-lamp.jpg',
-  'e27-hanging-lamp': '/categories/e27-hanging-lamp.jpg',
+  'classic-hanging-lamp': '/categories/classic-hanging-lamp.jpg',
   'chandelier': '/categories/chandelier.jpg',
   'led-chandelier': '/categories/chandelier.jpg',
   'e14-chandelier': '/categories/e14-chandelier.jpg',
@@ -59,9 +59,9 @@ const getCategoryDefaultCover = (cat) => {
   if (c.includes('antic') || c.includes('antique')) return '/categories/antic-chandelier.jpg';
   if (c.includes('ceiling') && c.includes('chandelier')) return '/categories/ceiling-chandelier.jpg';
   if (c.includes('led') && c.includes('wall')) return '/categories/led-wall-lamp.jpg';
-  if (c.includes('e27') && c.includes('wall')) return '/categories/e27-wall-lamp.jpg';
+  if (c.includes('classic') && c.includes('wall')) return '/categories/classic-wall-lamp.jpg';
   if (c.includes('led') && (c.includes('pendant') || c.includes('hanging'))) return '/categories/led-hanging-lamp.jpg';
-  if (c.includes('e27') && (c.includes('pendant') || c.includes('hanging'))) return '/categories/e27-hanging-lamp.jpg';
+  if (c.includes('classic') && (c.includes('pendant') || c.includes('hanging'))) return '/categories/classic-hanging-lamp.jpg';
   if (c.includes('wall')) return '/categories/wall-lamp.jpg';
   if (c.includes('pendant') || c.includes('hanging')) return '/categories/pendant-lamp.jpg';
   if (c.includes('fan')) return '/categories/fan-chandelier.jpg';

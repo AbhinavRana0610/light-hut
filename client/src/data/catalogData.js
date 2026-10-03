@@ -47,7 +47,7 @@ export const MASTER_CATEGORIES = [
     total: 87,
     subcategories: [
       { name: 'LED Hanging Lamp', slug: 'led-hanging-lamp', count: 35, image: '/categories/led-hanging-lamp.jpg' },
-      { name: 'Hanging Lamp', slug: 'e27-hanging-lamp', count: 52, image: '/categories/e27-hanging-lamp.jpg' },
+      { name: 'Hanging Lamp', slug: 'classic-hanging-lamp', count: 52, image: '/categories/classic-hanging-lamp.jpg' },
     ],
   },
 
@@ -67,7 +67,7 @@ export const MASTER_CATEGORIES = [
     total: 36,
     subcategories: [
       { name: 'LED Wall Lamp', slug: 'led-wall-lamp', count: 25, image: '/categories/led-wall-lamp.jpg' },
-      { name: 'Wall Lamp', slug: 'e27-wall-lamp', count: 11, image: '/categories/e27-wall-lamp.jpg' },
+      { name: 'Wall Lamp', slug: 'classic-wall-lamp', count: 11, image: '/categories/classic-wall-lamp.jpg' },
     ],
   },
 
@@ -263,7 +263,7 @@ export const MASTER_PRODUCTS = [
     slug: 'lh-050w-modern-wall-lamp',
     sku: 'LH-050W',
     category: 'wall-lamp',
-    subcategory: 'e27-wall-lamp',
+    subcategory: 'classic-wall-lamp',
     categoryName: 'Wall Lamp',
     shortDescription: 'Slim gold rod sconce with a clear cylindrical glass shade.',
     description: 'Slim gold rod sconce with a clear cylindrical glass shade. Iron / Glass body in gold plating with one bulb holder.',
@@ -271,8 +271,8 @@ export const MASTER_PRODUCTS = [
     isFeatured: true,
     isPublished: true,
     images: [
-      { url: '/products/e27-wall-lamp/lh-050w-modern-wall-lamp.jpg', alt: 'LH-050W Modern Wall Lamp', isCover: true },
-      { url: '/products/e27-wall-lamp/lh-050w-modern-wall-lamp-full.jpg', alt: 'LH-050W Modern Wall Lamp installed view', isCover: false },
+      { url: '/products/classic-wall-lamp/lh-050w-modern-wall-lamp.jpg', alt: 'LH-050W Modern Wall Lamp', isCover: true },
+      { url: '/products/classic-wall-lamp/lh-050w-modern-wall-lamp-full.jpg', alt: 'LH-050W Modern Wall Lamp installed view', isCover: false },
     ],
     specifications: {
       dimensions: 'H440*W80mm',
@@ -317,7 +317,7 @@ export const MASTER_PRODUCTS = [
     slug: 'lh-26-1l-3l-metal-hanging-lamp',
     sku: 'LH-26/1L-3L',
     category: 'pendant-lamp',
-    subcategory: 'e27-hanging-lamp',
+    subcategory: 'classic-hanging-lamp',
     categoryName: 'Pendant Lamp',
     shortDescription: 'Woven rope dome shades on a round black canopy.',
     description: 'Woven rope dome shades on a round black canopy. Iron / Rope body in natural rope finish with a bulb holder per light. Available as 1L (₹1,300) and 3L (₹3,855).',
@@ -325,8 +325,8 @@ export const MASTER_PRODUCTS = [
     isFeatured: true,
     isPublished: true,
     images: [
-      { url: '/products/e27-hanging-lamp/lh-26-1l-3l-metal-hanging-lamp.jpg', alt: 'LH-26/1L-3L Metal Hanging Lamp', isCover: true },
-      { url: '/products/e27-hanging-lamp/lh-26-1l-3l-metal-hanging-lamp-full.jpg', alt: 'LH-26/1L-3L Metal Hanging Lamp installed view', isCover: false },
+      { url: '/products/classic-hanging-lamp/lh-26-1l-3l-metal-hanging-lamp.jpg', alt: 'LH-26/1L-3L Metal Hanging Lamp', isCover: true },
+      { url: '/products/classic-hanging-lamp/lh-26-1l-3l-metal-hanging-lamp-full.jpg', alt: 'LH-26/1L-3L Metal Hanging Lamp installed view', isCover: false },
     ],
     specifications: {
       dimensions: 'D200mm per lamp',
